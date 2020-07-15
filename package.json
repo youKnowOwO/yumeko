@@ -5,10 +5,10 @@
   "main": "dist",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "test": "eslint --ignore-path .gitignore \"**/*.+(ts|js)\" && tsc",
+    "lint": "eslint --ignore-path .gitignore \"**/*.+(ts|js)\"",
     "lint:fix": "eslint --ignore-path .gitignore \"**/*.+(ts|js)\" --fix",
     "start": "node dist",
-    "start:env": "node dist/util/EnvLoader && yarn start"
+    "test": "yarn lint && yarn build"
   },
   "repository": "https://github.com/youKnowOwO/yumeko-ts.git",
   "author": "youKnowOwO",

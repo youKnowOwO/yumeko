@@ -1,7 +1,7 @@
-import * as chalk from "chalk";
-import moment from "moment";
 import { stripIndents } from "common-tags";
 import { format } from "util";
+import chalk from "chalk";
+import moment from "moment";
 
 const defaultFormat = "MMMM Do YYYY, h:mm:ss a";
 
@@ -22,24 +22,24 @@ export default class Logger {
         return chalk.hex(hex)(input);
     }
 
-    public getEquals(input: string, max = 8): string {
+    public getEquals(input: string, max = 50): string {
         const result = input.length > max ? 0 : max - input.length;
-        return "=".repeat(result);
+        return "=".repeat(result/2);
     }
 
     public print(input: unknown): void {
         process.stdout.write(format(input));
     }
 
-    public info(head: string, value: unknown): void {
-        return this.write(this.color(head, "2ECC71"), this.color(value, "1F8B4C"));
+    public info(value: unknown): void {
+        return this.write(this.color("^w^) INFO", "2ECC71"), this.color(value, "1F8B4C"));
     }
 
-    public error(head: string, value: unknown): void {
-        return this.write(this.color(head, "E74C3C"), this.color(value, "C27C0E"));
+    public error(value: unknown): void {
+        return this.write(this.color("'-') ERROR", "E74C3C"), this.color(value, "C27C0E"));
     }
 
-    public warn(head: string, value: unknown): void {
-        return this.write(this.color(head, "FFFF00"), this.color(value, "992D22"));
+    public warn(value: unknown): void {
+        return this.write(this.color("°^°) WARN", "FFFF00"), this.color(value, "992D22"));
     }
 }
