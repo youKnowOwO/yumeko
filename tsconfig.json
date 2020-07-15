@@ -12,10 +12,10 @@
       "resolveJsonModule": true,
       "typeRoots": [
           "node_modules/@types",
-          "typings"
+          "src/interfaces"
       ],
       "outDir": "./dist"
   },
-  "include": ["src/**/*", "typings/*", "src/commands/**/*.json"],
+  "include": ["src"],
   "exclude": ["node_modules/**"]
 }
