@@ -1,20 +1,22 @@
 import type YumekoClient from "../classes/Client";
 import type Command from "../classes/Command";
+import ArgumentParser from "./ArgumentParser";
 import { Message, Collection, Snowflake, PermissionString, GuildMember } from "discord.js";
 import { CommandUsed, CommandOption } from "../interfaces";
-import { timingSafeEqual } from "crypto";
 
 export default class CommandRunner {
     public commandUsed: Collection<Snowflake, CommandUsed> = new Collection();
+    public argsParser: ArgumentParser = new ArgumentParser(this.client);
     public constructor(public client: YumekoClient) {}
 
     public async runCommand(msg: Message,command: Command): Promise<boolean> {
         try {
+            const args = command.option.args ? await this.argsParser.parse(msg, command.option.args) : {};
             // eslint-disable-next-line @typescript-eslint/await-thenable
-            await command.exec(msg);
+            await command.exec(msg, args);
             return true;
         } catch(e) {
-            this.client.log.error(e);
+            if(!["CANCELED", "!UNDERSTAND"].includes(e.name)) this.client.log.error(e);
             return false;
         }
     }
@@ -31,6 +33,8 @@ export default class CommandRunner {
         if(this.isCooldown(msg)) return undefined;
         if(command.option.devOnly && !msg.author.isDev) return undefined;
         if(!this.allowed(msg, command.option.permissions)) return undefined;
+        msg.prefix = prefix;
+        msg.args = args;
         const payload: CommandUsed = {
             running: true,
             since: Date.now(),

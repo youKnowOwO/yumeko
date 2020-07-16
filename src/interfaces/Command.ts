@@ -17,7 +17,7 @@ export interface CommandOption {
     cooldown?: number;
     disable?: boolean;
     devOnly?: boolean;
-    arguments?: Argument[];
+    args?: Argument[];
 }
 
 export interface CommandCollectorCategories {
@@ -32,7 +32,9 @@ export interface CommandUsed {
     timeout?: unknown;
 }
 
-export type ArgumentTypeFunction = <T>(msg: Message, content: string) => T;
+export type TypeFunction = (msg: Message, input: string) => unknown;
+
+export type ArgumentTypeFunction = (msg: Message, content: string) => unknown;
 
 export interface Argument {
     identifier: string;
@@ -40,8 +42,6 @@ export interface Argument {
     type?: ArgumentTypeFunction | string;
     optional?: boolean;
     flag?: string;
-    prompt?: {
-        ask?: ((msg: Message, type: ArgumentTypeFunction ) => string) | string;
-        retry?: ((msg: Message, type: ArgumentTypeFunction ) => string) | string;
-    };
+    default?: (msg: Message) => any;
+    prompt?: ((msg: Message) => string) | string;
 }

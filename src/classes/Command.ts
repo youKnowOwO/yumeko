@@ -10,7 +10,7 @@ export default class Command {
     public constructor(public client: YumekoClient, public identifier: string, public option: CommandOption) {}
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public exec(msg?: Message, args?: unknown): void {
-        throw new CustomError("CommandError", "Exec Function must be declarex");
+        throw new CustomError("CommandError", "Exec Function must be declared");
     }
 
     public disable(disable?: boolean): boolean {
