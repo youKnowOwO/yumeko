@@ -1,0 +1,50 @@
+import type YumekoClient from "../classes/Client";
+import CommandRunner from "./CommandRunner";
+import Command from "../classes/Command";
+import readdirRecursive from "../util/ReaddirRecursive";
+import { CommandCollectorCategories } from "../interfaces";
+import { Collection } from "discord.js";
+import { join } from "path";
+
+export default class CommandCollector {
+    public commands: Collection<string, Command> = new Collection();
+    public categories: CommandCollectorCategories[] = [];
+    public runner: CommandRunner = new CommandRunner(this.client);
+    public constructor(public client: YumekoClient) {}
+
+    public loadAll(log = true): void {
+        const path = join(__dirname, "../commands");
+        const files = readdirRecursive(path);
+        const { print, color, equal, date } = this.client.log;
+        if(log) print(equal(color("▶️ Collecting Command", "00C2FF")));
+        for(const file of files) {
+            const load = require(file).default;
+            if(!load || !(load.prototype instanceof Command)) continue;
+            const command = this.getCommand(file);
+            this.registry(command);
+            if(log) print(`+ ${color(command.identifier, "FE9DFF")}`);
+        }
+        if(log) print(equal(color(date(), "505050")));
+    }
+
+    public registry(command: string | Command): void {
+        if(typeof command === "string") command = this.getCommand(command);
+        this.addToCategory(command);
+        this.commands.set(command.identifier, command);
+    }
+
+    public getCommand(path: string): Command {
+        const command: Command = new (require(path).default)(this.client);
+        command.dir = path;
+        command.collector = this;
+        return command;
+    }
+
+    public addToCategory(command: Command): void {
+        const category = this.categories.find(x => x.type === command.option.category) || {
+            type: command.option.category,
+            commands: []
+        };
+        category.commands.push(command);
+    }
+}

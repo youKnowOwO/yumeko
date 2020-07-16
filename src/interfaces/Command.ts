@@ -1,6 +1,7 @@
-import { PermissionString, Message } from "discord.js";
+import type { PermissionString, Message } from "discord.js";
+import type Command from "../classes/Command";
 
-export interface CommmandOption {
+export interface CommandOption {
     description: {
         content: string;
         usage: string;
@@ -17,6 +18,18 @@ export interface CommmandOption {
     disable?: boolean;
     devOnly?: boolean;
     arguments?: Argument[];
+}
+
+export interface CommandCollectorCategories {
+    type: CommandOption["category"];
+    commands: Command[];
+}
+
+export interface CommandUsed {
+    running: boolean;
+    since: number;
+    amount: number;
+    timeout?: unknown;
 }
 
 export type ArgumentTypeFunction = <T>(msg: Message, content: string) => T;

@@ -3,18 +3,22 @@ import { format } from "util";
 import chalk from "chalk";
 import moment from "moment";
 
-const defaultFormat = "MMMM Do YYYY, h:mm:ss a";
+const momentFormat = "MMMM Do YYYY, h:mm:ss a";
 
 export default class Logger {
-    public constructor(public format = defaultFormat) {}
-    public write (head: string, value: string,): void {
-        const date = moment(Date.now()).format(this.format);
+    public write (head: string, value: string): void {
+        const date = this.date();
         const log = stripIndents`
-            ${this.getEquals(head)} ${chalk.bold(head)} ${this.getEquals(head)}
+            ${this.equal(chalk.bold(head))}
             ${value}
-            ${this.getEquals(date)} ${chalk.grey(date)} ${this.getEquals(date)}\n
+            ${this.equal(chalk.grey(date))}
+            \u200B
         `;
         process.stdout.write(log);
+    }
+
+    public date(): string {
+        return moment(Date.now()).format(momentFormat);
     }
 
     public color(input: unknown, hex: string): string {
@@ -22,13 +26,14 @@ export default class Logger {
         return chalk.hex(hex)(input);
     }
 
-    public getEquals(input: string, max = 50): string {
+    public equal(input: string, max = 50): string {
         const result = input.length > max ? 0 : max - input.length;
-        return "=".repeat(result/2);
+        const eq = "=".repeat(result/2);
+        return `${eq} ${input} ${eq}`;
     }
 
     public print(input: unknown): void {
-        process.stdout.write(format(input));
+        process.stdout.write(`${format(input)}\n`);
     }
 
     public info(value: unknown): void {
