@@ -3,9 +3,10 @@ import type { Message } from "discord.js";
 import { Event } from "../interfaces";
 
 export default class MessageEvent implements Event {
-    public listener = "message";
+    public listener = "messageUpdate";
     public constructor(public readonly client: YumekoClient) {}
-    public exec(msg: Message): void {
-        this.client.collector.runner.handle(msg);
+    public exec(oldMessage: Message, newMessage: Message): void {
+        if(oldMessage.content === newMessage.content) return undefined;
+        this.client.collector.runner.handle(newMessage);
     }
 }

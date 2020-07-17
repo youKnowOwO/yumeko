@@ -21,7 +21,7 @@ export default class PingCommand extends Command {
 
     async exec(msg: Message): Promise<void> {
         const now = Date.now();
-        const m = await msg.channel.send("🏓 Ping..");
+        const m = await msg.ctx.send("🏓 Ping..");
         const embed = new MessageEmbed()
             .setColor("RANDOM")
             .setDescription(stripIndents`

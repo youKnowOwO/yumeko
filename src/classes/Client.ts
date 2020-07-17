@@ -1,5 +1,6 @@
 import { Client } from "discord.js";
 import CommandCollector from "../libs/CommandCollector";
+import Context from "../libs/MessageContext";
 import Logger from "../libs/Logger";
 import eventLoader from "../libs/EventLoader";
 
@@ -10,6 +11,7 @@ const config = require("../../config.json");
 
 export default class YumekoClient extends Client {
     public collector = new CommandCollector(this);
+    public context = new Context();
     public config = config;
     public log = new Logger();
     public constructor() {

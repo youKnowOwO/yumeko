@@ -55,13 +55,13 @@ export default class CommandRunner {
             amount: 0
         };
         if(used.running) {
-            msg.channel.send(`**❌ | ${msg.author}, Only one command per user**`);
+            msg.ctx.send(`**❌ | ${msg.author}, Only one command per user**`);
             return true;
         }
         const cooldown = used.since + used.amount;
         if(now < cooldown) {
             const amount = (cooldown - now) / 1000;
-            msg.channel.send(`**⏱️ | ${msg.author}, Calm down!.** You can use command again in \`${Math.round(amount)}\` second(s)`);
+            msg.ctx.send(`**⏱️ | ${msg.author}, Calm down!.** You can use command again in \`${Math.round(amount)}\` second(s)`);
             return true;
         }
         return false;
@@ -72,16 +72,16 @@ export default class CommandRunner {
         if(permission.client) {
             const permissions = this.checkMissPermission(msg.guild!.me!, permission.client);
             if(permissions.length) {
-                const mappedPerms = permissions.map(x => `\`${x}\``).join();
-                msg.channel.send(`**❌ | Im require this permission(s) to run the command. ${mappedPerms}**`);
+                const mappedPerms = permissions.map(x => `\`${x}\``).join().replace(/\_/g, "");
+                msg.ctx.send(`**❌ | Im require this permission(s) to run the command. ${mappedPerms}**`);
                 return false;
             }
         }
         if(permission.user) {
             const permissions = this.checkMissPermission(msg.member!, permission.user);
             if(permissions.length) {
-                const mappedPerms = permissions.map(x => `\`${x}\``).join();
-                msg.channel.send(`**❌ | ${msg.author}, You require this permission(s) to run the command. ${mappedPerms}**`);
+                const mappedPerms = permissions.map(x => `\`${x}\``).join().replace(/\_/g, "");
+                msg.ctx.send(`**❌ | ${msg.author}, You require this permission(s) to run the command. ${mappedPerms}**`);
                 return false;
             }
         }

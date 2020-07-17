@@ -23,7 +23,7 @@ export default class ArgumentParser {
         let multipleArg = "";
         args = args.slice(0);
         for(const arg of args) {
-            const produce = this.getType(arg.type);
+            const produce = arg.type ? this.getType(arg.type) : this.getType("boolean");
             let matched: string|void;
             if(!msg.args.length && arg.optional) continue;
             if(arg.match === "rest") {
@@ -48,7 +48,7 @@ export default class ArgumentParser {
             }
             let produced: unknown;
             let tries = 1;
-            if(!matched && arg.default) matched = arg.default(msg);
+            if(!matched && arg.default) matched = typeof arg.default === "function" ? arg.default(msg) : arg.default;
             try {
                 if(!matched && arg.prompt) {
                     tries = 0;
@@ -73,15 +73,17 @@ export default class ArgumentParser {
                 **❌ |** ${!tries ? (typeof arg.prompt === "function" ? arg.prompt(msg) : arg.prompt) : toSend}
                 **▫️ |** ***You've \`30\` seconds to decide***
                 **▫️ | ** ***You can type \`cancel\` to cancel.***
+                **▫️ | ** ***Or if you want to type cancel use \`|cancel|\` instead***
             `);
             const filter = (m: Message): boolean => m.author.id === msg.author.id;
             const responses = await msg.channel.awaitMessages(filter, { max: 1, time: 30000});
             if(!responses.size) throw new CustomError("CANCELED");
-            const m = responses.first()!.content;
+            let m = responses.first()!.content;
             if(m.toLowerCase() === "cancel")  {
-                msg.react("👌");
+                responses.first()!.react("👌");
                 throw new CustomError("CANCELED");
             }
+            if(m.toLowerCase() === "|cancel|") m = m.replace(/\|/g, "");
             const produce = this.getType(arg.type);
             try {
                 result = produce(msg, m);

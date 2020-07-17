@@ -24,6 +24,6 @@ export default class SayCommand extends Command {
     }
 
     public exec(msg: Message, { text }: { text: string }): void {
-        msg.channel.send(text);
+        msg.ctx.send(text);
     }
 }

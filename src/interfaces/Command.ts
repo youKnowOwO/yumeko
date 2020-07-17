@@ -42,6 +42,6 @@ export interface Argument {
     type?: ArgumentTypeFunction | string;
     optional?: boolean;
     flag?: string;
-    default?: (msg: Message) => any;
+    default?: ((msg: Message) => any) | any;
     prompt?: ((msg: Message) => string) | string;
 }
