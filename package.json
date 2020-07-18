@@ -12,7 +12,7 @@
   },
   "repository": "https://github.com/youKnowOwO/yumeko-ts.git",
   "author": "youKnowOwO",
-  "license": "Apache-2.0",
+  "license": "AGPL-3.0",
   "private": false,
   "devDependencies": {
     "@types/cheerio": "^0.22.21",
