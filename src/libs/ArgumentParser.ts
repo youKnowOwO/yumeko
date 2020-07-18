@@ -68,12 +68,12 @@ export default class ArgumentParser {
 
     public async prompting(msg: Message, arg: Argument, toSend: string, tries = 0): Promise<unknown> {
         let result: unknown;
-        while(!result && tries < 2) {
+        while(!result && tries < 3) {
             await msg.channel.send(stripIndents`
                 **❌ |** ${!tries ? (typeof arg.prompt === "function" ? arg.prompt(msg) : arg.prompt) : toSend}
-                **▫️ |** ***You've \`30\` seconds to decide***
-                **▫️ | ** ***You can type \`cancel\` to cancel.***
-                **▫️ | ** ***Or if you want to type cancel use \`|cancel|\` instead***
+                **▫️ |** *You've \`30\` seconds to decide*
+                **▫️ | ** *You can type \`cancel\` to cancel.*
+                **▫️ | ** *Or if you want to type cancel use \`|cancel|\` instead*
             `);
             const filter = (m: Message): boolean => m.author.id === msg.author.id;
             const responses = await msg.channel.awaitMessages(filter, { max: 1, time: 30000});
@@ -88,8 +88,8 @@ export default class ArgumentParser {
             try {
                 result = produce(msg, m);
             } catch (e) {
-                if(e.name === "!ARGUMENT") toSend = e.message;
-                throw e;
+                if(e.name === "!PARSING") toSend = e.message;
+                else throw e;
             }
             tries++;
         }

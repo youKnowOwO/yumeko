@@ -1,6 +1,6 @@
 import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
-import { Message } from "discord.js";
+import type { Message } from "discord.js";
 
 export default class SayCommand extends Command {
     public constructor (client: YumekoClient) {
@@ -8,11 +8,16 @@ export default class SayCommand extends Command {
             aliases: ["say"],
             description: {
                 content: "Let me repeat what you want",
-                usage: "say <text>",
-                examples: ["ping"]
+                usage: "say <text> [--delete]",
+                examples: ["say salam"]
             },
             category: "general",
             args: [
+                {
+                    identifier: "isDelete",
+                    match: "flag",
+                    flag: "delete"
+                },
                 {
                     identifier: "text",
                     type: "string",
@@ -23,7 +28,8 @@ export default class SayCommand extends Command {
         });
     }
 
-    public exec(msg: Message, { text }: { text: string }): void {
+    public exec(msg: Message, { text, isDelete }: { text: string; isDelete: boolean }): void {
         msg.ctx.send(text);
+        if(isDelete) msg.delete().catch();
     }
 }

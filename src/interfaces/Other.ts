@@ -1,4 +1,4 @@
-import type { Message } from "discord.js";
+import type { Message, MessageEmbed } from "discord.js";
 import { ArgumentTypeFunction } from "./Command";
 
 export interface Event {
@@ -14,4 +14,10 @@ export interface Type {
 
 export interface MessageContext {
     send(content: unknown, options?: any): Promise<Message>;
+}
+
+export interface PaginationPayload {
+    pages: string[];
+    embed: MessageEmbed;
+    edit(index: number, embed: MessageEmbed, page: string): unknown;
 }

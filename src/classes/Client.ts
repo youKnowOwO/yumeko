@@ -21,5 +21,7 @@ export default class YumekoClient extends Client {
         });
         eventLoader(this);
         this.collector.loadAll();
+        this.on("error", this.log.error);
+        this.on("warn", this.log.warn);
     }
 }

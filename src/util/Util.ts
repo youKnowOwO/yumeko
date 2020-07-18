@@ -10,3 +10,14 @@ export function codeBlock(lang: string, str = ""): string{
     if(!str.trim().length) return "``` ```";
     return `\`\`\`${lang}\n${str}\`\`\``;
 }
+
+export function firstUpperCase(text: string): string {
+    return `${text.charAt(0).toUpperCase()}${text.slice(1)}`;
+}
+
+export function chunk<T>(arr: T[], len: number): T[][] {
+    const rest: T[][] = [];
+    for(let i = 0; i < arr.length; i += len)
+        rest.push(arr.slice(i, i+len));
+    return rest;
+}

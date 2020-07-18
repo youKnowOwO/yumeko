@@ -1,6 +1,6 @@
 import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
-import { Message } from "discord.js";
+import type { Message } from "discord.js";
 import { inspect } from "util";
 import { performance } from "perf_hooks";
 import { hastebin, codeBlock } from "../../util/Util";
@@ -32,7 +32,7 @@ export default class EvalCommand extends Command {
                     match: "flag",
                     type: "number",
                     flag: "depth",
-                    default: 20
+                    default: 0
                 },
                 {
                     identifier: "code",

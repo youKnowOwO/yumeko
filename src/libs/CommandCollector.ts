@@ -6,6 +6,8 @@ import { CommandCollectorCategories } from "../interfaces";
 import { Collection } from "discord.js";
 import { join } from "path";
 
+const categoryNames = require("../../assets/json/help.json");
+
 export default class CommandCollector {
     public commands: Collection<string, Command> = new Collection();
     public categories: CommandCollectorCategories[] = [];
@@ -22,7 +24,7 @@ export default class CommandCollector {
             if(!load || !(load.prototype instanceof Command)) continue;
             const command = this.getCommand(file);
             this.registry(command);
-            if(log) print(`+ ${color(command.identifier, "FE9DFF")}`);
+            if(log) print(`+ ${color(command.identifier, "FE9DFF")} (${color(file, "A20092")})`);
         }
         if(log) print(equal(color(date(), "505050")));
     }
@@ -41,10 +43,12 @@ export default class CommandCollector {
     }
 
     public addToCategory(command: Command): void {
-        const category = this.categories.find(x => x.type === command.option.category) || {
+        const category: CommandCollectorCategories = this.categories.find(x => x.type === command.option.category) || {
             type: command.option.category,
+            name: categoryNames[command.option.category] || "❌ | Uncategorized",
             commands: []
         };
         category.commands.push(command);
+        if(!this.categories.some(x => x.type === command.option.category)) this.categories.push(category);
     }
 }

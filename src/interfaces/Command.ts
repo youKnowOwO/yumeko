@@ -22,6 +22,7 @@ export interface CommandOption {
 
 export interface CommandCollectorCategories {
     type: CommandOption["category"];
+    name: string;
     commands: Command[];
 }
 

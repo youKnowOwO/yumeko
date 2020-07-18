@@ -1,4 +1,5 @@
 {
-    prefix: "",
-    owners: []
+    "prefix": "",
+    "color": "",
+    "owners": []
 }

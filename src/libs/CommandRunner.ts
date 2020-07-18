@@ -3,6 +3,7 @@ import type Command from "../classes/Command";
 import ArgumentParser from "./ArgumentParser";
 import { Message, Collection, Snowflake, PermissionString, GuildMember } from "discord.js";
 import { CommandUsed, CommandOption } from "../interfaces";
+import { codeBlock } from "../util/Util";
 
 export default class CommandRunner {
     public commandUsed: Collection<Snowflake, CommandUsed> = new Collection();
@@ -16,7 +17,10 @@ export default class CommandRunner {
             await command.exec(msg, args);
             return true;
         } catch(e) {
-            if(!["CANCELED", "!UNDERSTAND"].includes(e.name)) this.client.log.error(e);
+            if(!["CANCELED", "!UNDERSTAND"].includes(e.name)) {
+                this.client.log.error(e);
+                msg.channel.send(`**🚫 | Sorry my devs really bad.** ${codeBlock("js", String(e))}`);
+            }
             return false;
         }
     }
@@ -33,7 +37,7 @@ export default class CommandRunner {
         if(this.isCooldown(msg)) return undefined;
         if(command.option.devOnly && !msg.author.isDev) return undefined;
         if(!this.allowed(msg, command.option.permissions)) return undefined;
-        msg.prefix = prefix;
+        msg.prefix = prefix === this.client.user!.toString() ? `${this.client.user!.tag} ` : prefix;
         msg.args = args;
         const payload: CommandUsed = {
             running: true,
@@ -72,7 +76,7 @@ export default class CommandRunner {
         if(permission.client) {
             const permissions = this.checkMissPermission(msg.guild!.me!, permission.client);
             if(permissions.length) {
-                const mappedPerms = permissions.map(x => `\`${x}\``).join().replace(/\_/g, "");
+                const mappedPerms = permissions.map(x => `\`${x}\``).join().replace(/\_/g, " ");
                 msg.ctx.send(`**❌ | Im require this permission(s) to run the command. ${mappedPerms}**`);
                 return false;
             }
@@ -80,7 +84,7 @@ export default class CommandRunner {
         if(permission.user) {
             const permissions = this.checkMissPermission(msg.member!, permission.user);
             if(permissions.length) {
-                const mappedPerms = permissions.map(x => `\`${x}\``).join().replace(/\_/g, "");
+                const mappedPerms = permissions.map(x => `\`${x}\``).join().replace(/\_/g, " ");
                 msg.ctx.send(`**❌ | ${msg.author}, You require this permission(s) to run the command. ${mappedPerms}**`);
                 return false;
             }
