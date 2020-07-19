@@ -43,7 +43,7 @@ export default class GoogleCommand extends Command {
             [${x.title}](${x.link})
             ${x.snippet}
         `), 4).map(x => x.join("\n\n"));
-        if(!results.length) return msg.ctx.send("🚫 **| No result**");
+        if (!results.length) return msg.ctx.send("🚫 **| No result**");
         const embed = new MessageEmbed()
             .setColor("#E1FAFF")
             .setAuthor(`Result for ${query}`, "http://i.imgur.com/b7k7puJ.jpg");

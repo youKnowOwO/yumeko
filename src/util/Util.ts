@@ -7,7 +7,7 @@ export async function hastebin(text: string, lang = "js"): Promise<string> {
 }
 
 export function codeBlock(lang: string, str = ""): string{
-    if(!str.trim().length) return "``` ```";
+    if (!str.trim().length) return "``` ```";
     return `\`\`\`${lang}\n${str}\`\`\``;
 }
 

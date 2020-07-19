@@ -51,13 +51,13 @@ export default class EvalCommand extends Command {
         try {
             // eslint-disable-next-line no-eval
             let evaled: unknown = eval(`${isAsync ? "(async()=>{" : ""}${code}${isAsync ? "})()": ""}`);
-            if(isAsync) {
+            if (isAsync) {
                 asyncTime = performance.now();
                 evaled = await evaled;
                 asyncTime = performance.now() - asyncTime;
             }
             syncTime = performance.now() - syncTime;
-            if(isHide) return undefined;
+            if (isHide) return undefined;
             result = evaled;
         } catch(e) {
             result = `${e.name}: ${e.message}`;
@@ -65,7 +65,7 @@ export default class EvalCommand extends Command {
         result = typeof result === "string" ? result : inspect(result, { depth });
         const time = this.getTime(syncTime, asyncTime);
         let toSend = `⏱️ ${time} ${codeBlock("js", result)}`;
-        if(toSend.length >= 2000) toSend = `⏱️ ${time}\n${await hastebin(result)}`;
+        if (toSend.length >= 2000) toSend = `⏱️ ${time}\n${await hastebin(result)}`;
         return msg.ctx.send(toSend);
     }
 

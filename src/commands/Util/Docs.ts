@@ -42,11 +42,11 @@ export default class DocsCommand extends Command {
                     default: "master",
                     type: (_, content: string): string => {
                         content = content.toLowerCase();
-                        if(!SOURCES.includes(content)) {
+                        if (!SOURCES.includes(content)) {
                             const mapped = SOURCES.map(x => `\`${x}\``).join(", ");
                             throw new CustomError("!PARSING", `**Only supported this sources, ${mapped}**`);
                         }
-                        if(content === "v11") return "https://raw.githubusercontent.com/discordjs/discord.js/docs/v11.json";
+                        if (content === "v11") return "https://raw.githubusercontent.com/discordjs/discord.js/docs/v11.json";
                         return content;
                     }
                 }

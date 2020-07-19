@@ -19,7 +19,7 @@ export default class Command {
     }
 
     public disable(disable?: boolean): boolean {
-        if(typeof disable !== "boolean") this.option.disable = !this.option.disable;
+        if (typeof disable !== "boolean") this.option.disable = !this.option.disable;
         else this.option.disable = disable;
         return this.option.disable;
     }

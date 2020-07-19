@@ -32,12 +32,12 @@ export default class NpmCommand extends Command {
     public async exec(msg: Message, { query }: { query: string }): Promise<Message|void> {
         query = query.replace(/ +/g, "+");
         const result = await this.getResult(query);
-        if(!result) return msg.ctx.send("🚫 No result found.");
+        if (!result) return msg.ctx.send("🚫 No result found.");
         const version = result.versions[result["dist-tags"].latest];
         let deps = version.dependencies ? Object.keys(version.dependencies).map(x => `\`${x}\``) : [];
         let maintainers = result.maintainers.map((x: any) => `\`${x.name}\``);
-        if(deps.length > 10) deps = trimArray(deps);
-        if(maintainers.length > 10) maintainers = trimArray(maintainers);
+        if (deps.length > 10) deps = trimArray(deps);
+        if (maintainers.length > 10) maintainers = trimArray(maintainers);
         const embed = new MessageEmbed()
             .setURL(`https://www.npmjs.com/${query}`)
             .setTitle(result.name)

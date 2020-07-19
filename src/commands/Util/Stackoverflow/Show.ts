@@ -33,7 +33,7 @@ export default class StackoverflowShowCommand extends Command {
 
     public async exec(msg: Message, { id }: { id: number }): Promise<Message|void> {
         const page = await this.fetchID(id);
-        if(!page) return msg.ctx.send("🚫 No Question Found");
+        if (!page) return msg.ctx.send("🚫 No Question Found");
         const $ = load(page);
         const td = new TurndownService()
             .addRule("aside", {

@@ -6,7 +6,7 @@ export default class MessageEvent implements Event {
     public listener = "messageUpdate";
     public constructor(public readonly client: YumekoClient) {}
     public exec(oldMessage: Message, newMessage: Message): void {
-        if(oldMessage.content === newMessage.content) return undefined;
+        if (oldMessage.content === newMessage.content) return undefined;
         this.client.collector.runner.handle(newMessage);
     }
 }

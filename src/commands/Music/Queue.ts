@@ -23,8 +23,8 @@ export default class QueueCommand extends Command {
 
     public async exec(msg: Message): Promise<Message|void> {
         const { music } = msg.guild!;
-        if(!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");
-        if(!music.queue.length) return msg.ctx.send("🍃 **| Empty queue**");
+        if (!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");
+        if (!music.queue.length) return msg.ctx.send("🍃 **| Empty queue**");
         this.collector!.commands.get("np")!.exec(msg);
         const pages = chunk(music.queue.map((x, i) => `\`${i + 1}\`. __**[${x.title}](${x.uri})**__ **by** ${x.requester.toString()}`), 10)
             .map(x => x.join("\n"));

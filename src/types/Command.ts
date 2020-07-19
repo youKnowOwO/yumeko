@@ -8,9 +8,9 @@ export default class TypeCommand implements Type {
     readonly name = "command";
     public exec(msg: Message, content: string): Command {
         let { commands } = (msg.client as YumekoClient).collector;
-        if(!msg.author.isDev) commands = commands.filter(x => !x.option.devOnly);
+        if (!msg.author.isDev) commands = commands.filter(x => !x.option.devOnly);
         const command = commands.filter(x => x.option.aliases.includes(content.toLowerCase())).first();
-        if(!command) {
+        if (!command) {
             const similiar = commands.map(x => x.option.aliases).reduce((a, b) => a.concat(b))
                 .filter(x => x.includes(content.toLowerCase()))
                 .splice(0, 10)

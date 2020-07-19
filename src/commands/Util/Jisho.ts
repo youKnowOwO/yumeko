@@ -31,7 +31,7 @@ export default class JishoCommand extends Command {
 
     public async exec(msg: Message, { word }: { word: string }): Promise<Message|void> {
         const definition = await this.getDefinition(word);
-        if(!definition) return msg.ctx.send("🚫 No result found");
+        if (!definition) return msg.ctx.send("🚫 No result found");
         const embed = new MessageEmbed()
             .setColor("#47DB27")
             .setAuthor(definition.form, "https://assets.jisho.org/assets/touch-icon-017b99ca4bfd11363a97f66cc4c00b1667613a05e38d08d858aa5e2a35dce055.png")
@@ -40,13 +40,13 @@ export default class JishoCommand extends Command {
                 Forms: **${definition.otherforms.length ? definition.otherforms.join(", ") : "None"}**
                 ${definition.senses.map((x: any) => `${x.name}: **${x.value}**`).join("\n")}
             `);
-        if(definition.kanjis.length) embed.addField("Kanjis", definition.kanjis.map((x: any) => stripIndents`
+        if (definition.kanjis.length) embed.addField("Kanjis", definition.kanjis.map((x: any) => stripIndents`
             > Kanji: **${x.kanji}**
             > Means: **${x.definition}**
             > Kun: **${x.kun.length ? x.kun.join(", ") : "..."}**
             > On: **${x.on.length ? x.on.join(", ") : "..."}**
         `).join("\n\n"));
-        if(definition.audio) {
+        if (definition.audio) {
             const { raw: attachment } = await request.get(`https:${definition.audio}`);
             embed.attachFiles([{ attachment, name: "pronounce.mp3" }]);
         }
@@ -56,10 +56,10 @@ export default class JishoCommand extends Command {
     public async getDefinition(keyword: string): Promise<any> {
         const { body }: any = await request.get("http://jisho.org/api/v1/search/words").query({ keyword });
         const word = body.data[0];
-        if(!word) return undefined;
+        if (!word) return undefined;
         const $ = load(await request.get(`https://jisho.org/word/${word.slug}`).then(x => x.text));
         let tags: string[] = [];
-        if(word.is_common) tags.push("common_word");
+        if (word.is_common) tags.push("common_word");
         tags = [...word.jlpt, ...word.tags];
         const [form, ...otherforms] = word.japanese.map((x: any) => x.word ? `${x.word}${x.reading ? `【${x.reading}】` : ""}` : x.reading);
         const senses = word.senses.map((x: any) => ({

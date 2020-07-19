@@ -20,7 +20,7 @@ export default class NpCommand extends Command {
 
     public async exec(msg: Message): Promise<Message> {
         const { music } = msg.guild!;
-        if(!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");
+        if (!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");
         const { song } = music;
         const percent = music.playTime / song.length * 12;
         const progbar = new Array(12).fill("▬");

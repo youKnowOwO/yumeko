@@ -29,7 +29,7 @@ export default class HelpCommand extends Command {
     }
 
     public exec(msg: Message, { command }: { command?: Command }): Promise<Message> {
-        if(command) {
+        if (command) {
             const { name: category } = this.collector!.categories.find(x => x.type === command.option.category)!;
             const { option } = command;
             const embed = new MessageEmbed()
@@ -43,7 +43,7 @@ export default class HelpCommand extends Command {
                     **Cooldown:** \`${option.cooldown ? option.cooldown : 5} seconds\`
                 `)
                 .setFooter("ℹ️ Don't include <> or [], it's mean <> is required and [] is optional");
-            if(option.description.examples.length) embed
+            if (option.description.examples.length) embed
                 .addField("Examples", codeBlock("", option.description.examples.map(x => `${msg.prefix}${x}`).join("\n")));
             return msg.ctx.send(embed);
         }
@@ -53,7 +53,7 @@ export default class HelpCommand extends Command {
         for(const category of this.collector!.categories) {
             let commands = msg.author.isDev ? category.commands : category.commands.filter(x => !x.option.devOnly);
             commands = commands.filter(x => x.option.aliases.length);
-            if(!commands.length) continue;
+            if (!commands.length) continue;
             embed.addField(category.name, commands.map(x => `\`${x.identifier}\``).join(", "));
         }
         embed.fields = embed.fields.sort((a, b) => b.value.length - a.value.length);

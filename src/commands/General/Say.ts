@@ -30,6 +30,6 @@ export default class SayCommand extends Command {
 
     public exec(msg: Message, { text, isDelete }: { text: string; isDelete: boolean }): void {
         msg.ctx.send(text);
-        if(isDelete) msg.delete().catch();
+        if (isDelete) msg.delete().catch();
     }
 }

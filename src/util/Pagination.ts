@@ -11,17 +11,17 @@ export default class Pagination {
         let index = 0;
         this.payload.edit.call(this, index, embed, pages[index]);
         const msg = await this.msg.channel.send(embed);
-        if(pages.length < 2) return undefined;
+        if (pages.length < 2) return undefined;
         for(const emoji of EMOJIS) await msg.react(emoji);
         const filter = (m: MessageReaction, user: User): boolean => EMOJIS.includes(m.emoji.name) && user.id === this.msg.author.id;
         while(true) {
             const responses = await msg.awaitReactions(filter, { max: 1, time: 30000 });
-            if(!responses.size) break;
+            if (!responses.size) break;
             const emoji = responses.first()!.emoji.name;
-            if(emoji === EMOJIS[0]) index -= 10;
-            else if(emoji === EMOJIS[1]) index--;
-            else if(emoji === EMOJIS[3]) index++;
-            else if(emoji === EMOJIS[4]) index += 10;
+            if (emoji === EMOJIS[0]) index -= 10;
+            else if (emoji === EMOJIS[1]) index--;
+            else if (emoji === EMOJIS[3]) index++;
+            else if (emoji === EMOJIS[4]) index += 10;
             else {
                 msg.delete();
                 break;

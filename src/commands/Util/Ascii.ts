@@ -22,7 +22,7 @@ export default class AsciiCommand extends Command {
                     match: "rest",
                     prompt: "What text do you want me to convert ?",
                     type: (_, content: string): string => {
-                        if(content.length > 14) throw new CustomError("!PARSING", "**Only \`14\` characters are allowed**");
+                        if (content.length > 14) throw new CustomError("!PARSING", "**Only \`14\` characters are allowed**");
                         return content;
                     }
                 }

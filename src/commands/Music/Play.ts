@@ -33,11 +33,11 @@ export default class PlayCommand extends Command {
                     type: (msg: Message, content: string): string => {
                         try {
                             const url = new URL(content);
-                            if(!/^https?:\/\/(www.youtube.com|youtube.com|m.youtube.com|youtu.be)/.test(url.origin))
+                            if (!/^https?:\/\/(www.youtube.com|youtube.com|m.youtube.com|youtu.be)/.test(url.origin))
                                 throw new CustomError("!PARSING", "**Only support source from youtube**");
                             return content;
                         } catch(e) {
-                            if(e.name === "!PARSING") throw e;
+                            if (e.name === "!PARSING") throw e;
                             return `ytsearch:${content}`;
                         }
                     }
@@ -50,21 +50,21 @@ export default class PlayCommand extends Command {
         const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;
         let problem = false;
-        if(!vc) problem = await msg.ctx.send("❌ **| Please Join Voice channel first**").then(() => true);
-        else if(music.voiceChannel && music.voiceChannel.id !== vc.id)
+        if (!vc) problem = await msg.ctx.send("❌ **| Please Join Voice channel first**").then(() => true);
+        else if (music.voiceChannel && music.voiceChannel.id !== vc.id)
             problem = await msg.ctx.send("❌ **| You must use same voice channel with me**").then(() => true);
-        else if(!vc.permissionsFor(msg.guild!.me!)!.has(["CONNECT", "SPEAK"]))
+        else if (!vc.permissionsFor(msg.guild!.me!)!.has(["CONNECT", "SPEAK"]))
             problem = await msg.ctx.send("❌ **| I Don't have permissions \`CONNECT\` or \`SPEAK\`**").then(() => true);
-        else if(!vc.joinable) problem = await msg.ctx.send("❌ **| Voice channel isn't joinable**").then(() => true);
-        if(problem) throw new CustomError("CANCELED");
-        if(typeof track === "string") {
+        else if (!vc.joinable) problem = await msg.ctx.send("❌ **| Voice channel isn't joinable**").then(() => true);
+        if (problem) throw new CustomError("CANCELED");
+        if (typeof track === "string") {
             const response = await music.fetch(track);
-            if(response.loadType === "PLAYLIST_LOADED") {
+            if (response.loadType === "PLAYLIST_LOADED") {
                 for(const trck of response.tracks) music.add(msg.author, trck);
                 msg.ctx.send(`✅ **| Succes Added Playlist:** __**${response.playlistInfo.name}**__`);
-            } else if(response.loadType === "SEARCH_RESULT") {
+            } else if (response.loadType === "SEARCH_RESULT") {
                 let trck = response.tracks[0];
-                if(isSearch) {
+                if (isSearch) {
                     const tracks = response.tracks.splice(0, 5);
                     const embed = new MessageEmbed()
                         .setColor(this.client.config.color)
@@ -75,14 +75,14 @@ export default class PlayCommand extends Command {
                         embed, selections: tracks
                     });
                     const result = await resp.start();
-                    if(!result) return;
+                    if (!result) return;
                     trck = result;
                 }
                 music.add(msg.author, trck);
-                if(music.song) msg.ctx.send(`✅ **| Added to queue:** __**${trck.info.title}**__`);
+                if (music.song) msg.ctx.send(`✅ **| Added to queue:** __**${trck.info.title}**__`);
             }
         } else music.add(msg.author, track);
-        if(!music.voiceChannel) {
+        if (!music.voiceChannel) {
             await music.join(vc!, msg.channel as TextChannel);
             music.play();
         }

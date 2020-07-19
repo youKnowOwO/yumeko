@@ -18,19 +18,19 @@ export default class CommandCollector {
         const path = join(__dirname, "../commands");
         const files = readdirRecursive(path);
         const { print, color, equal, date } = this.client.log;
-        if(log) print(equal(color("▶️ Collecting Command", "00C2FF")));
+        if (log) print(equal(color("▶️ Collecting Command", "00C2FF")));
         for(const file of files) {
             const load = require(file).default;
-            if(!load || !(load.prototype instanceof Command)) continue;
+            if (!load || !(load.prototype instanceof Command)) continue;
             const command = this.getCommand(file);
             this.registry(command);
-            if(log) print(`+ ${color(command.identifier, "FE9DFF")} (${color(file, "A20092")})`);
+            if (log) print(`+ ${color(command.identifier, "FE9DFF")} (${color(file, "A20092")})`);
         }
-        if(log) print(equal(color(date(), "505050")));
+        if (log) print(equal(color(date(), "505050")));
     }
 
     public registry(command: string | Command): void {
-        if(typeof command === "string") command = this.getCommand(command);
+        if (typeof command === "string") command = this.getCommand(command);
         this.addToCategory(command);
         this.commands.set(command.identifier, command);
     }
@@ -48,7 +48,7 @@ export default class CommandCollector {
             name: categoryNames[command.option.category] || "❌ | Uncategorized",
             commands: []
         };
-        if(!category.commands.some(x => x.identifier === command.identifier)) category.commands.push(command);
-        if(!this.categories.some(x => x.type === command.option.category)) this.categories.push(category);
+        if (!category.commands.some(x => x.identifier === command.identifier)) category.commands.push(command);
+        if (!this.categories.some(x => x.type === command.option.category)) this.categories.push(category);
     }
 }

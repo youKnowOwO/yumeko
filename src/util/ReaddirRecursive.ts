@@ -9,7 +9,7 @@ export default function readdirRecursive(directory: string): string[] {
 
         for(const file of files){
             const dir = join(path, file);
-            if(statSync(dir).isDirectory()) read(dir);
+            if (statSync(dir).isDirectory()) read(dir);
             else results.push(dir);
         }
     }

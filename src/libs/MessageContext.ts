@@ -8,7 +8,7 @@ export default class MessageContext {
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     public async send(msg: Message, content: unknown, options?: any): Promise<Message> {
         let message = this.cache.get(msg.id);
-        if(!message) {
+        if (!message) {
             message = await msg.channel.send(content, options);
             this.cache.set(msg.id, message);
             setTimeout(() => this.cache.delete(msg.id), this.lifeTime);

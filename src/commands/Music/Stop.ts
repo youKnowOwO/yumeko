@@ -22,12 +22,12 @@ export default class StopCommand extends Command {
     public async exec(msg: Message): Promise<Message> {
         const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;
-        if(!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");
+        if (!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");
         let problem = false;
-        if(!vc) problem = await msg.ctx.send("❌ **| Please Join Voice channel first**").then(() => true);
-        else if(music.voiceChannel && music.voiceChannel.id !== vc.id)
+        if (!vc) problem = await msg.ctx.send("❌ **| Please Join Voice channel first**").then(() => true);
+        else if (music.voiceChannel && music.voiceChannel.id !== vc.id)
             problem = await msg.ctx.send("❌ **| You must use same voice channel with me**").then(() => true);
-        if(problem) throw new CustomError("CANCELED");
+        if (problem) throw new CustomError("CANCELED");
         music.stop();
         return msg.ctx.send("🛑 **| Stopped**");
     }

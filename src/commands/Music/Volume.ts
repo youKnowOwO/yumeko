@@ -23,8 +23,8 @@ export default class VolumeCommand extends Command {
                     prompt: "What time position do you want jump to ?",
                     type: (_: Message, content: string): number => {
                         const volume = this.collector!.runner.argsParser.getType("number")(_, content) as any;
-                        if(volume > 120) throw new CustomError("!PARSING", "**Volume is too high. max \`120\`**");
-                        if(volume < 0) throw new CustomError("!PARSING", "Volume is too low. min \`0\`");
+                        if (volume > 120) throw new CustomError("!PARSING", "**Volume is too high. max \`120\`**");
+                        if (volume < 0) throw new CustomError("!PARSING", "Volume is too low. min \`0\`");
                         return volume;
                     }
                 }
@@ -36,11 +36,11 @@ export default class VolumeCommand extends Command {
         const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;
         let problem = false;
-        if(!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");
-        if(!vc) problem = await msg.ctx.send("❌ **| Please Join Voice channel first**").then(() => true);
-        else if(music.voiceChannel && music.voiceChannel.id !== vc.id)
+        if (!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");
+        if (!vc) problem = await msg.ctx.send("❌ **| Please Join Voice channel first**").then(() => true);
+        else if (music.voiceChannel && music.voiceChannel.id !== vc.id)
             problem = await msg.ctx.send("❌ **| You must use same voice channel with me**").then(() => true);
-        if(problem) throw new CustomError("CANCELED");
+        if (problem) throw new CustomError("CANCELED");
         music.setVolume(amount);
         return msg.ctx.send(`🔉 **| Change Volume to \`${amount}\`**`);
     }

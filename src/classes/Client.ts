@@ -19,7 +19,7 @@ export default class YumekoClient extends Client {
         // eslint-disable-next-line @typescript-eslint/ban-types
         send: (guildID: string, packet: object): void => {
             const guild = this.guilds.cache.get(guildID);
-            if(guild) return guild.shard.send(packet);
+            if (guild) return guild.shard.send(packet);
         },
         ...config.lavalink
     });

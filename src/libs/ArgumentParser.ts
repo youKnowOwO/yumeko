@@ -25,44 +25,44 @@ export default class ArgumentParser {
         for(const arg of args) {
             const produce = arg.type ? this.getType(arg.type) : this.getType("boolean");
             let matched: string|void;
-            if(!msg.args.length && arg.optional) continue;
-            if(arg.match === "rest") {
+            if (!msg.args.length && arg.optional) continue;
+            if (arg.match === "rest") {
                 matched = msg.args.join(" ");
                 msg.args = [];
-            } else if(arg.match === "single") {
-                if(msg.args.length) matched = msg.args.shift()!;
-            } else if(arg.match === "flag") {
+            } else if (arg.match === "single") {
+                if (msg.args.length) matched = msg.args.shift()!;
+            } else if (arg.match === "flag") {
                 const res = msg.args.filter(x => x.split("=")[0].startsWith(`--${arg.flag!}`))[0];
                 const index = msg.args.indexOf(res);
-                if(res) {
+                if (res) {
                     const [flag, inpt] = res.split("=");
                     matched = inpt || flag;
                     msg.args.splice(index, 1);
                 } else matched = "";
-            } else if(arg.match === "multiple") {
+            } else if (arg.match === "multiple") {
                 multipleArg = arg.identifier;
-                if(msg.args.length) {
+                if (msg.args.length) {
                     matched = msg.args.shift()!;
                     args.push(arg);
                 }
             }
             let produced: unknown;
             let tries = 1;
-            if(!matched && arg.default) matched = typeof arg.default === "function" ? arg.default(msg) : arg.default;
+            if (!matched && arg.default) matched = typeof arg.default === "function" ? arg.default(msg) : arg.default;
             try {
-                if(!matched && arg.prompt) {
+                if (!matched && arg.prompt) {
                     tries = 0;
                     throw new CustomError("!PARSING");
                 }
                 produced = produce(msg, matched as string);
             } catch (e) {
-                if(e.name !== "!PARSING") throw e;
+                if (e.name !== "!PARSING") throw e;
                 produced = await this.prompting(msg, arg, e.message, tries);
             }
             // eslint-disable-next-line no-unused-expressions
             arg.type === "multiple" ? multipleResult.push(produced) : result[arg.identifier] = produced;
         }
-        if(multipleResult.length) result[multipleArg] = multipleResult;
+        if (multipleResult.length) result[multipleArg] = multipleResult;
         return result;
     }
 
@@ -77,23 +77,23 @@ export default class ArgumentParser {
             `);
             const filter = (m: Message): boolean => m.author.id === msg.author.id;
             const responses = await msg.channel.awaitMessages(filter, { max: 1, time: 30000});
-            if(!responses.size) throw new CustomError("CANCELED");
+            if (!responses.size) throw new CustomError("CANCELED");
             let m = responses.first()!.content;
-            if(m.toLowerCase() === "cancel")  {
+            if (m.toLowerCase() === "cancel")  {
                 responses.first()!.react("👌");
                 throw new CustomError("CANCELED");
             }
-            if(m.toLowerCase() === "|cancel|") m = m.replace(/\|/g, "");
+            if (m.toLowerCase() === "|cancel|") m = m.replace(/\|/g, "");
             const produce = this.getType(arg.type);
             try {
                 result = produce(msg, m);
             } catch (e) {
-                if(e.name === "!PARSING") toSend = e.message;
+                if (e.name === "!PARSING") toSend = e.message;
                 else throw e;
             }
             tries++;
         }
-        if(!result) {
+        if (!result) {
             msg.channel.send(`**🤷 | ${msg.author}, Look like you don't know how to run this command.**`);
             throw new CustomError("!UNDERSTAND");
         }
@@ -101,7 +101,7 @@ export default class ArgumentParser {
     }
 
     public getType(type: Argument["type"]): ArgumentTypeFunction {
-        if(typeof type === "string") {
+        if (typeof type === "string") {
             const typeFunction = this.types.get(type) || this.types.get("boolean")!;
             return typeFunction.exec;
         }

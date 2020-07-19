@@ -4,12 +4,19 @@ import type { Guild, TextChannel, VoiceChannel, User } from "discord.js";
 import type { Player, Track, TrackResponse } from "lavalink";
 import { readableTime, codeBlock } from "../util/Util";
 
+enum LoopType {
+    NONE,
+    ALL,
+    ONE
+}
+
 export default class MusicHandler {
     public client: YumekoClient;
     public queue: Song[] = [];
     public skipVotes: User[] = [];
     public paused = false;
     public song?: Song;
+    public loopType: LoopType = LoopType.NONE;
     public textChannel?: TextChannel;
     private lastUpdate = Date.now();
     private position = 0;
@@ -69,6 +76,10 @@ export default class MusicHandler {
         this.updatePosition(time);
     }
 
+    public setLoop(type: LoopType): void {
+        this.loopType = type;
+    }
+
     private onEvent(data: any): void {
         switch(data.type) {
             case "TrackStartEvent":
@@ -76,8 +87,12 @@ export default class MusicHandler {
                 this.textChannel!.send(`🎶 **Now Playing:** __**${this.song!.title}**__`);
                 break;
             case "TrackEndEvent":
-                if(data.reason === "REPLACED") break;
-                if(this.queue.length) return this.play();
+                if (data.reason === "REPLACED") break;
+                if (this.queue.length) {
+                    if (this.loopType === LoopType.ALL) this.queue.push(this.song!);
+                    else if (this.loopType === LoopType.ONE) this.queue.unshift(this.song!);
+                    this.play();
+                }
                 this.reset();
                 this.player.leave();
                 break;
@@ -116,10 +131,10 @@ export default class MusicHandler {
     }
 
     public get listeners(): User[] {
-        if(!this.voiceChannel) return [];
+        if (!this.voiceChannel) return [];
         const users: User[] = [];
         for(const member of this.voiceChannel.members.array()) {
-            if(member.user.bot || member.voice.deaf) continue;
+            if (member.user.bot || member.voice.deaf) continue;
             users.push(member.user);
         }
         return users;

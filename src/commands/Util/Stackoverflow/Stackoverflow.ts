@@ -35,7 +35,7 @@ export default class StackoverflowCommand extends Command {
     }
 
     public async exec(msg: Message, { query, isShow }: { query: string; isShow: boolean }): Promise<Message|void> {
-        if(isShow) {
+        if (isShow) {
             const command = this.collector!.commands.get("stackoverflow-show")!;
             msg.args = [...msg.args, ...query.split(/ +/g)];
             this.collector!.runner.runCommand(msg, command);
@@ -48,7 +48,7 @@ export default class StackoverflowCommand extends Command {
                 q: encodeURIComponent(query),
                 site: "stackoverflow"
             });
-        if(!body.items) return msg.ctx.send("🚫 No result found");
+        if (!body.items || !body.items.length) return msg.ctx.send("🚫 No result found");
         const pages = chunk(body.items.map(((x: any, i: number) => `\`${i+1}.\` **{[${x.question_id}](${x.link})} ${x.title}**`)), 10)
             .map(x => x.join("\n"));
         const embed = new MessageEmbed()
