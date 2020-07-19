@@ -34,3 +34,31 @@ export function decodeHTMLEntities(str: string): string {
         return String.fromCharCode(code);
     });
 }
+
+export function readableTime(duration: number): string {
+    const SECOND = 1000;
+    const MINUTE = SECOND * 60;
+    const HOUR = MINUTE * 60;
+    const seconds = Math.floor(duration / SECOND) % 60;
+    if (duration < MINUTE) return `00:${seconds.toString().padStart(2, "0")}`;
+    const minutes = Math.floor(duration / MINUTE) % 60;
+    let output = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    if (duration >= HOUR) {
+        const hours = Math.floor(duration / HOUR);
+        output = `${hours.toString().padStart(2, "0")}:${output}`;
+    }
+    return output;
+}
+
+export function parseTime(time: string): number {
+    const parsed: number[] = [];
+    const regex = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-zμ]*)/ig;
+    time.replace(regex, (match: string, i: string) => String(parsed.push(parseInt(i, 10))));
+    let result = 0;
+    let quadrive = 1000;
+    for (const parse of parsed.reverse()){
+        result += parse * quadrive;
+        quadrive = quadrive * 60;
+    }
+    return result;
+}

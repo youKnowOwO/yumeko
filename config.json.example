@@ -1,5 +1,12 @@
 {
     "prefix": "",
     "color": "",
-    "owners": []
+    "owners": [],
+    "lavalink": {
+        "hosts": {
+            "rest": "",
+            "ws": ""
+        },
+        "password": ""
+    }
 }

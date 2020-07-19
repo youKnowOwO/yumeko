@@ -13,6 +13,11 @@ export default class Command {
         throw new CustomError("CommandError", "Exec Function must be declared");
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public ignore(msg: Message): Promise<boolean>|boolean {
+        return false;
+    }
+
     public disable(disable?: boolean): boolean {
         if(typeof disable !== "boolean") this.option.disable = !this.option.disable;
         else this.option.disable = disable;

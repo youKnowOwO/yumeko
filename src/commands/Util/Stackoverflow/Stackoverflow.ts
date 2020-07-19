@@ -49,7 +49,7 @@ export default class StackoverflowCommand extends Command {
                 site: "stackoverflow"
             });
         if(!body.items) return msg.ctx.send("🚫 No result found");
-        const pages = chunk(body.items.map(((x: any, i: number) => `\`${i}.\` **{[${x.question_id}](${x.link})} ${x.title}**`)), 10)
+        const pages = chunk(body.items.map(((x: any, i: number) => `\`${i+1}.\` **{[${x.question_id}](${x.link})} ${x.title}**`)), 10)
             .map(x => x.join("\n"));
         const embed = new MessageEmbed()
             .setColor("#F48023")

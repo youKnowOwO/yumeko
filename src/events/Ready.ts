@@ -11,6 +11,7 @@ export default class ReadyEvent implements Event {
         this.client.log.info(stripIndents`
             ${this.client.log.color(this.client.user!.tag, "FFFFFF")} is Ready to play.
         `);
+        this.client.lavalink.userID = this.client.user!.id;
         presence.call(null, this.client);
         setInterval(presence.bind(null, this.client), 60000);
     }

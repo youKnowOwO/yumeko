@@ -20,3 +20,15 @@ export interface PaginationPayload {
     embed: MessageEmbed;
     edit(index: number, embed: MessageEmbed, page: string): unknown;
 }
+
+export interface SelectionPagePayload<T> {
+    emojis: string[];
+    cancelEmo: string;
+    selections: T[];
+    embed: MessageEmbed;
+}
+
+export interface EqualizerBand {
+    band: number;
+    gain: number;
+}

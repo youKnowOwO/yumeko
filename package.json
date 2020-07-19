@@ -32,6 +32,7 @@
     "common-tags": "^1.8.0",
     "discord.js": "github:discordjs/discord.js",
     "figlet": "^1.5.0",
+    "lavalink": "^2.10.0",
     "moment": "^2.27.0",
     "node-superfetch": "^0.1.10",
     "turndown": "^6.0.0"

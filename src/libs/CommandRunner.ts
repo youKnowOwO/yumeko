@@ -36,7 +36,7 @@ export default class CommandRunner {
         if(!command) return undefined;
         if(this.isCooldown(msg)) return undefined;
         if(command.option.devOnly && !msg.author.isDev) return undefined;
-        if(!this.allowed(msg, command.option.permissions)) return undefined;
+        if(!await this.allowed(msg, command.option.permissions, command.ignore)) return undefined;
         msg.prefix = prefix === this.client.user!.toString() ? `${this.client.user!.tag} ` : prefix;
         msg.args = args;
         const payload: CommandUsed = {
@@ -71,7 +71,7 @@ export default class CommandRunner {
         return false;
     }
 
-    public allowed(msg: Message, permission: CommandOption["permissions"]): boolean {
+    public async allowed(msg: Message, permission: CommandOption["permissions"], ignore: Command["ignore"]): Promise<boolean> {
         if(!permission) return true;
         if(permission.client) {
             const permissions = this.checkMissPermission(msg.guild!.me!, permission.client);
@@ -84,6 +84,7 @@ export default class CommandRunner {
         if(permission.user) {
             const permissions = this.checkMissPermission(msg.member!, permission.user);
             if(permissions.length) {
+                if(await ignore(msg)) return true;
                 const mappedPerms = permissions.map(x => `\`${x}\``).join().replace(/\_/g, " ");
                 msg.ctx.send(`**❌ | ${msg.author}, You require this permission(s) to run the command. ${mappedPerms}**`);
                 return false;
