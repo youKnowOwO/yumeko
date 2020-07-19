@@ -21,3 +21,16 @@ export function chunk<T>(arr: T[], len: number): T[][] {
         rest.push(arr.slice(i, i+len));
     return rest;
 }
+
+export function trimArray<T>(array: (T|string)[], length = 10): (T|string)[] {
+    const len = array.length - length;
+    const temp = array.slice(0, length);
+    temp.push(`...${len} more.`);
+    return temp;
+}
+
+export function decodeHTMLEntities(str: string): string {
+    return str.replace(/&#(\d+);/g, (_, code) => {
+        return String.fromCharCode(code);
+    });
+}

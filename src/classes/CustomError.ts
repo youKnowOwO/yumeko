@@ -1,6 +1,5 @@
 export default class CustomError extends Error {
-    public constructor(name: string, message?: string) {
+    public constructor(public name: string, message?: string) {
         super(message);
-        this.name = name;
     }
 }

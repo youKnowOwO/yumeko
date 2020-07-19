@@ -48,7 +48,7 @@ export default class CommandCollector {
             name: categoryNames[command.option.category] || "❌ | Uncategorized",
             commands: []
         };
-        category.commands.push(command);
+        if(!category.commands.some(x => x.identifier === command.identifier)) category.commands.push(command);
         if(!this.categories.some(x => x.type === command.option.category)) this.categories.push(category);
     }
 }

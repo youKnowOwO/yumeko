@@ -56,6 +56,7 @@ export default class HelpCommand extends Command {
             if(!commands.length) continue;
             embed.addField(category.name, commands.map(x => `\`${x.identifier}\``).join(", "));
         }
+        embed.fields = embed.fields.sort((a, b) => b.value.length - a.value.length);
         return msg.ctx.send(embed);
     }
 }

@@ -5,7 +5,7 @@ const EMOJIS = ["⏪", "⬅️", "🚫", "➡️", "⏩"];
 
 export default class Pagination {
     public constructor(public msg: Message, public payload: PaginationPayload) {}
-    public async start(): Promise<void> {
+    public async start(): Promise<any> {
         const embed = this.payload.embed;
         const pages = this.payload.pages;
         let index = 0;
@@ -28,6 +28,7 @@ export default class Pagination {
             }
             index = ((index % pages.length) + pages.length) % pages.length;
             this.payload.edit.call(this, index, embed, pages[index]);
+            await msg.edit(embed);
         }
     }
 }

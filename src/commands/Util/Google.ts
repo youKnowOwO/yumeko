@@ -38,25 +38,24 @@ export default class GoogleCommand extends Command {
     }
 
     public async exec(msg: Message, { query }: { query: string }): Promise<Message|void> {
-        const input = encodeURIComponent(query.replace(/ +/g, "+"));
-        const results = await this.getResults(input);
+        const results = await this.getResults(query);
         const pages = chunk(results.map(x => stripIndents`
             [${x.title}](${x.link})
-            ${x.snippet}\n\n
-        `), 4).map(x => x.join("\n"));
+            ${x.snippet}
+        `), 4).map(x => x.join("\n\n"));
         if(!results.length) return msg.ctx.send("🚫 **| No result**");
         const embed = new MessageEmbed()
             .setColor("#E1FAFF")
-            .setAuthor(`Result for ${query}`, "http://i.imgur.com/b7k7puJ.jpg", `https//www.google.com/search?q=${input}`);
+            .setAuthor(`Result for ${query}`, "http://i.imgur.com/b7k7puJ.jpg");
         await new Pagination(msg, {
             pages, embed,
-            edit: (index, emb, page): MessageEmbed => emb.setDescription(page[index])
+            edit: (index, emb, page): MessageEmbed => emb.setDescription(page)
                 .setFooter(`Page ${index+1} of ${pages.length}`)
         }).start();
     }
 
     public async getResults(q: string): Promise<Result[]> {
-        const { text } = await request.get("https://google.com").query({ q })
+        const { text } = await request.get("https://google.com/search").query({ q })
             .set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:34.0) Gecko/20100101 Firefox/34.0");
         const $ = load(text);
         return $("div.rc").map((i, x) => ({

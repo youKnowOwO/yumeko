@@ -1,0 +1,22 @@
+[
+    {
+        "name": "@user",
+        "type": "STREAMING",
+        "status": "online"
+    },
+    {
+        "name": "prefix help",
+        "type": "PLAYING",
+        "status": "idle"
+    },
+    {
+        "name": "I wish i were a bird 🐦",
+        "type": "LISTENING",
+        "status": "online"
+    },
+    {
+        "name": "My devs slepp💤",
+        "type": "WATCHING",
+        "status": "dnd"
+    }
+]
