@@ -70,7 +70,7 @@ export default class ArgumentParser {
         let result: unknown;
         while(!result && tries < 3) {
             await msg.channel.send(stripIndents`
-                **❌ |** ${!tries ? (typeof arg.prompt === "function" ? arg.prompt(msg) : arg.prompt) : toSend}
+                **${ !tries ? "❓" : "❌"} |** ${!tries ? (typeof arg.prompt === "function" ? arg.prompt(msg) : arg.prompt) : toSend}
                 **▫️ |** *You've \`30\` seconds to decide*
                 **▫️ | ** *You can type \`cancel\` to cancel.*
                 **▫️ | ** *Or if you want to type cancel use \`|cancel|\` instead*
@@ -80,7 +80,7 @@ export default class ArgumentParser {
             if (!responses.size) throw new CustomError("CANCELED");
             let m = responses.first()!.content;
             if (m.toLowerCase() === "cancel")  {
-                responses.first()!.react("👌");
+                msg.channel.send("👌 **| Canceled**");
                 throw new CustomError("CANCELED");
             }
             if (m.toLowerCase() === "|cancel|") m = m.replace(/\|/g, "");

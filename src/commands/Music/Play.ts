@@ -18,7 +18,7 @@ export default class PlayCommand extends Command {
             },
             category: "music",
             permissions: {
-                user: ["EMBED_LINKS"]
+                user: ["EMBED_LINKS", "ADD_REACTIONS"]
             },
             args: [
                 {

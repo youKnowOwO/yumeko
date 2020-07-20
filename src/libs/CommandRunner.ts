@@ -26,7 +26,9 @@ export default class CommandRunner {
     }
 
     public async handle(msg: Message): Promise<Message|void> {
-        if (msg.author.bot || !msg.guild) return undefined;
+        if (msg.author.bot || !msg.guild ||
+             !msg.guild.available ||
+              !msg.guild.me!.hasPermission(["SEND_MESSAGES"])) return undefined;
         const prefix = this.getPrefix(msg);
         if (!prefix) return undefined;
         const args = msg.content.slice(prefix.length).trim().split(/ +/g);

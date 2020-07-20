@@ -15,7 +15,7 @@ export default class QueueCommand extends Command {
             },
             cooldown: 6,
             permissions: {
-                client: ["EMBED_LINKS"]
+                client: ["EMBED_LINKS", "ADD_REACTIONS"]
             },
             category: "music",
         });

@@ -16,7 +16,7 @@ export default class StackoverflowCommand extends Command {
             },
             category: "utility",
             permissions: {
-                client: ["EMBED_LINKS"]
+                client: ["EMBED_LINKS", "ADD_REACTIONS"]
             },
             args: [
                 {

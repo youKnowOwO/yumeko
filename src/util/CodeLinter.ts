@@ -29,6 +29,8 @@ export function lint(content: string, ecmaVersion: Linter.ParserOptions["ecmaVer
 }
 
 export function handle(msg: Message): Promise<boolean> {
+    if (msg.author.bot || !msg.guild ||
+         !msg.guild.available || !msg.guild.me!.hasPermission(["ADD_REACTIONS", "SEND_MESSAGES", "EMBED_LINKS"])) return Promise.resolve(false);
     const { collector } = (msg.client as YumekoClient);
     const typeCode = collector.runner.argsParser.getType("code");
     try {
