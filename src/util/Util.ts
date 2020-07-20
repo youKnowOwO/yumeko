@@ -23,6 +23,7 @@ export function chunk<T>(arr: T[], len: number): T[][] {
 }
 
 export function trimArray<T>(array: (T|string)[], length = 10): (T|string)[] {
+    if (array.length <= length) return array;
     const len = array.length - length;
     const temp = array.slice(0, length);
     temp.push(`...${len} more.`);

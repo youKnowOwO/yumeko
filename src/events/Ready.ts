@@ -5,7 +5,7 @@ import { stripIndents } from "common-tags";
 const presences = require("../../assets/json/presence.json");
 
 export default class ReadyEvent implements Event {
-    public listener = "ready";
+    public readonly listener = "ready";
     public constructor(public readonly client: YumekoClient) {}
     public exec (): void {
         this.client.log.info(stripIndents`

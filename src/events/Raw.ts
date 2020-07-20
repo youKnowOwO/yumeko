@@ -2,7 +2,7 @@ import type YumekoClient from "../classes/Client";
 import { Event } from "../interfaces";
 
 export default class RawEvent implements Event {
-    public listener = "raw";
+    public readonly listener = "raw";
     public constructor(public readonly client: YumekoClient) {}
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     public exec (packet: any): void {

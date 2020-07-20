@@ -8,6 +8,6 @@ export default function EventLoader (client: YumekoClient): void {
     const files = readdirRecursive(path);
     for(const file of files) {
         const event: Event = new (require(file).default)(client);
-        client.addListener(event.listener, event.exec.bind(event));
+        client.addListener(event.listener, event.exec.bind(event) as any);
     }
 }

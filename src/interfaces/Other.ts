@@ -1,14 +1,14 @@
 import type { Message, MessageEmbed } from "discord.js";
 import { ArgumentTypeFunction } from "./Command";
 
-export interface Event {
-    readonly listener: string;
-    exec(...args: any): unknown;
-}
-
 export interface Type {
     readonly name: string;
     exec: ArgumentTypeFunction;
+}
+
+export interface TypeCodeReturn {
+    code: string;
+    lang?: string;
 }
 
 export interface MessageContext {

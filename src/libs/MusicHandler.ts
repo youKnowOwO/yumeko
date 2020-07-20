@@ -87,8 +87,8 @@ export default class MusicHandler {
         switch(data.type) {
             case "TrackStartEvent":
                 this.updatePosition(0);
-                if (this.oldSong && this.oldSong.identifier !== this.song!.identifier)
-                    this.textChannel!.send(`🎶 **Now Playing:** __**${this.song!.title}**__`);
+                if (this.oldSong && this.oldSong.identifier === this.song!.identifier) break;
+                this.textChannel!.send(`🎶 **Now Playing:** __**${this.song!.title}**__`);
                 break;
             case "TrackEndEvent":
                 if (data.reason === "REPLACED") break;
