@@ -14,8 +14,8 @@ export default class MessageContext {
             setTimeout(() => this.cache.delete(msg.id), this.lifeTime);
         } else {
             let toCheck = options;
-            if(typeof content === "object") toCheck = content;
-            if(toCheck && toCheck.files instanceof Array) {
+            if (typeof content === "object") toCheck = content;
+            if (toCheck && toCheck.files instanceof Array) {
                 await msg.channel.send(content, options);
                 this.cache.set(msg.id, message);
             } else message.edit(content, options);

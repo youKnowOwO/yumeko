@@ -16,6 +16,7 @@ export default class MusicHandler {
     public skipVotes: User[] = [];
     public paused = false;
     public song?: Song;
+    public oldSong?: Song;
     public loopType: LoopType = LoopType.NONE;
     public textChannel?: TextChannel;
     private lastUpdate = Date.now();
@@ -30,6 +31,7 @@ export default class MusicHandler {
     }
 
     public play(): void {
+        this.oldSong = this.song;
         this.song = this.queue.shift();
         this.skipVotes = [];
         this.player.play(this.song!.track);
@@ -68,6 +70,7 @@ export default class MusicHandler {
 
     public stop(): Promise<void> {
         this.queue = [];
+        this.loopType = LoopType.NONE;
         return this.skip();
     }
 
@@ -84,13 +87,14 @@ export default class MusicHandler {
         switch(data.type) {
             case "TrackStartEvent":
                 this.updatePosition(0);
-                this.textChannel!.send(`🎶 **Now Playing:** __**${this.song!.title}**__`);
+                if (this.oldSong && this.oldSong.identifier !== this.song!.identifier)
+                    this.textChannel!.send(`🎶 **Now Playing:** __**${this.song!.title}**__`);
                 break;
             case "TrackEndEvent":
                 if (data.reason === "REPLACED") break;
                 if (this.loopType === LoopType.ALL) this.queue.push(this.song!);
                 else if (this.loopType === LoopType.ONE) this.queue.unshift(this.song!);
-                if (this.queue.length) this.play();
+                if (this.queue.length) return this.play();
                 this.reset();
                 this.player.leave();
                 break;
@@ -103,6 +107,7 @@ export default class MusicHandler {
     private reset(): void {
         this.volume = 100;
         this.position = 0;
+        this.oldSong = undefined;
         this.song = undefined;
     }
 
