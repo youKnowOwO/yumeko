@@ -88,11 +88,9 @@ export default class MusicHandler {
                 break;
             case "TrackEndEvent":
                 if (data.reason === "REPLACED") break;
-                if (this.queue.length) {
-                    if (this.loopType === LoopType.ALL) this.queue.push(this.song!);
-                    else if (this.loopType === LoopType.ONE) this.queue.unshift(this.song!);
-                    this.play();
-                }
+                if (this.loopType === LoopType.ALL) this.queue.push(this.song!);
+                else if (this.loopType === LoopType.ONE) this.queue.unshift(this.song!);
+                if (this.queue.length) this.play();
                 this.reset();
                 this.player.leave();
                 break;
@@ -106,7 +104,6 @@ export default class MusicHandler {
         this.volume = 100;
         this.position = 0;
         this.song = undefined;
-        this.textChannel = undefined;
     }
 
     private updatePosition(position: number): void {

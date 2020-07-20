@@ -29,7 +29,7 @@ export default class LoopCommand extends Command {
             problem = await msg.ctx.send("❌ **| You must use same voice channel with me**").then(() => true);
         if (problem) throw new CustomError("CANCELED");
         music.setLoop(music.loopType === 1 ? 0 : 1);
-        return msg.ctx.send(`🔁 **| ${music.loopType === 1 ? "Looping current queue." : "Disabled."}.`);
+        return msg.ctx.send(`🔁 **| ${music.loopType === 1 ? "Looping current queue." : "Disabled."}.**`);
     }
 
     public ignore(msg: Message): boolean {

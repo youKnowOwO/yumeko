@@ -29,7 +29,7 @@ export default class RepeatCommand extends Command {
             problem = await msg.ctx.send("❌ **| You must use same voice channel with me**").then(() => true);
         if (problem) throw new CustomError("CANCELED");
         music.setLoop(music.loopType === 2 ? 0 : 2);
-        return msg.ctx.send(`🔁 **| ${music.loopType === 2 ? "repeating current song." : "Disabled."}.`);
+        return msg.ctx.send(`🔁 **| ${music.loopType === 2 ? "repeating current song." : "Disabled."}.**`);
     }
 
     public ignore(msg: Message): boolean {

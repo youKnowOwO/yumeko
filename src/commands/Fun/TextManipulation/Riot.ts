@@ -1,15 +1,15 @@
-import type YumekoClient from "../../classes/Client";
-import Command from "../../classes/Command";
+import type YumekoClient from "../../../classes/Client";
+import Command from "../../../classes/Command";
 import type { Message } from "discord.js";
 
-export default class AestheticCommand extends Command {
+export default class RiotCommand extends Command {
     public constructor (client: YumekoClient) {
-        super(client, "aesthetic", {
-            aliases: ["aesthetic"],
+        super(client, "riot", {
+            aliases: ["riot"],
             description: {
-                content: "Convert text to aesthetic way",
-                usage: "aesthetic <text>",
-                examples: ["aesthetic hahaha"]
+                content: "Convert text to riot way",
+                usage: "riot <text>",
+                examples: ["riot hahaha"]
             },
             category: "fun",
             args: [
@@ -24,6 +24,6 @@ export default class AestheticCommand extends Command {
     }
 
     public exec(msg: Message, { text } : { text: string }): void {
-        msg.ctx.send(text.split("").join(" ").toUpperCase());
+        msg.ctx.send(`ヽ༼ຈل͜ຈ༽ﾉ ${text.toUpperCase()} ヽ༼ຈل͜ຈ༽ﾉ`);
     }
 }

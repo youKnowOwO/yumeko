@@ -13,7 +13,7 @@ export default class PlayCommand extends Command {
             aliases: ["play", "p"],
             description: {
                 content: "Play some songs",
-                usage: "play <query> [--search]",
+                usage: "play <query> [--search] [--dontbind]",
                 examples: ["play unlocated hell", "play nyan cat --search"]
             },
             category: "music",
@@ -25,6 +25,11 @@ export default class PlayCommand extends Command {
                     identifier: "isSearch",
                     match: "flag",
                     flag: "search"
+                },
+                {
+                    identifier: "dontBind",
+                    match: "flag",
+                    flag: "dontbind"
                 },
                 {
                     identifier: "track",
@@ -46,7 +51,7 @@ export default class PlayCommand extends Command {
         });
     }
 
-    public async exec(msg: Message, { track, isSearch }: { track: string | Track; isSearch: boolean }): Promise<void> {
+    public async exec(msg: Message, { track, isSearch, dontBind }: { track: string | Track; isSearch: boolean; dontBind: boolean }): Promise<void> {
         const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;
         let problem = false;
@@ -85,6 +90,6 @@ export default class PlayCommand extends Command {
         if (!music.voiceChannel) {
             await music.join(vc!, msg.channel as TextChannel);
             music.play();
-        }
+        } else if (!dontBind) music.textChannel = msg.channel as TextChannel;
     }
 }
