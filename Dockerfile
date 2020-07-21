@@ -4,8 +4,8 @@ LABEL name "Yumeko"
 
 WORKDIR /usr/Yumeko
 
-RUN apk add --no-cache --virtual .build-deps python g++ make git curl \
-    && npm install -g yarn && yarn \
+RUN apk add --no-cache --virtual .build-deps python g++ make yarn \
+    && yarn install \
     && yarn build \
     && apk del .build-deps
 
