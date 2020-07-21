@@ -40,7 +40,7 @@ export default class MusicHandler {
     }
 
     public async join(vc: VoiceChannel|string, channel: TextChannel): Promise<void> {
-        await this.player.join(typeof vc === "string" ? vc : vc.id);
+        await this.player.join(typeof vc === "string" ? vc : vc.id, { deaf: true });
         this.textChannel = channel;
     }
 
@@ -87,7 +87,6 @@ export default class MusicHandler {
         switch(data.type) {
             case "TrackStartEvent":
                 this.updatePosition(0);
-                if (!this.guild.me!.voice.deaf) this.guild.me!.voice.setDeaf(true);
                 if (this.oldSong && this.oldSong.identifier === this.song!.identifier) break;
                 this.textChannel!.send(`🎶 **Now Playing:** __**${this.song!.title}**__`);
                 break;
