@@ -9,5 +9,7 @@ export default class MessageEvent implements Event {
     public exec(msg: Message): void {
         this.client.collector.runner.handle(msg);
         handle(msg);
+        if (msg.guild && [`<@${this.client.user!.id}>`, `<@!${this.client.user!.id}>`].includes(msg.content))
+            return this.client.collector.commands.get("about")!.exec(msg);
     }
 }

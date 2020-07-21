@@ -41,6 +41,7 @@ export default class MusicHandler {
 
     public async join(vc: VoiceChannel|string, channel: TextChannel): Promise<void> {
         await this.player.join(typeof vc === "string" ? vc : vc.id);
+        this.guild.voice!.setDeaf(true);
         this.textChannel = channel;
     }
 
