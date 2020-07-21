@@ -2,7 +2,7 @@ services:
     bot:
         build:
             context: ./
-            dockerfile: dockerfile
+            dockerfile: Dockerfile
         network_mode: host
         restart: unless-stopped
 version: "2.4"
