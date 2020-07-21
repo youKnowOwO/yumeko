@@ -7,7 +7,7 @@ export default function readdirRecursive(directory: string): string[] {
     function read(path: string): void {
         const files = readdirSync(path);
 
-        for(const file of files){
+        for (const file of files){
             const dir = join(path, file);
             if (statSync(dir).isDirectory()) read(dir);
             else results.push(dir);

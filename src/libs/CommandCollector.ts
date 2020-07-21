@@ -19,7 +19,7 @@ export default class CommandCollector {
         const files = readdirRecursive(path);
         const { print, color, equal, date } = this.client.log;
         if (log) print(equal(color("▶️ Collecting Command", "00C2FF")));
-        for(const file of files) {
+        for (const file of files) {
             const load = require(file).default;
             if (!load || !(load.prototype instanceof Command)) continue;
             const command = this.getCommand(file);

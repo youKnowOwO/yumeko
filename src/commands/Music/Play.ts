@@ -65,7 +65,7 @@ export default class PlayCommand extends Command {
         if (typeof track === "string") {
             const response = await music.fetch(track);
             if (response.loadType === "PLAYLIST_LOADED") {
-                for(const trck of response.tracks) music.add(msg.author, trck);
+                for (const trck of response.tracks) music.add(msg.author, trck);
                 msg.ctx.send(`✅ **| Succes Added Playlist:** __**${response.playlistInfo.name}**__`);
             } else if (response.loadType === "SEARCH_RESULT") {
                 let trck = response.tracks[0];

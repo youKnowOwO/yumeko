@@ -43,7 +43,7 @@ export default class StatsCommand extends Command {
                 if (msg.guild!.members.cache.has(user.id)) return `• ${user} (${user.id})`;
                 return `• ${user.tag} (${user.id})`;
             }))
-            .addField("\u200B", "[Github](https://github.com/youKnowOwO) | [Repository](https://github.com/youKnowOwO/yumeko-ts");
+            .addField("\u200B", "[Github](https://github.com/youKnowOwO) | [Repository](https://github.com/youKnowOwO/yumeko-ts)");
         await msg.ctx.send(embed);
     }
 }

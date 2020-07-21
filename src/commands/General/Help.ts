@@ -50,7 +50,7 @@ export default class HelpCommand extends Command {
         const embed = new MessageEmbed()
             .setColor(this.client.config.color)
             .setFooter(`ℹ️ To get additional information use ${msg.prefix}help <command name>, <command name> to command what you want`);
-        for(const category of this.collector!.categories) {
+        for (const category of this.collector!.categories) {
             let commands = msg.author.isDev ? category.commands : category.commands.filter(x => !x.option.devOnly);
             commands = commands.filter(x => x.option.aliases.length);
             if (!commands.length) continue;

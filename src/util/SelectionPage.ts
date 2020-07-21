@@ -7,7 +7,7 @@ export default class SelectionPage<T>{
         const { selections, emojis, embed } = this.payload;
         if (selections.length < 2) return selections[0];
         const msg = await this.msg.channel.send(embed);
-        for(let i = 0; i < selections.length; i++) await msg.react(emojis[i]);
+        for (let i = 0; i < selections.length; i++) await msg.react(emojis[i]);
         await msg.react(this.payload.cancelEmo);
         emojis.push(this.payload.cancelEmo);
         const filter = (msgr: MessageReaction, usr: User): boolean => emojis.includes(msgr.emoji.id || msgr.emoji.name) && usr.id === this.msg.author.id;

@@ -11,7 +11,7 @@ export default class ArgumentParser {
     public constructor(public client: YumekoClient) {
         const path = join(__dirname, "../types");
         const files = readdirRecursive(path);
-        for(const file of files) {
+        for (const file of files) {
             const type: Type = new (require(file).default)();
             this.types.set(type.name, type);
         }
@@ -22,7 +22,7 @@ export default class ArgumentParser {
         const multipleResult: unknown[] = [];
         let multipleArg = "";
         args = args.slice(0);
-        for(const arg of args) {
+        for (const arg of args) {
             const produce = arg.type ? this.getType(arg.type) : this.getType("boolean");
             let matched: string|void;
             if (!msg.args.length && arg.optional) continue;
@@ -68,7 +68,7 @@ export default class ArgumentParser {
 
     public async prompting(msg: Message, arg: Argument, toSend: string, tries = 0): Promise<unknown> {
         let result: unknown;
-        while(!result && tries < 3) {
+        while (!result && tries < 3) {
             await msg.channel.send(stripIndents`
                 **${ !tries ? "❓" : "❌"} |** ${!tries ? (typeof arg.prompt === "function" ? arg.prompt(msg) : arg.prompt) : toSend}
                 **▫️ |** *You've \`30\` seconds to decide*

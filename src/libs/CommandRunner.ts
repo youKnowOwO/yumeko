@@ -97,7 +97,7 @@ export default class CommandRunner {
 
     public checkMissPermission(member: GuildMember, perms: PermissionString[]): PermissionString[] {
         const result: PermissionString[] = [];
-        for(const perm of perms) {
+        for (const perm of perms) {
             if (!member.permissions.has(perm)) result.push(perm);
         }
         return result;
@@ -105,7 +105,7 @@ export default class CommandRunner {
 
     public getPrefix(msg: Message): string|void {
         const prefixes: string[] = [this.client.config.prefix, this.client.user!.toString()];
-        for(const prefix of prefixes) {
+        for (const prefix of prefixes) {
             if (msg.content.startsWith(prefix)) return prefix;
         }
     }

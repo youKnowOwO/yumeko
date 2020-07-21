@@ -97,7 +97,7 @@ export default class LintCommand extends Command {
     public anotate(code: string, errors: Linter.LintMessage[]): string {
         const splitted = code.split("\n");
         const results: string[] = [];
-        for(const error of errors) {
+        for (const error of errors) {
             const line = splitted[error.line - 1];
             const anotation = `${" ".repeat(error.column - 1)}^ `;
             const reason = `[${error.line}:${error.column}] ${error.message}`;

@@ -136,7 +136,7 @@ export default class MusicHandler {
     public get listeners(): User[] {
         if (!this.voiceChannel) return [];
         const users: User[] = [];
-        for(const member of this.voiceChannel.members.array()) {
+        for (const member of this.voiceChannel.members.array()) {
             if (member.user.bot || member.voice.deaf) continue;
             users.push(member.user);
         }

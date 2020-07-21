@@ -17,7 +17,7 @@ export function firstUpperCase(text: string): string {
 
 export function chunk<T>(arr: T[], len: number): T[][] {
     const rest: T[][] = [];
-    for(let i = 0; i < arr.length; i += len)
+    for (let i = 0; i < arr.length; i += len)
         rest.push(arr.slice(i, i+len));
     return rest;
 }
