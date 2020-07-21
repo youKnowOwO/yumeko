@@ -51,7 +51,7 @@ export default class PlayCommand extends Command {
         });
     }
 
-    public async exec(msg: Message, { track, isSearch, dontBind }: { track: string | Track; isSearch: boolean; dontBind: boolean }): Promise<void> {
+    public async exec(msg: Message, { track, isSearch, dontBind }: { track: string | Track; isSearch: boolean; dontBind: boolean }): Promise<Message|void> {
         const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;
         let problem = false;
@@ -64,7 +64,7 @@ export default class PlayCommand extends Command {
         if (problem) throw new CustomError("CANCELED");
         if (typeof track === "string") {
             const response = await music.fetch(track);
-            if (!response.tracks.length) return msg.ctx.send("🚫 No result found").then(() => undefined);
+            if (!response.tracks.length) return msg.ctx.send("🚫 No result found");
             if (response.loadType === "PLAYLIST_LOADED") {
                 for (const trck of response.tracks) music.add(msg.author, trck);
                 msg.ctx.send(`✅ **| Succes Added Playlist:** __**${response.playlistInfo.name}**__`);
@@ -81,7 +81,7 @@ export default class PlayCommand extends Command {
                         embed, selections: tracks
                     });
                     const result = await resp.start();
-                    if (!result) return;
+                    if (!result) return undefined;
                     trck = result;
                 }
                 music.add(msg.author, trck);

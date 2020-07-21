@@ -25,7 +25,7 @@ export default class OwoifyCommand extends Command {
         });
     }
 
-    public exec(msg: Message, { text } : { text: string }): void {
+    public exec(msg: Message, { text } : { text: string }): Promise<Message> {
         text = text.replace(/(?:r|l)/g, "w")
             .replace(/(?:R|L)/g, "W")
             .replace(/n([aeiou])/g, "ny$1")
@@ -34,6 +34,6 @@ export default class OwoifyCommand extends Command {
             .replace(/ove/g, "uv")
             .replace(/!+/g, ` ${faces[Math.floor(Math.random() * faces.length)]} `)
             .trim();
-        msg.ctx.send(text);
+        return msg.ctx.send(text);
     }
 }

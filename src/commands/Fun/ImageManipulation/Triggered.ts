@@ -27,12 +27,12 @@ export default class TriggeredCommand extends Command {
         });
     }
 
-    public async exec(msg: Message, { image } : { image: string }): Promise<void> {
+    public async exec(msg: Message, { image } : { image: string }): Promise<Message> {
         const m = await msg.channel.send("🖌️ **| Painting...**");
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/triggered")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({ image });
         m.delete();
-        msg.ctx.send({files:[{attachment, name: "triggered.gif"}]});
+        return msg.ctx.send({files:[{attachment, name: "triggered.gif"}]});
     }
 }

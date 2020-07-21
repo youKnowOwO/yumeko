@@ -25,8 +25,8 @@ export default class EightBallCommand extends Command {
         });
     }
 
-    public exec(msg: Message): void {
+    public exec(msg: Message): Promise<Message> {
         const response = responses[Math.round(Math.random()*responses.length)] || responses[0];
-        msg.ctx.send(`🎱 **| ${response}**`);
+        return msg.ctx.send(`🎱 **| ${response}**`);
     }
 }

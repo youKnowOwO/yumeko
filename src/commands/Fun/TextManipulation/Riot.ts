@@ -23,7 +23,7 @@ export default class RiotCommand extends Command {
         });
     }
 
-    public exec(msg: Message, { text } : { text: string }): void {
-        msg.ctx.send(`ヽ༼ຈل͜ຈ༽ﾉ ${text.toUpperCase()} ヽ༼ຈل͜ຈ༽ﾉ`);
+    public exec(msg: Message, { text } : { text: string }): Promise<Message> {
+        return msg.ctx.send(`ヽ༼ຈل͜ຈ༽ﾉ ${text.toUpperCase()} ヽ༼ຈل͜ຈ༽ﾉ`);
     }
 }

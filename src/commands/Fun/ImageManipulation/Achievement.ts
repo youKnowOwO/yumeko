@@ -34,12 +34,12 @@ export default class AchievementCommand extends Command {
         });
     }
 
-    public async exec(msg: Message, { text, image } : { text: string; image: string }): Promise<void> {
+    public async exec(msg: Message, { text, image } : { text: string; image: string }): Promise<Message> {
         const m = await msg.channel.send("🖌️ **| Painting..**");
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/achievement")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({ text, image });
         m.delete();
-        msg.ctx.send({files:[{attachment, name: "achievement.png"}]});
+        return msg.ctx.send({files:[{attachment, name: "achievement.png"}]});
     }
 }

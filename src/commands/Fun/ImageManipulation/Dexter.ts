@@ -27,12 +27,12 @@ export default class DexterCommand extends Command {
         });
     }
 
-    public async exec(msg: Message, { image } : { image: string }): Promise<void> {
+    public async exec(msg: Message, { image } : { image: string }): Promise<Message> {
         const m = await msg.channel.send("🖌️ **| Painting...**");
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/dexter")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({ image });
         m.delete();
-        msg.ctx.send({files:[{attachment, name: "dexter.png"}]});
+        return msg.ctx.send({files:[{attachment, name: "dexter.png"}]});
     }
 }

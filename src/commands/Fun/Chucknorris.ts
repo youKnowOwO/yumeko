@@ -16,8 +16,8 @@ export default class ChucknorrisCommand extends Command {
         });
     }
 
-    public async exec(msg: Message): Promise<void> {
+    public async exec(msg: Message): Promise<Message> {
         const { body }: any = await request.get("https://api.icndb.com/jokes/random");
-        msg.ctx.send(`📢 **| ${body.value.joke}**`);
+        return msg.ctx.send(`📢 **| ${body.value.joke}**`);
     }
 }

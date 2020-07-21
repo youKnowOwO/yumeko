@@ -20,14 +20,14 @@ export default class BunnyCommand extends Command {
         });
     }
 
-    public async exec(msg: Message): Promise<void> {
+    public async exec(msg: Message): Promise<Message> {
         const image = await this.getImage();
         const embed = new MessageEmbed()
             .setColor(this.client.config.color)
             .setURL(image)
             .setTitle("Click here if image failed to load")
             .setImage(image);
-        msg.ctx.send(embed);
+        return msg.ctx.send(embed);
     }
 
     public async getImage(): Promise<string> {

@@ -21,9 +21,9 @@ export default class AmazedCommand extends Command {
         });
     }
 
-    public async exec(msg: Message): Promise<void> {
+    public async exec(msg: Message): Promise<Message> {
         const { raw: attachment } = await request.get(`${this.api}${this.identifier}`)
             .set("Authorization", `Bearer ${process.env.EMIAPI}`);
-        msg.ctx.send({files:[{attachment, name: `${this.identifier}.gif`}]});
+        return msg.ctx.send({files:[{attachment, name: `${this.identifier}.gif`}]});
     }
 }
