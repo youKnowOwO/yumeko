@@ -9,6 +9,6 @@ RUN apk add --no-cache --virtual .build-deps python g++ make yarn \
     && yarn build \
     && apk del .build-deps
 
-COPY . .
+COPY package.json yarn.lock
 
 CMD ["node", "dist"]
