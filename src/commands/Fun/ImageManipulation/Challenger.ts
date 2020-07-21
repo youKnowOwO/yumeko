@@ -32,12 +32,12 @@ export default class ChallengerCommand extends Command {
         });
     }
 
-    public async exec(msg: Message, { image, silhouted } : { image: string; silhouted: boolean }): Promise<void> {
+    public async exec(msg: Message, { image, silhouted } : { image: string; silhouted: boolean }): Promise<Message> {
         const m = await msg.channel.send("🖌️ **| Painting...**");
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/challenger")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({ image, silhouted } as any);
         m.delete();
-        msg.ctx.send({files:[{attachment, name: "challenger.png"}]});
+        return msg.ctx.send({files:[{attachment, name: "challenger.png"}]});
     }
 }

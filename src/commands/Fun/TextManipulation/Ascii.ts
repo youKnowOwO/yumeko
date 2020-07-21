@@ -30,8 +30,8 @@ export default class AsciiCommand extends Command {
         });
     }
 
-    public async exec(msg: Message, { text }: { text: string }): Promise<void> {
+    public async exec(msg: Message, { text }: { text: string }): Promise<Message> {
         const ascii = await promisify(figlet)(text);
-        msg.ctx.send(codeBlock("ascci", ascii as string));
+        return msg.ctx.send(codeBlock("ascci", ascii as string));
     }
 }

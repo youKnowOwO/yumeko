@@ -27,7 +27,7 @@ export default class BatslapCommand extends Command {
         });
     }
 
-    public async exec(msg: Message, { user } : { user: User }): Promise<void> {
+    public async exec(msg: Message, { user } : { user: User }): Promise<Message> {
         const m = await msg.channel.send("🖌️ **| Painting...**");
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/batslap")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
@@ -36,6 +36,6 @@ export default class BatslapCommand extends Command {
                 slapped: user.displayAvatarURL({ format: "png", size: 512, dynamic: true })
             });
         m.delete();
-        msg.ctx.send({files:[{attachment, name: "batslap.png"}]});
+        return msg.ctx.send({files:[{attachment, name: "batslap.png"}]});
     }
 }

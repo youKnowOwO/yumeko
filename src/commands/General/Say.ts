@@ -28,8 +28,8 @@ export default class SayCommand extends Command {
         });
     }
 
-    public exec(msg: Message, { text, isDelete }: { text: string; isDelete: boolean }): void {
-        msg.ctx.send(text);
+    public exec(msg: Message, { text, isDelete }: { text: string; isDelete: boolean }): Promise<Message> {
         if (isDelete) msg.delete().catch();
+        return msg.ctx.send(text);
     }
 }

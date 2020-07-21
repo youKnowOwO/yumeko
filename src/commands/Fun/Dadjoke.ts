@@ -16,9 +16,9 @@ export default class DadjokeCommand extends Command {
         });
     }
 
-    public async exec(msg: Message): Promise<void> {
+    public async exec(msg: Message): Promise<Message> {
         const { body }: any = await request.get("https://icanhazdadjoke.com/")
             .set("Accept", "application/json");
-        msg.ctx.send(`📢 **| ${body.joke.length ? body.joke : "Try Again"}**`);
+        return msg.ctx.send(`📢 **| ${body.joke.length ? body.joke : "Try Again"}**`);
     }
 }

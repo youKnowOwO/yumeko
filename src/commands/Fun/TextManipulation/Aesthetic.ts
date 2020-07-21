@@ -23,7 +23,7 @@ export default class AestheticCommand extends Command {
         });
     }
 
-    public exec(msg: Message, { text } : { text: string }): void {
-        msg.ctx.send(text.split("").join(" ").toUpperCase());
+    public exec(msg: Message, { text } : { text: string }): Promise<Message> {
+        return msg.ctx.send(text.split("").join(" ").toUpperCase());
     }
 }

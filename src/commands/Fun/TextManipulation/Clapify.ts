@@ -23,7 +23,7 @@ export default class ClapifyCommand extends Command {
         });
     }
 
-    public exec(msg: Message, { text } : { text: string }): void {
-        msg.ctx.send(`👏${text.replace(/ +/g,"👏")}👏`);
+    public exec(msg: Message, { text } : { text: string }): Promise<Message> {
+        return msg.ctx.send(`👏${text.replace(/ +/g,"👏")}👏`);
     }
 }

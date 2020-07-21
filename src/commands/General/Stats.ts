@@ -22,7 +22,7 @@ export default class StatsCommand extends Command {
         });
     }
 
-    public async exec(msg: Message): Promise<void> {
+    public async exec(msg: Message): Promise<Message> {
         const embed = new MessageEmbed()
             .setColor(this.client.config.color)
             .setTitle("♪ My Current Statistic")
@@ -44,6 +44,6 @@ export default class StatsCommand extends Command {
                 return `• ${user.tag} (${user.id})`;
             }))
             .addField("\u200B", "[Github](https://github.com/youKnowOwO) | [Repository](https://github.com/youKnowOwO/yumeko-ts)");
-        await msg.ctx.send(embed);
+        return msg.ctx.send(embed);
     }
 }

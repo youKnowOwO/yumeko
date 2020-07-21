@@ -19,7 +19,7 @@ export default class PingCommand extends Command {
         });
     }
 
-    public async exec(msg: Message): Promise<void> {
+    public async exec(msg: Message): Promise<Message> {
         const now = Date.now();
         const m = await msg.ctx.send("🏓 Ping..");
         const embed = new MessageEmbed()
@@ -29,6 +29,6 @@ export default class PingCommand extends Command {
                 ⏳ **Latency:** \`${m.createdTimestamp - msg.createdTimestamp}ms\`
                 💓 **API:** \`${this.client.ws.ping}ms\`
             `);
-        m.edit("🏓 Pong", embed);
+        return m.edit("🏓 Pong", embed);
     }
 }
