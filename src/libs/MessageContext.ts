@@ -15,7 +15,7 @@ export default class MessageContext {
         } else {
             let toCheck = options;
             if (typeof content === "object") toCheck = content;
-            if (toCheck && toCheck.files instanceof Array) {
+            if (toCheck && toCheck.files instanceof Array && toCheck.files.length) {
                 await msg.channel.send(content, options);
                 this.cache.set(msg.id, message);
             } else message.edit(content, options);
