@@ -55,12 +55,13 @@ export default class DocsCommand extends Command {
     }
 
     public async exec(msg: Message, { query, source, force, includePrivate }: { query: string; source: string; force: boolean; includePrivate: boolean }): Promise<void> {
-        const { body: embed } = await request.get("https://djsdocs.sorta.moe/v2/embed")
+        const { body: embed }: any = await request.get("https://djsdocs.sorta.moe/v2/embed")
             .query({
                 q: query,
                 src: source,
                 force, includePrivate
             } as any);
-        msg.ctx.send({ embed });
+        if (!embed || !embed.description) msg.ctx.send("🚫 No result found");
+        else msg.ctx.send({ embed });
     }
 }

@@ -64,6 +64,7 @@ export default class PlayCommand extends Command {
         if (problem) throw new CustomError("CANCELED");
         if (typeof track === "string") {
             const response = await music.fetch(track);
+            if (!response.tracks.length) return msg.ctx.send("🚫 No result found").then(() => undefined);
             if (response.loadType === "PLAYLIST_LOADED") {
                 for (const trck of response.tracks) music.add(msg.author, trck);
                 msg.ctx.send(`✅ **| Succes Added Playlist:** __**${response.playlistInfo.name}**__`);
