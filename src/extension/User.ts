@@ -8,7 +8,7 @@ class YumekoUser extends Structures.get("User") {
 }
 
 declare module "discord.js" {
-    interface User {
+    export interface User {
         isDev: boolean;
     }
 }
