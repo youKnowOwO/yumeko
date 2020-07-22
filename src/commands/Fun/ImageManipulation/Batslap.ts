@@ -10,7 +10,7 @@ export default class BatslapCommand extends Command {
             description: {
                 content: "A batman slapping meme",
                 usage: "batslap <user>",
-                examples: ["batslap"]
+                examples: ["batslap @unknown"]
             },
             category: "fun",
             permissions: {
