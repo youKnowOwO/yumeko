@@ -27,7 +27,7 @@ export default class FusionCommand extends Command {
                     identifier: "user2",
                     match: "single",
                     type: "user",
-                    default: (msg: Message): User => msg.author
+                    default: (msg: Message): string => msg.author.id
                 }
             ]
         });
