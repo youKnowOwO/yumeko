@@ -5,3 +5,10 @@
 
 <a href="https://github.com/youKnowOwO/yumeko-ts/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://github.com/youKnowOwO/yumeko-ts/workflows/Node.js%20CI/badge.svg" alt="Node.JS CI Status" /></a>
 <img src="https://badgen.net/badge/icon/typescript?icon=typescript&label"> <img src="https://badgen.net/badge/icon/docker?icon=docker&label"> <img src ="https://badgen.net/badge/rip/english/black"> <img src ="https://badgen.net/badge/copas/dosa/red">
+
+# History
+<div class="alert alert-warning" role="alert">IF YOU ARE PERFECTIONIST PLEASE DON'T READ THIS</div>
+
+A long time ago i just want started my first production bot with alot of commands. But i had host problem, so i just want to backup it to Github. Unfortunately creating private repository isn't free like now. So here without doubt im releasing it to public with restructured code.
+
+[Old Respository](https://github.com/SharifPoetra/yumeko)
