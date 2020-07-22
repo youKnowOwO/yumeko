@@ -40,7 +40,7 @@ export default class CommandRunner {
         if (command.option.devOnly && !msg.author.isDev) return undefined;
         if (!await this.allowed(msg, command.option.permissions, command.ignore)) return undefined;
         msg.prefix = prefix === this.client.user!.toString() ? `${this.client.user!.tag} ` : prefix;
-        msg.args = args;
+        msg.args = command.option.splitBy ? args.join(" ").split(command.option.splitBy) : args;
         const payload: CommandUsed = {
             running: true,
             since: Date.now(),
