@@ -17,6 +17,7 @@ export interface CommandOption {
     cooldown?: number;
     disable?: boolean;
     devOnly?: boolean;
+    splitBy?: string|RegExp;
     args?: Argument[];
 }
 
