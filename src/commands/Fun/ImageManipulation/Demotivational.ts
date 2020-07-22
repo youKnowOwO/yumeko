@@ -32,7 +32,7 @@ export default class DemotivationalCommand extends Command {
                 },
                 {
                     identifier: "image",
-                    match: "rest",
+                    match: "single",
                     type: "image",
                     default: (msg: Message): string => msg.author.displayAvatarURL({ format: "png", size: 512, dynamic: true })
                 }
