@@ -11,7 +11,7 @@ class YumekoMessage extends Structures.get("Message") {
 }
 
 declare module "discord.js" {
-    interface Message {
+    export interface Message {
         args: string[];
         prefix?: string;
         ctx: MessageContext;

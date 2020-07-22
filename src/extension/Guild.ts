@@ -6,7 +6,7 @@ class YumekoGuild extends Structures.get("Guild") {
 }
 
 declare module "discord.js" {
-    interface Guild {
+    export interface Guild {
         music: MusicHandler;
     }
 }

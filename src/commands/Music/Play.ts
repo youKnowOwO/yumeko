@@ -60,7 +60,7 @@ export default class PlayCommand extends Command {
             problem = await msg.ctx.send("❌ **| You must use same voice channel with me**").then(() => true);
         else if (!vc.permissionsFor(msg.guild!.me!)!.has(["CONNECT", "SPEAK"]))
             problem = await msg.ctx.send("❌ **| I Don't have permissions \`CONNECT\` or \`SPEAK\`**").then(() => true);
-        else if (!vc.joinable) problem = await msg.ctx.send("❌ **| Voice channel isn't joinable**").then(() => true);
+        else if (!music.voiceChannel && !vc.joinable) problem = await msg.ctx.send("❌ **| Voice channel isn't joinable**").then(() => true);
         if (problem) throw new CustomError("CANCELED");
         if (typeof track === "string") {
             const response = await music.fetch(track);
