@@ -20,7 +20,7 @@ export default class LisaPresentationCommand extends Command {
                 {
                     identifier: "text",
                     match: "rest",
-                    type: "text",
+                    type: "string",
                     prompt: "What the text to be presented ?"
                 }
             ]
