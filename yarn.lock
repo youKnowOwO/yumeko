@@ -474,7 +474,6 @@ delayed-stream@~1.0.0:
 
 "discord.js@github:discordjs/discord.js":
   version "12.2.0"
-  uid "2b6e6d86310a9f9fc4293c2f76f37690db9003e4"
   resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/2b6e6d86310a9f9fc4293c2f76f37690db9003e4"
   dependencies:
     "@discordjs/collection" "^0.1.5"

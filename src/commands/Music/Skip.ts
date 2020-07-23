@@ -37,6 +37,7 @@ export default class SkipCommand extends Command {
         if (!forced) {
             const listeners = music.listeners.length;
             if (listeners > 3 && music.song.requester.id !== msg.author.id) {
+                if (music.skipVotes.includes(msg.author)) return msg.ctx.send("❕ **| You already voted**")
                 music.skipVotes.push(msg.author);
                 const needed = Math.round(listeners * 0.4);
                 if (music.skipVotes.length < needed)
