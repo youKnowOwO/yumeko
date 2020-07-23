@@ -36,7 +36,13 @@ export default class GameListComamnd extends Command {
 
     public async exec(msg: Message, { game } : { game: Command }): Promise<Message> {
         if (game) {
+            if (this.session.has(`${msg.channel.id}/${game.identifier}`)) {
+                msg.ctx.send("❕ **| Only one game oer user**");
+                throw new CustomError("CANCELED");
+            }
+            this.session.add(`${msg.channel.id}/${game.identifier}`);
             await this.collector!.runner.runCommand(msg, game);
+            this.session.delete(`${msg.channel.id}/${game.identifier}`);
             return msg;
         }
         const list = this.collector!.commands.filter(x => x.identifier.includes("game-"));
