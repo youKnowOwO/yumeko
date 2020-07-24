@@ -37,7 +37,7 @@ export default class GameListComamnd extends Command {
     public async exec(msg: Message, { game } : { game: Command }): Promise<Message> {
         if (game) {
             if (this.session.has(`${msg.channel.id}/${game.identifier}`)) {
-                msg.ctx.send("❕ **| Only one game oer user**");
+                msg.ctx.send("❕ **| Only one game per channel**");
                 throw new CustomError("CANCELED");
             }
             this.session.add(`${msg.channel.id}/${game.identifier}`);
