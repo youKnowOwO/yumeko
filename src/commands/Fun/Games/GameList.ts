@@ -55,7 +55,7 @@ export default class GameListComamnd extends Command {
                     > ${x.option.description.content}
                     *cmds: ${cmds.map(x => `\`${x}\``).join(", ")}*
                 `;
-            }).join("\n"))
+            }).join("\n\n"))
             .setFooter(`To play a game type '${msg.prefix}game <game cmd>'`);
         return msg.ctx.send(embed);
     }
