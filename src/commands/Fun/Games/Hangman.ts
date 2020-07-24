@@ -12,7 +12,7 @@ export default class HangmanCommand extends Command {
         super(client, "game-hangman", {
             aliases: [],
             description: {
-                content: "Save hanged man by guessing the word!. I'll hang random man and if you to want to safe he, just guessing the word",
+                content: "Save hanged man by guessing the word!. I'll hang random man and if you to want to safe him, just guess the word",
                 usage: "[range]",
                 examples: ["game-hangman"],
                 adionalInfo: ["<:hangman:736148147038060554> Hangman", "hangman", "hm"]
