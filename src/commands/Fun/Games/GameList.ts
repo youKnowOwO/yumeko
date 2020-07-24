@@ -12,7 +12,7 @@ export default class GameListComamnd extends Command {
             description: {
                 content: "See the list of mini game i had",
                 usage: "game [game]",
-                examples: ["game Guess The Number"]
+                examples: ["game gtn"]
             },
             category: "fun",
             permissions: {
@@ -52,10 +52,11 @@ export default class GameListComamnd extends Command {
                 const [name, ...cmds] = x.option.description.adionalInfo!;
                 return stripIndents`
                     **${name}**
-                    ${x.option.description.content.replace(/\n/g, "\n> ")}
+                    > ${x.option.description.content}
                     *cmds: ${cmds.map(x => `\`${x}\``).join(", ")}*
                 `;
-            }).join("\n"));
+            }).join("\n"))
+            .setFooter(`To play a game type '${msg.prefix}game <game cmd>'`);
         return msg.ctx.send(embed);
     }
 }
