@@ -9,6 +9,7 @@ export default class TypeUserhuman implements Type {
         const userType = (msg.client as YumekoClient).collector.runner.argsParser.getType("user");
         const user: User = userType(msg, content) as any;
         if (user.bot) throw new CustomError("!PARSING", "**Bot not allowed!**");
+        if (user.id === msg.author.id) throw new CustomError("!PARSING", "**You can't choose yourselft**");
         return user;
     }
 }
