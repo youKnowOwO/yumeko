@@ -62,7 +62,7 @@ export default class TicTacToeCommand extends Command {
             const [line, column] = this.getIndexs(index);
             selected.push(numbers[index]);
             board[line][column] = turn ? "❌" : "⭕";
-            const check = this.updateBoard(board, turn ? "❎": "🅾");
+            const check = this.updateBoard(board, turn ? "❎": "🅾️");
             board = check.board;
             if (check.isWin) winner = user;
             turn = !turn;
