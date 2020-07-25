@@ -1,4 +1,5 @@
 import request from "node-superfetch";
+import type { MessageReaction, Message, User } from "discord.js";
 
 export async function hastebin(text: string, lang = "js"): Promise<string> {
     const { body } = await request.post("https://hasteb.in/documents")
@@ -62,4 +63,23 @@ export function parseTime(time: string): number {
         quadrive = quadrive * 60;
     }
     return result;
+}
+
+export function shuffle<T>(arr: T[]): T[] {
+    const a = arr.slice(0);
+    for (let i = arr.length - 1; i >= 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+    return a;
+}
+
+export async function verify (msg: Message, to: User): Promise<boolean> {
+    await msg.react("🇾");
+    await msg.react("🇳");
+    const filter = (m: MessageReaction, usr: User): boolean => ["🇾", "🇳"].includes(m.emoji.name) && usr.id === to.id;
+    const responses = await msg.awaitReactions(filter, { max: 1, time: 30000 });
+    return !!responses.size && responses.first()!.emoji.id === "🇾";
 }
