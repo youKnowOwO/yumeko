@@ -19,7 +19,7 @@ export default class TicTacToeCommand extends Command {
                 content: "Play Tic Tac Toe game with other user. This is solved game, you must placing 3 marks horizontal vertical or diagonal to win the match.",
                 usage: "<user>",
                 examples: ["game-tictactoe"],
-                adionalInfo: ["<:tictactoe:736370109073063946> Tic Tac Toe", "tictactoe", "ttc"]
+                adionalInfo: ["<:tictactoe:736370109073063946> Tic Tac Toe", "tictactoe", "ttt"]
             },
             category: "fun",
             args: [
@@ -34,7 +34,7 @@ export default class TicTacToeCommand extends Command {
     }
 
     public async exec(msg: Message, { opponent }: { opponent: User }): Promise<Message> {
-        const verifyMsg = await msg.channel.send(`❓ **| ${opponent}, Do you want accept this challenge ?`);
+        const verifyMsg = await msg.channel.send(`❓ **| ${opponent}, Do you want accept this challenge ?**`);
         const verified = await verify(verifyMsg, opponent);
         if (!verified) return msg.ctx.send(`🍃 **| Look like ${opponent} doesn't accept your challenge**`);
         const selected: string[] = [];

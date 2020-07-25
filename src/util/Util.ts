@@ -81,5 +81,5 @@ export async function verify (msg: Message, to: User): Promise<boolean> {
     await msg.react("🇳");
     const filter = (m: MessageReaction, usr: User): boolean => ["🇾", "🇳"].includes(m.emoji.name) && usr.id === to.id;
     const responses = await msg.awaitReactions(filter, { max: 1, time: 30000 });
-    return !!responses.size && responses.first()!.emoji.id === "🇾";
+    return !!responses.size && responses.first()!.emoji.name === "🇾";
 }
