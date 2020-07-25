@@ -83,3 +83,7 @@ export async function verify (msg: Message, to: User): Promise<boolean> {
     const responses = await msg.awaitReactions(filter, { max: 1, time: 30000 });
     return !!responses.size && responses.first()!.emoji.name === "🇾";
 }
+
+export function escapeRegex(str: string): string {
+    return str.replace(/[|\\{}()[\]^$+*?.]/g, "\\$&");
+}
