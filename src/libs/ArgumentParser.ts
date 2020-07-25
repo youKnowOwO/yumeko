@@ -43,7 +43,7 @@ export default class ArgumentParser {
                 multipleArg = arg.identifier;
                 if (msg.args.length) {
                     matched = msg.args.shift()!;
-                    args.push(arg);
+                    if (msg.args.length) args.push(arg);
                 }
             }
             let produced: unknown;
@@ -60,7 +60,7 @@ export default class ArgumentParser {
                 produced = await this.prompting(msg, arg, e.message, tries);
             }
             // eslint-disable-next-line no-unused-expressions
-            arg.type === "multiple" ? multipleResult.push(produced) : result[arg.identifier] = produced;
+            arg.match === "multiple" ? multipleResult.push(produced) : result[arg.identifier] = produced;
         }
         if (multipleResult.length) result[multipleArg] = multipleResult;
         return result;
