@@ -1,9 +1,15 @@
 import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
+import Stopwatch from "../../util/Stopwarch";
 import type { Message } from "discord.js";
 import { inspect } from "util";
-import { performance } from "perf_hooks";
-import { hastebin, codeBlock } from "../../util/Util";
+import { hastebin, codeBlock, escapeRegex } from "../../util/Util";
+
+interface ReturnEval {
+    time: string;
+    result: string;
+    succes: boolean;
+}
 
 export default class EvalCommand extends Command {
     public constructor (client: YumekoClient) {
@@ -28,6 +34,11 @@ export default class EvalCommand extends Command {
                     flag: "hide"
                 },
                 {
+                    identifier: "showStack",
+                    match: "flag",
+                    flag: "stack"
+                },
+                {
                     identifier: "depth",
                     match: "flag",
                     type: "number",
@@ -44,32 +55,48 @@ export default class EvalCommand extends Command {
         });
     }
 
-    public async exec(msg: Message, { code, isAsync, isHide, depth }: { code: string; isAsync: boolean; isHide: boolean; depth: number }): Promise<Message|void> {
-        let result: any;
-        let syncTime = performance.now();
-        let asyncTime = 0;
-        try {
-            // eslint-disable-next-line no-eval
-            let evaled: unknown = eval(`${isAsync ? "(async()=>{" : ""}${code}${isAsync ? "})()": ""}`);
-            if (isAsync) {
-                asyncTime = performance.now();
-                evaled = await evaled;
-                asyncTime = performance.now() - asyncTime;
-            }
-            syncTime = performance.now() - syncTime;
-            if (isHide) return undefined;
-            result = evaled;
-        } catch(e) {
-            result = `${e.name}: ${e.message}`;
-        }
-        result = typeof result === "string" ? result : inspect(result, { depth });
-        const time = this.getTime(syncTime, asyncTime);
-        let toSend = `⏱️ ${time} ${codeBlock("js", result)}`;
-        if (toSend.length >= 2000) toSend = `⏱️ ${time}\n${await hastebin(result)}`;
+    public async exec(msg: Message, { isAsync, isHide, showStack, depth, code }: { isAsync: boolean; isHide: boolean; showStack: boolean; depth: number; code: string }): Promise<Message> {
+        const { succes, result, time } = await this.eval(msg, code, depth, isAsync, showStack);
+        if (isHide) return msg;
+        const emoji = msg.guild!.me!.hasPermission("USE_EXTERNAL_EMOJIS") ?
+            (succes ? "<:right:734220684825329775>" : "<:wrong:734220683445403749>") :
+            (succes ? "❌" : "✅");
+        let toSend = `${emoji} **| ${time}**\n${codeBlock("js", result)}`;
+        if (toSend.length >= 2000) toSend = `${emoji} **| ${time}\n${await hastebin(result, "js")}**`;
         return msg.ctx.send(toSend);
     }
 
-    public getTime(syncTime: number, asyncTime: number): string {
-        return asyncTime ? `${syncTime}<${asyncTime}>ms` : `${syncTime}ms`;
+    public async eval(msg: Message, code: string,  depth: number, isAsync: boolean, showStack: boolean): Promise<ReturnEval> {
+        const stopwatch = new Stopwatch();
+        let isPromise = false;
+        let succes = false;
+        let syncTime: string|void;
+        let asyncTime: string|void;
+        let result: any;
+        try {
+            // eslint-disable-next-line no-eval
+            let evaled = eval(isAsync ? `(async () => { ${code} })()` : code);
+            syncTime = stopwatch.toString();
+            if (evaled instanceof Promise && typeof evaled.then === "function" && typeof evaled.catch === "function") {
+                evaled = await evaled;
+                isPromise = true;
+                asyncTime = stopwatch.toString();
+            }
+            result = evaled;
+            succes = true;
+        } catch(e) {
+            if (!syncTime) syncTime = stopwatch.toString();
+            if (isPromise && !asyncTime) asyncTime = stopwatch.toString();
+            result = showStack ? e.stack : String(e);
+        }
+        result = typeof result === "string" ? result : inspect(result, { depth });
+        result = this.replaceSensitive(result);
+        const time = asyncTime ? `${syncTime}<${asyncTime}>` : syncTime;
+        return { succes, result, time };
+    }
+
+    replaceSensitive(str: string): string {
+        const regex = new RegExp(escapeRegex(this.client.token!), "g");
+        return str.replace(regex, "[TOKEN :)]");
     }
 }
