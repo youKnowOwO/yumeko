@@ -9,7 +9,7 @@ function EnvLoader (): {[key: string]: string} {
         .replace(/\r/g, "");
     for (const env of file.split("\n")) {
         const [name, ...value] = env.split("=");
-        toAdd[name] = value.join("");
+        toAdd[name] = value.join("=");
     }
     Object.assign(process.env, toAdd);
     return toAdd;
