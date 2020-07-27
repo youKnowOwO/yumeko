@@ -61,8 +61,8 @@ export default class EvalCommand extends Command {
         const emoji = msg.guild!.me!.hasPermission("USE_EXTERNAL_EMOJIS") ?
             (succes ? "<:right:734220684825329775>" : "<:wrong:734220683445403749>") :
             (succes ? "❌" : "✅");
-        let toSend = `${emoji} **| ${time}**\n${codeBlock("js", result)}`;
-        if (toSend.length >= 2000) toSend = `${emoji} **| ${time}\n${await hastebin(result, "js")}**`;
+        let toSend = `${emoji} **| ⏱ ${time}**\n${codeBlock("js", result)}`;
+        if (toSend.length >= 2000) toSend = `${emoji} **| ⏱ ${time}\n${await hastebin(result, "js")}**`;
         return msg.ctx.send(toSend);
     }
 
