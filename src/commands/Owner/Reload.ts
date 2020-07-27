@@ -32,7 +32,7 @@ export default class ReloadCommand extends Command {
     }
 
     public exec(msg: Message, { command, dontBuild }: { command?: Command; dontBuild: boolean }): Promise<Message> {
-        const { execute } = await this.collector.commands get("exec") as ExecCommand;
+        const { execute } = await this.collector.commands.get("exec") as ExecCommand;
         const { ext, dir } = parse(this.dir!);
         // check if code runned by tsc or ts-node
         if (dir.includes("/dist/") && ext === ".js" && !dontBuild) await execute("yarn build");
