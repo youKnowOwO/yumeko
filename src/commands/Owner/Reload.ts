@@ -31,9 +31,9 @@ export default class ReloadCommand extends Command {
         });
     }
 
-    public exec(msg: Message, { command, dontBuild }: { command?: Command; dontBuild: boolean }): Promise<Message> {
+    public async exec(msg: Message, { command, dontBuild }: { command?: Command; dontBuild: boolean }): Promise<Message> {
         const { execute } = await this.collector.commands.get("exec") as ExecCommand;
-        const { ext, dir } = parse(this.dir!);
+        const { ext, dir } = parse(this.dir);
         // check if code runned by tsc or ts-node
         if (dir.includes("/dist/") && ext === ".js" && !dontBuild) await execute("yarn build");
         if (command) {
@@ -46,8 +46,8 @@ export default class ReloadCommand extends Command {
 
     public reload(commands: Command[]): void {
         for (const command of commands) {
-            delete require.cache[require.resolve(command.dir!)];
-            const newCommand = this.collector.getCommand(command.dir!);
+            delete require.cache[require.resolve(command.dir)];
+            const newCommand = this.collector.getCommand(command.dir);
             this.collector.commands.set(newCommand.identifier, newCommand);
         }
     }
