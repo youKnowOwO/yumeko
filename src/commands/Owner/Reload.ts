@@ -18,7 +18,7 @@ export default class ReloadCommand extends Command {
             args: [
                 {
                     identifier: "dontBuild",
-                    type: "flag",
+                    match: "flag",
                     flag: "dbuild"
                 },
                 {
