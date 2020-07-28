@@ -14,7 +14,7 @@ export default class ReloadCommand extends Command {
                 examples: ["reload help"]
             },
             category: "owner",
-            ownerOnly: true,
+            devOnly: true,
             args: [
                 {
                     identifier: "dontBuild",
@@ -32,7 +32,7 @@ export default class ReloadCommand extends Command {
     }
 
     public async exec(msg: Message, { command, dontBuild }: { command?: Command; dontBuild: boolean }): Promise<Message> {
-        const { execute } = this.collector.commands.get("exec") as ExecCommand;
+        const { execute } = this.collector!.commands.get("exec") as ExecCommand;
         const { ext, dir } = parse(this.dir);
         // check if code runned by tsc or ts-node
         if (dir.includes("/dist/") && ext === ".js" && !dontBuild) await execute("yarn build");
@@ -40,15 +40,15 @@ export default class ReloadCommand extends Command {
             this.reload([command]);
             return msg.ctx.send(`✅ **| Succes reloading command \`${command.identifier}\`**`);
         }
-        this.reload(this.collector.commands.array());
+        this.reload(this.collector!.commands.array());
         return msg.ctx.send("✅ **| Succes reloading all commands**");
     }
 
     public reload(commands: Command[]): void {
         for (const command of commands) {
             delete require.cache[require.resolve(command.dir)];
-            const newCommand = this.collector.getCommand(command.dir);
-            this.collector.commands.set(newCommand.identifier, newCommand);
+            const newCommand = this.collector!.getCommand(command.dir);
+            this.collector!.commands.set(newCommand.identifier, newCommand);
         }
     }
 }
