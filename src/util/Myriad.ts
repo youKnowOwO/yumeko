@@ -22,13 +22,18 @@ export async function handle(msg: Message): Promise<boolean> {
         collector.runner.isCooldown(msg, false) ||
         !msg.guild.me!.hasPermission(["ADD_REACTIONS", "SEND_MESSAGES", "EMBED_LINKS", "USE_EXTERNAL_EMOJIS"])) return false;
     if (collector.runner.getPrefix(msg)) return false;
+    let script: TypeCodeReturn;
+    try {
+        const typeCode = collector.runner.argsParser.getType("code");
+        script = typeCode(msg, msg.content) as any;
+    } catch {
+        return false;
+    }
+    if (!script.lang) return false;
     await msg.react("734220685345423382");
     const filter = (m: MessageReaction, usr: User): boolean => m.emoji.id === "734220685345423382" && usr.id === msg.author.id && !collector.runner.isCooldown(msg, false);
     const responses = await msg.awaitReactions(filter, { max: 1, time: 30000});
     if (!responses.size) return false;
-    const typeCode = collector.runner.argsParser.getType("code");
-    const script: TypeCodeReturn = typeCode(msg, msg.content) as any;
-    if (!script.lang) return false;
     command!.exec(msg, { script });
     return true;
 }
