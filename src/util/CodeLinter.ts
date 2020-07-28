@@ -32,10 +32,12 @@ export function handle(msg: Message): Promise<boolean> {
     if (msg.author.bot || !msg.guild ||
          !msg.guild.available || !msg.guild.me!.hasPermission(["ADD_REACTIONS", "SEND_MESSAGES", "EMBED_LINKS"])) return Promise.resolve(false);
     const { collector } = (msg.client as YumekoClient);
+    if (collector.runner.getPrefix(msg)) return Promise.resolve(false);
     const typeCode = collector.runner.argsParser.getType("code");
     try {
         const script: TypeCodeReturn = typeCode(msg, msg.content) as any;
         if (!script.lang) throw new Error();
+        if (!["js", "javascript", "json"].includes(script.lang.toLowerCase())) throw new Error();
         return (collector.commands.get("lint") as LintCommand).handleReact(msg, script);
     } catch {
         return Promise.resolve(false);

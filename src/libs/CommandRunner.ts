@@ -53,7 +53,7 @@ export default class CommandRunner {
         this.commandUsed.set(msg.author.id, payload);
     }
 
-    public isCooldown(msg: Message): boolean {
+    public isCooldown(msg: Message, warn = true): boolean {
         const now = Date.now();
         const used = this.commandUsed.get(msg.author.id) || {
             running: false,
@@ -61,13 +61,13 @@ export default class CommandRunner {
             amount: 0
         };
         if (used.running) {
-            msg.ctx.send(`**❌ | ${msg.author}, Only one command per user**`);
+            if (warn) msg.ctx.send(`**❌ | ${msg.author}, Only one command per user**`);
             return true;
         }
         const cooldown = used.since + used.amount;
         if (now < cooldown) {
             const amount = (cooldown - now) / 1000;
-            msg.ctx.send(`**⏱️ | ${msg.author}, Calm down!.** You can use command again in \`${Math.round(amount)}\` second(s)`);
+            if (warn) msg.ctx.send(`**⏱️ | ${msg.author}, Calm down!.** You can use command again in \`${Math.round(amount)}\` second(s)`);
             return true;
         }
         return false;
