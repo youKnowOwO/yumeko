@@ -1,27 +1,24 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import moment from "moment";
+import { DeclareCommand } from "../../decorators";
 import { MessageEmbed, Message } from "discord.js";
 import { stripIndents } from "common-tags";
 import { codeBlock } from "../../util/Util";
 import { loadavg } from "os";
 
+@DeclareCommand("stats", {
+    aliases: ["stats"],
+    description: {
+        content: "Statistic about this bot",
+        usage: "stats",
+        examples: ["stats"]
+    },
+    permissions: {
+        client: ["EMBED_LINKS"]
+    },
+    category: "general",
+})
 export default class StatsCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "stats", {
-            aliases: ["stats"],
-            description: {
-                content: "Statistic about this bot",
-                usage: "stats",
-                examples: ["stats"]
-            },
-            permissions: {
-                client: ["EMBED_LINKS"]
-            },
-            category: "general",
-        });
-    }
-
     public async exec(msg: Message): Promise<Message> {
         const embed = new MessageEmbed()
             .setColor(this.client.config.color)

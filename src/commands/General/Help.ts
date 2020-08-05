@@ -1,33 +1,30 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import { Message,MessageEmbed } from "discord.js";
 import { stripIndents } from "common-tags";
 import { codeBlock, firstUpperCase } from "../../util/Util";
+import { DeclareCommand } from "../../decorators";
 
+@DeclareCommand("help", {
+    aliases: ["help", "h"],
+    description: {
+        content: "The first command you'll typing",
+        usage: "help [command]",
+        examples: ["help say"]
+    },
+    category: "general",
+    permissions: {
+        client: ["EMBED_LINKS"]
+    },
+    args: [
+        {
+            identifier: "command",
+            type: "command",
+            match: "single",
+            optional: true
+        }
+    ]
+})
 export default class HelpCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "help", {
-            aliases: ["help", "h"],
-            description: {
-                content: "The first command you'll typing",
-                usage: "help [command]",
-                examples: ["help say"]
-            },
-            category: "general",
-            permissions: {
-                client: ["EMBED_LINKS"]
-            },
-            args: [
-                {
-                    identifier: "command",
-                    type: "command",
-                    match: "single",
-                    optional: true
-                }
-            ]
-        });
-    }
-
     public exec(msg: Message, { command }: { command?: Command }): Promise<Message> {
         if (command) {
             const { name: category } = this.collector!.categories.find(x => x.type === command.option.category)!;
