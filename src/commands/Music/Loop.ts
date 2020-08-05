@@ -1,24 +1,21 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import CustomError from "../../classes/CustomError";
 import { Message } from "discord.js";
+import { DeclareCommand } from "../../decorators";
 
-export default class LoopCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "loop", {
-            aliases: ["loop"],
-            description: {
-                content: "Loop current queue",
-                usage: "loop",
-                examples: ["loop"]
-            },
-            category: "music",
-            permissions: {
-                user: ["MANAGE_GUILD"]
-            }
-        });
+@DeclareCommand("loop", {
+    aliases: ["loop"],
+    description: {
+        content: "Loop current queue",
+        usage: "loop",
+        examples: ["loop"]
+    },
+    category: "music",
+    permissions: {
+        user: ["MANAGE_GUILD"]
     }
-
+})
+export default class LoopCommand extends Command {
     public async exec(msg: Message): Promise<Message> {
         const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;

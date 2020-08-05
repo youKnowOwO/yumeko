@@ -1,28 +1,25 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import CustomError from "../../classes/CustomError";
 import { Message } from "discord.js";
+import { DeclareCommand } from "../../decorators";
 
+@DeclareCommand("skip", {
+    aliases: ["skip"],
+    description: {
+        content: "Stop playing current song",
+        usage: "skip",
+        examples: ["skip", "--force"]
+    },
+    category: "music",
+    args: [
+        {
+            identifier: "forced",
+            match: "flag",
+            flag: "force"
+        }
+    ]
+})
 export default class SkipCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "skip", {
-            aliases: ["skip"],
-            description: {
-                content: "Stop playing current song",
-                usage: "skip",
-                examples: ["skip", "--force"]
-            },
-            category: "music",
-            args: [
-                {
-                    identifier: "forced",
-                    match: "flag",
-                    flag: "force"
-                }
-            ]
-        });
-    }
-
     public async exec(msg: Message, { forced }: { forced: string }): Promise<Message> {
         const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;

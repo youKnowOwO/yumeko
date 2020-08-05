@@ -1,56 +1,53 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import CustomError from "../../classes/CustomError";
 import SelectionPage from "../../util/SelectionPage";
 import { Message, MessageEmbed, TextChannel } from "discord.js";
 import type { Track } from "lavalink";
+import { DeclareCommand } from "../../decorators";
 
 const emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
 
-export default class PlayCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "play", {
-            aliases: ["play", "p"],
-            description: {
-                content: "Play some songs",
-                usage: "play <query> [--search] [--dontbind]",
-                examples: ["play unlocated hell", "play nyan cat --search"]
-            },
-            category: "music",
-            permissions: {
-                user: ["EMBED_LINKS", "ADD_REACTIONS"]
-            },
-            args: [
-                {
-                    identifier: "isSearch",
-                    match: "flag",
-                    flag: "search"
-                },
-                {
-                    identifier: "dontBind",
-                    match: "flag",
-                    flag: "dontbind"
-                },
-                {
-                    identifier: "track",
-                    match: "rest",
-                    prompt: "What song do you wany to play ?",
-                    type: (msg: Message, content: string): string => {
-                        try {
-                            const url = new URL(content);
-                            if (!/^https?:\/\/(www.youtube.com|youtube.com|m.youtube.com|youtu.be)/.test(url.origin))
-                                throw new CustomError("!PARSING", "**Only support source from youtube**");
-                            return content;
-                        } catch(e) {
-                            if (e.name === "!PARSING") throw e;
-                            return `ytsearch:${content}`;
-                        }
-                    }
+@DeclareCommand("play", {
+    aliases: ["play", "p"],
+    description: {
+        content: "Play some songs",
+        usage: "play <query> [--search] [--dontbind]",
+        examples: ["play unlocated hell", "play nyan cat --search"]
+    },
+    category: "music",
+    permissions: {
+        user: ["EMBED_LINKS", "ADD_REACTIONS"]
+    },
+    args: [
+        {
+            identifier: "isSearch",
+            match: "flag",
+            flag: "search"
+        },
+        {
+            identifier: "dontBind",
+            match: "flag",
+            flag: "dontbind"
+        },
+        {
+            identifier: "track",
+            match: "rest",
+            prompt: "What song do you wany to play ?",
+            type: (msg: Message, content: string): string => {
+                try {
+                    const url = new URL(content);
+                    if (!/^https?:\/\/(www.youtube.com|youtube.com|m.youtube.com|youtu.be)/.test(url.origin))
+                        throw new CustomError("!PARSING", "**Only support source from youtube**");
+                    return content;
+                } catch(e) {
+                    if (e.name === "!PARSING") throw e;
+                    return `ytsearch:${content}`;
                 }
-            ]
-        });
-    }
-
+            }
+        }
+    ]
+})
+export default class PlayCommand extends Command {
     public async exec(msg: Message, { track, isSearch, dontBind }: { track: string | Track; isSearch: boolean; dontBind: boolean }): Promise<Message|void> {
         const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;
