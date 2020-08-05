@@ -1,35 +1,32 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import Stopwatch from "../../util/Stopwarch";
+import child_process from "child_process";
 import type { Message } from "discord.js";
+import { DeclareCommand } from "../../decorators";
 import { hastebin, codeBlock } from "../../util/Util";
 import { promisify } from "util";
-import child_process from "child_process";
 
 const exec = promisify(child_process.exec);
 
+@DeclareCommand("exec", {
+    aliases: ["exec"],
+    description: {
+        content: "exec some sheell script",
+        usage: "exec <code>",
+        examples: ["exec 1+1"]
+    },
+    category: "owner",
+    devOnly: true,
+    args: [
+        {
+            identifier: "code",
+            type: "string",
+            match: "rest",
+            prompt: "What code do you want me to execuate ?"
+        }
+    ]
+})
 export default class ExecCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "exec", {
-            aliases: ["exec"],
-            description: {
-                content: "exec some sheell script",
-                usage: "exec <code>",
-                examples: ["exec 1+1"]
-            },
-            category: "owner",
-            devOnly: true,
-            args: [
-                {
-                    identifier: "code",
-                    type: "string",
-                    match: "rest",
-                    prompt: "What code do you want me to execuate ?"
-                }
-            ]
-        });
-    }
-
     public async exec(msg: Message, { code }: { code: string }): Promise<Message> {
         const { stdout, stderr, time } = await this.execute(code);
         const canUseExternal = msg.guild!.me!.hasPermission("USE_EXTERNAL_EMOJIS");

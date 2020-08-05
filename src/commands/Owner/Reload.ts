@@ -1,36 +1,33 @@
-import type YumekoClient from "../../classes/Client";
 import type ExecCommand from "./Exec";
 import Command from "../../classes/Command";
 import type { Message } from "discord.js";
+import { DeclareCommand } from "../../decorators";
 import { parse } from "path";
 
+@DeclareCommand("reload", {
+    aliases: ["reload"],
+    description: {
+        content: "Reload some command",
+        usage: "reload [command]",
+        examples: ["reload help"]
+    },
+    category: "owner",
+    devOnly: true,
+    args: [
+        {
+            identifier: "dontBuild",
+            match: "flag",
+            flag: "dbuild"
+        },
+        {
+            identifier: "command",
+            type: "command",
+            match: "single",
+            optional: true
+        }
+    ]
+})
 export default class ReloadCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "reload", {
-            aliases: ["reload"],
-            description: {
-                content: "Reload some command",
-                usage: "reload [command]",
-                examples: ["reload help"]
-            },
-            category: "owner",
-            devOnly: true,
-            args: [
-                {
-                    identifier: "dontBuild",
-                    match: "flag",
-                    flag: "dbuild"
-                },
-                {
-                    identifier: "command",
-                    type: "command",
-                    match: "single",
-                    optional: true
-                }
-            ]
-        });
-    }
-
     public async exec(msg: Message, { command, dontBuild }: { command?: Command; dontBuild: boolean }): Promise<Message> {
         const { execute } = this.collector!.commands.get("exec") as ExecCommand;
         const { ext, dir } = parse(this.dir);

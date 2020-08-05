@@ -1,7 +1,7 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import Stopwatch from "../../util/Stopwarch";
 import type { Message } from "discord.js";
+import { DeclareCommand } from "../../decorators";
 import { inspect } from "util";
 import { hastebin, codeBlock, escapeRegex } from "../../util/Util";
 
@@ -11,50 +11,47 @@ interface ReturnEval {
     succes: boolean;
 }
 
+@DeclareCommand("eval", {
+    aliases: ["eval"],
+    description: {
+        content: "Eval Javascript Anotation",
+        usage: "eval <code>",
+        examples: ["eval 1+1"]
+    },
+    category: "owner",
+    devOnly: true,
+    args: [
+        {
+            identifier: "isAsync",
+            match: "flag",
+            flag: "async"
+        },
+        {
+            identifier: "isHide",
+            match: "flag",
+            flag: "hide"
+        },
+        {
+            identifier: "showStack",
+            match: "flag",
+            flag: "stack"
+        },
+        {
+            identifier: "depth",
+            match: "flag",
+            type: "number",
+            flag: "depth",
+            default: 0
+        },
+        {
+            identifier: "code",
+            type: "string",
+            match: "rest",
+            prompt: "What code do you want me to evaluate ?"
+        }
+    ]
+})
 export default class EvalCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "eval", {
-            aliases: ["eval"],
-            description: {
-                content: "Eval Javascript Anotation",
-                usage: "eval <code>",
-                examples: ["eval 1+1"]
-            },
-            category: "owner",
-            devOnly: true,
-            args: [
-                {
-                    identifier: "isAsync",
-                    match: "flag",
-                    flag: "async"
-                },
-                {
-                    identifier: "isHide",
-                    match: "flag",
-                    flag: "hide"
-                },
-                {
-                    identifier: "showStack",
-                    match: "flag",
-                    flag: "stack"
-                },
-                {
-                    identifier: "depth",
-                    match: "flag",
-                    type: "number",
-                    flag: "depth",
-                    default: 0
-                },
-                {
-                    identifier: "code",
-                    type: "string",
-                    match: "rest",
-                    prompt: "What code do you want me to evaluate ?"
-                }
-            ]
-        });
-    }
-
     public async exec(msg: Message, { isAsync, isHide, showStack, depth, code }: { isAsync: boolean; isHide: boolean; showStack: boolean; depth: number; code: string }): Promise<Message> {
         const { succes, result, time } = await this.eval(msg, code, depth, isAsync, showStack);
         if (isHide) return msg;
