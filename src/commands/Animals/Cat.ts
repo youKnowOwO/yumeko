@@ -1,14 +1,21 @@
-import type YumekoClient from "../../classes/Client";
-import BunnyCommand from "./Bunny";
-import request from "node-superfetch";
+import Command from "../../classes/Command";
+import type { Message } from "discord.js";
+import { DeclareCommand } from "../../decorators";
 
-export default class CatCommand extends BunnyCommand {
-    public constructor(client: YumekoClient) {
-        super(client, "cat");
-    }
-
-    public async getImage(): Promise<string> {
-        const { text } = await request.get("https://random.cat");
-        return text.split("img src")[1].split("\"")[1];
+@DeclareCommand("cat", {
+    aliases: ["cat"],
+    description: {
+        content: "Random Cat image.",
+        usage: "cat",
+        examples: ["cat", "kitty"]
+    },
+    permissions: {
+        client: ["ATTACH_FILES"]
+    },
+    category: "animals",
+})
+export default class CatCommand extends Command {
+    public exec(msg: Message): Promise<Message> {
+        return msg.ctx.send({ files: [{ attachment: "https://cataas.com/cat", name: "cat.jpg"}] });
     }
 }
