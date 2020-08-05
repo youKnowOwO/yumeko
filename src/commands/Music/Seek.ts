@@ -1,33 +1,30 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import CustomError from "../../classes/CustomError";
 import { Message } from "discord.js";
 import { readableTime } from "../../util/Util";
+import { DeclareCommand } from "../../decorators";
 
+@DeclareCommand("seek", {
+    aliases: ["seek", "jumpto"],
+    description: {
+        content: "Stop playing current song",
+        usage: "seek <time position>",
+        examples: ["seek 00:30"]
+    },
+    category: "music",
+    permissions: {
+        user: ["MANAGE_GUILD"]
+    },
+    args: [
+        {
+            identifier: "time",
+            match: "single",
+            type: "timespan",
+            prompt: "What time position do you want jump to ?"
+        }
+    ]
+})
 export default class seekCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "seek", {
-            aliases: ["seek", "jumpto"],
-            description: {
-                content: "Stop playing current song",
-                usage: "seek <time position>",
-                examples: ["seek 00:30"]
-            },
-            category: "music",
-            permissions: {
-                user: ["MANAGE_GUILD"]
-            },
-            args: [
-                {
-                    identifier: "time",
-                    match: "single",
-                    type: "timespan",
-                    prompt: "What time position do you want jump to ?"
-                }
-            ]
-        });
-    }
-
     public async exec(msg: Message, { time }: { time: number }): Promise<Message> {
         const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;

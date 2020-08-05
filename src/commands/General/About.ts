@@ -1,21 +1,18 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
-import { Message } from "discord.js";
+import type { Message } from "discord.js";
 import { stripIndents } from "common-tags";
+import { DeclareCommand } from "../../decorators";
 
+@DeclareCommand("about", {
+    aliases: ["about"],
+    description: {
+        content: "About me.",
+        usage: "about",
+        examples: ["about"]
+    },
+    category: "general"
+})
 export default class AboutCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "about", {
-            aliases: ["about"],
-            description: {
-                content: "About me.",
-                usage: "about",
-                examples: ["about"]
-            },
-            category: "general",
-        });
-    }
-
     public async exec(msg: Message): Promise<Message> {
         // INFO : Im bad speaking english someone pls send PR to fix my grammar/ anything
         return msg.ctx.send(stripIndents`

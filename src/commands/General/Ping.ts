@@ -1,24 +1,21 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import { MessageEmbed, Message } from "discord.js";
 import { stripIndents } from "common-tags";
+import { DeclareCommand } from "../../decorators";
 
+@DeclareCommand("ping", {
+    aliases: ["ping"],
+    description: {
+        content: "Ping pong",
+        usage: "ping",
+        examples: ["ping"]
+    },
+    permissions: {
+        client: ["EMBED_LINKS"]
+    },
+    category: "general",
+})
 export default class PingCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "ping", {
-            aliases: ["ping"],
-            description: {
-                content: "Ping pong",
-                usage: "ping",
-                examples: ["ping"]
-            },
-            permissions: {
-                client: ["EMBED_LINKS"]
-            },
-            category: "general",
-        });
-    }
-
     public async exec(msg: Message): Promise<Message> {
         const now = Date.now();
         const m = await msg.ctx.send("🏓 Ping..");

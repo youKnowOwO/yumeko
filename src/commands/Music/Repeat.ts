@@ -1,24 +1,21 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import CustomError from "../../classes/CustomError";
 import { Message } from "discord.js";
+import { DeclareCommand } from "../../decorators";
 
-export default class RepeatCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "repeat", {
-            aliases: ["repeat"],
-            description: {
-                content: "repeat current queue",
-                usage: "repeat",
-                examples: ["repeat"]
-            },
-            category: "music",
-            permissions: {
-                user: ["MANAGE_GUILD"]
-            }
-        });
+@DeclareCommand("repeat", {
+    aliases: ["repeat"],
+    description: {
+        content: "repeat current queue",
+        usage: "repeat",
+        examples: ["repeat"]
+    },
+    category: "music",
+    permissions: {
+        user: ["MANAGE_GUILD"]
     }
-
+})
+export default class RepeatCommand extends Command {
     public async exec(msg: Message): Promise<Message> {
         const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;

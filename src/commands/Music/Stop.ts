@@ -1,24 +1,21 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import CustomError from "../../classes/CustomError";
 import { Message } from "discord.js";
+import { DeclareCommand } from "../../decorators";
 
-export default class StopCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "stop", {
-            aliases: ["stop"],
-            description: {
-                content: "Clear all song in queue. and stop current song",
-                usage: "stop",
-                examples: ["stop"]
-            },
-            category: "music",
-            permissions: {
-                user: ["MANAGE_GUILD"]
-            }
-        });
+@DeclareCommand("stop", {
+    aliases: ["stop"],
+    description: {
+        content: "Clear all song in queue. and stop current song",
+        usage: "stop",
+        examples: ["stop"]
+    },
+    category: "music",
+    permissions: {
+        user: ["MANAGE_GUILD"]
     }
-
+})
+export default class StopCommand extends Command {
     public async exec(msg: Message): Promise<Message> {
         const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;

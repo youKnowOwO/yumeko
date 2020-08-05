@@ -1,24 +1,21 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import CustomError from "../../classes/CustomError";
 import { Message } from "discord.js";
+import { DeclareCommand } from "../../decorators";
 
-export default class PauseCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "pause", {
-            aliases: ["pause"],
-            description: {
-                content: "Pause or resume current song",
-                usage: "pause",
-                examples: ["pause"]
-            },
-            category: "music",
-            permissions: {
-                user: ["MANAGE_GUILD"]
-            }
-        });
+@DeclareCommand("pause", {
+    aliases: ["pause"],
+    description: {
+        content: "Pause or resume current song",
+        usage: "pause",
+        examples: ["pause"]
+    },
+    category: "music",
+    permissions: {
+        user: ["MANAGE_GUILD"]
     }
-
+})
+export default class PauseCommand extends Command {
     public async exec(msg: Message): Promise<Message> {
         const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;

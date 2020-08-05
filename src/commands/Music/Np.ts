@@ -1,23 +1,20 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import { MessageEmbed, Message } from "discord.js";
+import { DeclareCommand } from "../../decorators";
 
+@DeclareCommand("np", {
+    aliases: ["np", "nowplay"],
+    description: {
+        content: "np",
+        usage: "np",
+        examples: ["np"]
+    },
+    permissions: {
+        client: ["EMBED_LINKS"]
+    },
+    category: "music",
+})
 export default class NpCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "np", {
-            aliases: ["np", "nowplay"],
-            description: {
-                content: "np",
-                usage: "np",
-                examples: ["np"]
-            },
-            permissions: {
-                client: ["EMBED_LINKS"]
-            },
-            category: "music",
-        });
-    }
-
     public async exec(msg: Message): Promise<Message> {
         const { music } = msg.guild!;
         if (!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");

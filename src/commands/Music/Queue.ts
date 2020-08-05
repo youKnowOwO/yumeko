@@ -1,26 +1,23 @@
-import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import { MessageEmbed, Message } from "discord.js";
 import { chunk } from "../../util/Util";
 import Pagination from "../../util/Pagination";
+import { DeclareCommand } from "../../decorators";
 
+@DeclareCommand("queue", {
+    aliases: ["queue", "nowplay"],
+    description: {
+        content: "queue",
+        usage: "queue",
+        examples: ["queue"]
+    },
+    cooldown: 6,
+    permissions: {
+        client: ["EMBED_LINKS", "ADD_REACTIONS"]
+    },
+    category: "music",
+})
 export default class QueueCommand extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "queue", {
-            aliases: ["queue", "nowplay"],
-            description: {
-                content: "queue",
-                usage: "queue",
-                examples: ["queue"]
-            },
-            cooldown: 6,
-            permissions: {
-                client: ["EMBED_LINKS", "ADD_REACTIONS"]
-            },
-            category: "music",
-        });
-    }
-
     public async exec(msg: Message): Promise<Message|void> {
         const { music } = msg.guild!;
         if (!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");
