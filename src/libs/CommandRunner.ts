@@ -4,6 +4,7 @@ import ArgumentParser from "./ArgumentParser";
 import { Message, Collection, Snowflake, PermissionString, GuildMember } from "discord.js";
 import { CommandUsed, CommandOption } from "../interfaces";
 import { codeBlock } from "../util/Util";
+import { TextChannel } from "discord.js";
 
 export default class CommandRunner {
     public commandUsed: Collection<Snowflake, CommandUsed> = new Collection();
@@ -38,6 +39,7 @@ export default class CommandRunner {
         if (!command) return undefined;
         if (this.isCooldown(msg)) return undefined;
         if (command.option.devOnly && !msg.author.isDev) return undefined;
+        if (command.option.nsfw && !(msg.channel as TextChannel).nsfw) return msg.ctx.send("❌ **| This command only work on nsfw channel**");
         if (!await this.allowed(msg, command.option.permissions, command.ignore)) return undefined;
         msg.prefix = prefix === this.client.user!.toString() ? `${this.client.user!.tag} ` : prefix;
         msg.args = command.option.splitBy ? args.join(" ").split(command.option.splitBy) : args;

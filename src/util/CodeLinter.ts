@@ -2,10 +2,11 @@ import type YumekoClient from "../classes/Client";
 import LintCommand from "../commands/Util/Lint";
 import type { Message } from "discord.js";
 import { TypeCodeReturn } from "../interfaces";
-import { Linter } from "eslint";
+import { Linter, Rule } from "eslint";
 import { stripIndents } from "common-tags";
 
 const linter = new Linter();
+const rules = linter.getRules();
 
 export function lint(content: string, ecmaVersion: Linter.ParserOptions["ecmaVersion"], rules: Partial<Linter.RulesRecord> ): Linter.LintMessage[] {
     if (/\bawait\b/i.test(content)) content = stripIndents`
@@ -26,6 +27,10 @@ export function lint(content: string, ecmaVersion: Linter.ParserOptions["ecmaVer
         rules
     });
     return errors;
+}
+
+export function getRule(query: string): Rule.RuleModule|void {
+    return rules.get(query);
 }
 
 export function handle(msg: Message): Promise<boolean> {
