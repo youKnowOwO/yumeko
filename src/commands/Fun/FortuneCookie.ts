@@ -28,7 +28,7 @@ export default class FortuneCookieCommand extends Command {
     public async createImage(fortune: string): Promise<Buffer> {
         const path = join(__dirname, "../../../assets/images/fortune-cookie.png");
         const base = await resolveImage(path);
-        return await new Canvas(700, 500)
+        return new Canvas(700, 500)
             .printImage(base, 0, 0)
             .translate(380, 335)
             .rotate(-13 * Math.PI/180)
