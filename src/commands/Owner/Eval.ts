@@ -1,6 +1,5 @@
 import Command from "../../classes/Command";
 import Stopwatch from "../../util/Stopwarch";
-import request from "node-superfetch";
 import type { Message } from "discord.js";
 import type { Image } from "canvas";
 import { DeclareCommand } from "../../decorators";
@@ -9,13 +8,6 @@ import { hastebin, codeBlock, escapeRegex } from "../../util/Util";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { Canvas, resolveImage } = require("canvas-constructor");
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-async function loadImage(image: string | Buffer): Promise<Image> {
-    if (typeof image === "string" && image.startsWith("http"))
-        image = await request.get(image).then(x => x.raw);
-    return resolveImage(image);
-}
 
 interface ReturnEval {
     time: string;
