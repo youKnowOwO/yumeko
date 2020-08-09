@@ -1,7 +1,6 @@
 import Command from "../../classes/Command";
 import Stopwatch from "../../util/Stopwarch";
 import type { Message } from "discord.js";
-import type { Image } from "canvas";
 import { DeclareCommand } from "../../decorators";
 import { inspect } from "util";
 import { hastebin, codeBlock, escapeRegex } from "../../util/Util";
