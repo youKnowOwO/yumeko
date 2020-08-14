@@ -1,11 +1,11 @@
 import Command from "../../../classes/Command";
 import AwaitPlayers from "../../../util/AwaitPlayers";
 import CustomError from "../../../classes/CustomError";
-import request from "node-superfetch";
 import { Message, User, MessageEmbed, Util } from "discord.js";
 import { DeclareCommand } from "../../../decorators";
 import { shuffle } from "../../../util/Util";
 
+const wordList: string[] = require("../../../../assets/json/words.json");
 
 interface Player {
     user: User;
@@ -34,7 +34,7 @@ export default class WordChainCommand extends Command {
             min: 2, max: 20
         }).start();
         if (!users.length) throw new CustomError("CANCELED");
-        const words = shuffle(await this.fetchWords());
+        const words = shuffle(wordList);
         const players = this.createPlayers(users);
         let currentWord = words.shift()!;
         let turn = 0;
@@ -113,13 +113,6 @@ export default class WordChainCommand extends Command {
             return msg.ctx.send(`🎉 **| Congrats, ${winner.user} you won this match**`, { embed });
         }
         return msg.ctx.send(`✋ **| Draw!. You all such an amazing human cause \`${this.words.length}\` is used!.`);
-    }
-
-    public async fetchWords(): Promise<string[]> {
-        if (this.words.length) return this.words.slice(0);
-        const { text } = await request.get("https://raw.githubusercontent.com/dragonfire535/xiao/master/assets/json/word-list.json");
-        this.words = JSON.parse(text);
-        return this.words.slice(0);
     }
 
     public createPlayers(users: User[]): Player[] {
