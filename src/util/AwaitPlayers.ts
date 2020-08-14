@@ -61,6 +61,7 @@ export default class AwaitPlayers {
                     msg.react("✅");
                     reactions = [...new Set(reactions)];
                 }
+                if (players.length > payload.max) reactions.splice(reactions.map(x => x.emoji).indexOf("👤"), 1);
                 embed.setDescription(players.map(x => `• ${x}`).join("\n"))
                     .fields = [{ value: reactions.map(x => `${x.emoji}: ${x.mess}`).join("\n"), name: "\u200B", inline: false }];
                 msg.edit(embed);
