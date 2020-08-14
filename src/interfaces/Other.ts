@@ -28,6 +28,14 @@ export interface SelectionPagePayload<T> {
     embed: MessageEmbed;
 }
 
+export interface AwaitPlayersPayload {
+    includeClientReq: boolean;
+    checkDM: boolean | string;
+    message: Message;
+    min: number;
+    max: number;
+}
+
 export interface EqualizerBand {
     band: number;
     gain: number;
