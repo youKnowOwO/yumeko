@@ -69,6 +69,7 @@ export default class AwaitPlayers {
                 payload.message.client.removeListener("messageReactionAdd", onReact);
                 payload.message.client.setMaxListeners(payload.message.client.getMaxListeners() - 1);
                 if (result.length < payload.min) result = [];
+                msg.delete();
                 clearTimeout(timeout);
                 resolve(result);
             }
