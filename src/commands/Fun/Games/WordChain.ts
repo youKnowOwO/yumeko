@@ -22,6 +22,9 @@ interface Player {
         examples: ["game-wordchain"],
         adionalInfo: ["🔗 Word Chain", "wordchain", "shiritori"]
     },
+    permissions: {
+        client: ["EMBED_LINKS", "ADD_REACTIONS"]
+    },
     category: "game"
 })
 export default class WordChainCommand extends Command {
@@ -39,7 +42,9 @@ export default class WordChainCommand extends Command {
         let turn = 0;
         let winner: Player|void;
         let isroll = false;
-        await msg.channel.send(currentWord);
+        let displayMessage: Message | void;
+        await msg.channel.send(`**🔗 | Game Started in \`5 seconds\` with word \`${currentWord}\`!.\n> Each player only had \`10 seconds\` to type the word. If you wanna quit the game just type \`${msg.prefix}giveup\` or if you want to reroll the current word use \`${msg.prefix}roll\`**`);
+        await Util.delayFor(5000);
         while(!winner && words.length) {
             if (turn >= players.length) turn = 0;
             const player = players[turn];
@@ -47,7 +52,8 @@ export default class WordChainCommand extends Command {
                 turn++;
                 continue;
             }
-            msg.channel.send(`🎲 **| ${player.user}, is your turn!**`).then(x => x.delete({ timeout: 10000 }).catch());
+            if (displayMessage) displayMessage.delete().catch();
+            displayMessage = await msg.channel.send(`🎲 **| ${player.user}, ${isroll ? "Type the word" : "It's your turn!"}**`);
             const lastLetter = currentWord.charAt(currentWord.length - 1);
             if (player.user.bot) {
                 await Util.delayFor(5000);
@@ -71,7 +77,15 @@ export default class WordChainCommand extends Command {
                 const filter = (mess: Message): boolean => {
                     const content = mess.content.toLowerCase();
                     if (mess.author.id !== player.user.id) return false;
-                    if (mess.content.startsWith(msg.prefix!) && ["roll", "giveup"].includes(content.slice(msg.prefix!.length))) return true;
+                    if (mess.content.startsWith(msg.prefix!)) {
+                        const clear = content.slice(msg.prefix!.length);
+                        if (!["roll", "giveup"].includes(clear)) return false;
+                        if (clear === "roll" && !player.chanceRoll) {
+                            mess.channel.send("❌ **| You don't had any chance to roll**");
+                            return false;
+                        }
+                        return true;
+                    }
                     if (words.includes(content)) {
                         if (!isroll && !content.startsWith(lastLetter)) return false;
                         return true;
@@ -85,10 +99,6 @@ export default class WordChainCommand extends Command {
                 } else {
                     const content = responses.first()!.content.toLowerCase();
                     if (content === `${msg.prefix}roll`) {
-                        if (!player.chanceRoll) {
-                            await msg.channel.send(`❌ **| ${player.user}, you doesn'5 have chance to roll!**`).then(x => x.delete({ timeout: 10000 }).catch());
-                            continue;
-                        }
                         isroll = true;
                         player.chanceRoll--;
                         continue;
@@ -105,6 +115,7 @@ export default class WordChainCommand extends Command {
             if (players.filter(x => !x.isGiveUp).length === 1) winner = players.find(x => !x.isGiveUp);
             turn++; isroll = false;
         }
+        if (displayMessage) displayMessage.delete().catch();
         if (winner) {
             const description = players.sort(({ words: a }, { words: b }) => b - a).map((x, i) => `\`${i + 1}.\` ${x.user} (${x.words} words)`);
             const embed = new MessageEmbed()
