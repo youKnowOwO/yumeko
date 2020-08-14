@@ -54,10 +54,9 @@ export default class WordChainCommand extends Command {
                 await Util.delayFor(5000);
                 let result = words.find(x => x.startsWith(lastLetter));
                 if (!result) {
-                    if (player.chanceRoll) {
+                    if (player.chanceRoll && words.length) {
                         await msg.channel.send(`${msg.prefix} reroll`);
-                        currentWord = words.shift()!;
-                        result = currentWord;
+                        result = words[0];
                         player.chanceRoll--;
                     } else {
                         player.isGiveUp = true;
@@ -65,6 +64,8 @@ export default class WordChainCommand extends Command {
                 }
                 if (result) {
                     player.words++;
+                    currentWord = result;
+                    words.splice(words.indexOf(result), 1);
                     await msg.channel.send(result);
                 }
             } else {
@@ -96,6 +97,7 @@ export default class WordChainCommand extends Command {
                         player.isGiveUp = true;
                     } else {
                         currentWord = content;
+                        words.splice(words.indexOf(content), 1);
                         player.words++;
                     }
                 }
@@ -105,7 +107,7 @@ export default class WordChainCommand extends Command {
             turn++; isroll = false;
         }
         if (winner) {
-            const description = players.map((x, i) => `\`${i + 1}.\` ${x.user} (${x.words} words)`);
+            const description = players.sort(({ words: a }, { words: b }) => b - a).map((x, i) => `\`${i + 1}.\` ${x.user} (${x.words} words)`);
             const embed = new MessageEmbed()
                 .setColor(this.client.config.color)
                 .setTitle("Leaderboard Word")
