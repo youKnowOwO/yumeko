@@ -25,7 +25,6 @@ interface Player {
     category: "game"
 })
 export default class WordChainCommand extends Command {
-    public words: string[] = [];
     public async exec(msg: Message): Promise<Message> {
         const users = await new AwaitPlayers({
             includeClientReq: true,
@@ -114,7 +113,7 @@ export default class WordChainCommand extends Command {
                 .setDescription(description);
             return msg.ctx.send(`🎉 **| Congrats, ${winner.user} you won this match**`, { embed });
         }
-        return msg.ctx.send(`✋ **| Draw!. You all such an amazing human cause \`${this.words.length}\` is used!.`);
+        return msg.ctx.send(`✋ **| Draw!. You all such an amazing human cause \`${words}\` is used!.`);
     }
 
     public createPlayers(users: User[]): Player[] {
