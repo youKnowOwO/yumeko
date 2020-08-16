@@ -39,14 +39,14 @@ export default class HelpCommand extends Command {
                     **Aliases:** ${option.aliases.length > 1 ? option.aliases.slice(1).map(x => `\`${x}\``).join(", ") : "`No Aliases`"}
                     **Cooldown:** \`${option.cooldown ? option.cooldown : 5} seconds\`
                 `)
-                .setFooter("ℹ️ Don't include <> or [], it's mean <> is required and [] is optional");
+                .setFooter("ℹ️ Don't include <> or []. <> means required, and [] means optional.");
             if (option.description.examples.length) embed
                 .addField("Examples", codeBlock("", option.description.examples.map(x => `${msg.prefix}${x}`).join("\n")));
             return msg.ctx.send(embed);
         }
         const embed = new MessageEmbed()
             .setColor(this.client.config.color)
-            .setFooter(`ℹ️ To get additional information use ${msg.prefix}help <command name>, <command name> to command what you want`);
+            .setFooter(`ℹ️ To learn more about a specific command, do ${msg.prefix}help <command name>`);
         for (const category of this.collector!.categories) {
             let commands = msg.author.isDev ? category.commands : category.commands.filter(x => !x.option.devOnly);
             commands = commands.filter(x => x.option.aliases.length);
