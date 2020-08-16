@@ -14,14 +14,13 @@ import { DeclareCommand } from "../../decorators";
 })
 export default class AboutCommand extends Command {
     public async exec(msg: Message): Promise<Message> {
-        // INFO : Im bad speaking english someone pls send PR to fix my grammar/ anything
         return msg.ctx.send(stripIndents`
-            👋 | Hello ${msg.author}, im **${this.client.user!.username}** nice to meet you.
-            I just and ordinary bot who have \`${this.collector!.commands.filter(x => msg.author.isDev || !x.option.devOnly).size}\` commands!.
-            You can start with **${this.client.config.prefix}help** for see the list commands i had.
-            
-            You can contribute too.
-            https://github.com/youKnowOwO/yumeko-ts
+        Hi there, ${msg.author}! I’m **${this.client.user!.tag}** and I’m beyond happy and  glad to meet you! 
+        I’m just an ordinary bot whose job is to make your Discord Server more fun and exciting
+        for members to chat on. I do what other bots do as well, like: sending random images of animals, 
+        generating games for this server’s members, and most importantly, I play and queue song requests. 
+        To conclude, I carry \`${this.collector!.commands.filter(x => msg.author.isDev || !x.option.devOnly).size}\` commands in total. To test me out, 
+        why not start by generating my help panel? **${this.client.config.prefix}help**
         `);
     }
 }
