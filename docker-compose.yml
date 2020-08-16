@@ -3,6 +3,8 @@ services:
         build:
             context: ./
             dockerfile: Dockerfile
+        env_file:
+        - .env
         network_mode: host
         restart: unless-stopped
 version: "2.4"

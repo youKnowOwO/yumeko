@@ -9,5 +9,6 @@
         },
         "password": ""
     },
-    "myriad": ""
+    "myriad": "",
+    "debug": false
 }
