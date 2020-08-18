@@ -1,7 +1,7 @@
 import type YumekoClient from "../../classes/Client";
 import Command from "../../classes/Command";
 import request from "node-superfetch";
-import { Message, MessageEmbed } from "discord.js";
+import { Message, MessageEmbed, TextChannel } from "discord.js";
 import { load } from "cheerio";
 import { stripIndents } from "common-tags";
 import { chunk } from "../../util/Util";
@@ -38,7 +38,7 @@ export default class GoogleCommand extends Command {
     }
 
     public async exec(msg: Message, { query }: { query: string }): Promise<Message|void> {
-        const results = await this.getResults(query);
+        const results = await this.getResults(query, (msg.channel as TextChannel).nsfw);
         const pages = chunk(results.map(x => stripIndents`
             [${x.title}](${x.link})
             ${x.snippet}
@@ -54,8 +54,8 @@ export default class GoogleCommand extends Command {
         }).start();
     }
 
-    public async getResults(q: string): Promise<Result[]> {
-        const { text } = await request.get("https://google.com/search").query({ q })
+    public async getResults(q: string, nsfw: boolean): Promise<Result[]> {
+        const { text } = await request.get("https://google.com/search").query(nsfw ? { q } : { q, safe: "strict" })
             .set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:34.0) Gecko/20100101 Firefox/34.0");
         const $ = load(text);
         return $("div.rc").map((i, x) => ({
