@@ -15,22 +15,24 @@ export default class TicTacToe {
     public turn = true; // true: player 1, false: player 2
     public moves: [number, number][] = [];
 
-    public place([x, y]: [number, number]): void {
-        this.board[x][y] = this.turn ? "X" : "0";
+    public place(x: number, y: number): void {
+        this.board[x][y] = this.turn ? "X" : "O";
         this.moves.push([x, y]);
         if (this.isWin()) {
             this.isEnd = true;
             this.winner = this.turn ? "X" : "O";
         }
         if (this.moves.length > 9) this.isEnd = true;
+        this.turn = !this.turn;
     }
 
-    public canPlace([x, y]: [number, number]): boolean {
+    public canPlace(x: number, y: number): boolean {
         if (!this.board[x] || !this.board[x][y]) return false;
         return !["X", "O"].includes(this.board[x][y]);
     }
 
     public parsePosition(position: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9): [number, number] {
+        position--;
         return [
             Math.floor(position/3),
             position%3
