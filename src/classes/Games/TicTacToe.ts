@@ -107,23 +107,24 @@ export default class TicTacToe {
             const rate = this.doComplicatedThing(this.duplicate(), this.turn ? "X" : "O", position, depth);
             moves.push({ position, rate });
         }
-        const { rate: bestRate } = moves.sort((a, b) => b.rate - a.rate)[0];
+        const bestRate = Math.max(...moves.map(x => x.rate));
         const bestMoves = moves.filter(x => x.rate === bestRate);
         this.place(...bestMoves[Math.floor(Math.random() * bestMoves.length)].position);
     }
 
     // Sometime just make stupid rate
-    private doComplicatedThing(ttt: TicTacToe, turn: string, position: [number, number], depth: number, curDepth = 0): number {
+    private doComplicatedThing(ttt: TicTacToe, turn: string, position: [number, number], depth: number, curDepth = 0, maximize = true): number {
         if (curDepth > depth) return 0;
         ttt.place(...position);
-        if (ttt.end) return ttt.winner ? (ttt.winner === turn ? 1 : -1) : 0;
-        let result = 0;
+        const compliment = 10 - ttt.moves.length;
+        if (ttt.end) return ttt.winner ? (ttt.winner === turn ? compliment : -compliment) : 0;
+        let result = maximize ? -Infinity : Infinity;
         for (let i = 1; i < 10; i++) {
             const post = this.parsePosition(i);
             if (!ttt.canPlace(...post)) continue;
             const duplicated = ttt.duplicate();
-            const res = ttt.doComplicatedThing(duplicated, turn, post, depth, curDepth + 1);
-            result += res;
+            const res = ttt.doComplicatedThing(duplicated, turn, post, depth, curDepth + 1, !maximize);
+            result = Math[maximize ? "max" : "min"](result, res);
         }
         return result;
     }
