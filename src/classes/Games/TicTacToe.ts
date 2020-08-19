@@ -31,7 +31,7 @@ export default class TicTacToe {
         return !["X", "O"].includes(this.board[x][y]);
     }
 
-    public parsePosition(position: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9): [number, number] {
+    public parsePosition(position: number): [number, number] {
         position--;
         return [
             Math.floor(position/3),
@@ -56,9 +56,15 @@ export default class TicTacToe {
             result = true;
         }
         if (this.board[0][2] === this.board[1][1] && this.board[0][2] === this.board[2][0]) {
-            this.solutions.push([[0, 2], [1, 1], [0, 2]]);
+            this.solutions.push([[0, 2], [1, 1], [2, 0]]);
             result = true;
         }
+        return result;
+    }
+
+    public duplicate(): TicTacToe {
+        const result = new TicTacToe();
+        for (const [x, y] of this.moves) result.place(x, y);
         return result;
     }
 
@@ -82,5 +88,37 @@ export default class TicTacToe {
                     display[x][y] = payload.winSign[ ["X", "O"].indexOf(this.winner)];
         }
         return display.map(x => x.join(payload!.separator)).join("\n");
+    }
+
+    public placeAI(depth = 10): void {
+        const moves: { position: [number, number]; rate: number }[] = [];
+        for (let i = 1; i < 10; i++) {
+            const position = this.parsePosition(i);
+            if (!this.canPlace(...position)) continue;
+            const rate = this.doComplicatedThing(this.duplicate(), this.turn ? "X" : "O", position, depth);
+            moves.push({ position, rate });
+        }
+        const { rate: bestRate } = moves.sort((a, b) => b.rate - a.rate)[0];
+        const bestMoves = moves.filter(x => x.rate === bestRate);
+        this.place(...bestMoves[Math.floor(Math.random() * bestMoves.length)].position);
+    }
+
+    private doComplicatedThing(ttt: TicTacToe, turn: string, position: [number, number], depth: number, curDepth = 0): number {
+        if (curDepth > depth) return 0;
+        ttt.place(...position);
+        if (ttt.isEnd) {
+            if (!ttt.winner) return 1;
+            if (ttt.winner === turn) return 2;
+            return -1;
+        }
+        let result = 0;
+        for (let i = 1; i < 10; i++) {
+            const post = this.parsePosition(i);
+            if (!ttt.canPlace(...post)) continue;
+            const duplicated = ttt.duplicate();
+            const res = ttt.doComplicatedThing(duplicated, turn, post, depth, curDepth + 1);
+            result += res;
+        }
+        return result;
     }
 }
