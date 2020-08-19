@@ -122,8 +122,8 @@ export default class TicTacToe {
             const post = this.parsePosition(i);
             if (!ttt.canPlace(...post)) continue;
             const duplicated = ttt.duplicate();
-            const res = this.doComplicatedThing(duplicated, turn, post, depth, curDepth + 1);
-            result =+ res;
+            const res = ttt.doComplicatedThing(duplicated, turn, post, depth, curDepth + 1);
+            result += res;
         }
         return result;
     }
