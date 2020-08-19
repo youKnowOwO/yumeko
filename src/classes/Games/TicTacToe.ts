@@ -9,21 +9,25 @@ interface TicTacToeToStringPayload {
 
 export default class TicTacToe {
     public board = chunk(new Array(9).fill(0).map((_, i) => String(i + 1)), 3);
-    public isEnd = false;
+    public end = false;
     public winner?: string;
     public solutions: [number, number][][] = [];
     public turn = true; // true: player 1, false: player 2
     public moves: [number, number][] = [];
 
+    public isEnd(): boolean {
+        return this.end;
+    }
+
     public place(x: number, y: number): void {
         this.board[x][y] = this.turn ? "X" : "O";
         this.moves.push([x, y]);
         if (this.isWin()) {
-            this.isEnd = true;
+            this.end = true;
             this.winner = this.turn ? "X" : "O";
         }
-        if (this.moves.length > 9) this.isEnd = true;
-        this.turn = !this.turn;
+        if (this.moves.length > 8) this.end = true;
+        if (!this.isEnd()) this.turn = !this.turn;
     }
 
     public canPlace(x: number, y: number): boolean {
@@ -90,6 +94,11 @@ export default class TicTacToe {
         return display.map(x => x.join(payload!.separator)).join("\n");
     }
 
+    public giveUp(): void {
+        this.winner = this.turn ? "O" : "X";
+        this.end = true;
+    }
+
     public placeAI(depth = 10): void {
         const moves: { position: [number, number]; rate: number }[] = [];
         for (let i = 1; i < 10; i++) {
@@ -103,21 +112,18 @@ export default class TicTacToe {
         this.place(...bestMoves[Math.floor(Math.random() * bestMoves.length)].position);
     }
 
+    // Sometime just make stupid rate
     private doComplicatedThing(ttt: TicTacToe, turn: string, position: [number, number], depth: number, curDepth = 0): number {
         if (curDepth > depth) return 0;
         ttt.place(...position);
-        if (ttt.isEnd) {
-            if (!ttt.winner) return 1;
-            if (ttt.winner === turn) return 2;
-            return -1;
-        }
+        if (ttt.end) return ttt.winner ? (ttt.winner === turn ? 1 : -1) : 0;
         let result = 0;
         for (let i = 1; i < 10; i++) {
             const post = this.parsePosition(i);
             if (!ttt.canPlace(...post)) continue;
             const duplicated = ttt.duplicate();
-            const res = ttt.doComplicatedThing(duplicated, turn, post, depth, curDepth + 1);
-            result += res;
+            const res = this.doComplicatedThing(duplicated, turn, post, depth, curDepth + 1);
+            result =+ res;
         }
         return result;
     }
