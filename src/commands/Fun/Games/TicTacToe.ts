@@ -57,7 +57,7 @@ export default class TicTacToeCommand extends Command {
             `);
             if (user.bot) {
                 await Util.delayFor(1000);
-                ttt.placeAI();
+                ttt.placeAI(8);
                 continue;
             }
             const filter = (m: MessageReaction, usr: User): boolean => numbers.includes(m.emoji.name)

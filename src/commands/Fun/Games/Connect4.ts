@@ -53,7 +53,7 @@ export default class Connect4Command extends Command {
             `);
             if (user.bot) {
                 await Util.delayFor(1000);
-                c4.placeAI();
+                c4.placeAI(5);
                 continue;
             }
             const filter = (m: MessageReaction, usr: User): boolean => usr.id === user.id
