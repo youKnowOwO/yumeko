@@ -116,7 +116,7 @@ export default class TicTacToe {
     private doComplicatedThing(ttt: TicTacToe, turn: string, position: [number, number], depth: number, curDepth = 0, maximize = true): number {
         if (curDepth > depth) return 0;
         ttt.place(...position);
-        const compliment = 10 - ttt.moves.length;
+        const compliment = 9 - ttt.moves.length;
         if (ttt.end) return ttt.winner ? (ttt.winner === turn ? compliment : -compliment) : 0;
         let result = maximize ? -Infinity : Infinity;
         for (let i = 1; i < 10; i++) {

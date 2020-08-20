@@ -1,10 +1,10 @@
 import Command from "../../../classes/Command";
 import TicTacToe from "../../../classes/Games/TicTacToe";
-import { Message, User, MessageReaction, Util } from "discord.js";
+import CustomError from "../../../classes/CustomError";
+import type { Message, User, MessageReaction  } from "discord.js";
 import { DeclareCommand } from "../../../decorators";
 import { stripIndents } from "common-tags";
 import { verify } from "../../../util/Util";
-import CustomError from "../../../classes/CustomError";
 
 const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"];
 
@@ -56,7 +56,6 @@ export default class TicTacToeCommand extends Command {
                 > ${ttt.toString().replace(/\n/g, "\n> ")}
             `);
             if (user.bot) {
-                await Util.delayFor(5000);
                 ttt.placeAI();
                 continue;
             }
