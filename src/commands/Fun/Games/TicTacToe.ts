@@ -1,7 +1,7 @@
 import Command from "../../../classes/Command";
 import TicTacToe from "../../../classes/Games/TicTacToe";
 import CustomError from "../../../classes/CustomError";
-import type { Message, User, MessageReaction  } from "discord.js";
+import { Message, User, MessageReaction, Util } from "discord.js";
 import { DeclareCommand } from "../../../decorators";
 import { stripIndents } from "common-tags";
 import { verify } from "../../../util/Util";
@@ -56,6 +56,7 @@ export default class TicTacToeCommand extends Command {
                 > ${ttt.toString().replace(/\n/g, "\n> ")}
             `);
             if (user.bot) {
+                await Util.delayFor(1000);
                 ttt.placeAI();
                 continue;
             }

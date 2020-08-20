@@ -95,11 +95,12 @@ export default class TicTacToe {
     }
 
     public giveUp(): void {
-        this.winner = this.turn ? "O" : "X";
+        this.turn = !this.turn;
+        this.winner = this.turn ? "X" : "O";
         this.end = true;
     }
 
-    public placeAI(depth = 10): void {
+    public placeAI(depth = 3): void {
         const moves: { position: [number, number]; rate: number }[] = [];
         for (let i = 1; i < 10; i++) {
             const position = this.parsePosition(i);
@@ -113,11 +114,10 @@ export default class TicTacToe {
     }
 
     // Sometime just make stupid rate
-    private doComplicatedThing(ttt: TicTacToe, turn: string, position: [number, number], depth: number, curDepth = 0, maximize = true): number {
+    private doComplicatedThing(ttt: TicTacToe, turn: string, position: [number, number], depth: number, curDepth = 0, maximize = false): number {
         if (curDepth > depth) return 0;
         ttt.place(...position);
-        const compliment = 9 - ttt.moves.length;
-        if (ttt.end) return ttt.winner ? (ttt.winner === turn ? compliment : -compliment) : 0;
+        if (ttt.end) return ttt.winner ? (ttt.winner === turn ? 1 : -1) : 0;
         let result = maximize ? -Infinity : Infinity;
         for (let i = 1; i < 10; i++) {
             const post = this.parsePosition(i);

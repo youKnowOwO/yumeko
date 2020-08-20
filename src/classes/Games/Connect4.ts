@@ -103,11 +103,12 @@ export default class Connect4 {
     }
 
     public giveUp(): void {
-        this.winner = this.turn ? "0" : "O";
+        this.turn = !this.turn;
+        this.winner = this.turn ? "O" : "0";
         this.end = true;
     }
 
-    public placeAI(depth = 5): void {
+    public placeAI(depth = 4): void {
         const moves: { col: number; rate: number }[] = [];
         for (let i = 0; i < 7; i++) {
             if (!this.canPlace(i)) continue;
@@ -121,11 +122,10 @@ export default class Connect4 {
     }
 
     // Sometime just make stupid rate
-    private doComplicatedThing(c4: Connect4, col: number, turn: string, depth: number, curentDepth = 0, maximize = true): number {
+    private doComplicatedThing(c4: Connect4, col: number, turn: string, depth: number, curentDepth = 0, maximize = false): number {
         if (curentDepth > depth) return 0;
         c4.place(col);
-        const compliment = 42 - c4.moves.length;
-        if (c4.end) return c4.winner ? (c4.winner === turn ? compliment : -compliment) : 0;
+        if (c4.end) return c4.winner ? (c4.winner === turn ? 1 : -1) : 0;
         let result = maximize ? -Infinity : Infinity;
         for (let i = 0; i < 7; i++) {
             if (!c4.canPlace(i)) continue;

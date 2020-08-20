@@ -1,7 +1,7 @@
 import Command from "../../../classes/Command";
 import CustomError from "../../../classes/CustomError";
 import Connect4 from "../../../classes/Games/Connect4";
-import type { Message, MessageReaction, User } from "discord.js";
+import { Message, MessageReaction, User, Util } from "discord.js";
 import { DeclareCommand } from "../../../decorators";
 import { verify } from "../../../util/Util";
 import { stripIndents } from "common-tags";
@@ -52,6 +52,7 @@ export default class Connect4Command extends Command {
                 > ${numbers.join("")}
             `);
             if (user.bot) {
+                await Util.delayFor(1000);
                 c4.placeAI();
                 continue;
             }
