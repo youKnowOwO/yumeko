@@ -1,7 +1,7 @@
 import Command from "../../../classes/Command";
 import CustomError from "../../../classes/CustomError";
 import Connect4 from "../../../classes/Games/Connect4";
-import { Message, MessageReaction, User } from "discord.js";
+import type { Message, MessageReaction, User } from "discord.js";
 import { DeclareCommand } from "../../../decorators";
 import { verify } from "../../../util/Util";
 import { stripIndents } from "common-tags";
