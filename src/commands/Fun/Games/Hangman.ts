@@ -28,7 +28,7 @@ export default class HangmanCommand extends Command {
         const guessedWords: string[] = [];
         const failedWords: string[] = [];
         let passes = 0;
-        while(guessedWords.length !== word.length && passes < 7) {
+        while(guessedWords.length !== new Set(word).size && passes < 7) {
             await msg.channel.send(stripIndents`
                 <:hangman:736148147038060554> **| Hangman**
                 ${codeBlock("", word.map(x => guessedWords.includes(x.toLowerCase()) ? x : "◯").join(" "))}
