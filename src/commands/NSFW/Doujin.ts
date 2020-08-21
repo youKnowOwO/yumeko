@@ -117,7 +117,7 @@ export default class DoujinCommand extends Command {
                     desc[tag.type].push(`[${tag.name}](https://nhentai.net${tag.url})`);
                 }
             }
-            return new MessageEmbed()
+            const embed = new MessageEmbed()
                 .setColor(0x1F1F1F)
                 .setURL(`https://nhentai.net/g/${doujin.id}`)
                 .setAuthor(doujin.title.english, "https://i.imgur.com/uLAimaY.png")
@@ -128,8 +128,9 @@ export default class DoujinCommand extends Command {
                     Favorites: \`${doujin.num_favorites}\`
                     Created: \`${moment(Date.now() - doujin.upload_date).format("MMMM Do YYYY, h:mm:ss a")}\`
                 `)
-                .addField("Tags", tags.join(", "))
                 .setImage(`https://t.nhentai.net/galleries/${doujin.media_id}/cover.jpg`);
+            if (tags.length) embed.addField("Tags", tags.join(", "));
+            return embed;
         };
         const list = chunk(doujins.map((x, i) => `\`${i + 1}.\` **${x.title.english}**`), 10).map(x => x.join("\n"));
         const embed = new MessageEmbed()
