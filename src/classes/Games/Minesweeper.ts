@@ -67,7 +67,10 @@ export default class Minesweeper {
             this.isDoughBomb = true;
             return undefined;
         }
-        floor.isDough = true;
+        if (!floor.isDough) {
+            floor.isDough = true;
+            this.digCount++;
+        }
         if (!floor.nearBomb) {
             if (this.board[x][y + 1] && !this.board[x][y + 1].isDough && !this.board[x][y + 1].isBomb) this.dig(x, y + 1);
             if (this.board[x][y - 1] && !this.board[x][y - 1].isDough && !this.board[x][y - 1].isBomb) this.dig(x, y - 1);
@@ -82,7 +85,6 @@ export default class Minesweeper {
                 if (this.board[x - 1][y - 1] && !this.board[x - 1][y - 1].isDough && !this.board[x - 1][y - 1].isBomb) this.dig(x - 1, y - 1);
             }
         }
-        this.digCount++;
     }
 
     private createBoard(firstX: number, firstY: number, totalBomb = 6): Floor[][] {
