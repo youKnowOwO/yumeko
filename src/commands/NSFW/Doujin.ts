@@ -6,6 +6,12 @@ import { DeclareCommand } from "../../decorators";
 import { stripIndents } from "common-tags";
 import { firstUpperCase, chunk } from "../../util/Util";
 
+interface ImageDetail {
+    u: string;
+    t: string;
+    w: number;
+    h: number;
+}
 interface DoujinResponse {
     id: string | number;
     media_id: string;
@@ -15,21 +21,9 @@ interface DoujinResponse {
         pretty: string;
     };
     images: {
-        pages: {
-            t: string;
-            w: number;
-            h: number;
-        }[];
-        cover: {
-            t: string;
-            w: number;
-            h: number;
-        };
-        thumbnail: {
-            t: string;
-            w: number;
-            h: number;
-        };
+        pages: ImageDetail[];
+        cover:ImageDetail;
+        thumbnail: ImageDetail;
     };
     scanlator: string;
     upload_date: number;
@@ -74,7 +68,16 @@ export default class DoujinCommand extends Command {
         const isById = !isNaN(Number(query));
         const { body }: any = await request.get(`https://nhentai.net/api/${isById ? "gallery/" : "galleries/search?query="}${query}`);
         doujins.push(...(isById ? [body] : body.result));
+        for (const doujin of doujins) this.assignURL(doujin);
         return doujins;
+    }
+
+    private assignURL(doujin: DoujinResponse): void {
+        const { pages, thumbnail, cover } = doujin.images;
+        const typeImage = (data: ImageDetail): string => data.t === "j" ? "jpg" : "png";
+        thumbnail.u = `/galleries/${doujin.media_id}/thumb.${typeImage(thumbnail)}`;
+        cover.u = `/galleries/${doujin.media_id}/cover.${typeImage(cover)}`;
+        for (let i = 0; i < pages.length; i++) pages[i].u = `/galleries/${doujin.media_id}/${i + 1}.${typeImage(pages[i])}`;
     }
 
     public async handleRead(msg: Message, doujin: DoujinResponse): Promise<Message> {
@@ -84,7 +87,7 @@ export default class DoujinCommand extends Command {
             .setURL(`https://nhentai.net/g/${doujin.id}`)
             .setAuthor(doujin.title.english, "https://i.imgur.com/uLAimaY.png")
             .setTitle(doujin.title.japanese)
-            .setImage(`https://i.nhentai.net/galleries/${doujin.media_id}/${index + 1}.jpg`)
+            .setImage(`https://i.nhentai.net${doujin.images.pages[index].u}`)
             .setFooter(`Page ${index + 1} of ${doujin.num_pages} / ${doujin.id}`);
         const message = await msg.channel.send(embed);
         const emojis = ["⏪", "⬅️", "🚫", "➡️", "⏩"];
@@ -99,7 +102,7 @@ export default class DoujinCommand extends Command {
                     }
                     index += [-10, -1, 0, 1, 10][emojis.indexOf(col.emoji.name)];
                     index = ((index % doujin.num_pages) + doujin.num_pages) % doujin.num_pages;
-                    embed.setImage(`https://i.nhentai.net/galleries/${doujin.media_id}/${index + 1}.jpg`).setFooter(`Page ${index + 1} of ${doujin.num_pages} / ${doujin.id}`);
+                    embed.setImage(`https://i.nhentai.net${doujin.images.pages[index].u}`).setFooter(`Page ${index + 1} of ${doujin.num_pages} / ${doujin.id}`);
                     message.edit(embed);
                 });
         });
@@ -128,7 +131,7 @@ export default class DoujinCommand extends Command {
                     Favorites: \`${doujin.num_favorites}\`
                     Created: \`${moment(Date.now() - doujin.upload_date).format("MMMM Do YYYY, h:mm:ss a")}\`
                 `)
-                .setImage(`https://t.nhentai.net/galleries/${doujin.media_id}/cover.jpg`);
+                .setImage(`https://t.nhentai.net${doujin.images.cover.u}`);
             if (tags.length) embed.addField("Tags", tags.join(", "));
             return embed;
         };
