@@ -2,6 +2,7 @@
     "prefix": "",
     "color": "",
     "owners": [],
+    "shard": 1,
     "lavalink": {
         "hosts": {
             "rest": "",

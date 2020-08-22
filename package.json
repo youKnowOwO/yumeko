@@ -1,6 +1,6 @@
 {
   "name": "yumeko",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A simple multipurpose bot",
   "main": "dist",
   "scripts": {
@@ -20,6 +20,7 @@
     "@types/common-tags": "^1.8.0",
     "@types/eslint": "^7.2.1",
     "@types/figlet": "^1.2.0",
+    "@types/moment-duration-format": "^2.2.2",
     "@types/node": "^14.6.0",
     "@types/turndown": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^3.9.1",
@@ -39,6 +40,7 @@
     "figlet": "^1.5.0",
     "lavalink": "^2.10.0",
     "moment": "^2.27.0",
+    "moment-duration-format": "^2.3.2",
     "node-superfetch": "^0.1.10",
     "turndown": "^6.0.0"
   }

@@ -1,8 +1,15 @@
-import YumekoClient from "./classes/Client";
+import { ShardingManager } from "discord.js";
+import { join } from "path";
+
+const config =  require("../config.json");
 
 if (process.argv[2] === "dev") {
     require("./util/EnvLoader");
-    require("../config.json").debug = true;
+    config.debug = true;
 }
-const client = new YumekoClient();
-client.login(process.env.TOKEN);
+
+const path = join(__dirname, "./yumeko.js");
+const shards = new ShardingManager(path, {
+    totalShards: process.argv[2] === "dev" ? 1 : config.shard
+});
+shards.spawn();

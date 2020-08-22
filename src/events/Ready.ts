@@ -9,7 +9,7 @@ export default class ReadyEvent implements Event {
     public constructor(public readonly client: YumekoClient) {}
     public exec (): void {
         this.client.log.info(stripIndents`
-            ${this.client.log.color(this.client.user!.tag, "FFFFFF")} is Ready to play.
+            ${this.client.log.color(this.client.user!.tag, "FFFFFF")} is Ready to play. ${this.client.shard ? this.client.shard.ids.map(x => this.client.log.color(`#${x + 1}`, "00FFFF")).join(", ") : ""}
         `);
         this.client.lavalink.userID = this.client.user!.id;
         presence.call(null, this.client);
