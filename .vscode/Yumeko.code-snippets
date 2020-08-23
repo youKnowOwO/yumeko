@@ -1,0 +1,44 @@
+{
+	// Place your yumeko workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	"Declare Command": {
+		"scope": "typescript",
+		"prefix": "cmd:declare",
+		"body": [
+			"import Command from \"@yumeko/classes/Command\";",
+			"import type { Message } from \"discord.js\";",
+			"import { DeclareCommand } from \"@yumeko/decorators\";",
+			"",
+			"@DeclareCommand(\"\", {",
+			"\taliases: [],",
+			"\tdescription: {",
+			"\t\tcontent: \"\",",
+			"\t\tusage: \"\",",
+			"\t\texamples: [\"\"]",
+			"\t},",
+			"\tcategory: \"\"",
+			"})",
+			"export default class extends Command {",
+			"\tpublic async exec(msg: Message): Promise<Message> {",
+			"\t\treturn msg;",
+			"\t}",
+			"}"
+		],
+		"description": "To Declare Command"
+	},
+	"Add Args": {
+		"scope": "typescript",
+		"prefix": "cmd:args",
+		"body": [
+			"{",
+			"\tidentifier: \"\",",
+			"\tmatch: \"\",",
+			"\ttype: \"\"",
+			"}"
+		]
+	}
+}
