@@ -1,8 +1,8 @@
-import Command from "../../classes/Command";
+import Command from "@yumeko/classes/Command";
 import { Message,MessageEmbed } from "discord.js";
 import { stripIndents } from "common-tags";
-import { codeBlock, firstUpperCase } from "../../util/Util";
-import { DeclareCommand } from "../../decorators";
+import { codeBlock, firstUpperCase } from "@yumeko/util/Util";
+import { DeclareCommand } from "@yumeko/decorators";
 
 @DeclareCommand("help", {
     aliases: ["help", "h"],

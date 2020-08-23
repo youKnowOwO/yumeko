@@ -1,5 +1,5 @@
-import type YumekoClient from "../../../classes/Client";
-import Command from "../../../classes/Command";
+import type YumekoClient from "@yumeko/classes/Client";
+import Command from "@yumeko/classes/Command";
 import type { Message } from "discord.js";
 
 export default class AestheticCommand extends Command {

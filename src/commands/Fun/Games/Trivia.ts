@@ -1,10 +1,10 @@
-import type YumekoClient from "../../../classes/Client";
-import Command from "../../../classes/Command";
-import SelectionPage from "../../../util/SelectionPage";
+import type YumekoClient from "@yumeko/classes/Client";
+import Command from "@yumeko/classes/Command";
+import SelectionPage from "@yumeko/util/SelectionPage";
 import request from "node-superfetch";
 import { Message, MessageEmbed } from "discord.js";
 import { stripIndents } from "common-tags";
-import { shuffle } from "../../../util/Util";
+import { shuffle } from "@yumeko/util/Util";
 
 const emojis = ["🇦", "🇧", "🇨", "🇩", "🇪"];
 

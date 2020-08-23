@@ -1,8 +1,8 @@
-import Command from "../../classes/Command";
-import CustomError from "../../classes/CustomError";
+import Command from "@yumeko/classes/Command";
+import CustomError from "@yumeko/classes/CustomError";
 import { Message } from "discord.js";
-import { readableTime } from "../../util/Util";
-import { DeclareCommand } from "../../decorators";
+import { readableTime } from "@yumeko/util/Util";
+import { DeclareCommand } from "@yumeko/decorators";
 
 @DeclareCommand("seek", {
     aliases: ["seek", "jumpto"],

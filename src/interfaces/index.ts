@@ -1,3 +1,3 @@
-export * from "./Command";
-export * from "./Other";
-export * from "./Event";
+export * from "@yumeko/interfaces/Command";
+export * from "@yumeko/interfaces/Other";
+export * from "@yumeko/interfaces/Event";

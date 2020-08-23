@@ -1,9 +1,9 @@
-import Command from "../../classes/Command";
-import CustomError from "../../classes/CustomError";
-import SelectionPage from "../../util/SelectionPage";
+import Command from "@yumeko/classes/Command";
+import CustomError from "@yumeko/classes/CustomError";
+import SelectionPage from "@yumeko/util/SelectionPage";
 import { Message, MessageEmbed, TextChannel } from "discord.js";
 import type { Track } from "lavalink";
-import { DeclareCommand } from "../../decorators";
+import { DeclareCommand } from "@yumeko/decorators";
 
 const emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
 

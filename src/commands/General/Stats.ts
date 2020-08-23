@@ -1,9 +1,9 @@
-import Command from "../../classes/Command";
+import Command from "@yumeko/classes/Command";
 import moment from "moment";
-import { DeclareCommand } from "../../decorators";
+import { DeclareCommand } from "@yumeko/decorators";
 import { MessageEmbed, Message } from "discord.js";
 import { stripIndents } from "common-tags";
-import { codeBlock } from "../../util/Util";
+import { codeBlock } from "@yumeko/util/Util";
 import { loadavg } from "os";
 
 @DeclareCommand("stats", {

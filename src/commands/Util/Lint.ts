@@ -1,11 +1,11 @@
-import type YumekoClient from "../../classes/Client";
-import Command from "../../classes/Command";
-import CustomError from "../../classes/CustomError";
+import type YumekoClient from "@yumeko/classes/Client";
+import Command from "@yumeko/classes/Command";
+import CustomError from "@yumeko/classes/CustomError";
 import type { Linter } from "eslint";
 import { Message, MessageEmbed, MessageReaction, User } from "discord.js";
-import { TypeCodeReturn } from "../../interfaces";
-import { codeBlock, trimArray } from "../../util/Util";
-import { lint } from "../../util/CodeLinter";
+import { TypeCodeReturn } from "@yumeko/interfaces";
+import { codeBlock, trimArray } from "@yumeko/util/Util";
+import { lint } from "@yumeko/util/CodeLinter";
 import { stripIndents } from "common-tags";
 
 const ecmaVersions = [3, 5, 6, 7, 8, 9, 10, 11, 2015, 2016, 2017, 2018, 2019, 2020];

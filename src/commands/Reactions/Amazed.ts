@@ -1,8 +1,8 @@
-import type YumekoClient from "../../classes/Client";
-import Command from "../../classes/Command";
+import type YumekoClient from "@yumeko/classes/Client";
+import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import { Message } from "discord.js";
-import { firstUpperCase } from "../../util/Util";
+import { firstUpperCase } from "@yumeko/util/Util";
 
 export default class AmazedCommand extends Command {
     private api = "https://emilia-api.xyz/api/";

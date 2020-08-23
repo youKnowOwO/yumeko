@@ -1,9 +1,9 @@
-import Command from "../../../classes/Command";
-import CustomError from "../../../classes/CustomError";
-import Connect4 from "../../../classes/Games/Connect4";
+import Command from "@yumeko/classes/Command";
+import CustomError from "@yumeko/classes/CustomError";
+import Connect4 from "@yumeko/classes/Games/Connect4";
 import { Message, MessageReaction, User, Util } from "discord.js";
-import { DeclareCommand } from "../../../decorators";
-import { verify } from "../../../util/Util";
+import { DeclareCommand } from "@yumeko/decorators";
+import { verify } from "@yumeko/util/Util";
 import { stripIndents } from "common-tags";
 
 const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣"];

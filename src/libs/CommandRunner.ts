@@ -1,9 +1,9 @@
-import type YumekoClient from "../classes/Client";
-import type Command from "../classes/Command";
-import ArgumentParser from "./ArgumentParser";
+import type YumekoClient from "@yumeko/classes/Client";
+import type Command from "@yumeko/classes/Command";
+import ArgumentParser from "@yumeko/libs/ArgumentParser";
 import { Message, Collection, Snowflake, PermissionString, GuildMember } from "discord.js";
-import { CommandUsed, CommandOption } from "../interfaces";
-import { codeBlock } from "../util/Util";
+import { CommandUsed, CommandOption } from "@yumeko/interfaces";
+import { codeBlock } from "@yumeko/util/Util";
 import { TextChannel } from "discord.js";
 
 export default class CommandRunner {

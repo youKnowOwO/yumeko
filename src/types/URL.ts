@@ -1,6 +1,6 @@
 import type { Message } from "discord.js";
-import { Type } from "../interfaces";
-import CustomError from "../classes/CustomError";
+import { Type } from "@yumeko/interfaces";
+import CustomError from "@yumeko/classes/CustomError";
 
 export default class TypeURL implements Type {
     readonly name = "url";

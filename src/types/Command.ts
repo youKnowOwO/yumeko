@@ -1,8 +1,8 @@
-import type YumekoClient from "../classes/Client";
-import type Command from "../classes/Command";
-import CustomError from "../classes/CustomError";
+import type YumekoClient from "@yumeko/classes/Client";
+import type Command from "@yumeko/classes/Command";
+import CustomError from "@yumeko/classes/CustomError";
 import type { Message } from "discord.js";
-import { Type } from "../interfaces";
+import { Type } from "@yumeko/interfaces";
 
 export default class TypeCommand implements Type {
     readonly name = "command";

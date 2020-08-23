@@ -1,5 +1,5 @@
-import type YumekoClient from "../classes/Client";
-import { Event } from "../interfaces";
+import type YumekoClient from "@yumeko/classes/Client";
+import { Event } from "@yumeko/interfaces";
 import { stripIndents } from "common-tags";
 
 const presences = require("../../assets/json/presence.json");

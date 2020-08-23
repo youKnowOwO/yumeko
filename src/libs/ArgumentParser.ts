@@ -1,8 +1,8 @@
-import type YumekoClient from "../classes/Client";
-import CustomError from "../classes/CustomError";
-import readdirRecursive from "../util/ReaddirRecursive";
+import type YumekoClient from "@yumeko/classes/Client";
+import CustomError from "@yumeko/classes/CustomError";
+import readdirRecursive from "@yumeko/util/ReaddirRecursive";
 import { Message, Collection } from "discord.js";
-import { Argument, Type, ArgumentTypeFunction } from "../interfaces";
+import { Argument, Type, ArgumentTypeFunction } from "@yumeko/interfaces";
 import { stripIndents } from "common-tags";
 import { join } from "path";
 

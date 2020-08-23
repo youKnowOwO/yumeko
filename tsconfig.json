@@ -15,7 +15,11 @@
           "node_modules/@types",
           "src/interfaces"
       ],
-      "outDir": "./dist"
+      "outDir": "./dist",
+      "baseUrl": "./src",
+      "paths": {
+        "@yumeko/*": ["*"]
+      }
   },
   "include": ["src"],
   "exclude": ["node_modules/**"]

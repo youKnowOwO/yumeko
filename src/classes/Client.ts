@@ -1,7 +1,9 @@
-import CommandCollector from "../libs/CommandCollector";
-import Context from "../libs/MessageContext";
-import Logger from "../libs/Logger";
-import eventLoader from "../libs/EventLoader";
+import "module-alias/register";
+
+import CommandCollector from "@yumeko/libs/CommandCollector";
+import Context from "@yumeko/libs/MessageContext";
+import Logger from "@yumeko/libs/Logger";
+import eventLoader from "@yumeko/libs/EventLoader";
 import { Client } from "discord.js";
 import { Node as Lavalink } from "lavalink";
 

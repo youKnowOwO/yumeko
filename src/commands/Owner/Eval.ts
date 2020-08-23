@@ -1,9 +1,9 @@
-import Command from "../../classes/Command";
-import Stopwatch from "../../util/Stopwarch";
+import Command from "@yumeko/classes/Command";
+import Stopwatch from "@yumeko/util/Stopwarch";
 import type { Message } from "discord.js";
-import { DeclareCommand } from "../../decorators";
+import { DeclareCommand } from "@yumeko/decorators";
 import { inspect } from "util";
-import { hastebin, codeBlock, escapeRegex } from "../../util/Util";
+import { hastebin, codeBlock, escapeRegex } from "@yumeko/util/Util";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { Canvas, resolveImage } = require("canvas-constructor");

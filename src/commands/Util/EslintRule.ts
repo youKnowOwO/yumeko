@@ -1,7 +1,7 @@
-import Command from "../../classes/Command";
+import Command from "@yumeko/classes/Command";
 import { Message, MessageEmbed } from "discord.js";
-import { DeclareCommand } from "../../decorators";
-import { getRule } from "../../util/CodeLinter";
+import { DeclareCommand } from "@yumeko/decorators";
+import { getRule } from "@yumeko/util/CodeLinter";
 
 @DeclareCommand("eslint-rule", {
     aliases: ["eslint-rule", "lint-rule"],

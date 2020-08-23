@@ -1,4 +1,4 @@
-import { chunk } from "../../util/Util";
+import { chunk } from "@yumeko/util/Util";
 
 interface Connect4ToStringPayload {
     sign: [string, string];

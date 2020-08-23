@@ -1,8 +1,8 @@
-import Command from "../../classes/Command";
+import Command from "@yumeko/classes/Command";
 import { MessageEmbed, Message } from "discord.js";
-import { chunk } from "../../util/Util";
-import Pagination from "../../util/Pagination";
-import { DeclareCommand } from "../../decorators";
+import { chunk } from "@yumeko/util/Util";
+import Pagination from "@yumeko/util/Pagination";
+import { DeclareCommand } from "@yumeko/decorators";
 
 @DeclareCommand("queue", {
     aliases: ["queue", "nowplay"],

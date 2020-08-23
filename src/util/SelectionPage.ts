@@ -1,5 +1,5 @@
 import type { Message, MessageReaction, User } from "discord.js";
-import { SelectionPagePayload } from "../interfaces";
+import { SelectionPagePayload } from "@yumeko/interfaces";
 
 export default class SelectionPage<T>{
     public constructor(public msg: Message, public payload: SelectionPagePayload<T>) {}

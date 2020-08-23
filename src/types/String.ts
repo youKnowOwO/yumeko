@@ -1,5 +1,5 @@
 import type { Message } from "discord.js";
-import { Type } from "../interfaces";
+import { Type } from "@yumeko/interfaces";
 
 export default class TypeString implements Type {
     readonly name = "string";

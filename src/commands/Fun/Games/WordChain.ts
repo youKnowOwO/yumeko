@@ -1,9 +1,9 @@
-import Command from "../../../classes/Command";
-import AwaitPlayers from "../../../util/AwaitPlayers";
-import CustomError from "../../../classes/CustomError";
+import Command from "@yumeko/classes/Command";
+import AwaitPlayers from "@yumeko/util/AwaitPlayers";
+import CustomError from "@yumeko/classes/CustomError";
 import { Message, User, MessageEmbed, Util } from "discord.js";
-import { DeclareCommand } from "../../../decorators";
-import { shuffle } from "../../../util/Util";
+import { DeclareCommand } from "@yumeko/decorators";
+import { shuffle } from "@yumeko/util/Util";
 
 const wordList: string[] = require("../../../../assets/json/words.json");
 

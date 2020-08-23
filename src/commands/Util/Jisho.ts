@@ -1,5 +1,5 @@
-import type YumekoClient from "../../classes/Client";
-import Command from "../../classes/Command";
+import type YumekoClient from "@yumeko/classes/Client";
+import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import { Message, MessageEmbed } from "discord.js";
 import { load } from "cheerio";

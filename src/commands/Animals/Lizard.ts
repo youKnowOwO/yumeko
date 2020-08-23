@@ -1,5 +1,5 @@
-import type YumekoClient from "../../classes/Client";
-import BunnyCommand from "./Bunny";
+import type YumekoClient from "@yumeko/classes/Client";
+import BunnyCommand from "@yumeko/commands/Animals/Bunny";
 import request from "node-superfetch";
 
 export default class LizardCommand extends BunnyCommand {

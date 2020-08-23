@@ -1,6 +1,6 @@
-import type YumekoClient from "../classes/Client";
-import readdirRecursive from "../util/ReaddirRecursive";
-import { Event } from "../interfaces";
+import type YumekoClient from "@yumeko/classes/Client";
+import readdirRecursive from "@yumeko/util/ReaddirRecursive";
+import { Event } from "@yumeko/interfaces";
 import { join } from "path";
 
 export default function EventLoader (client: YumekoClient): void {

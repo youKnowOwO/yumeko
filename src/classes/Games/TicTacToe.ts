@@ -1,4 +1,4 @@
-import { chunk } from "../../util/Util";
+import { chunk } from "@yumeko/util/Util";
 
 interface TicTacToeToStringPayload {
     sign: [string, string];

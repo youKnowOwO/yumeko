@@ -1,5 +1,5 @@
-import type YumekoClient from "../classes/Client";
-import { Event } from "../interfaces";
+import type YumekoClient from "@yumeko/classes/Client";
+import { Event } from "@yumeko/interfaces";
 
 export default class RawEvent implements Event {
     public readonly listener = "raw";

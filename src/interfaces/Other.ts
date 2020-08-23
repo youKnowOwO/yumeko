@@ -1,5 +1,5 @@
 import type { Message, MessageEmbed } from "discord.js";
-import { ArgumentTypeFunction } from "./Command";
+import { ArgumentTypeFunction } from "@yumeko/interfaces/Command";
 
 export interface Type {
     readonly name: string;

@@ -1,10 +1,10 @@
-import type YumekoClient from "../../../classes/Client";
-import Command from "../../../classes/Command";
-import CustomError from "../../../classes/CustomError";
+import type YumekoClient from "@yumeko/classes/Client";
+import Command from "@yumeko/classes/Command";
+import CustomError from "@yumeko/classes/CustomError";
 import figlet from "figlet";
 import type { Message } from "discord.js";
 import { promisify } from "util";
-import { codeBlock } from "../../../util/Util";
+import { codeBlock } from "@yumeko/util/Util";
 
 export default class AsciiCommand extends Command {
     public constructor (client: YumekoClient) {

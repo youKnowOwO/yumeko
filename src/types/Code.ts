@@ -1,6 +1,6 @@
-import CustomError from "../classes/CustomError";
+import CustomError from "@yumeko/classes/CustomError";
 import type { Message } from "discord.js";
-import { Type, TypeCodeReturn } from "../interfaces";
+import { Type, TypeCodeReturn } from "@yumeko/interfaces";
 
 const CODEBLOCK_PATTERN = /```(?:(\S+)\n)?\s*([^]+?)\s*```/i;
 

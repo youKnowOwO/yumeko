@@ -1,9 +1,9 @@
-import type YumekoClient from "../../../classes/Client";
-import Command from "../../../classes/Command";
+import type YumekoClient from "@yumeko/classes/Client";
+import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import type { Message } from "discord.js";
 import { stripIndents } from "common-tags";
-import { codeBlock } from "../../../util/Util";
+import { codeBlock } from "@yumeko/util/Util";
 
 const words = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 

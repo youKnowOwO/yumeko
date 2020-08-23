@@ -1,6 +1,6 @@
-import Command from "../../../classes/Command";
-import Minesweeper from "../../../classes/Games/Minesweeper";
-import { DeclareCommand } from "../../../decorators";
+import Command from "@yumeko/classes/Command";
+import Minesweeper from "@yumeko/classes/Games/Minesweeper";
+import { DeclareCommand } from "@yumeko/decorators";
 import type { Message, MessageReaction, User, Collector } from "discord.js";
 import { stripIndents } from "common-tags";
 

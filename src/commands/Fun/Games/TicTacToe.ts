@@ -1,10 +1,10 @@
-import Command from "../../../classes/Command";
-import TicTacToe from "../../../classes/Games/TicTacToe";
-import CustomError from "../../../classes/CustomError";
+import Command from "@yumeko/classes/Command";
+import TicTacToe from "@yumeko/classes/Games/TicTacToe";
+import CustomError from "@yumeko/classes/CustomError";
 import { Message, User, MessageReaction, Util } from "discord.js";
-import { DeclareCommand } from "../../../decorators";
+import { DeclareCommand } from "@yumeko/decorators";
 import { stripIndents } from "common-tags";
-import { verify } from "../../../util/Util";
+import { verify } from "@yumeko/util/Util";
 
 const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"];
 

@@ -1,8 +1,8 @@
-import type YumekoClient from "../classes/Client";
-import CommandRunner from "./CommandRunner";
-import Command from "../classes/Command";
-import readdirRecursive from "../util/ReaddirRecursive";
-import { CommandCollectorCategories } from "../interfaces";
+import type YumekoClient from "@yumeko/classes/Client";
+import CommandRunner from "@yumeko/libs/CommandRunner";
+import Command from "@yumeko/classes/Command";
+import readdirRecursive from "@yumeko/util/ReaddirRecursive";
+import { CommandCollectorCategories } from "@yumeko/interfaces";
 import { Collection } from "discord.js";
 import { join } from "path";
 

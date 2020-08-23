@@ -1,8 +1,8 @@
-import Command from "../../classes/Command";
-import Pagination from "../../util/Pagination";
+import Command from "@yumeko/classes/Command";
+import Pagination from "@yumeko/util/Pagination";
 import request from "node-superfetch";
 import { Message, MessageEmbed } from "discord.js";
-import { DeclareCommand } from "../../decorators";
+import { DeclareCommand } from "@yumeko/decorators";
 
 @DeclareCommand("instagram", {
     aliases: ["instagram", "ig"],

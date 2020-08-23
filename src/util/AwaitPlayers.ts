@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import type YumekoClient from "../classes/Client";
-import { AwaitPlayersPayload } from "../interfaces";
+import type YumekoClient from "@yumeko/classes/Client";
+import { AwaitPlayersPayload } from "@yumeko/interfaces";
 import { User, MessageEmbed } from "discord.js";
 import { MessageReaction } from "discord.js";
 

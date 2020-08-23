@@ -1,6 +1,6 @@
-import type YumekoClient from "../../../classes/Client";
-import Command from "../../../classes/Command";
-import CustomError from "../../../classes/CustomError";
+import type YumekoClient from "@yumeko/classes/Client";
+import Command from "@yumeko/classes/Command";
+import CustomError from "@yumeko/classes/CustomError";
 import { Message, MessageEmbed } from "discord.js";
 import { stripIndents } from "common-tags";
 

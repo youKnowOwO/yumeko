@@ -1,11 +1,11 @@
-import type YumekoClient from "../../classes/Client";
-import Command from "../../classes/Command";
+import type YumekoClient from "@yumeko/classes/Client";
+import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import { Message, MessageEmbed, TextChannel } from "discord.js";
 import { load } from "cheerio";
 import { stripIndents } from "common-tags";
-import { chunk } from "../../util/Util";
-import Pagination from "../../util/Pagination";
+import { chunk } from "@yumeko/util/Util";
+import Pagination from "@yumeko/util/Pagination";
 
 interface Result {
     title: string;

@@ -1,7 +1,7 @@
-import type ExecCommand from "./Exec";
-import Command from "../../classes/Command";
+import type ExecCommand from "@yumeko/commands/Owner/Exec";
+import Command from "@yumeko/classes/Command";
 import type { Message } from "discord.js";
-import { DeclareCommand } from "../../decorators";
+import { DeclareCommand } from "@yumeko/decorators";
 import { parse } from "path";
 
 @DeclareCommand("reload", {

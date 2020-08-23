@@ -1,4 +1,4 @@
-import YumekoClient from "../classes/Client";
+import YumekoClient from "@yumeko/classes/Client";
 import { Structures } from "discord.js";
 
 class YumekoUser extends Structures.get("User") {

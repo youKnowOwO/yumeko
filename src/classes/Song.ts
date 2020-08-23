@@ -1,6 +1,6 @@
 import type { Track } from "lavalink";
 import type { User } from "discord.js";
-import { readableTime } from "../util/Util";
+import { readableTime } from "@yumeko/util/Util";
 
 export default class Song {
     public readonly track: string;

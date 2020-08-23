@@ -1,7 +1,7 @@
-import Command from "../../classes/Command";
+import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import type { Message } from "discord.js";
-import { DeclareCommand } from "../../decorators";
+import { DeclareCommand } from "@yumeko/decorators";
 import { Canvas, resolveImage } from "canvas-constructor";
 import { join } from "path";
 

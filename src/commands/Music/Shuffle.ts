@@ -1,8 +1,8 @@
-import Command from "../../classes/Command";
-import CustomError from "../../classes/CustomError";
+import Command from "@yumeko/classes/Command";
+import CustomError from "@yumeko/classes/CustomError";
 import { Message } from "discord.js";
-import { DeclareCommand } from "../../decorators";
-import { shuffle } from "../../util/Util";
+import { DeclareCommand } from "@yumeko/decorators";
+import { shuffle } from "@yumeko/util/Util";
 
 @DeclareCommand("shuffle", {
     aliases: ["shuffle"],

@@ -1,8 +1,8 @@
-import type YumekoClient from "../../classes/Client";
-import Command from "../../classes/Command";
-import CustomError from "../../classes/CustomError";
+import type YumekoClient from "@yumeko/classes/Client";
+import Command from "@yumeko/classes/Command";
+import CustomError from "@yumeko/classes/CustomError";
 import { Message } from "discord.js";
-import { DeclareCommand } from "../../decorators";
+import { DeclareCommand } from "@yumeko/decorators";
 
 @DeclareCommand("volume", {
     aliases: ["volume"],

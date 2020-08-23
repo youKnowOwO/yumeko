@@ -1,7 +1,7 @@
-import YumekoClient from "../classes/Client";
-import CustomError from "../classes/CustomError";
+import YumekoClient from "@yumeko/classes/Client";
+import CustomError from "@yumeko/classes/CustomError";
 import type { Message, User } from "discord.js";
-import { Type } from "../interfaces";
+import { Type } from "@yumeko/interfaces";
 import { extname } from "path";
 
 const IMAGE_PATTERN =/^\.(jpe?g|png|gif|bmp|gif)$/;

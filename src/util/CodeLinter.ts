@@ -1,7 +1,7 @@
-import type YumekoClient from "../classes/Client";
-import LintCommand from "../commands/Util/Lint";
+import type YumekoClient from "@yumeko/classes/Client";
+import LintCommand from "@yumeko/commands/Util/Lint";
 import type { Message } from "discord.js";
-import { TypeCodeReturn } from "../interfaces";
+import { TypeCodeReturn } from "@yumeko/interfaces";
 import { Linter, Rule } from "eslint";
 import { stripIndents } from "common-tags";
 

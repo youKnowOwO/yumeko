@@ -1,7 +1,7 @@
-import YumekoClient from "../classes/Client";
-import CustomError from "../classes/CustomError";
+import YumekoClient from "@yumeko/classes/Client";
+import CustomError from "@yumeko/classes/CustomError";
 import type { Message, User } from "discord.js";
-import { Type } from "../interfaces";
+import { Type } from "@yumeko/interfaces";
 
 export default class TypeUserhuman implements Type {
     readonly name = "user:human";

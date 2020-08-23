@@ -1,10 +1,10 @@
-import type YumekoClient from "../../classes/Client";
-import Command from "../../classes/Command";
-import CustomError from "../../classes/CustomError";
+import type YumekoClient from "@yumeko/classes/Client";
+import Command from "@yumeko/classes/Command";
+import CustomError from "@yumeko/classes/CustomError";
 import type { Message, Snowflake } from "discord.js";
-import { TypeCodeReturn } from "../../interfaces";
-import { codeBlock, hastebin } from "../../util/Util";
-import { exec } from "../../util/Myriad";
+import { TypeCodeReturn } from "@yumeko/interfaces";
+import { codeBlock, hastebin } from "@yumeko/util/Util";
+import { exec } from "@yumeko/util/Myriad";
 
 const languages: [string, string[]][]= [
     ["apl", ["apl"]],

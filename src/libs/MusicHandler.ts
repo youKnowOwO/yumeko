@@ -1,8 +1,8 @@
-import YumekoClient from "../classes/Client";
-import Song from "../classes/Song";
+import YumekoClient from "@yumeko/classes/Client";
+import Song from "@yumeko/classes/Song";
 import type { Guild, TextChannel, VoiceChannel, User } from "discord.js";
 import type { Player, Track, TrackResponse } from "lavalink";
-import { readableTime, codeBlock } from "../util/Util";
+import { readableTime, codeBlock } from "@yumeko/util/Util";
 
 enum LoopType {
     NONE,

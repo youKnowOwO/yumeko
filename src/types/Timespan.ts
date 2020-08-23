@@ -1,7 +1,7 @@
-import CustomError from "../classes/CustomError";
+import CustomError from "@yumeko/classes/CustomError";
 import type { Message } from "discord.js";
-import { Type } from "../interfaces";
-import { parseTime } from "../util/Util";
+import { Type } from "@yumeko/interfaces";
+import { parseTime } from "@yumeko/util/Util";
 
 export default class TypeTimespan implements Type {
     readonly name = "timespan";

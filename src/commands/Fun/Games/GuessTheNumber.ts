@@ -1,6 +1,6 @@
-import type YumekoClient from "../../../classes/Client";
-import Command from "../../../classes/Command";
-import CustomError from "../../../classes/CustomError";
+import type YumekoClient from "@yumeko/classes/Client";
+import Command from "@yumeko/classes/Command";
+import CustomError from "@yumeko/classes/CustomError";
 import type { Message } from "discord.js";
 
 export default class GuessTheNumberCommand extends Command {

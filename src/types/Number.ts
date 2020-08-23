@@ -1,6 +1,6 @@
-import CustomError from "../classes/CustomError";
+import CustomError from "@yumeko/classes/CustomError";
 import type { Message } from "discord.js";
-import { Type } from "../interfaces";
+import { Type } from "@yumeko/interfaces";
 
 export default class TypeNumber implements Type {
     readonly name = "number";

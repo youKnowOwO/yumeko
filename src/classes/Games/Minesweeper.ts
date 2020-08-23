@@ -1,4 +1,4 @@
-import { chunk, shuffle } from "../../util/Util";
+import { chunk, shuffle } from "@yumeko/util/Util";
 
 interface Floor {
     isBomb: boolean;

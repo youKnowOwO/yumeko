@@ -1,9 +1,9 @@
-import type YumekoClient from "../classes/Client";
+import type YumekoClient from "@yumeko/classes/Client";
 import request from "node-superfetch";
 import { Message, MessageReaction, User } from "discord.js";
-import { TypeCodeReturn } from "../interfaces";
+import { TypeCodeReturn } from "@yumeko/interfaces";
 import { join } from "path";
-import type CodeCommand from "../commands/Util/Code";
+import type CodeCommand from "@yumeko/commands/Util/Code";
 
 export async function exec(client: YumekoClient, code: string, language: string): Promise<[boolean, string]> {
     const endpoint = join(client.config.myriad, "eval");

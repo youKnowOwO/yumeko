@@ -1,7 +1,7 @@
-import type YumekoClient from "../classes/Client";
-import type CommandCollector from "../libs/CommandCollector";
-import CustomError from "./CustomError";
-import { CommandOption } from "../interfaces";
+import type YumekoClient from "@yumeko/classes/Client";
+import type CommandCollector from "@yumeko/libs/CommandCollector";
+import CustomError from "@yumeko/classes/CustomError";
+import { CommandOption } from "@yumeko/interfaces";
 import { Message } from "discord.js";
 
 export default class Command {

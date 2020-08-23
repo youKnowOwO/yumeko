@@ -1,6 +1,6 @@
-import YumekoClient from "../classes/Client";
+import YumekoClient from "@yumeko/classes/Client";
 import type { Message, User } from "discord.js";
-import { Type } from "../interfaces";
+import { Type } from "@yumeko/interfaces";
 
 export default class TypeUser implements Type {
     readonly name = "user";

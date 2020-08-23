@@ -1,5 +1,5 @@
 import type { Message, MessageReaction, User } from "discord.js";
-import { PaginationPayload } from "../interfaces";
+import { PaginationPayload } from "@yumeko/interfaces";
 
 const EMOJIS = ["⏪", "⬅️", "🚫", "➡️", "⏩"];
 

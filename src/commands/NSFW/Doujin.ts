@@ -1,10 +1,10 @@
-import Command from "../../classes/Command";
+import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import moment from "moment";
 import { Message, MessageEmbed, MessageReaction, User, Collector } from "discord.js";
-import { DeclareCommand } from "../../decorators";
+import { DeclareCommand } from "@yumeko/decorators";
 import { stripIndents } from "common-tags";
-import { firstUpperCase, chunk } from "../../util/Util";
+import { firstUpperCase, chunk } from "@yumeko/util/Util";
 
 interface ImageDetail {
     u: string;

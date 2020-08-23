@@ -1,9 +1,9 @@
-import Command from "../../classes/Command";
-import Stopwatch from "../../util/Stopwarch";
+import Command from "@yumeko/classes/Command";
+import Stopwatch from "@yumeko/util/Stopwarch";
 import child_process from "child_process";
 import type { Message } from "discord.js";
-import { DeclareCommand } from "../../decorators";
-import { hastebin, codeBlock } from "../../util/Util";
+import { DeclareCommand } from "@yumeko/decorators";
+import { hastebin, codeBlock } from "@yumeko/util/Util";
 import { promisify } from "util";
 
 const exec = promisify(child_process.exec);

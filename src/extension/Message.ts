@@ -1,6 +1,6 @@
 import { Structures } from "discord.js";
-import { MessageContext } from "../interfaces";
-import YumekoClient from "../classes/Client";
+import { MessageContext } from "@yumeko/interfaces";
+import YumekoClient from "@yumeko/classes/Client";
 
 class YumekoMessage extends Structures.get("Message") {
     public args: string[] = [];

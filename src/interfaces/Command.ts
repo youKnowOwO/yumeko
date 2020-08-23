@@ -1,5 +1,5 @@
 import type { PermissionString, Message } from "discord.js";
-import type Command from "../classes/Command";
+import type Command from "@yumeko/classes/Command";
 
 export interface CommandOption {
     description: {

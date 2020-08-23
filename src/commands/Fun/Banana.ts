@@ -1,6 +1,6 @@
-import Command from "../../classes/Command";
+import Command from "@yumeko/classes/Command";
 import type { Message, GuildMember } from "discord.js";
-import { DeclareCommand } from "../../decorators";
+import { DeclareCommand } from "@yumeko/decorators";
 import { Canvas, resolveImage } from "canvas-constructor";
 import { join } from "path";
 

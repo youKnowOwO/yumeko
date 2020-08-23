@@ -1,6 +1,6 @@
-import type YumekoClient from "../classes/Client";
+import type YumekoClient from "@yumeko/classes/Client";
 import type { Message } from "discord.js";
-import { Event } from "../interfaces";
+import { Event } from "@yumeko/interfaces";
 
 export default class MessageEvent implements Event {
     public readonly listener = "message";

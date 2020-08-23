@@ -1,10 +1,10 @@
-import type YumekoClient from "../../../classes/Client";
-import Command from "../../../classes/Command";
-import Pagination from "../../../util/Pagination";
+import type YumekoClient from "@yumeko/classes/Client";
+import Command from "@yumeko/classes/Command";
+import Pagination from "@yumeko/util/Pagination";
 import TurndownService from "turndown";
 import request from "node-superfetch";
 import { Message, MessageEmbed } from "discord.js";
-import { decodeHTMLEntities, codeBlock } from "../../../util/Util";
+import { decodeHTMLEntities, codeBlock } from "@yumeko/util/Util";
 import { load } from "cheerio";
 
 export default class StackoverflowShowCommand extends Command {

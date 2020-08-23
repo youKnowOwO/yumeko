@@ -1,6 +1,6 @@
-import Command from "../../classes/Command";
+import Command from "@yumeko/classes/Command";
 import { MessageEmbed, Message } from "discord.js";
-import { DeclareCommand } from "../../decorators";
+import { DeclareCommand } from "@yumeko/decorators";
 
 @DeclareCommand("np", {
     aliases: ["np", "nowplay"],
