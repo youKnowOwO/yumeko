@@ -32,7 +32,7 @@ import { Canvas, resolveImage } from "canvas-constructor";
         }
     ]
 })
-export default class extends Command {
+export default class ShipCommand extends Command {
     public async exec(msg: Message, { userOne, userTwo }: { userOne: User; userTwo?: User }): Promise<Message> {
         if (!userTwo) {
             userTwo = userOne;

@@ -1,9 +1,8 @@
 import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
-import type { Message } from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
 import { DeclareCommand } from "@yumeko/decorators";
 import { load } from "cheerio";
-import { MessageEmbed } from "discord.js";
 import { stripIndents } from "common-tags";
 
 interface WeatherResponseCurrent {
