@@ -22,7 +22,7 @@ export default class StatsCommand extends Command {
     public async exec(msg: Message): Promise<Message> {
         const [usersSize, channelsSize, serversSize] = this.client.shard ?
             this.parseSizeEvaluate(await this.client.shard.broadcastEval(`[
-                this.users.cache.size,
+                this.users.cache.map(x => x.string),
                 this.channels.cache.size,
                 this.guilds.cache.size
             ]`)) : [this.client.users.cache.size, this.client.channels.cache.size, this.client.guilds.cache.size];
@@ -41,21 +41,28 @@ export default class StatsCommand extends Command {
                 Servers        : ${serversSize.toLocaleString()}
                 WS ping        : ${this.client.ws.ping.toFixed(2)}ms
                 Node           : ${process.version}
-            `))
-            .addField("📌 Owners", this.client.config.owners.map((x: string) => {
-                const user = this.client.users.cache.get(x);
-                if (!user) return;
-                if (msg.guild!.members.cache.has(user.id)) return `• ${user} (${user.id})`;
-                return `• ${user.tag} (${user.id})`;
-            }))
+            `));
+        const owners: string[] = [];
+        for (const own of this.client.config.owners) {
+            const owner = this.client.users.cache.get(own) || await this.client.users.fetch(own, true).catch(() => undefined);
+            if (!owner) continue;
+            owners.push(`• ${msg.guild!.members.cache.has(owner.id) ? owner : owner.username} (${owner.id})`);
+        }
+        embed.addField("📌 Owners", owners.join("\n"))
             .addField("\u200B", "[Github](https://github.com/youKnowOwO) | [Repository](https://github.com/youKnowOwO/yumeko)");
         return msg.ctx.send(embed);
     }
 
-    public parseSizeEvaluate(data: [number, number, number][]): [number, number, number] {
+    public parseSizeEvaluate(data: [string[], number, number][]): [number, number, number] {
         const result: [number, number, number] = [0, 0, 0];
+        const users: string[] = [];
         for (const dat of data)
-            for (let i = 0; i < 3; i++) result[i] += dat[i];
+            for (let i = 0; i < 3; i++) {
+                if (i === 0) {
+                    users.push(...dat[i]);
+                } else result[i] += dat[i] as number;
+            }
+        result[0] = new Set(users).size;
         return result;
     }
 }
