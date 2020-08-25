@@ -1,24 +1,37 @@
+FROM node:12-alpine as build-stage
+
+WORKDIR /tmp/build
+
+COPY . .
+
+# Install build tools for node-gyp
+RUN apk add --no-cache build-base curl git python3 \
+# Some required shared libraries for node-canvas
+cairo-dev jpeg-dev pango-dev giflib-dev pixman-dev pangomm-dev libjpeg-turbo-dev freetype-dev
+
+# Install node dependencies
+RUN yarn install \
+# Build typescript project
+&& yarn build \
+# Prune dev dependencies
+&& yarn install --production
+
 FROM node:12-alpine
 
 LABEL name "Yumeko"
 
-WORKDIR /usr/Yumeko
+WORKDIR /app
 
-COPY . .
+# Copy needed project files
+COPY --from=build-stage dist ./
+COPY --from=build-stage config.json ./
+COPY --from=build-stage assets ./
+COPY --from=build-stage node_modules ./
+COPY --from=build-stage package.json ./
 
-RUN echo [INFO] ✨ Installing build deps.. \
-    && apk add --no-cache --virtual .build-deps python g++ make yarn \
-    && echo [INFO] ⚡ Installing 3rd party package \
-    && apk add --no-cache --virtual .deps cairo-dev jpeg-dev pango-dev giflib-dev \
-    && apk add --update --repository http://dl-3.alpinelinux.org/alpine/edge/testing libmount ttf-dejavu ttf-droid ttf-freefont ttf-liberation ttf-ubuntu-font-family fontconfig \
-    && echo [INFO] 🗑️ Cleanning package cache.. \
-    && yarn cache clean \
-    && echo [INFO] 🔗 Installing dependencies.. \
-    && yarn install \
-    && echo [INFO] ✍️ Building source.. \
-    && yarn build \
-    && echo [INFO] 🗑️ Cleanning Dev dependencies.. \
-    && yarn install --production \
-    && apk del .build-deps
+# Install dependencies
+RUN apk add --no-cache pixman cairo pango giflib \
+# node-canvas default font
+ttf-opensans ttf-dejavu ttf-droid ttf-freefont ttf-liberation ttf-ubuntu-font-family fontconfig
 
-CMD ["node", "dist"]
+CMD ["node", "index.js"]
