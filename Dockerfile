@@ -23,11 +23,11 @@ LABEL name "Yumeko"
 WORKDIR /app
 
 # Copy needed project files
-COPY --from=build-stage dist ./
-COPY --from=build-stage config.json ./
-COPY --from=build-stage assets ./
-COPY --from=build-stage node_modules ./
-COPY --from=build-stage package.json ./
+COPY --from=build-stage /tmp/build/dist ./
+COPY --from=build-stage /tmp/build/config.json ./
+COPY --from=build-stage /tmp/build/assets ./
+COPY --from=build-stage /tmp/build/node_modules ./
+COPY --from=build-stage /tmp/build/package.json ./
 
 # Install dependencies
 RUN apk add --no-cache pixman cairo pango giflib \
