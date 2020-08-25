@@ -34,4 +34,4 @@ RUN apk add --no-cache pixman cairo pango giflib \
 # node-canvas default font
 ttf-opensans ttf-dejavu ttf-droid ttf-freefont ttf-liberation ttf-ubuntu-font-family fontconfig
 
-CMD ["node", "index.js"]
+CMD ["node", "dist"]
