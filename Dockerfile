@@ -23,10 +23,10 @@ LABEL name "Yumeko"
 WORKDIR /app
 
 # Copy needed project files
-COPY --from=build-stage /tmp/build/dist ./
+COPY --from=build-stage /tmp/build/dist ./dist
 COPY --from=build-stage /tmp/build/config.json ./
-COPY --from=build-stage /tmp/build/assets ./
-COPY --from=build-stage /tmp/build/node_modules ./
+COPY --from=build-stage /tmp/build/assets ./assets
+COPY --from=build-stage /tmp/build/node_modules ./node_modules
 COPY --from=build-stage /tmp/build/package.json ./
 
 # Install dependencies
