@@ -1,7 +1,6 @@
 import Command from "@yumeko/classes/Command";
-import CustomError from "@yumeko/classes/CustomError";
 import { Message } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel } from "@yumeko/decorators";
 
 @DeclareCommand("stop", {
     aliases: ["stop"],
@@ -16,15 +15,11 @@ import { DeclareCommand } from "@yumeko/decorators";
     }
 })
 export default class StopCommand extends Command {
+    @isMusicPlaying()
+    @isMemberInVoiceChannel()
+    @isSameVoiceChannel()
     public async exec(msg: Message): Promise<Message> {
-        const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;
-        if (!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");
-        let problem = false;
-        if (!vc) problem = await msg.ctx.send("❌ **| Please Join Voice channel first**").then(() => true);
-        else if (music.voiceChannel && music.voiceChannel.id !== vc.id)
-            problem = await msg.ctx.send("❌ **| You must use same voice channel with me**").then(() => true);
-        if (problem) throw new CustomError("CANCELED");
         music.stop();
         return msg.ctx.send("🛑 **| Stopped**");
     }

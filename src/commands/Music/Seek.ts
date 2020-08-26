@@ -1,8 +1,7 @@
 import Command from "@yumeko/classes/Command";
-import CustomError from "@yumeko/classes/CustomError";
-import { Message } from "discord.js";
+import type { Message } from "discord.js";
 import { readableTime } from "@yumeko/util/Util";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel, inhibit } from "@yumeko/decorators";
 
 @DeclareCommand("seek", {
     aliases: ["seek", "jumpto"],
@@ -24,18 +23,16 @@ import { DeclareCommand } from "@yumeko/decorators";
         }
     ]
 })
-export default class seekCommand extends Command {
+export default class SeekCommand extends Command {
+    @isMusicPlaying()
+    @isMemberInVoiceChannel()
+    @isSameVoiceChannel()
+    @inhibit((msg, { time }: { time: number}) => {
+        if (msg.guild!.music.song!.length < time || time < 0)
+            return "❌ **| Time position is too long or short**";
+    })
     public async exec(msg: Message, { time }: { time: number }): Promise<Message> {
-        const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;
-        let problem = false;
-        if (!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");
-        if (!vc) problem = await msg.ctx.send("❌ **| Please Join Voice channel first**").then(() => true);
-        else if (music.voiceChannel && music.voiceChannel.id !== vc.id)
-            problem = await msg.ctx.send("❌ **| You must use same voice channel with me**").then(() => true);
-        else if (time > music.song.length || time < 0)
-            problem = await msg.ctx.send("❌ **| Time position is too long or short**").then(() => true);
-        if (problem) throw new CustomError("CANCELED");
         music.seek(time);
         return msg.ctx.send(`⏱️ **| Seeked to \`${readableTime(time)}\`**`);
     }

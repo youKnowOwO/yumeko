@@ -2,7 +2,7 @@ import Command from "@yumeko/classes/Command";
 import { MessageEmbed, Message } from "discord.js";
 import { chunk } from "@yumeko/util/Util";
 import Pagination from "@yumeko/util/Pagination";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, isMusicPlaying } from "@yumeko/decorators";
 
 @DeclareCommand("queue", {
     aliases: ["queue", "nowplay"],
@@ -18,11 +18,11 @@ import { DeclareCommand } from "@yumeko/decorators";
     category: "music",
 })
 export default class QueueCommand extends Command {
+    @isMusicPlaying()
     public async exec(msg: Message): Promise<Message|void> {
         const { music } = msg.guild!;
-        if (!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");
-        if (!music.queue.length) return msg.ctx.send("🍃 **| Empty queue**");
         this.collector!.commands.get("np")!.exec(msg);
+        if (!music.queue.length) return msg;
         const pages = chunk(music.queue.map((x, i) => `\`${i + 1}\`. __**[${x.title}](${x.uri})**__ **by** ${x.requester.toString()}`), 10)
             .map(x => x.join("\n"));
         const embed = new MessageEmbed()

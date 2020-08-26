@@ -1,7 +1,6 @@
 import Command from "@yumeko/classes/Command";
-import CustomError from "@yumeko/classes/CustomError";
 import { Message } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel } from "@yumeko/decorators";
 import { shuffle } from "@yumeko/util/Util";
 
 @DeclareCommand("shuffle", {
@@ -17,15 +16,11 @@ import { shuffle } from "@yumeko/util/Util";
     }
 })
 export default class ShuffleCommand extends Command {
+    @isMusicPlaying()
+    @isMemberInVoiceChannel()
+    @isSameVoiceChannel()
     public async exec(msg: Message): Promise<Message> {
-        const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;
-        let problem = false;
-        if (!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");
-        if (!vc) problem = await msg.ctx.send("❌ **| Please Join Voice channel first**").then(() => true);
-        else if (music.voiceChannel && music.voiceChannel.id !== vc.id)
-            problem = await msg.ctx.send("❌ **| You must use same voice channel with me**").then(() => true);
-        if (problem) throw new CustomError("CANCELED");
         music.queue = shuffle(music.queue);
         return msg.channel.send("🔀 **| Queue shuffled**");
     }

@@ -1,6 +1,6 @@
 import Command from "@yumeko/classes/Command";
 import { MessageEmbed, Message } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, isMusicPlaying } from "@yumeko/decorators";
 
 @DeclareCommand("np", {
     aliases: ["np", "nowplay"],
@@ -15,10 +15,10 @@ import { DeclareCommand } from "@yumeko/decorators";
     category: "music",
 })
 export default class NpCommand extends Command {
+    @isMusicPlaying()
     public async exec(msg: Message): Promise<Message> {
         const { music } = msg.guild!;
-        if (!music.song) return msg.ctx.send("💤 **| Not Playing anything right now**");
-        const { song } = music;
+        const song = music.song!;
         const percent = music.playTime / song.length * 12;
         const progbar = new Array(12).fill("▬");
         progbar[Math.round(percent)] = "🔘";

@@ -3,7 +3,7 @@ import CustomError from "@yumeko/classes/CustomError";
 import SelectionPage from "@yumeko/util/SelectionPage";
 import { Message, MessageEmbed, TextChannel } from "discord.js";
 import type { Track } from "lavalink";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, isMemberInVoiceChannel, isSameVoiceChannel, isMemberVoiceChannelJoinable } from "@yumeko/decorators";
 
 const emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
 
@@ -48,17 +48,12 @@ const emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
     ]
 })
 export default class PlayCommand extends Command {
+    @isMemberInVoiceChannel()
+    @isMemberVoiceChannelJoinable()
+    @isSameVoiceChannel()
     public async exec(msg: Message, { track, isSearch, dontBind }: { track: string | Track; isSearch: boolean; dontBind: boolean }): Promise<Message|void> {
         const vc = msg.member!.voice.channel;
         const { music } = msg.guild!;
-        let problem = false;
-        if (!vc) problem = await msg.ctx.send("❌ **| Please Join Voice channel first**").then(() => true);
-        else if (music.voiceChannel && music.voiceChannel.id !== vc.id)
-            problem = await msg.ctx.send("❌ **| You must use same voice channel with me**").then(() => true);
-        else if (!vc.permissionsFor(msg.guild!.me!)!.has(["CONNECT", "SPEAK"]))
-            problem = await msg.ctx.send("❌ **| I Don't have permissions \`CONNECT\` or \`SPEAK\`**").then(() => true);
-        else if (!music.voiceChannel && !vc.joinable) problem = await msg.ctx.send("❌ **| Voice channel isn't joinable**").then(() => true);
-        if (problem) throw new CustomError("CANCELED");
         if (typeof track === "string") {
             const response = await music.fetch(track);
             if (!response.tracks.length) return msg.ctx.send("🚫 No result found");
