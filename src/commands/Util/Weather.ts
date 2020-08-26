@@ -30,7 +30,7 @@ interface WeatherResponseCurrent {
         usage: "weather <location>",
         examples: ["weather japan"]
     },
-    category: "util",
+    category: "utility",
     args: [
         {
             identifier: "location",
