@@ -30,7 +30,7 @@ COPY --from=build-stage /tmp/build/node_modules ./node_modules
 COPY --from=build-stage /tmp/build/package.json ./
 
 # Install dependencies
-RUN apk add --no-cache pixman cairo pango giflib libjpeg-turbo \
+RUN apk add --no-cache pixman cairo pango giflib libjpeg-turbo freetype \
 # node-canvas default font
 ttf-opensans ttf-dejavu ttf-droid ttf-freefont ttf-liberation ttf-ubuntu-font-family fontconfig
 
