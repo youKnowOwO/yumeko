@@ -16,7 +16,7 @@ import { DeclareCommand, inhibit } from "@yumeko/decorators";
         {
             identifier: "link",
             match: "single",
-            prompt: "Which radio culture do you want to selet, `jpop` or `kpop` ?",
+            prompt: "Which radio culture do you want to select, `jpop` or `kpop` ?",
             type: (_, content): string => {
                 content = content.toLowerCase();
                 if (!["jpop", "kpop"].includes(content))
