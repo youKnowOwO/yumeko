@@ -1,6 +1,6 @@
 import Command from "@yumeko/classes/Command";
 import { Message } from "discord.js";
-import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel, inhibit } from "@yumeko/decorators";
+import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel, inhibit, isInStream } from "@yumeko/decorators";
 
 @DeclareCommand("skip", {
     aliases: ["skip"],
@@ -19,6 +19,7 @@ import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChan
     ]
 })
 export default class SkipCommand extends Command {
+    @isInStream()
     @isMusicPlaying()
     @isMemberInVoiceChannel()
     @isSameVoiceChannel()

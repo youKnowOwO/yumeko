@@ -1,6 +1,6 @@
 import Command from "@yumeko/classes/Command";
 import { Message } from "discord.js";
-import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel } from "@yumeko/decorators";
+import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel, isInStream } from "@yumeko/decorators";
 import { shuffle } from "@yumeko/util/Util";
 
 @DeclareCommand("shuffle", {
@@ -16,6 +16,7 @@ import { shuffle } from "@yumeko/util/Util";
     }
 })
 export default class ShuffleCommand extends Command {
+    @isInStream()
     @isMusicPlaying()
     @isMemberInVoiceChannel()
     @isSameVoiceChannel()

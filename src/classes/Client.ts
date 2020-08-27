@@ -4,6 +4,7 @@ import CommandCollector from "@yumeko/libs/CommandCollector";
 import Context from "@yumeko/libs/MessageContext";
 import Logger from "@yumeko/libs/Logger";
 import eventLoader from "@yumeko/libs/EventLoader";
+import nowPlayMoe from "@yumeko/libs/NowplayMoeWS";
 import { Client } from "discord.js";
 import { Node as Lavalink } from "lavalink";
 
@@ -25,6 +26,7 @@ export default class YumekoClient extends Client {
         },
         ...config.lavalink
     });
+    public nowplayMoe = nowPlayMoe;
     public config = config;
     public constructor() {
         super({

@@ -1,6 +1,7 @@
 import Command from "@yumeko/classes/Command";
 import { MessageEmbed, Message } from "discord.js";
 import { DeclareCommand, isMusicPlaying } from "@yumeko/decorators";
+import { stripIndents } from "common-tags";
 
 @DeclareCommand("np", {
     aliases: ["np", "nowplay"],
@@ -19,6 +20,24 @@ export default class NpCommand extends Command {
     public async exec(msg: Message): Promise<Message> {
         const { music } = msg.guild!;
         const song = music.song!;
+        if (song.identifier.includes("https://listen.moe")) {
+            const isKR = song.identifier.includes("kpop");
+            const { data } = this.client.nowplayMoe[isKR ? "kpop" : "jpop"];
+            if (!data) return msg.ctx.send(`📻 | **${song.title}\nhttps://listen.moe**`);
+            const embed = new MessageEmbed()
+                .setAuthor(data.title, "https://listen.moe/_nuxt/img/logo-square-64.248c1f3.png")
+                .setColor(this.client.config.color)
+                .setImage(data.cover)
+                .setDescription(stripIndents`
+                    Artist(s): **${data.artists}**
+                    Album(s): **${data.albums || "None"}**
+                    Listener(s): **${data.listeners}**
+                    Source: **${data.source || "None"}**
+                    Requester: **${data.requester || "None"}** ${data.event ? `\`${data.event.name}\`` : ""}
+                `);
+            if (data.event) embed.setThumbnail(data.event.image);
+            return msg.ctx.send(embed);
+        }
         const percent = music.playTime / song.length * 12;
         const progbar = new Array(12).fill("▬");
         progbar[Math.round(percent)] = "🔘";

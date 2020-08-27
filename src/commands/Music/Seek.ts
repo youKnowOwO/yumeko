@@ -1,7 +1,7 @@
 import Command from "@yumeko/classes/Command";
 import type { Message } from "discord.js";
 import { readableTime } from "@yumeko/util/Util";
-import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel, inhibit } from "@yumeko/decorators";
+import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel, inhibit, isInStream } from "@yumeko/decorators";
 
 @DeclareCommand("seek", {
     aliases: ["seek", "jumpto"],
@@ -24,10 +24,12 @@ import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChan
     ]
 })
 export default class SeekCommand extends Command {
+    @isInStream()
     @isMusicPlaying()
     @isMemberInVoiceChannel()
     @isSameVoiceChannel()
     @inhibit((msg, { time }: { time: number}) => {
+        if (!msg.guild!.music.song!.isSeekable) return "❌ **| This song isn't seekable**";
         if (msg.guild!.music.song!.length < time || time < 0)
             return "❌ **| Time position is too long or short**";
     })

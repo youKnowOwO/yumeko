@@ -22,7 +22,7 @@ export function inhibit<T extends (msg: Message, ...args: any[]) => Promise<stri
                 msg.ctx.send(message);
                 throw new CustomError("CANCELED");
             }
-            method.call(this, msg, ...args);
+            await method.call(this, msg, ...args);
         };
     };
 }
@@ -30,30 +30,37 @@ export function inhibit<T extends (msg: Message, ...args: any[]) => Promise<stri
 // Music
 
 export function isMusicPlaying(): any {
-    return inhibit((msg) => {
+    return inhibit(msg => {
         if (!msg.guild!.music.song) return "💤 **| Not Playing anything right now**";
     });
 }
 
 export function isSameVoiceChannel(): any {
-    return inhibit((msg) => {
+    return inhibit(msg => {
         if (msg.guild!.me!.voice.channelID && msg.guild!.me!.voice.channelID !== msg.member!.voice.channelID)
             return "❌ **| You must use same voice channel with me**";
     });
 }
 
 export function isMemberInVoiceChannel(): any {
-    return inhibit((msg) => {
+    return inhibit(msg => {
         if (!msg.member!.voice.channelID) return "❌ **| Please Join Voice channel first**";
     });
 }
 
 export function isMemberVoiceChannelJoinable(ignoreWhenSame = true): any {
-    return inhibit((msg) => {
+    return inhibit(msg => {
         const vc = msg.member!.voice.channel!;
         if (ignoreWhenSame && msg.guild!.me!.voice.channelID && msg.guild!.me!.voice.channelID === msg.member!.voice.channelID) return undefined;
         if (!vc.permissionsFor(msg.guild!.me!)!.has(["CONNECT", "SPEAK"]))
             return "❌ **| I Don't have permissions \`CONNECT\` or \`SPEAK\`**";
         else if (!vc.joinable) return "❌ **| Voice channel isn't joinable**";
+    });
+}
+
+export function isInStream(): any {
+    return inhibit(msg => {
+        if (msg.guild!.music.song && msg.guild!.music.song.isStream)
+            return "❌ **| You can't do this! because Music Player currently in stream mode.**";
     });
 }

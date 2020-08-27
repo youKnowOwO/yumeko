@@ -2,7 +2,7 @@ import Command from "@yumeko/classes/Command";
 import { MessageEmbed, Message } from "discord.js";
 import { chunk } from "@yumeko/util/Util";
 import Pagination from "@yumeko/util/Pagination";
-import { DeclareCommand, isMusicPlaying } from "@yumeko/decorators";
+import { DeclareCommand, isMusicPlaying, isInStream } from "@yumeko/decorators";
 
 @DeclareCommand("queue", {
     aliases: ["queue", "nowplay"],
@@ -18,6 +18,7 @@ import { DeclareCommand, isMusicPlaying } from "@yumeko/decorators";
     category: "music",
 })
 export default class QueueCommand extends Command {
+    @isInStream()
     @isMusicPlaying()
     public async exec(msg: Message): Promise<Message|void> {
         const { music } = msg.guild!;

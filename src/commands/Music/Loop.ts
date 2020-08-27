@@ -1,6 +1,6 @@
 import Command from "@yumeko/classes/Command";
 import { Message } from "discord.js";
-import { DeclareCommand, isMusicPlaying, isSameVoiceChannel, isMemberInVoiceChannel } from "@yumeko/decorators";
+import { DeclareCommand, isMusicPlaying, isSameVoiceChannel, isMemberInVoiceChannel, isInStream } from "@yumeko/decorators";
 
 @DeclareCommand("loop", {
     aliases: ["loop"],
@@ -15,6 +15,7 @@ import { DeclareCommand, isMusicPlaying, isSameVoiceChannel, isMemberInVoiceChan
     }
 })
 export default class LoopCommand extends Command {
+    @isInStream()
     @isMusicPlaying()
     @isMemberInVoiceChannel()
     @isSameVoiceChannel()

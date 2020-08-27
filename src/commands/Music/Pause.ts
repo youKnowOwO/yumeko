@@ -1,6 +1,6 @@
 import Command from "@yumeko/classes/Command";
 import { Message } from "discord.js";
-import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel } from "@yumeko/decorators";
+import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel, isInStream } from "@yumeko/decorators";
 
 @DeclareCommand("pause", {
     aliases: ["pause"],
@@ -15,6 +15,7 @@ import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChan
     }
 })
 export default class PauseCommand extends Command {
+    @isInStream()
     @isMusicPlaying()
     @isMemberInVoiceChannel()
     @isSameVoiceChannel()

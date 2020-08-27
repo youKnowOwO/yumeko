@@ -40,3 +40,17 @@ export interface EqualizerBand {
     band: number;
     gain: number;
 }
+
+export interface DataNowplayMoe {
+    title: string;
+    artists?: string;
+    requester?: string;
+    source?: string;
+    albums?: string;
+    cover: string;
+    event?: {
+        name: string;
+        image: string;
+    };
+    listeners: number;
+}
