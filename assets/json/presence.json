@@ -18,5 +18,15 @@
         "name": "My devs sleep💤",
         "type": "WATCHING",
         "status": "dnd"
+    },
+    {
+        "name": "Shard shard:id / shard:count 💎",
+        "type": "LISTENING",
+        "status": "dnd"
+    },
+    {
+        "name": "listenmoe",
+        "type": "STREAMING",
+        "status": "online"
     }
 ]

@@ -22,7 +22,9 @@ function presence(client: YumekoClient): void {
     client.user!.setPresence({
         status, activity: {
             name: name.replace(/\user/g, client.user!.username)
-                .replace(/prefix/g, client.config.prefix),
+                .replace(/prefix/g, client.config.prefix)
+                .replace(/listenmoe/g, client.nowplayMoe.jpop.data ? client.nowplayMoe.jpop.data.title : "LISTEN.moe")
+                .replace(/shard:(id|count)/g, (_: string, type: string) => client.shard ? (type === "id" ? client.shard.ids.map(x => x + 1).join(", ") : client.shard.count) : 1),
             type
         }
     });
