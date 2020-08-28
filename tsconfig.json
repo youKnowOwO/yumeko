@@ -1,16 +1,6 @@
 {
+  "extends": "@youKnowOwO/eslint-config/tsconfig",
   "compilerOptions": {
-      "experimentalDecorators": true,
-      "target": "ES2020",
-      "module": "commonjs",
-      "allowJs": true,
-      "strict": true,
-      "skipLibCheck": true,
-      "noImplicitAny": true,
-      "alwaysStrict": true,
-      "allowSyntheticDefaultImports": true,
-      "esModuleInterop": true,
-      "resolveJsonModule": true,
       "typeRoots": [
           "node_modules/@types",
           "src/interfaces"

@@ -26,6 +26,7 @@
     "@types/ws": "^7.2.6",
     "@typescript-eslint/eslint-plugin": "^3.10.0",
     "@typescript-eslint/parser": "^3.10.0",
+    "@youKnowOwO/eslint-config": "github:youKnowOwO/eslint-config#build",
     "rimraf": "^3.0.2",
     "typescript": "^4.0.2"
   },
