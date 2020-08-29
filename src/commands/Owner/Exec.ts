@@ -1,5 +1,5 @@
 import Command from "@yumeko/classes/Command";
-import Stopwatch from "@yumeko/util/Stopwarch";
+import Stopwatch from "@yumeko/util/Stopwatch";
 import child_process from "child_process";
 import type { Message } from "discord.js";
 import { DeclareCommand } from "@yumeko/decorators";
