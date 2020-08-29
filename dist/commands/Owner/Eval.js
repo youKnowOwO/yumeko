@@ -10,7 +10,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
-const Stopwarch_1 = __importDefault(require("@yumeko/util/Stopwarch"));
+const Stopwatch_1 = __importDefault(require("@yumeko/util/Stopwatch"));
 const decorators_1 = require("@yumeko/decorators");
 const util_1 = require("util");
 const Util_1 = require("@yumeko/util/Util");
@@ -31,7 +31,7 @@ let EvalCommand = class EvalCommand extends Command_1.default {
         return msg.ctx.send(toSend);
     }
     async eval(msg, code, depth, isAsync, isCanvas, showStack) {
-        const stopwatch = new Stopwarch_1.default();
+        const stopwatch = new Stopwatch_1.default();
         let isPromise = false;
         let succes = false;
         let syncTime;
