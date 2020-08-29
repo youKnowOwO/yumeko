@@ -36,7 +36,7 @@ jobs:
         mv package.json out/package.json
         mv yarn.lock out/yarn.lock
         mv docker-compose.yml out/docker-compose.yml
-        mv asstes out/assets
+        mv assets out/assets
         cd out
         git add --all
         git config user.name "${GITHUB_ACTOR}"
