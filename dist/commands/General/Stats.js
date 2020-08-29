@@ -20,7 +20,7 @@ let StatsCommand = class StatsCommand extends Command_1.default {
     async exec(msg) {
         const [usersSize, channelsSize, serversSize] = this.client.shard ?
             this.parseSizeEvaluate(await this.client.shard.broadcastEval(`[
-                this.users.cache.map(x => x.string),
+                this.users.cache.map(x => x.id),
                 this.channels.cache.size,
                 this.guilds.cache.size
             ]`)) : [this.client.users.cache.size, this.client.channels.cache.size, this.client.guilds.cache.size];
