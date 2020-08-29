@@ -62,6 +62,7 @@ InstagramCommand = __decorate([
             client: ["EMBED_LINKS", "ADD_REACTIONS"]
         },
         category: "utility",
+        nsfw: true,
         args: [
             {
                 identifier: "username",
