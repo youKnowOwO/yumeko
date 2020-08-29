@@ -30,6 +30,7 @@ jobs:
         git clone $REPO out -b build
         yarn build
         rm -rf out/dist
+        rm -rf out/assets
         rsync -au dist out
         mv LICENSE out/LICENSE
         mv README.md out/README.md
