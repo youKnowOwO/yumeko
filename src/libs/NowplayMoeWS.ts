@@ -62,5 +62,5 @@ export class NowplayMoeWS {
 
 export default {
     jpop: new NowplayMoeWS("wss://listen.moe/gateway_v2").connect(),
-    kpop: new NowplayMoeWS("wss//listen.moe/kpop/gateway_v2").connect()
+    kpop: new NowplayMoeWS("wss://listen.moe/kpop/gateway_v2").connect()
 };
