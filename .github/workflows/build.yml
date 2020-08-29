@@ -1,0 +1,47 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  TSC:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Restore CI Cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name: Install Dependencies
+      run: yarn --ignore-scripts --frozen-lockfile
+    - name: Build and Push
+      run: |
+        REPO="https://youKnowOwO:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+        git clone $REPO out -b build
+        yarn build
+        rm -rf out/dist
+        rsync -au dist out
+        mv LICENSE out/LICENSE
+        mv README.md out/README.md
+        mv package.json out/package.json
+        mv yarn.lock out/yarn.lock
+        mv docker-compose.yml out/docker-compose.yml
+        mv asstes out/assets
+        cd out
+        git add --all
+        git config user.name "${GITHUB_ACTOR}"
+        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git commit -m "code: Build from ${GITHUB_SHA}" || true
+        git push origin build
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
