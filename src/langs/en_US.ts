@@ -1,6 +1,7 @@
 import type { User, GuildMember } from "discord.js";
 import { stripIndents } from "common-tags";
 import { RandomAnimeResponse } from "@yumeko/interfaces";
+import YumekoClient from "@yumeko/classes/Client";
 
 export default {
     // META
@@ -79,4 +80,33 @@ export default {
 
     COMMAND_SHIP_DESCRIPTION: (): string => "ship two user ❤️",
     COMAMND_SHIP_PROMPT: (): string =>  "Which user do you want to ship it?",
+
+    // GENERAL
+    COMMAND_ABOUT_DESCRIPTION: (): string => "About me.",
+    COMMAND_ABOUT_ABOUTME: (user: User, client: YumekoClient, commands: YumekoClient["collector"]["commands"]): string => stripIndents`
+        👋 | Hi there, ${user}! I’m **${client.user!.tag}** and I’m beyond happy and  glad to meet you! 
+        I’m just an ordinary bot whose job is to make your Discord Server more fun and exciting
+        for members to chat on. I do what other bots do as well, like: sending random images of animals, 
+        generating games for this server’s members, and most importantly, I play and queue song requests. 
+        To conclude, I carry \`${commands.filter(x => user.isDev || !x.option.devOnly).size}\` commands in total. To test me out, 
+        why not start by generating my help panel? **${client.config.prefix}help**.
+    `,
+
+    COMMAND_HELP_DESCRIPTION: (): string => "The first command you'll typing",
+    COMMAND_HELP_PARSE_DESC: (usage: string, aliases: string[], cooldown: number): string => stripIndents`
+        **Usage:** \`${usage}\`
+        **Aliases:** ${aliases.map(x => `\`${x}\``)}
+        **Cooldown:** \`${cooldown} seconds\`
+    `,
+    COMMAND_HELP_PARSE_EXAMPLES: (): string => "Examples",
+    COMMAND_HELP_INFO_ARGS: (): string => "ℹ️ Don't include <> or []. <> means required, and [] means optional.",
+    COMMAND_HELP_INFO_EXPLAIN: (prefix: string): string => `ℹ️ To learn more about a specific command, do ${prefix}help <command name>`,
+
+    COMMAND_INVITE_DESCRIPTION: (): string => "Invite the bot to your server",
+    COMMAND_INVITE_CLICK_HRER: (inviteUrl: string): string => `[Click here](${inviteUrl}) to invite me to your server!`,
+
+    COMMAND_SAY_DESCRIPTION: (): string => "Let me repeat what you want",
+    COMMAND_SAY_PROMPT: (): string => "What text do you want me to repeaat ?",
+
+    COMMAND_STATS_DESCRIPTION: (): string => "Show my current statistic"
 };

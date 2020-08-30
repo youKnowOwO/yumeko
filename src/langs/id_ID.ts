@@ -81,4 +81,32 @@ export default {
 
     COMMAND_SHIP_DESCRIPTION: () => "Jodohkan antara 2 user ❤️",
     COMAMND_SHIP_PROMPT: () =>  "Siapa user yang ingin kamu jodohkan?",
+
+    // GENERAL
+    COMMAND_ABOUT_DESCRIPTION: () => "Tentang aku.",
+    COMMAND_ABOUT_ABOUTME: (user, client, commands) => stripIndents`
+        👋 | Hai, ${user}! Aku **${client.user!.tag}** dan aku senang bertemu dengan mu! 
+        Aku hanyalah bot biasa yang dapat memberi kecerian dan kesanangan pada server mu.
+        Aku dapat melakukan yang bot lain lakukan, misalnya: musik, mengirim gamber, dan lain lain.
+        Aku membawa \`${commands.filter(x => user.isDev || !x.option.devOnly).size}\` command untuk kau mainkan.
+        Untuk mengechecknya ayo mulai dengan mengetik **${client.config.prefix}help**.
+    `,
+
+    COMMAND_HELP_DESCRIPTION: () => "Command pertama yang mungkin kamu ketik",
+    COMMAND_HELP_PARSE_DESC: (usage, aliases, cooldown) => stripIndents`
+        **Cara Menggunakan:** \`${usage}\`
+        **Alias:** ${aliases.map(x => `\`${x}\``)}
+        **Cooldown:** \`${cooldown} detik\`
+    `,
+    COMMAND_HELP_PARSE_EXAMPLES: () => "Contoh",
+    COMMAND_HELP_INFO_ARGS: () => "ℹ️ Jangan masukan <> atau []. <> berarti dibutuhkan, dan [] berarti boleh dimasukan ataupun tidak.",
+    COMMAND_HELP_INFO_EXPLAIN: prefix  => `ℹ️ Untuk mengetahui lebih lanjut tentang sebuah command, ketik ${prefix}help <command name>`,
+
+    COMMAND_INVITE_DESCRIPTION: () => "Invite bot ke server mu",
+    COMMAND_INVITE_CLICK_HRER: inviteUrl => `[Klik disini](${inviteUrl}) untuk menginvite ku ke server mu!`,
+
+    COMMAND_SAY_DESCRIPTION: () => "Mengucapkan kembali apa yang kamu ketik",
+    COMMAND_SAY_PROMPT: () => "Ucapan seperti apa yang ingin aku ucapkan kembali?",
+
+    COMMAND_STATS_DESCRIPTION: () => "Memperlihatkan statistik ku"
 } as typeof en_US;
