@@ -45,4 +45,8 @@ export default {
     TYPE_TIMESPAN_NOT_FOUND: () => "**Tidak bisa menentukan posisi**",
 
     TYPE_URL_NOT_FOUND: () => "**URL tidak valid!**",
+
+    // COMMAND
+    // ANIMAL
+    COMMAND_ANIMAL_CLICK_HERE: (): string => "Klik disini jika gambar tidak muncul"
 } as typeof en_US;

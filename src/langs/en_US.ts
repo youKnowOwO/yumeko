@@ -1,7 +1,6 @@
 import type { User } from "discord.js";
 import { stripIndents } from "common-tags";
 
-
 export default {
     // META
     META_NAME: (): string => "English (US)",
@@ -43,4 +42,8 @@ export default {
     TYPE_TIMESPAN_NOT_FOUND: (): string => "**Cannot determine that time position.**",
 
     TYPE_URL_NOT_FOUND: (): string => "**Invalid URL**",
+
+    // COMMAND
+    // ANIMAL
+    COMMAND_ANIMAL_CLICK_HERE: (): string => "Click here if image failed to load"
 };

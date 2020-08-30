@@ -25,7 +25,7 @@ export default class BunnyCommand extends Command {
         const embed = new MessageEmbed()
             .setColor(this.client.config.color)
             .setURL(image)
-            .setTitle("Click here if image failed to load")
+            .setTitle(msg.guild!.loc.get("COMMAND_ANIMAL_CLICK_HERE"))
             .setImage(image);
         return msg.ctx.send(embed);
     }
