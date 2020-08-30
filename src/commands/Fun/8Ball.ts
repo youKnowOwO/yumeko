@@ -9,7 +9,7 @@ export default class EightBallCommand extends Command {
         super(client, "8ball", {
             aliases: ["8ball"],
             description: {
-                content: "Ask to the magic 8ball",
+                content: (msg): string => msg.guild!.loc.get("COMMAND_8BALL_DESCRIPTION"),
                 usage: "8ball <question>",
                 examples: ["8ball are you right ?"]
             },
@@ -18,7 +18,7 @@ export default class EightBallCommand extends Command {
                 {
                     identifier: "text",
                     match: "rest",
-                    prompt: "What question do you want to ask  ?",
+                    prompt: (msg): string => msg.guild!.loc.get("COMMAND_8BALL_PROMPT"),
                     type: "string"
                 }
             ]

@@ -2,33 +2,12 @@ import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import { Message, MessageEmbed } from "discord.js";
 import { DeclareCommand } from "@yumeko/decorators";
-import { stripIndents } from "common-tags";
-
-interface RandomAnimeResponse {
-    name: string;
-    alternate_name: string;
-    image: string;
-    description: string;
-    genres: string[];
-    avg_score: string;
-    episodes: string;
-    eps_duration: string;
-    release_date: string;
-    season: string;
-    rating: string;
-    source: string;
-    watch: {[key: string]: PlatformWatch[]};
-}
-
-interface PlatformWatch {
-    platform: string;
-    url: string;
-}
+import { RandomAnimeResponse } from "@yumeko/interfaces";
 
 @DeclareCommand("random-anime", {
     aliases: ["random-anime"],
     description: {
-        content: "Completely show you random anime",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_RANDOM_ANIME_DESCRIPTION"),
         usage: "random-anime",
         examples: ["rabdom-anime"]
     },
@@ -44,16 +23,7 @@ export default class extends Command {
             .setColor(this.client.config.color)
             .setDescription(`> ${body.description}`)
             .setImage(body.image)
-            .addField("\u200B", stripIndents`
-                Score: **${body.avg_score}**
-                Episodes: **${body.episodes}**
-                Duration: **${body.eps_duration}**
-                Release: **${body.release_date}**
-                Season: **${body.season}**
-                Rating: **${body.rating}**
-                Source: **${body.source}**
-                Genres: ${body.genres.map(x => `\`${x}\``).join(", ")}
-            `);
+            .addField("\u200B", msg.guild!.loc.get("COMAMND_RANDOM_ANIME_PARSE_RESPONSE", body));
         if (body.alternate_name.length) embed.setTitle(body.alternate_name).setAuthor(body.name);
         const watchs: string[] = [];
         for (const key of Object.keys(body.watch)) {

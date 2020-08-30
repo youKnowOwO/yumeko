@@ -49,5 +49,12 @@ export default {
 
     // COMMAND
     // ANIMAL
-    COMMAND_ANIMAL_CLICK_HERE: () => "Klik disini jika gambar tidak muncul"
+    COMMAND_ANIMAL_CLICK_HERE: () => "Klik disini jika gambar tidak muncul",
+
+    // FUN
+    COMMAND_8BALL_DESCRIPTION: () => "Bertanya kepada Magic 8Ball",
+    COMMAND_8BALL_PROMPT: () => "Apa pertanyaan yang ingin kamu tanyakan ?",
+
+    COMMAND_BANANA_DESCRIPTION: () => "Melihat panjang pisang sebuah user",
+    COMMAND_BANANA_LENGTH: (member, length) => `🍌 **| \`${member.displayName}\` mempunyai panjang pisang \`${length}cm\`**`,
 } as typeof en_US;

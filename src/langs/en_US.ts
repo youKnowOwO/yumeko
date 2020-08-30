@@ -1,5 +1,6 @@
-import type { User } from "discord.js";
+import type { User, GuildMember } from "discord.js";
 import { stripIndents } from "common-tags";
+import { RandomAnimeResponse } from "@yumeko/interfaces";
 
 export default {
     // META
@@ -46,5 +47,32 @@ export default {
 
     // COMMAND
     // ANIMAL
-    COMMAND_ANIMAL_CLICK_HERE: (): string => "Click here if image failed to load"
+    COMMAND_ANIMAL_CLICK_HERE: (): string => "Click here if image failed to load",
+
+    // FUN
+    COMMAND_FUN_PAINTING: (): string => "🖌️ **| Painting...**",
+
+    COMMAND_8BALL_DESCRIPTION: (): string => "Ask to the magic 8ball",
+    COMMAND_8BALL_PROMPT: (): string => "What question do you want to ask  ?",
+
+    COMMAND_BANANA_DESCRIPTION: (): string => "See user banana length",
+    COMMAND_BANANA_LENGTH: (member: GuildMember, length: number): string => `🍌 **| \`${member.displayName}\` banana length is \`${length}cm\`**`,
+
+    COMMAND_CHUCKNORRIS_DESCRIPTION: (): string => "Get random Chuck Norris joke",
+
+    COMMAND_DADJOKE_DESCRIPTION: (): string => "Get random dad joke",
+
+    COMMAND_FORTUNE_COOKIE_DESCRIPTION: (): string => "crack your cookie and get the fortune.",
+
+    COMMAND_RANDOM_ANIME_DESCRIPTION: (): string => "Completely show you random anime",
+    COMAMND_RANDOM_ANIME_PARSE_RESPONSE: (body: RandomAnimeResponse): string => stripIndents`
+        Score: **${body.avg_score}**
+        Episodes: **${body.episodes}**
+        Duration: **${body.eps_duration}**
+        Release: **${body.release_date}**
+        Season: **${body.season}**
+        Rating: **${body.rating}**
+        Source: **${body.source}**
+        Genres: ${body.genres.map(x => `\`${x}\``).join(", ")}
+    `
 };

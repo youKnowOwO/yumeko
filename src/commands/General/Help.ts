@@ -34,7 +34,7 @@ export default class HelpCommand extends Command {
                 .setThumbnail("https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/twitter/31/black-question-mark-ornament_2753.png")
                 .setDescription(stripIndents`
                     __**${category} -> ${firstUpperCase(command.identifier)}**__ ${option.disable ? "**[DISABLE]**" : ""}
-                    ${codeBlock("", option.description.content)}
+                    ${codeBlock("", typeof option.description.content === "string" ? option.description.content : option.description.content(msg))}
                     **Usage:** \`${msg.prefix}${option.description.usage}\`
                     **Aliases:** ${option.aliases.length > 1 ? option.aliases.slice(1).map(x => `\`${x}\``).join(", ") : "`No Aliases`"}
                     **Cooldown:** \`${option.cooldown ? option.cooldown : 5} seconds\`
