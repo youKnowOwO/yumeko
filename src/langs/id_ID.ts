@@ -1,9 +1,14 @@
 import en_US from "@yumeko/langs/en_US";
 
 export default {
+    // Adding default value
     ...en_US,
+
+    // META
     META_NAME: () => "Indonesia",
     META_ID: () => "id_ID",
+
+    // COMMAND RUNNER
     COMMAND_RUNNER_ONLY_NSFW: () => "❌ **| Command ini hanya akan work dalam channel NSFW**",
     COMMAND_RUNNER_ONLY_ONE: user => `**❌ | ${user}, kamu tidak bisa menggunakan command lebih dari 1**`,
     COMMAND_RUNNER_IN_COOLDOWN: (user, amount) => `**⏱️ | ${user}, sabar!.** kamu bisa menggunakan command lagi dalam \`${Math.round(amount)}\` detik`,
