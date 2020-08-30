@@ -5,9 +5,9 @@ import { parseTime } from "@yumeko/util/Util";
 
 export default class TypeTimespan implements Type {
     readonly name = "timespan";
-    public exec(_: Message, content: string): number {
+    public exec(msg: Message, content: string): number {
         const parsed = parseTime(content);
-        if (isNaN(parsed)) throw new CustomError("!PARSING", "**Cannot determine that time position.**");
+        if (isNaN(parsed)) throw new CustomError("!PARSING", msg.guild!.loc.get("TYPE_TIMESPAN_NOT_FOUND"));
         return parsed;
     }
 }

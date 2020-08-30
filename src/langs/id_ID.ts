@@ -23,6 +23,26 @@ export default {
         **▫️ | ** *Ketik \`cancel\` untuk membatalkan.*
         **▫️ | ** *Atau jika kamu ingin menulis cancel gunakan \`|cancel|\`*
     `,
-    ARGUMENT_PARSER_CANCELED: (): string => "👌 **| Dibatalkan**",
-    ARGUMENT_PARSER_NOT_UNDERSTAND: (user) => `**🤷 | ${user}, sepertinya kamu tidak terlalu tahu menjalankan command ini.**`
+    ARGUMENT_PARSER_CANCELED: () => "👌 **| Dibatalkan**",
+    ARGUMENT_PARSER_NOT_UNDERSTAND: user => `**🤷 | ${user}, sepertinya kamu tidak terlalu tahu menjalankan command ini.**`,
+
+    // TYPE
+    TYPE_CODE_NOT_FOUND: () => "**Tolong masukan codeblock. seperti:** ```ini```",
+
+    TYPE_COMMAND_HAS_SIMILIAR: (content, similiar) => `**\`${content}\` tidak ada.** ${similiar.length ? `Apakah salah satu dari ini ? ${similiar}` : ""}`,
+
+    TYPE_IMAGE_SIZE_EXCEDED: () => "**Maksimum ukuran file adalah `8MB`**",
+    TYPE_IMAGE_UNSUPPORTED_EXT: () => "**File type tidak didukung. Contoh type yang didikung: `PNG`, `JPG`, `BMP`, `GIF`**`",
+
+    TYPE_MEMBER_NOT_FOUND: () => "Member tidak ditemukan. Masukan kata kunci yang benar!",
+    TYPE_MEMBER_HAS_SIMILIAR: memberlist => `Tolong lebih spesifik dalam memberikan kata kunci. seperti: ${memberlist}`,
+
+    TYPE_HUMAN_BOT: () => "**Bot tidak diizinkan!**",
+    TYPE_HUMAN_SELF: () => "**Kamu tidak bisa memilih dirimu sendiri**",
+
+    TYPE_NUMBER_NOT_FOUND: content => `**\`${content}\` bukanlah sebuah nomor**`,
+
+    TYPE_TIMESPAN_NOT_FOUND: () => "**Tidak bisa menentukan posisi**",
+
+    TYPE_URL_NOT_FOUND: () => "**URL tidak valid!**",
 } as typeof en_US;

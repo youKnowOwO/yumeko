@@ -22,5 +22,25 @@ export default {
         **▫️ | ** *Or if you want to type cancel use \`|cancel|\` instead*
     `,
     ARGUMENT_PARSER_CANCELED: (): string => "👌 **| Canceled**",
-    ARGUMENT_PARSER_NOT_UNDERSTAND: (user: User): string => `**🤷 | ${user}, Look like you don't know how to run this command.**`
+    ARGUMENT_PARSER_NOT_UNDERSTAND: (user: User): string => `**🤷 | ${user}, Look like you don't know how to run this command.**`,
+
+    // TYPE
+    TYPE_CODE_NOT_FOUND: (): string => "**Please contain a codeblock. like:** ```this```",
+
+    TYPE_COMMAND_HAS_SIMILIAR: (content: string, similiar: string): string => `**\`${content}\` isn't exist.** ${similiar.length ? `Did you mean one of thess ? ${similiar}` : ""}`,
+
+    TYPE_IMAGE_SIZE_EXCEDED: (): string => "**Maximum file size is `8MB`**",
+    TYPE_IMAGE_UNSUPPORTED_EXT: (): string => "**Unsupported file type. supported: `PNG`, `JPG`, `BMP`, `GIF`**`",
+
+    TYPE_MEMBER_NOT_FOUND: (): string => "Cannot found member. Please insert right type!",
+    TYPE_MEMBER_HAS_SIMILIAR: (memberlist: string): string => `Please more specify spelling member name. like: ${memberlist}`,
+
+    TYPE_HUMAN_BOT: (): string => "**Bot not allowed!**",
+    TYPE_HUMAN_SELF: (): string => "**You can't choose yourselft**",
+
+    TYPE_NUMBER_NOT_FOUND: (content: string): string => `**\`${content}\` isn't even a number**`,
+
+    TYPE_TIMESPAN_NOT_FOUND: (): string => "**Cannot determine that time position.**",
+
+    TYPE_URL_NOT_FOUND: (): string => "**Invalid URL**",
 };
