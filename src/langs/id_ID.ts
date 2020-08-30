@@ -8,6 +8,7 @@ export default {
     // META
     META_NAME: () => "Indonesia",
     META_ID: () => "id_ID",
+    META_EMOJI: () => "🇮🇩",
 
     // COMMAND RUNNER
     COMMAND_RUNNER_ONLY_NSFW: () => "❌ **| Command ini hanya akan work dalam channel NSFW**",
@@ -48,5 +49,5 @@ export default {
 
     // COMMAND
     // ANIMAL
-    COMMAND_ANIMAL_CLICK_HERE: (): string => "Klik disini jika gambar tidak muncul"
+    COMMAND_ANIMAL_CLICK_HERE: () => "Klik disini jika gambar tidak muncul"
 } as typeof en_US;

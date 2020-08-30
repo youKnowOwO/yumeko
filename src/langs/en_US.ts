@@ -5,6 +5,7 @@ export default {
     // META
     META_NAME: (): string => "English (US)",
     META_ID: (): string => "en_US",
+    META_EMOJI: (): string => "🇺🇲",
 
     // COMMAND RUNNER
     COMMAND_RUNNER_ONLY_NSFW: (): string => "❌ **| This command only work on nsfw channel**",
