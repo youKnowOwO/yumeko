@@ -52,9 +52,33 @@ export default {
     COMMAND_ANIMAL_CLICK_HERE: () => "Klik disini jika gambar tidak muncul",
 
     // FUN
+    COMMAND_FUN_PAINTING: (): string => "🖌️ **| Menggambar...**",
+
     COMMAND_8BALL_DESCRIPTION: () => "Bertanya kepada Magic 8Ball",
     COMMAND_8BALL_PROMPT: () => "Apa pertanyaan yang ingin kamu tanyakan ?",
 
     COMMAND_BANANA_DESCRIPTION: () => "Melihat panjang pisang sebuah user",
     COMMAND_BANANA_LENGTH: (member, length) => `🍌 **| \`${member.displayName}\` mempunyai panjang pisang \`${length}cm\`**`,
+
+    COMMAND_CHUCKNORRIS_DESCRIPTION: () => "Candaan Chuck Norris secara acak.",
+
+    COMMAND_DADJOKE_DESCRIPTION: () => "Dad joke secara acak",
+
+    COMMAND_FORTUNE_COOKIE_DESCRIPTION: () => "Buka kue mu dan lihat keberuntungannya.",
+
+    COMMAND_RANDOM_ANIME_DESCRIPTION: () => "Mendapat informasi anime secara acak",
+    COMAMND_RANDOM_ANIME_PARSE_RESPONSE: body => stripIndents`
+        Skor: **${body.avg_score}**
+        Episode: **${body.episodes}**
+        Durasi: **${body.eps_duration}**
+        Rilis: **${body.release_date}**
+        Season: **${body.season}**
+        Rating: **${body.rating}**
+        Sumber: **${body.source}**
+        Genre: ${body.genres.map(x => `\`${x}\``).join(", ")}
+    `,
+    COMMAND_RANDOM_ANIME_PARSE_WATCH: () => "Tonton",
+
+    COMMAND_SHIP_DESCRIPTION: () => "Jodohkan antara 2 user ❤️",
+    COMAMND_SHIP_PROMPT: () =>  "Siapa user yang ingin kamu jodohkan?",
 } as typeof en_US;

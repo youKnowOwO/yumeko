@@ -30,7 +30,7 @@ export default class extends Command {
             const platforms = body.watch[key].map(x => `[${x.platform}](${x.url})`).join(", ");
             watchs.push(`${key.toUpperCase()}: ${platforms}`);
         }
-        embed.addField("Watch !", watchs.join("\n"));
+        embed.addField(msg.guild!.loc.get("COMMAND_RANDOM_ANIME_PARSE_WATCH"), watchs.join("\n"));
         return msg.ctx.send(embed);
     }
 }

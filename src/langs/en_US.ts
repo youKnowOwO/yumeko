@@ -74,5 +74,9 @@ export default {
         Rating: **${body.rating}**
         Source: **${body.source}**
         Genres: ${body.genres.map(x => `\`${x}\``).join(", ")}
-    `
+    `,
+    COMMAND_RANDOM_ANIME_PARSE_WATCH: (): string => "Watch",
+
+    COMMAND_SHIP_DESCRIPTION: (): string => "ship two user ❤️",
+    COMAMND_SHIP_PROMPT: (): string =>  "Which user do you want to ship it?",
 };
