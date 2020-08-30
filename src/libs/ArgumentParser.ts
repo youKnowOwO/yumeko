@@ -3,7 +3,6 @@ import CustomError from "@yumeko/classes/CustomError";
 import readdirRecursive from "@yumeko/util/ReaddirRecursive";
 import { Message, Collection } from "discord.js";
 import { Argument, Type, ArgumentTypeFunction } from "@yumeko/interfaces";
-import { stripIndents } from "common-tags";
 import { join } from "path";
 
 export default class ArgumentParser {
@@ -69,18 +68,15 @@ export default class ArgumentParser {
     public async prompting(msg: Message, arg: Argument, toSend: string, tries = 0): Promise<unknown> {
         let result: unknown;
         while (!result && tries < 3) {
-            await msg.channel.send(stripIndents`
-                **${ !tries ? "❓" : "❌"} |** ${!tries ? (typeof arg.prompt === "function" ? arg.prompt(msg) : arg.prompt) : toSend}
-                **▫️ |** *You've \`30\` seconds to decide*
-                **▫️ | ** *You can type \`cancel\` to cancel.*
-                **▫️ | ** *Or if you want to type cancel use \`|cancel|\` instead*
-            `);
+            const sign = !tries ? "❓" : "❌";
+            const prompt = !tries ? (typeof arg.prompt === "function" ? arg.prompt(msg) : arg.prompt) : toSend;
+            await msg.channel.send(msg.guild!.loc.get("ARGUMENT_PARSER_PROMPT", sign, prompt!));
             const filter = (m: Message): boolean => m.author.id === msg.author.id;
             const responses = await msg.channel.awaitMessages(filter, { max: 1, time: 30000});
             if (!responses.size) throw new CustomError("CANCELED");
             let m = responses.first()!.content;
             if (m.toLowerCase() === "cancel")  {
-                msg.channel.send("👌 **| Canceled**");
+                msg.channel.send(msg.guild!.loc.get("ARGUMENT_PARSER_CANCELED"));
                 throw new CustomError("CANCELED");
             }
             if (m.toLowerCase() === "|cancel|") m = m.replace(/\|/g, "");
@@ -94,7 +90,7 @@ export default class ArgumentParser {
             tries++;
         }
         if (!result) {
-            msg.channel.send(`**🤷 | ${msg.author}, Look like you don't know how to run this command.**`);
+            msg.channel.send(msg.guild!.loc.get("ARGUMENT_PARSER_NOT_UNDERSTAND", msg.author));
             throw new CustomError("!UNDERSTAND");
         }
         return result;
