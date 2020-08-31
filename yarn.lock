@@ -168,8 +168,8 @@
 
 "@youKnowOwO/eslint-config@github:youKnowOwO/eslint-config#build":
   version "0.0.0"
-  uid "77b1ca1a5525bdb2df8023a6cf6080c20d99c326"
-  resolved "https://codeload.github.com/youKnowOwO/eslint-config/tar.gz/77b1ca1a5525bdb2df8023a6cf6080c20d99c326"
+  uid "44a8f0d01b4d19c5d994b8121c03c5e054abfc42"
+  resolved "https://codeload.github.com/youKnowOwO/eslint-config/tar.gz/44a8f0d01b4d19c5d994b8121c03c5e054abfc42"
 
 abab@^2.0.3:
   version "2.0.3"
