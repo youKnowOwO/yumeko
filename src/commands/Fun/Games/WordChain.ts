@@ -17,7 +17,7 @@ interface Player {
 @DeclareCommand("game-wordchain", {
     aliases: [],
     description: {
-        content: "This game is able to train your vocabulary, by making a word from the last letter of the previous word",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_GAME_WORD_CHAIN_DESCRIPTION"),
         usage: "",
         examples: ["game-wordchain"],
         adionalInfo: ["🔗 Word Chain", "wordchain", "shiritori"]

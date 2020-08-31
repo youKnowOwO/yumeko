@@ -66,7 +66,7 @@ export default {
     COMMAND_FORTUNE_COOKIE_DESCRIPTION: (): string => "crack your cookie and get the fortune.",
 
     COMMAND_RANDOM_ANIME_DESCRIPTION: (): string => "Completely show you random anime",
-    COMAMND_RANDOM_ANIME_PARSE_RESPONSE: (body: RandomAnimeResponse): string => stripIndents`
+    COMMAND_RANDOM_ANIME_PARSE_RESPONSE: (body: RandomAnimeResponse): string => stripIndents`
         Score: **${body.avg_score}**
         Episodes: **${body.episodes}**
         Duration: **${body.eps_duration}**
@@ -79,7 +79,7 @@ export default {
     COMMAND_RANDOM_ANIME_PARSE_WATCH: (): string => "Watch",
 
     COMMAND_SHIP_DESCRIPTION: (): string => "ship two user ❤️",
-    COMAMND_SHIP_PROMPT: (): string =>  "Which user do you want to ship it?",
+    COMMAND_SHIP_PROMPT: (): string =>  "Which user do you want to ship it?",
 
     // GENERAL
     COMMAND_ABOUT_DESCRIPTION: (): string => "About me.",
@@ -91,6 +91,42 @@ export default {
         To conclude, I carry \`${commands.filter(x => user.isDev || !x.option.devOnly).size}\` commands in total. To test me out, 
         why not start by generating my help panel? **${client.config.prefix}help**.
     `,
+
+    COMMAND_GAME_VERIFY_WAIT: (user: User): string => `❓ **| ${user}, Do you want accept this challenge ?**`,
+    COMMAND_GAME_VERIFY_NOT_ACCEPT: (user: User, offerWithClient = false): string => `🍃 **| Look like ${user} doesn't accept your challenge.${offerWithClient ? " Do you want to play it with me anyway ?" : ""}**`,
+    COMMAND_GAME_VERIFY_DECLINE_OFFER: (): string => "✋ **| Ok see you next time**",
+
+    COMMAND_GAME_LIST_PREPARING: (): string => "🖌️ **| Preparing...**",
+    COMMAND_GAME_LIST_TURN: (user: User): string => `${user}, Turn!`,
+    COMMAND_GAME_LIST_CONGRATS: (user: User): string => `🎉 **| Congrats ${user} you won the match!**`,
+    COMMAND_GAME_LIST_DRAW: (): string => "🇴 **| Draw!**",
+    COMMAND_GAME_LIST_TIMEOUT: (): string => "⏱️ **| Timeout**",
+    COMMAND_GAME_LIST_WRONG: (value: unknown): string => `❌ **| Too Bad it was \`${value}\`**`,
+    COMMAND_GAME_LIST_RIGHT: (value: unknown): string => `✅ **| You're right! it was \`${value}\`**`,
+
+    COMMAND_GAME_LIST_DESCRIPTION: (): string => "See the list of mini game i had",
+    COMMAND_GAME_LIST_NOT_FOUND: (): string => "Mini game not found",
+    COMMAND_GAME_LIST_ONLY_ONE: (): string => "❕ **| Only one game per channel**",
+    COMMAND_GAME_LIST_INFO: (prefix: string): string => `To play a game type '${prefix}game <game cmd>'`,
+
+    COMMAND_GAME_CONNECT4_DESCRIPTION: (): string => "Play Connect4 game with other user. This is solved game, you must drop 4 marks horizontal vertical or diagonal to win the match.",
+
+    COMMAND_GAME_GUESS_THE_NUMBER_DESCRIPTION: (): string =>  "Play Guess the Number Game!. This game is game of luck, i'll pick random number and you must guess it.",
+    COMMAND_GAME_GUESS_THE_NUMBER_START: (): string => "❓ **| Guess the number started. you can guessing now!**",
+    COMMAND_GAME_GUESS_THE_NUMBER_HIGHER: (num: number): string => `🔼 **| The number is higher than \`${num}\`**`,
+    COMMAND_GAME_GUESS_THE_NUMBER_SHORTER: (num: number): string => `🔽 **| The number is shorter than \`${num}\`**`,
+
+    COMMAND_GANE_HANGMAN_DESCRIPTION: (): string => "Save hanged man by guessing the word!. I'll hang random man and if you to want to safe him, just guess the word",
+
+    COMMAND_GAME_MINESWEEPER_DESCRIPTION: (): string => "Your luck will be tested here. Its just a simple game, clear the lane without dough a bomb.",
+    COMMAND_GAME_MINESWEEPER_DOUGH_BOMB: (): string => "❌ **| Lose, you dough a bomb**",
+    COMMAND_GAME_MINESWEEPER_WIN: (): string => "🎉 **| Congrats, you clear lane without dough a bomb!**",
+
+    COMMAND_GAME_TICTACTOE_DESCRIPTION: (): string => "Play Tic Tac Toe game with other user. This is solved game, you must placing 3 marks horizontal vertical or diagonal to win the match.",
+
+    COMMAND_GAME_TRIVIA_DESCRIPTION: (): string => "Test your knowledge with random question!. Ill give you some random questions and you must answer it.",
+
+    COMMAND_GAME_WORD_CHAIN_DESCRIPTION: (): string => "This game is able to train your vocabulary, by making a word from the last letter of the previous word",
 
     COMMAND_HELP_DESCRIPTION: (): string => "The first command you'll typing",
     COMMAND_HELP_PARSE_DESC: (usage: string, aliases: string[], cooldown: number): string => stripIndents`

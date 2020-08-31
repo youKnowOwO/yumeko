@@ -52,7 +52,7 @@ export default {
     COMMAND_ANIMAL_CLICK_HERE: () => "Klik disini jika gambar tidak muncul",
 
     // FUN
-    COMMAND_FUN_PAINTING: (): string => "🖌️ **| Menggambar...**",
+    COMMAND_FUN_PAINTING: () => "🖌️ **| Menggambar...**",
 
     COMMAND_8BALL_DESCRIPTION: () => "Bertanya kepada Magic 8Ball",
     COMMAND_8BALL_PROMPT: () => "Apa pertanyaan yang ingin kamu tanyakan ?",
@@ -67,7 +67,7 @@ export default {
     COMMAND_FORTUNE_COOKIE_DESCRIPTION: () => "Buka kue mu dan lihat keberuntungannya.",
 
     COMMAND_RANDOM_ANIME_DESCRIPTION: () => "Mendapat informasi anime secara acak",
-    COMAMND_RANDOM_ANIME_PARSE_RESPONSE: body => stripIndents`
+    COMMAND_RANDOM_ANIME_PARSE_RESPONSE: body => stripIndents`
         Skor: **${body.avg_score}**
         Episode: **${body.episodes}**
         Durasi: **${body.eps_duration}**
@@ -80,7 +80,7 @@ export default {
     COMMAND_RANDOM_ANIME_PARSE_WATCH: () => "Tonton",
 
     COMMAND_SHIP_DESCRIPTION: () => "Jodohkan antara 2 user ❤️",
-    COMAMND_SHIP_PROMPT: () =>  "Siapa user yang ingin kamu jodohkan?",
+    COMMAND_SHIP_PROMPT: () =>  "Siapa user yang ingin kamu jodohkan?",
 
     // GENERAL
     COMMAND_ABOUT_DESCRIPTION: () => "Tentang aku.",
@@ -91,6 +91,42 @@ export default {
         Aku membawa \`${commands.filter(x => user.isDev || !x.option.devOnly).size}\` command untuk kau mainkan.
         Untuk mengechecknya ayo mulai dengan mengetik **${client.config.prefix}help**.
     `,
+
+    COMMAND_GAME_VERIFY_WAIT: user => `❓ **| ${user}, Apakah kamu menerima tantangan ini ?**`,
+    COMMAND_GAME_VERIFY_NOT_ACCEPT: (user, offerWithClient = false) => `🍃 **| Sepertinya ${user} tidak menerima tantangan mu.${offerWithClient ? " Apakah kamu ingin bermain bersama ku ?" : ""}**`,
+    COMMAND_GAME_VERIFY_DECLINE_OFFER: () => "✋ **| Ok sampai jumpa kembali**",
+
+    COMMAND_GAME_LIST_PREPARING: () => "🖌️ **| Mempersiapkan...**",
+    COMMAND_GAME_LIST_TURN: user => `${user}, ini giliran mu!`,
+    COMMAND_GAME_LIST_CONGRATS: user => `🎉 **| Selamat ${user} kamu memenangkan pertandingan!**`,
+    COMMAND_GAME_LIST_DRAW: () => "🇴 **| Seri!**",
+    COMMAND_GAME_LIST_TIMEOUT: () => "⏱️ **| Waktu Habis!**",
+    COMMAND_GAME_LIST_WRONG: value => `❌ **| Sayang sekali itu adalah \`${value}\`**`,
+    COMMAND_GAME_LIST_RIGHT: value => `✅ **| Kamu benar itu adalah \`${value}\`**`,
+
+    COMMAND_GAME_LIST_DESCRIPTION: () => "Melihat beberapa mini game yang ku punya",
+    COMMAND_GAME_LIST_NOT_FOUND: () => "Mini game tidak ditwmukan",
+    COMMAND_GAME_LIST_ONLY_ONE: () => "❕ **| Setiap channel tidak boleh lebih dari 2 game**",
+    COMMAND_GAME_LIST_INFO: prefix => `Untuk memainkan game ketik '${prefix}game <game cmd>'`,
+
+    COMMAND_GAME_CONNECT4_DESCRIPTION: () => "Play Connect4 game with other user. This is solved game, you must drop 4 marks horizontal vertical or diagonal to win the match.",
+
+    COMMAND_GAME_GUESS_THE_NUMBER_DESCRIPTION: () =>  "Play Guess the Number Game!. This game is game of luck, i'll pick random number and you must guess it.",
+    COMMAND_GAME_GUESS_THE_NUMBER_START: () => "❓ **| Guess the Number telah diumalai. kamu bisa menebak sekarang!**",
+    COMMAND_GAME_GUESS_THE_NUMBER_HIGHER: num => `🔼 **| Nomornya lebih besar dari \`${num}\`**`,
+    COMMAND_GAME_GUESS_THE_NUMBER_SHORTER: num => `🔽 **| Nomornya lebih kecil dari \`${num}\`**`,
+
+    COMMAND_GANE_HANGMAN_DESCRIPTION: () => "Save hanged man by guessing the word!. I'll hang random man and if you to want to safe him, just guess the word",
+
+    COMMAND_GAME_MINESWEEPER_DESCRIPTION: () => "Your luck will be tested here. Its just a simple game, clear the lane without dough a bomb.",
+    COMMAND_GAME_MINESWEEPER_DOUGH_BOMB: () => "❌ **| Kalah, kamu telah menggali sebuah bomb!**",
+    COMMAND_GAME_MINESWEEPER_WIN: () => "🎉 **| Selamat, kamu membersihkan semuanya tanpa menggali sebuah bomv!**",
+
+    COMMAND_GAME_TICTACTOE_DESCRIPTION: () => "Play Tic Tac Toe game with other user. This is solved game, you must placing 3 marks horizontal vertical or diagonal to win the match.",
+
+    COMMAND_GAME_TRIVIA_DESCRIPTION: () => "Test your knowledge with random question!. Ill give you some random questions and you must answer it.",
+
+    COMMAND_GAME_WORD_CHAIN_DESCRIPTION: () => "This game is able to train your vocabulary, by making a word from the last letter of the previous word",
 
     COMMAND_HELP_DESCRIPTION: () => "Command pertama yang mungkin kamu ketik",
     COMMAND_HELP_PARSE_DESC: (usage, aliases, cooldown) => stripIndents`

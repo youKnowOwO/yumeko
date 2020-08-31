@@ -23,7 +23,7 @@ export default class extends Command {
             .setColor(this.client.config.color)
             .setDescription(`> ${body.description}`)
             .setImage(body.image)
-            .addField("\u200B", msg.guild!.loc.get("COMAMND_RANDOM_ANIME_PARSE_RESPONSE", body));
+            .addField("\u200B", msg.guild!.loc.get("COMMAND_RANDOM_ANIME_PARSE_RESPONSE", body));
         if (body.alternate_name.length) embed.setTitle(body.alternate_name).setAuthor(body.name);
         const watchs: string[] = [];
         for (const key of Object.keys(body.watch)) {

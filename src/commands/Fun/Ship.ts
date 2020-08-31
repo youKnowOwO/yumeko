@@ -16,7 +16,7 @@ import { Canvas, resolveImage } from "canvas-constructor";
             identifier: "userOne",
             match: "single",
             type: "user",
-            prompt: (msg): string => msg.guild!.loc.get("COMAMND_SHIP_PROMPT")
+            prompt: (msg): string => msg.guild!.loc.get("COMMAND_SHIP_PROMPT")
         },
         {
             identifier: "userTwo",
