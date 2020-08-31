@@ -82,16 +82,6 @@ export default {
     COMMAND_SHIP_DESCRIPTION: () => "Jodohkan antara 2 user ❤️",
     COMMAND_SHIP_PROMPT: () =>  "Siapa user yang ingin kamu jodohkan?",
 
-    // GENERAL
-    COMMAND_ABOUT_DESCRIPTION: () => "Tentang aku.",
-    COMMAND_ABOUT_ABOUTME: (user, client, commands) => stripIndents`
-        👋 | Hai, ${user}! Aku **${client.user!.tag}** dan aku senang bertemu dengan mu! 
-        Aku hanyalah bot biasa yang dapat memberi kecerian dan kesanangan pada server mu.
-        Aku dapat melakukan yang bot lain lakukan, misalnya: musik, mengirim gamber, dan lain lain.
-        Aku membawa \`${commands.filter(x => user.isDev || !x.option.devOnly).size}\` command untuk kau mainkan.
-        Untuk mengechecknya ayo mulai dengan mengetik **${client.config.prefix}help**.
-    `,
-
     COMMAND_GAME_VERIFY_WAIT: user => `❓ **| ${user}, Apakah kamu menerima tantangan ini ?**`,
     COMMAND_GAME_VERIFY_NOT_ACCEPT: (user, offerWithClient = false) => `🍃 **| Sepertinya ${user} tidak menerima tantangan mu.${offerWithClient ? " Apakah kamu ingin bermain bersama ku ?" : ""}**`,
     COMMAND_GAME_VERIFY_DECLINE_OFFER: () => "✋ **| Ok sampai jumpa kembali**",
@@ -127,6 +117,16 @@ export default {
     COMMAND_GAME_TRIVIA_DESCRIPTION: () => "Test your knowledge with random question!. Ill give you some random questions and you must answer it.",
 
     COMMAND_GAME_WORD_CHAIN_DESCRIPTION: () => "This game is able to train your vocabulary, by making a word from the last letter of the previous word",
+
+    // GENERAL
+    COMMAND_ABOUT_DESCRIPTION: () => "Tentang aku.",
+    COMMAND_ABOUT_ABOUTME: (user, client, commands) => stripIndents`
+        👋 | Hai, ${user}! Aku **${client.user!.tag}** dan aku senang bertemu dengan mu! 
+        Aku hanyalah bot biasa yang dapat memberi kecerian dan kesanangan pada server mu.
+        Aku dapat melakukan yang bot lain lakukan, misalnya: musik, mengirim gamber, dan lain lain.
+        Aku membawa \`${commands.filter(x => user.isDev || !x.option.devOnly).size}\` command untuk kau mainkan.
+        Untuk mengechecknya ayo mulai dengan mengetik **${client.config.prefix}help**.
+    `,
 
     COMMAND_HELP_DESCRIPTION: () => "Command pertama yang mungkin kamu ketik",
     COMMAND_HELP_PARSE_DESC: (usage, aliases, cooldown) => stripIndents`

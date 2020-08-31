@@ -81,17 +81,6 @@ export default {
     COMMAND_SHIP_DESCRIPTION: (): string => "ship two user ❤️",
     COMMAND_SHIP_PROMPT: (): string =>  "Which user do you want to ship it?",
 
-    // GENERAL
-    COMMAND_ABOUT_DESCRIPTION: (): string => "About me.",
-    COMMAND_ABOUT_ABOUTME: (user: User, client: YumekoClient, commands: YumekoClient["collector"]["commands"]): string => stripIndents`
-        👋 | Hi there, ${user}! I’m **${client.user!.tag}** and I’m beyond happy and  glad to meet you! 
-        I’m just an ordinary bot whose job is to make your Discord Server more fun and exciting
-        for members to chat on. I do what other bots do as well, like: sending random images of animals, 
-        generating games for this server’s members, and most importantly, I play and queue song requests. 
-        To conclude, I carry \`${commands.filter(x => user.isDev || !x.option.devOnly).size}\` commands in total. To test me out, 
-        why not start by generating my help panel? **${client.config.prefix}help**.
-    `,
-
     COMMAND_GAME_VERIFY_WAIT: (user: User): string => `❓ **| ${user}, Do you want accept this challenge ?**`,
     COMMAND_GAME_VERIFY_NOT_ACCEPT: (user: User, offerWithClient = false): string => `🍃 **| Look like ${user} doesn't accept your challenge.${offerWithClient ? " Do you want to play it with me anyway ?" : ""}**`,
     COMMAND_GAME_VERIFY_DECLINE_OFFER: (): string => "✋ **| Ok see you next time**",
@@ -127,6 +116,17 @@ export default {
     COMMAND_GAME_TRIVIA_DESCRIPTION: (): string => "Test your knowledge with random question!. Ill give you some random questions and you must answer it.",
 
     COMMAND_GAME_WORD_CHAIN_DESCRIPTION: (): string => "This game is able to train your vocabulary, by making a word from the last letter of the previous word",
+
+    // GENERAL
+    COMMAND_ABOUT_DESCRIPTION: (): string => "About me.",
+    COMMAND_ABOUT_ABOUTME: (user: User, client: YumekoClient, commands: YumekoClient["collector"]["commands"]): string => stripIndents`
+        👋 | Hi there, ${user}! I’m **${client.user!.tag}** and I’m beyond happy and  glad to meet you! 
+        I’m just an ordinary bot whose job is to make your Discord Server more fun and exciting
+        for members to chat on. I do what other bots do as well, like: sending random images of animals, 
+        generating games for this server’s members, and most importantly, I play and queue song requests. 
+        To conclude, I carry \`${commands.filter(x => user.isDev || !x.option.devOnly).size}\` commands in total. To test me out, 
+        why not start by generating my help panel? **${client.config.prefix}help**.
+    `,
 
     COMMAND_HELP_DESCRIPTION: (): string => "The first command you'll typing",
     COMMAND_HELP_PARSE_DESC: (usage: string, aliases: string[], cooldown: number): string => stripIndents`
