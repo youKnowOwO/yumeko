@@ -7,7 +7,7 @@ import { DeclareCommand, isMusicPlaying, isInStream } from "@yumeko/decorators";
 @DeclareCommand("queue", {
     aliases: ["queue", "nowplay"],
     description: {
-        content: "queue",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_QUEUE_DESCRIPTION"),
         usage: "queue",
         examples: ["queue"]
     },
@@ -22,7 +22,8 @@ export default class QueueCommand extends Command {
     @isMusicPlaying()
     public async exec(msg: Message): Promise<Message|void> {
         const { music } = msg.guild!;
-        this.collector!.commands.get("np")!.exec(msg);
+        // eslint-disable-next-line @typescript-eslint/await-thenable
+        await this.collector!.commands.get("np")!.exec(msg);
         if (!music.queue.length) return msg;
         const pages = chunk(music.queue.map((x, i) => `\`${i + 1}\`. __**[${x.title}](${x.uri})**__ **by** ${x.requester.toString()}`), 10)
             .map(x => x.join("\n"));

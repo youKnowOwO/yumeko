@@ -144,5 +144,77 @@ export default {
     COMMAND_SAY_DESCRIPTION: () => "Mengucapkan kembali apa yang kamu ketik",
     COMMAND_SAY_PROMPT: () => "Ucapan seperti apa yang ingin aku ucapkan kembali?",
 
-    COMMAND_STATS_DESCRIPTION: () => "Memperlihatkan statistik ku"
+    COMMAND_STATS_DESCRIPTION: () => "Memperlihatkan statistik ku",
+
+    // Music
+    COMMAND_MUSIC_PLAYING: song => `🎶 **Sekarang memainkan:** __**${song}**__`,
+    COMMAND_MUSIC_GET_EXCEPTION: stack => `❌ **| Aku mendapat exception saat memutar lagu ini** ${stack}`,
+    COMMAND_MUSIC_NOT_PLAY: () => "💤 **| Tidak memutar lagu apapun sekarang**",
+    COMMAND_MUSIC_NOT_SAME_VC: vc => `❌ **| Kamu harus berada di ${vc}**`,
+    COMMAND_MUISC_MEMBER_NOT_VC: () => "❌ **| Kamu harus berada dalam voice channel!**",
+    COMMAND_MUSIC_LACK_PERM_CONNECT_OR_SPEAK: () => "❌ **| Aku tidak mempunyai permissions \`CONNECT\` atau \`SPEAK\`**",
+    COMMAND_MUSIC_VC_NOT_JOINABLE: () => "❌ **| Voice channel terlalu penuh**",
+    COMMAND_MUSIC_CANT_PLAY_CAUSE_STREAM: () => "❌ **| Kamu tidak bisa melakukannya saat stream berlangsung.**",
+
+    COMMAND_MUISC_LOOP_DESCRIPTION: () => "Mengulang antrian yang yang diputar",
+    COMMAND_MUSIC_LOOP_ON: () => "🔁 **| Antrian sekarang akan diulang**",
+    COMMAND_MUISC_LOOP_OFF: () => "🔁 **| Dimatikan**",
+
+    COMMAND_MUSIC_LYRICS_DESCRIPTION: () => "Mendapat lyrics sebuah lagu",
+
+    COMMAND_MUSIC_NP_DESCRIPTION: () => "Lagu apa yang dimainkan sekarag?",
+    COMMAND_MUSIC_NP_MOE_PARSE: data => stripIndents`
+        Seniman: **${data.artists}**
+        Album: **${data.albums || "Tidak ada"}**
+        Didengarkan: **${data.listeners} orang**
+        Sumber: **${data.source || "Tidak asa"}**
+        Request dari: **${data.requester || "Tidak ada"}** ${data.event ? `\`${data.event.name}\`` : ""}
+    `,
+
+    COMMAND_MUSIC_PAUSE_DESCRIPTION: () => "Menjeda atau melanjutkan lagu",
+    COMMAND_MUSIC_PAUSE_ON: () => "⏸️ **| Terjeda**",
+    COMMAND_MUSIC_PAUSE_OFF: () => "▶️ **| Dilanjutkan**",
+
+    COMMAND_MUSIC_PLAY_DESCRIPTION: () => "Putar beberapa lagu",
+    COMMAND_MUSIC_PLAY_PROMPT: () => "Lagu apa yang ingin kamu putar ?",
+    COMMAND_MUSIC_PLAY_ADD_PLAYLIST: name => `✅ **| Sukses menambahkan Playlist:** __**${name}**__`,
+    COMMAND_MUSIC_PLAY_ADD_SONG: name => `✅ **| Antrian telah ditambahkan oleh lagu:** __**${name}**__`,
+    COMMAND_MUSIC_PLAY_SONG_SELECTION: () => "Plihlah Lagu yang kamu ingin mainkan",
+
+    COMMAND_MUSIC_PLAYMOE_DESCRIPTION: () => "Putar radio dari listen.moe",
+    COMMAND_MUSIC_PLAYMOE_PROMPT: () => "Type radio apa yang kamu ingin putar, `jpop` atau `kpop` ?",
+    COMMAND_MUSIC_PLAYMOE_INVALID_TYPE: () => "**Hanya `jpop` atau `kpop` yang dibolehkan!**",
+    COMMAND_MUSIC_PLAYMOE_INHIBIT: () => "❌ **| Kamu tidak bisa melakukan ini, karena Music Player sedang dipakai**",
+
+    COMMAND_MUSIC_QUEUE_DESCRIPTION: () => "Menampilkan antrian lagu yang akan diputar",
+
+    COMMAND_MUSIC_REPEAT_DESCRIPTION: () => "Mengulang lagu yang sedang diputar",
+    COMMAND_MUSIC_REPEAT_ON: () => "🔁 **| Lagu yang dimainkan sekarang akan terus diputar.**",
+    COMMAND_MUSIC_REPEAT_OFF: () => "🔁 **| Dimatikan.**",
+
+    COMMAND_MUSIC_SEEK_DESCRIPTION: () => "Lompat ke posisi lagu yang kamu inginkan",
+    COMMAND_MUSIC_SEEK_PROMPT: () => "Posisi mana yang ingin kamu lompati ?",
+    COMMAND_MUSIC_SEEK_NOT_SEEKABLE: () => "❌ **| Lagu ini tidak bisa dilompati**",
+    COMMAND_MUSIC_SEEK_TOO_LONG_OR_SHORT: () => "❌ **| Posisi terlalu panjang atau pendek**",
+    COMMAND_MUSIC_SEEK_SEEKED: to => `⏱️ **| Melompat ke \`${to}\`**`,
+
+    COMMAND_MUSIC_SHUFFLE_DESCRIPTION: () => "Acak antrian lagu",
+    COMMAND_MUSIC_SHUFFLE_SHUFFLED: () => "🔀 **| Antrian. telah diacak**",
+
+    COMMAND_MUSIC_SKIP_DESCRIPTION: () => "Melewati lagu yang sedang dimainkan",
+    COMMAND_MUSIC_SKIP_ALREADY_VOTE: () => "❕ **| Kamu sudah memberi vote**",
+    COMMAND_MUSIC_SKIP_NEED_MORE_VOTE: (now, needed) => `📢 **| Kamu telah mmeberi vote untuk melewati lagu ini. Butuh lebih banyak vote! **${now} / ${needed}**`,
+    COMMAND_MUSIC_SKIP_SKIPPED: () => "⏭️ **| Lagu telah dilewati**",
+
+    COMMAND_MUSIC_STOP_DESCRIPTION: () => "Memberhentikan antrian dan lagu yang dimainkan",
+    COMMAND_MUSIC_STOP_STOPPED: () => "🛑 **| Antrian diberhentikan**",
+
+    COMMAND_MUSIC_VOLUME_DESCRIPTION: () => "Mengubah volume music player",
+    COMMAND_MUSIC_VOLUME_PROMPT: () => "Berapa banyak volume yang ingin kamu ubah ?",
+    COMMAND_MUSIC_VOLUME_TOO_HIGH: () => "**Volume terlalu tinggi. maksimal \`120\`**",
+    COMMAND_MUSIC_VOLUME_TOO_LOW: () => "**Volume terlalu rendah. minimal \`0\`**",
+    COMMAND_MUSIC_VOLUME_CHANGE: to => `🔉 **| Mengubah Volume ke \`${to}\`**`,
+
+    // UTIL
+    COMMAND_UTIL_NO_RESULT_FOUND: () => "🚫 **| Hasil tidak ditemukan.**",
 } as typeof en_US;

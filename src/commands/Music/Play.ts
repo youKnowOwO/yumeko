@@ -10,7 +10,7 @@ const emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
 @DeclareCommand("play", {
     aliases: ["play", "p"],
     description: {
-        content: "Play some songs",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_PLAY_DESCRIPTION"),
         usage: "play <query> [--search] [--dontbind]",
         examples: ["play unlocated hell", "play nyan cat --search"]
     },
@@ -32,7 +32,7 @@ const emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
         {
             identifier: "track",
             match: "rest",
-            prompt: "What song do you wany to play ?",
+            prompt: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_PLAY_PROMPT"),
             type: (msg: Message, content: string): string => {
                 try {
                     const url = new URL(content);
@@ -60,14 +60,14 @@ export default class PlayCommand extends Command {
             if (!response.tracks.length) return msg.ctx.send("🚫 No result found");
             if (response.loadType === "PLAYLIST_LOADED") {
                 for (const trck of response.tracks) music.add(msg.author, trck);
-                msg.ctx.send(`✅ **| Succes Added Playlist:** __**${response.playlistInfo.name}**__`);
+                msg.ctx.send(msg.guild!.loc.get("COMMAND_MUSIC_PLAY_ADD_PLAYLIST", response.playlistInfo.name!));
             } else {
                 let trck = response.tracks[0];
                 if (isSearch) {
                     const tracks = response.tracks.splice(0, 5);
                     const embed = new MessageEmbed()
                         .setColor(this.client.config.color)
-                        .setAuthor("Songs Selection", "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/twitter/259/musical-note_1f3b5.png")
+                        .setAuthor(msg.guild!.loc.get("COMMAND_MUSIC_PLAY_SONG_SELECTION"), "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/twitter/259/musical-note_1f3b5.png")
                         .setDescription(tracks.map((x, i) => `${emojis[i]} **${x.info.title}**`).join("\n"));
                     const resp: SelectionPage<Track> = new SelectionPage(msg, {
                         emojis, cancelEmo: "❌",
@@ -78,7 +78,7 @@ export default class PlayCommand extends Command {
                     trck = result;
                 }
                 music.add(msg.author, trck);
-                if (music.song) msg.ctx.send(`✅ **| Added to queue:** __**${trck.info.title}**__`);
+                if (music.song) msg.ctx.send(msg.guild!.loc.get("COMMAND_MUSIC_PLAY_ADD_SONG", trck.info.title));
             }
         } else music.add(msg.author, track);
         if (!music.voiceChannel) {

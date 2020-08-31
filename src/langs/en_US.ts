@@ -1,6 +1,6 @@
-import type { User, GuildMember } from "discord.js";
+import type { User, GuildMember, VoiceChannel } from "discord.js";
 import { stripIndents } from "common-tags";
-import { RandomAnimeResponse } from "@yumeko/interfaces";
+import { RandomAnimeResponse, DataNowplayMoe } from "@yumeko/interfaces";
 import YumekoClient from "@yumeko/classes/Client";
 
 export default {
@@ -144,5 +144,77 @@ export default {
     COMMAND_SAY_DESCRIPTION: (): string => "Let me repeat what you want",
     COMMAND_SAY_PROMPT: (): string => "What text do you want me to repeaat ?",
 
-    COMMAND_STATS_DESCRIPTION: (): string => "Show my current statistic"
+    COMMAND_STATS_DESCRIPTION: (): string => "Show my current statistic",
+
+    // Music
+    COMMAND_MUSIC_PLAYING: (song: string): string => `🎶 **Now Playing:** __**${song}**__`,
+    COMMAND_MUSIC_GET_EXCEPTION: (stack: string): string => `❌ **| Im getting exception while playing this song** ${stack}`,
+    COMMAND_MUSIC_NOT_PLAY: (): string => "💤 **| Not Playing anything right now**",
+    COMMAND_MUSIC_NOT_SAME_VC: (vc: VoiceChannel): string => `❌ **| You must in ${vc}**`,
+    COMMAND_MUISC_MEMBER_NOT_VC: (): string => "❌ **| Please Join Voice channel first**",
+    COMMAND_MUSIC_LACK_PERM_CONNECT_OR_SPEAK: (): string => "❌ **| I Don't have permissions \`CONNECT\` or \`SPEAK\`**",
+    COMMAND_MUSIC_VC_NOT_JOINABLE: (): string => "❌ **| Voice channel isn't joinable**",
+    COMMAND_MUSIC_CANT_PLAY_CAUSE_STREAM: (): string => "❌ **| You can't do this! because Music Player currently in stream mode.**",
+
+    COMMAND_MUISC_LOOP_DESCRIPTION: (): string => "Loop current queue",
+    COMMAND_MUSIC_LOOP_ON: (): string => "🔁 **| Looping current queue**",
+    COMMAND_MUISC_LOOP_OFF: (): string => "🔁 **| Disabled**",
+
+    COMMAND_MUSIC_LYRICS_DESCRIPTION: (): string => "Get lyrics from query based",
+
+    COMMAND_MUSIC_NP_DESCRIPTION: (): string => "What song is playing right now ?",
+    COMMAND_MUSIC_NP_MOE_PARSE: (data: DataNowplayMoe): string => stripIndents`
+        Artist(s): **${data.artists}**
+        Album(s): **${data.albums || "None"}**
+        Listener(s): **${data.listeners}**
+        Source: **${data.source || "None"}**
+        Requester: **${data.requester || "None"}** ${data.event ? `\`${data.event.name}\`` : ""}
+    `,
+
+    COMMAND_MUSIC_PAUSE_DESCRIPTION: (): string => "Pause or resume current song",
+    COMMAND_MUSIC_PAUSE_ON: (): string => "⏸️ **| Paused**",
+    COMMAND_MUSIC_PAUSE_OFF: (): string => "▶️ **| Resumed**",
+
+    COMMAND_MUSIC_PLAY_DESCRIPTION: (): string => "Play some songs",
+    COMMAND_MUSIC_PLAY_PROMPT: (): string => "What song do you wany to play ?",
+    COMMAND_MUSIC_PLAY_ADD_PLAYLIST: (name: string): string => `✅ **| Succes Added Playlist:** __**${name}**__`,
+    COMMAND_MUSIC_PLAY_ADD_SONG: (name: string): string => `✅ **| Added to queue:** __**${name}**__`,
+    COMMAND_MUSIC_PLAY_SONG_SELECTION: (): string => "Songs Selection",
+
+    COMMAND_MUSIC_PLAYMOE_DESCRIPTION: (): string => "Play radio from listen.moe",
+    COMMAND_MUSIC_PLAYMOE_PROMPT: (): string => "Which radio culture do you want to select, `jpop` or `kpop` ?",
+    COMMAND_MUSIC_PLAYMOE_INVALID_TYPE: (): string => "**Only `jpop` or `kpop` allowed!**",
+    COMMAND_MUSIC_PLAYMOE_INHIBIT: (): string => "❌ **| You can't do this!. Because Music Player is in use**",
+
+    COMMAND_MUSIC_QUEUE_DESCRIPTION: (): string => "Show the list of song that will play",
+
+    COMMAND_MUSIC_REPEAT_DESCRIPTION: (): string => "repeat current queue",
+    COMMAND_MUSIC_REPEAT_ON: (): string => "🔁 **| repeating current song.**",
+    COMMAND_MUSIC_REPEAT_OFF: (): string => "🔁 **| Disabled.**",
+
+    COMMAND_MUSIC_SEEK_DESCRIPTION: (): string => "Jump to position what you want",
+    COMMAND_MUSIC_SEEK_PROMPT: (): string => "What time position do you want jump to ?",
+    COMMAND_MUSIC_SEEK_NOT_SEEKABLE: (): string => "❌ **| This song isn't seekable**",
+    COMMAND_MUSIC_SEEK_TOO_LONG_OR_SHORT: (): string => "❌ **| Time position is too long or short**",
+    COMMAND_MUSIC_SEEK_SEEKED: (to: string): string => `⏱️ **| Seeked to \`${to}\`**`,
+
+    COMMAND_MUSIC_SHUFFLE_DESCRIPTION: (): string => "shuffle curent queue",
+    COMMAND_MUSIC_SHUFFLE_SHUFFLED: (): string => "🔀 **| Queue shuffled**",
+
+    COMMAND_MUSIC_SKIP_DESCRIPTION: (): string => "Stop playing current song",
+    COMMAND_MUSIC_SKIP_ALREADY_VOTE: (): string => "❕ **| You already voted**",
+    COMMAND_MUSIC_SKIP_NEED_MORE_VOTE: (now: number, needed: number): string => `📢 **| You voted for skip this song, need more votes! **${now} / ${needed}**`,
+    COMMAND_MUSIC_SKIP_SKIPPED: (): string => "⏭️ **| Skipped**",
+
+    COMMAND_MUSIC_STOP_DESCRIPTION: (): string => "Clear all song in queue. and stop current song",
+    COMMAND_MUSIC_STOP_STOPPED: (): string => "🛑 **| Stopped**",
+
+    COMMAND_MUSIC_VOLUME_DESCRIPTION: (): string => "Stop playing current song",
+    COMMAND_MUSIC_VOLUME_PROMPT: (): string => "How many volume do you want to change ?",
+    COMMAND_MUSIC_VOLUME_TOO_HIGH: (): string => "**Volume is too high. max \`120\`**",
+    COMMAND_MUSIC_VOLUME_TOO_LOW: (): string => "**Volume is too low. min \`0\`**",
+    COMMAND_MUSIC_VOLUME_CHANGE: (to: number): string => `🔉 **| Change Volume to \`${to}\`**`,
+
+    // UTIL
+    COMMAND_UTIL_NO_RESULT_FOUND: (): string => "🚫 **| No result found.**",
 };

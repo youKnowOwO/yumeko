@@ -6,7 +6,7 @@ import { shuffle } from "@yumeko/util/Util";
 @DeclareCommand("shuffle", {
     aliases: ["shuffle"],
     description: {
-        content: "shuffle curent queue",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_SHUFFLE_DESCRIPTION"),
         usage: "shuffle",
         examples: ["shuffle"]
     },
@@ -23,7 +23,7 @@ export default class ShuffleCommand extends Command {
     public async exec(msg: Message): Promise<Message> {
         const { music } = msg.guild!;
         music.queue = shuffle(music.queue);
-        return msg.channel.send("🔀 **| Queue shuffled**");
+        return msg.channel.send(msg.guild!.loc.get("COMMAND_MUSIC_SHUFFLE_SHUFFLED"));
     }
 
     public ignore(msg: Message): boolean {
