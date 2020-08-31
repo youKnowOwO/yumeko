@@ -47,6 +47,19 @@ export default {
     TYPE_URL_NOT_FOUND: (): string => "**Invalid URL**",
 
     // COMMAND
+    // ADMIN
+    COMMAND_LANGUAGE_DESCRIPTION: (): string => "Set my langguage",
+    COMMAND_LANGUAGE_NOT_FOUND: (key: string): string => `**No language found with key \`${key}\`**`,
+    COMMAND_LANGUAGE_SET: (to: string, toEmote: string): string => `${toEmote} **| Language set to \`${to}\`**`,
+    COMMAND_LANGUAGE_LIST: (prefix: string, list: string, current: string, currentEmote: string): string => stripIndents`
+        ${currentEmote} **| Current Language \`${current}\`**
+
+        __**Language List**__
+        ${list}
+
+        *To set the language use \`${prefix}language <id | lang>\`*
+    `,
+
     // ANIMAL
     COMMAND_ANIMAL_CLICK_HERE: (): string => "Click here if image failed to load",
 

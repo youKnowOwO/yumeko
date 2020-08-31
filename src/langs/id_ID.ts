@@ -6,7 +6,7 @@ export default {
     ...en_US,
 
     // META
-    META_NAME: () => "Indonesia",
+    META_NAME: () => "Indonesia (ID)",
     META_ID: () => "id_ID",
     META_EMOJI: () => "🇮🇩",
 
@@ -48,6 +48,19 @@ export default {
     TYPE_URL_NOT_FOUND: () => "**URL tidak valid!**",
 
     // COMMAND
+    // ADMIN
+    COMMAND_LANGUAGE_DESCRIPTION: () => "Mengatur bahasa ku",
+    COMMAND_LANGUAGE_NOT_FOUND: key => `**Bahasa dengan kata kunci \`${key}\` tidak ditemukan**`,
+    COMMAND_LANGUAGE_SET: (to, toEmote) => `${toEmote} **| Bahasa diatur ke \`${to}\`**`,
+    COMMAND_LANGUAGE_LIST: (prefix, list, current, currentEmote) => stripIndents`
+        ${currentEmote} **| Bahasa sekarang \`${current}\`**
+
+        __**Daftar Bahasa**__
+        ${list}
+
+        *Untuk mengubah bahasa gunakan \`${prefix}language <id | lang>\`*
+    `,
+
     // ANIMAL
     COMMAND_ANIMAL_CLICK_HERE: () => "Klik disini jika gambar tidak muncul",
 
