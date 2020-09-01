@@ -6,13 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const discord_js_1 = require("discord.js");
-const Util_1 = require("@yumeko/util/Util");
+const en_US_1 = require("@yumeko/langs/en_US");
 class BunnyCommand extends Command_1.default {
     constructor(client, animal = "bunny") {
         super(client, animal, {
             aliases: [animal],
             description: {
-                content: `Random ${Util_1.firstUpperCase(animal)} image.`,
+                content: (msg) => msg.guild.loc.get("COMMAND_ANIMAL_DESCRIPTION", en_US_1.Animals[animal]),
                 usage: animal,
                 examples: [animal]
             },
@@ -27,7 +27,7 @@ class BunnyCommand extends Command_1.default {
         const embed = new discord_js_1.MessageEmbed()
             .setColor(this.client.config.color)
             .setURL(image)
-            .setTitle("Click here if image failed to load")
+            .setTitle(msg.guild.loc.get("COMMAND_ANIMAL_CLICK_HERE"))
             .setImage(image);
         return msg.ctx.send(embed);
     }

@@ -32,21 +32,21 @@ exports.inhibit = inhibit;
 function isMusicPlaying() {
     return inhibit(msg => {
         if (!msg.guild.music.song)
-            return "💤 **| Not Playing anything right now**";
+            return msg.guild.loc.get("COMMAND_MUSIC_NOT_PLAY");
     });
 }
 exports.isMusicPlaying = isMusicPlaying;
 function isSameVoiceChannel() {
     return inhibit(msg => {
         if (msg.guild.me.voice.channelID && msg.guild.me.voice.channelID !== msg.member.voice.channelID)
-            return "❌ **| You must use same voice channel with me**";
+            return msg.guild.loc.get("COMMAND_MUSIC_NOT_SAME_VC", msg.guild.me.voice.channel);
     });
 }
 exports.isSameVoiceChannel = isSameVoiceChannel;
 function isMemberInVoiceChannel() {
     return inhibit(msg => {
         if (!msg.member.voice.channelID)
-            return "❌ **| Please Join Voice channel first**";
+            return msg.guild.loc.get("COMMAND_MUISC_MEMBER_NOT_VC");
     });
 }
 exports.isMemberInVoiceChannel = isMemberInVoiceChannel;
@@ -56,16 +56,16 @@ function isMemberVoiceChannelJoinable(ignoreWhenSame = true) {
         if (ignoreWhenSame && msg.guild.me.voice.channelID && msg.guild.me.voice.channelID === msg.member.voice.channelID)
             return undefined;
         if (!vc.permissionsFor(msg.guild.me).has(["CONNECT", "SPEAK"]))
-            return "❌ **| I Don't have permissions \`CONNECT\` or \`SPEAK\`**";
+            return msg.guild.loc.get("COMMAND_MUSIC_LACK_PERM_CONNECT_OR_SPEAK");
         else if (!vc.joinable)
-            return "❌ **| Voice channel isn't joinable**";
+            return msg.guild.loc.get("COMMAND_MUSIC_VC_NOT_JOINABLE");
     });
 }
 exports.isMemberVoiceChannelJoinable = isMemberVoiceChannelJoinable;
 function isInStream() {
     return inhibit(msg => {
         if (msg.guild.music.song && msg.guild.music.song.isStream)
-            return "❌ **| You can't do this! because Music Player currently in stream mode.**";
+            return msg.guild.loc.get("COMMAND_MUSIC_CANT_PLAY_CAUSE_STREAM");
     });
 }
 exports.isInStream = isInStream;

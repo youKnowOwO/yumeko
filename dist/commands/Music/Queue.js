@@ -17,7 +17,7 @@ const decorators_1 = require("@yumeko/decorators");
 let QueueCommand = class QueueCommand extends Command_1.default {
     async exec(msg) {
         const { music } = msg.guild;
-        this.collector.commands.get("np").exec(msg);
+        await this.collector.commands.get("np").exec(msg);
         if (!music.queue.length)
             return msg;
         const pages = Util_1.chunk(music.queue.map((x, i) => `\`${i + 1}\`. __**[${x.title}](${x.uri})**__ **by** ${x.requester.toString()}`), 10)
@@ -38,7 +38,7 @@ QueueCommand = __decorate([
     decorators_1.DeclareCommand("queue", {
         aliases: ["queue", "nowplay"],
         description: {
-            content: "queue",
+            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_QUEUE_DESCRIPTION"),
             usage: "queue",
             examples: ["queue"]
         },

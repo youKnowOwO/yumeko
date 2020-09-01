@@ -18,15 +18,15 @@ let SkipCommand = class SkipCommand extends Command_1.default {
             const listeners = music.listeners.length;
             if (listeners > 3 && music.song.requester.id !== msg.author.id) {
                 if (music.skipVotes.includes(msg.author))
-                    return msg.ctx.send("❕ **| You already voted**");
+                    return msg.ctx.send(msg.guild.loc.get("COMMAND_MUSIC_SKIP_ALREADY_VOTE"));
                 music.skipVotes.push(msg.author);
                 const needed = Math.round(listeners * 0.4);
                 if (music.skipVotes.length < needed)
-                    return msg.ctx.send(`📢 **| You voted for skip this song, need more votes! **${music.skipVotes.length} / ${needed}**`);
+                    return msg.ctx.send(msg.guild.loc.get("COMMAND_MUSIC_SKIP_NEED_MORE_VOTE", music.skipVotes.length, needed));
             }
         }
         music.skip();
-        return msg.ctx.send("⏭️ **| Skipped**");
+        return msg.ctx.send(msg.guild.loc.get("COMMAND_MUSIC_SKIP_SKIPPED"));
     }
 };
 __decorate([
@@ -36,14 +36,14 @@ __decorate([
     decorators_1.isSameVoiceChannel(),
     decorators_1.inhibit((msg, { forced }) => {
         if (forced && !msg.member.permissions.has("MANAGE_GUILD"))
-            return "❌ **| Only member with permission \`MANAGE_GUILD\` are allowed**";
+            return msg.guild.loc.get("COMMAND_RUNNER_MISSPERMS", msg.author, "`MANAGE_GUILD`");
     })
 ], SkipCommand.prototype, "exec", null);
 SkipCommand = __decorate([
     decorators_1.DeclareCommand("skip", {
         aliases: ["skip"],
         description: {
-            content: "Stop playing current song",
+            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_SKIP_DESCRIPTION"),
             usage: "skip",
             examples: ["skip", "--force"]
         },

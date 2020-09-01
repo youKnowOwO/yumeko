@@ -12,9 +12,9 @@ class TypeUserhuman {
         const userType = msg.client.collector.runner.argsParser.getType("user");
         const user = userType(msg, content);
         if (user.bot)
-            throw new CustomError_1.default("!PARSING", "**Bot not allowed!**");
+            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_HUMAN_BOT"));
         if (user.id === msg.author.id)
-            throw new CustomError_1.default("!PARSING", "**You can't choose yourselft**");
+            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_HUMAN_SELF"));
         return user;
     }
 }

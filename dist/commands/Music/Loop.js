@@ -15,7 +15,7 @@ let LoopCommand = class LoopCommand extends Command_1.default {
     async exec(msg) {
         const { music } = msg.guild;
         music.setLoop(music.loopType === 1 ? 0 : 1);
-        return msg.ctx.send(`🔁 **| ${music.loopType === 1 ? "Looping current queue." : "Disabled."}.**`);
+        return msg.ctx.send(msg.guild.loc.get(music.loopType === 1 ? "COMMAND_MUISC_LOOP_OFF" : "COMMAND_MUSIC_LOOP_ON"));
     }
     ignore(msg) {
         return !!msg.guild.music.song && (msg.guild.music.listeners.length < 2 ||
@@ -32,7 +32,7 @@ LoopCommand = __decorate([
     decorators_1.DeclareCommand("loop", {
         aliases: ["loop"],
         description: {
-            content: "Loop current queue",
+            content: (msg) => msg.guild.loc.get("COMMAND_MUISC_LOOP_DESCRIPTION"),
             usage: "loop",
             examples: ["loop"]
         },

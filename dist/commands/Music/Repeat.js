@@ -15,7 +15,7 @@ let RepeatCommand = class RepeatCommand extends Command_1.default {
     async exec(msg) {
         const { music } = msg.guild;
         music.setLoop(music.loopType === 2 ? 0 : 2);
-        return msg.ctx.send(`🔁 **| ${music.loopType === 2 ? "repeating current song." : "Disabled."}.**`);
+        return msg.ctx.send(msg.guild.loc.get(music.loopType === 2 ? "COMMAND_MUSIC_REPEAT_ON" : "COMMAND_MUSIC_REPEAT_OFF"));
     }
     ignore(msg) {
         return !!msg.guild.music.song && (msg.guild.music.listeners.length < 2 ||
@@ -32,7 +32,7 @@ RepeatCommand = __decorate([
     decorators_1.DeclareCommand("repeat", {
         aliases: ["repeat"],
         description: {
-            content: "repeat current queue",
+            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_REPEAT_DESCRIPTION"),
             usage: "repeat",
             examples: ["repeat"]
         },

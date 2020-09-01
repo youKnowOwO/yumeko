@@ -16,7 +16,7 @@ let SeekCommand = class SeekCommand extends Command_1.default {
     async exec(msg, { time }) {
         const { music } = msg.guild;
         music.seek(time);
-        return msg.ctx.send(`⏱️ **| Seeked to \`${Util_1.readableTime(time)}\`**`);
+        return msg.ctx.send(msg.guild.loc.get("COMMAND_MUSIC_SEEK_SEEKED", Util_1.readableTime(time)));
     }
     ignore(msg) {
         return !!msg.guild.music.song && (msg.guild.music.listeners.length < 2 ||
@@ -30,16 +30,16 @@ __decorate([
     decorators_1.isSameVoiceChannel(),
     decorators_1.inhibit((msg, { time }) => {
         if (!msg.guild.music.song.isSeekable)
-            return "❌ **| This song isn't seekable**";
+            return msg.guild.loc.get("COMMAND_MUSIC_SEEK_NOT_SEEKABLE");
         if (msg.guild.music.song.length < time || time < 0)
-            return "❌ **| Time position is too long or short**";
+            return msg.guild.loc.get("COMMAND_MUSIC_SEEK_TOO_LONG_OR_SHORT");
     })
 ], SeekCommand.prototype, "exec", null);
 SeekCommand = __decorate([
     decorators_1.DeclareCommand("seek", {
         aliases: ["seek", "jumpto"],
         description: {
-            content: "Stop playing current song",
+            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_SEEK_DESCRIPTION"),
             usage: "seek <time position>",
             examples: ["seek 00:30"]
         },
@@ -52,7 +52,7 @@ SeekCommand = __decorate([
                 identifier: "time",
                 match: "single",
                 type: "timespan",
-                prompt: "What time position do you want jump to ?"
+                prompt: (msg) => msg.guild.loc.get("COMMAND_MUSIC_SEEK_PROMPT")
             }
         ]
     })

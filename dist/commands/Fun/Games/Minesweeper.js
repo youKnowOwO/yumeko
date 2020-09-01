@@ -58,7 +58,7 @@ let MinesweeperCommand = class MinesweeperCommand extends Command_1.default {
         }
         flagListener.stop();
         return message.edit(common_tags_1.stripIndents `
-            ${minesweeper.isEnd() ? (minesweeper.isDoughBomb ? "❌ **| Lose, you dough a bomb**" : "🎉 **| Congrats, you clear lane without dough a bomb!**") : "⏱️ **| Timeout**"}
+            ${msg.guild.loc.get(minesweeper.isEnd() ? (minesweeper.isDoughBomb ? "COMMAND_GAME_MINESWEEPER_DOUGH_BOMB" : "COMMAND_GAME_MINESWEEPER_WIN") : "COMMAND_GAME_LIST_TIMEOUT")}
             > ⬛${alphabets.map((_, i) => `:regional_indicator_${String.fromCharCode(97 + i)}:`).join("")}
             ${minesweeper.toString().split("\n").map((x, i) => `> ${numbers[i]}${x}`).join("\n")}
         `);
@@ -68,7 +68,7 @@ MinesweeperCommand = __decorate([
     decorators_1.DeclareCommand("game-minesweeper", {
         aliases: [],
         description: {
-            content: "Your luck will be tested here. Its just a simple game, clear the lane without dough a bomb.",
+            content: (msg) => msg.guild.loc.get("COMMAND_GAME_MINESWEEPER_DESCRIPTION"),
             usage: "",
             examples: ["game-minesweeper"],
             adionalInfo: ["💣 Minesweeper", "minesweeper", "mnswpr"]

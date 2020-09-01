@@ -16,7 +16,7 @@ let VolumeCommand = class VolumeCommand extends Command_1.default {
     async exec(msg, { amount }) {
         const { music } = msg.guild;
         music.setVolume(amount);
-        return msg.ctx.send(`🔉 **| Change Volume to \`${amount}\`**`);
+        return msg.ctx.send(msg.guild.loc.get("COMMAND_MUSIC_VOLUME_CHANGE", amount));
     }
     ignore(msg) {
         return !!msg.guild.music.song && (msg.guild.music.listeners.length < 2 ||
@@ -32,7 +32,7 @@ VolumeCommand = __decorate([
     decorators_1.DeclareCommand("volume", {
         aliases: ["volume"],
         description: {
-            content: "Stop playing current song",
+            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_VOLUME_DESCRIPTION"),
             usage: "volume <amount>",
             examples: ["volume 100"]
         },
@@ -44,7 +44,7 @@ VolumeCommand = __decorate([
             {
                 identifier: "amount",
                 match: "single",
-                prompt: "What time position do you want jump to ?",
+                prompt: (msg) => msg.guild.loc.get("COMMAND_MUSIC_VOLUME_PROMPT"),
                 type: (_, content) => {
                     const volume = _.client.collector.runner.argsParser.getType("number")(_, content);
                     if (volume > 120)

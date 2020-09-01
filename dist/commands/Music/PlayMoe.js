@@ -22,14 +22,14 @@ let PlayMoe = class PlayMoe extends Command_1.default {
 __decorate([
     decorators_1.inhibit(msg => {
         if (msg.guild.music.song)
-            return "❌ **| You can't do this!. Because Music Player is in use**";
+            return msg.guild.loc.get("COMMAND_MUSIC_PLAYMOE_INHIBIT");
     })
 ], PlayMoe.prototype, "exec", null);
 PlayMoe = __decorate([
     decorators_1.DeclareCommand("play-moe", {
         aliases: ["play-moe", "playmoe"],
         description: {
-            content: "Play radio from listen.meo",
+            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_PLAYMOE_DESCRIPTION"),
             usage: "play-moe <jpop | kpop>",
             examples: ["play-moe jpop"]
         },
@@ -38,11 +38,11 @@ PlayMoe = __decorate([
             {
                 identifier: "link",
                 match: "single",
-                prompt: "Which radio culture do you want to select, `jpop` or `kpop` ?",
-                type: (_, content) => {
+                prompt: (msg) => msg.guild.loc.get("COMMAND_MUSIC_PLAYMOE_PROMPT"),
+                type: (msg, content) => {
                     content = content.toLowerCase();
                     if (!["jpop", "kpop"].includes(content))
-                        throw new CustomError_1.default("!PARSING", "**Only `jpop` or `kpop` allowed!**");
+                        throw new CustomError_1.default("!PARSING", msg.guild.loc.get("COMMAND_MUSIC_PLAYMOE_INVALID_TYPE"));
                     return `https://listen.moe/${content === "jpop" ? "stream" : "kpop/stream"}`;
                 }
             }

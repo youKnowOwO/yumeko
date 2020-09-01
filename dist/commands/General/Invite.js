@@ -10,7 +10,7 @@ class InviteCommand extends Command_1.default {
         super(client, "invite", {
             aliases: ["invite"],
             description: {
-                content: "Invite the bot to your server",
+                content: (msg) => msg.guild.loc.get("COMMAND_INVITE_DESCRIPTION"),
                 usage: "invite",
                 examples: ["invite"]
             },
@@ -24,7 +24,7 @@ class InviteCommand extends Command_1.default {
         const inviteUrl = await this.client.generateInvite(["ATTACH_FILES", "EMBED_LINKS", "CONNECT", "SPEAK", "ADD_REACTIONS", "SEND_MESSAGES", "MANAGE_MESSAGES"]);
         const embed = new discord_js_1.MessageEmbed()
             .setColor("RANDOM")
-            .setDescription(`[Click here](${inviteUrl}) to invite me to your server!`);
+            .setDescription(msg.guild.loc.get("COMMAND_INVITE_CLICK_HRER", inviteUrl));
         return msg.ctx.send(embed);
     }
 }

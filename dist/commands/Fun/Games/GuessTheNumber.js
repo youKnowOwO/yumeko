@@ -10,7 +10,7 @@ class GuessTheNumberCommand extends Command_1.default {
         super(client, "game-guessthenumber", {
             aliases: [],
             description: {
-                content: "Play Guess the Number Game!. This game is game of luck, i'll pick random number and you must guess it.",
+                content: (msg) => msg.guild.loc.get("COMMAND_GAME_GUESS_THE_NUMBER_DESCRIPTION"),
                 usage: "[range]",
                 examples: ["game-guessthenumber"],
                 adionalInfo: ["❓ Guess The Number", "gtn", "hilo"]
@@ -42,7 +42,7 @@ class GuessTheNumberCommand extends Command_1.default {
         });
     }
     async exec(msg, { thatNumber }) {
-        let toSend = "❓ **| Guess the number started. you can guessing now!**";
+        let toSend = msg.guild.loc.get("COMMAND_GAME_GUESS_THE_NUMBER_START");
         let guessed = false;
         let chance = 10;
         while (!guessed && chance > 0) {
@@ -50,21 +50,21 @@ class GuessTheNumberCommand extends Command_1.default {
             const filter = (m) => !isNaN(Number(m.content)) && msg.author.id === m.author.id;
             const responses = await msg.channel.awaitMessages(filter, { max: 1, time: 30000 });
             if (!responses.size) {
-                await msg.channel.send("⏱️ **| Timeout**");
+                await msg.channel.send(msg.guild.loc.get("COMMAND_GAME_LIST_TIMEOUT"));
                 break;
             }
             const num = parseInt(responses.first().content, 10);
             if (num < thatNumber)
-                toSend = `🔼 **| The number is higher than \`${num}\`**`;
+                toSend = msg.guild.loc.get("COMMAND_GAME_GUESS_THE_NUMBER_HIGHER", num);
             else if (num > thatNumber)
-                toSend = `🔽 **| The number is shorter than \`${num}\`**`;
+                toSend = msg.guild.loc.get("COMMAND_GAME_GUESS_THE_NUMBER_SHORTER", num);
             else
                 guessed = true;
             chance--;
         }
         if (!guessed)
-            return msg.ctx.send(`❌ **| Too Bad it was \`${thatNumber}\`**`);
-        return msg.ctx.send(`✅ **| You're right! it was \`${thatNumber}\`**`);
+            return msg.ctx.send(msg.guild.loc.get("COMMAND_GAME_LIST_WRONG", thatNumber));
+        return msg.ctx.send(msg.guild.loc.get("COMMAND_GAME_LIST_RIGHT", thatNumber));
     }
     randomNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;

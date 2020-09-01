@@ -15,7 +15,7 @@ let PauseCommand = class PauseCommand extends Command_1.default {
     async exec(msg) {
         const { music } = msg.guild;
         music.pause();
-        return msg.ctx.send(`${music.paused ? "⏸️" : "▶️"} **| ${music.paused ? "Paused" : "Resumed"}.**`);
+        return msg.ctx.send(msg.guild.loc.get(music.paused ? "COMMAND_MUSIC_PAUSE_ON" : "COMMAND_MUSIC_PAUSE_OFF"));
     }
     ignore(msg) {
         return !!msg.guild.music.song && (msg.guild.music.listeners.length < 2 ||
@@ -32,7 +32,7 @@ PauseCommand = __decorate([
     decorators_1.DeclareCommand("pause", {
         aliases: ["pause"],
         description: {
-            content: "Pause or resume current song",
+            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_PAUSE_DESCRIPTION"),
             usage: "pause",
             examples: ["pause"]
         },

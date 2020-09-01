@@ -13,3 +13,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("@yumeko/interfaces/Command"), exports);
 __exportStar(require("@yumeko/interfaces/Other"), exports);
 __exportStar(require("@yumeko/interfaces/Event"), exports);
+__exportStar(require("@yumeko/interfaces/HTTPResponse"), exports);

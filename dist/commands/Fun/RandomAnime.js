@@ -13,7 +13,6 @@ const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const discord_js_1 = require("discord.js");
 const decorators_1 = require("@yumeko/decorators");
-const common_tags_1 = require("common-tags");
 let default_1 = class extends Command_1.default {
     async exec(msg) {
         const response = await node_superfetch_1.default.get("https://emilia-api.xyz/api/random-anime")
@@ -24,16 +23,7 @@ let default_1 = class extends Command_1.default {
             .setColor(this.client.config.color)
             .setDescription(`> ${body.description}`)
             .setImage(body.image)
-            .addField("\u200B", common_tags_1.stripIndents `
-                Score: **${body.avg_score}**
-                Episodes: **${body.episodes}**
-                Duration: **${body.eps_duration}**
-                Release: **${body.release_date}**
-                Season: **${body.season}**
-                Rating: **${body.rating}**
-                Source: **${body.source}**
-                Genres: ${body.genres.map(x => `\`${x}\``).join(", ")}
-            `);
+            .addField("\u200B", msg.guild.loc.get("COMMAND_RANDOM_ANIME_PARSE_RESPONSE", body));
         if (body.alternate_name.length)
             embed.setTitle(body.alternate_name).setAuthor(body.name);
         const watchs = [];
@@ -41,7 +31,7 @@ let default_1 = class extends Command_1.default {
             const platforms = body.watch[key].map(x => `[${x.platform}](${x.url})`).join(", ");
             watchs.push(`${key.toUpperCase()}: ${platforms}`);
         }
-        embed.addField("Watch !", watchs.join("\n"));
+        embed.addField(msg.guild.loc.get("COMMAND_RANDOM_ANIME_PARSE_WATCH"), watchs.join("\n"));
         return msg.ctx.send(embed);
     }
 };
@@ -49,7 +39,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("random-anime", {
         aliases: ["random-anime"],
         description: {
-            content: "Completely show you random anime",
+            content: (msg) => msg.guild.loc.get("COMMAND_RANDOM_ANIME_DESCRIPTION"),
             usage: "random-anime",
             examples: ["rabdom-anime"]
         },

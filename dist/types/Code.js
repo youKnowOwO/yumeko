@@ -12,7 +12,7 @@ class TypeImage {
     exec(msg, content) {
         const parsed = CODEBLOCK_PATTERN.exec(content);
         if (!parsed)
-            throw new CustomError_1.default("!PARSING", "**Please contain a codeblock. like:** ```this```");
+            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_CODE_NOT_FOUND"));
         return {
             code: parsed[2],
             lang: parsed[1] ? parsed[1].toLowerCase() : undefined

@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const discord_js_1 = require("discord.js");
 const decorators_1 = require("@yumeko/decorators");
-const common_tags_1 = require("common-tags");
 let NpCommand = class NpCommand extends Command_1.default {
     async exec(msg) {
         const { music } = msg.guild;
@@ -26,13 +25,7 @@ let NpCommand = class NpCommand extends Command_1.default {
                 .setAuthor(data.title, "https://listen.moe/_nuxt/img/logo-square-64.248c1f3.png")
                 .setColor(this.client.config.color)
                 .setImage(data.cover)
-                .setDescription(common_tags_1.stripIndents `
-                    Artist(s): **${data.artists}**
-                    Album(s): **${data.albums || "None"}**
-                    Listener(s): **${data.listeners}**
-                    Source: **${data.source || "None"}**
-                    Requester: **${data.requester || "None"}** ${data.event ? `\`${data.event.name}\`` : ""}
-                `);
+                .setDescription(msg.guild.loc.get("COMMAND_MUSIC_NP_MOE_PARSE", data));
             if (data.event)
                 embed.setThumbnail(data.event.image);
             return msg.ctx.send(embed);
@@ -57,7 +50,7 @@ NpCommand = __decorate([
     decorators_1.DeclareCommand("np", {
         aliases: ["np", "nowplay"],
         description: {
-            content: "np",
+            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_NP_DESCRIPTION"),
             usage: "np",
             examples: ["np"]
         },

@@ -18,11 +18,11 @@ let CatCommand = class CatCommand extends Command_1.default {
 };
 CatCommand = __decorate([
     decorators_1.DeclareCommand("cat", {
-        aliases: ["cat"],
+        aliases: ["cat", "kitty"],
         description: {
-            content: "Random Cat image.",
+            content: (msg) => msg.guild.loc.get("COMMAND_ANIMAL_DESCRIPTION", 2),
             usage: "cat",
-            examples: ["cat", "kitty"]
+            examples: ["cat"]
         },
         permissions: {
             client: ["ATTACH_FILES"]

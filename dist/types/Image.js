@@ -14,7 +14,7 @@ class TypeImage {
         const attachment = msg.attachments.first();
         if (attachment) {
             if (attachment.size > 0x7A1200)
-                throw new CustomError_1.default("!PARSING", "**Maximum file size is `8MB`**");
+                throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_IMAGE_SIZE_EXCEDED"));
             content = attachment.url;
         }
         let url;
@@ -29,7 +29,7 @@ class TypeImage {
         }
         const ext = path_1.extname(url.pathname);
         if (!IMAGE_PATTERN.test(ext))
-            throw new CustomError_1.default("!PARSING", "**Unsupported file type. supported: `PNG`, `JPG`, `BMP`, `GIF`**`");
+            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_IMAGE_UNSUPPORTED_EXT"));
         return content;
     }
 }

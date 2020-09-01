@@ -18,7 +18,7 @@ let ShipCommand = class ShipCommand extends Command_1.default {
             userTwo = userOne;
             userOne = msg.author;
         }
-        const m = await msg.channel.send("🖌️ **| Painting...**");
+        const m = await msg.channel.send(msg.guild.loc.get("COMMAND_FUN_PAINTING"));
         const userOneAvatar = await canvas_constructor_1.resolveImage(userOne.displayAvatarURL({ format: "png", size: 512 }));
         const userTwoAvatar = await canvas_constructor_1.resolveImage(userTwo.displayAvatarURL({ format: "png", size: 512 }));
         const attachment = await new canvas_constructor_1.Canvas(1024, 524)
@@ -48,7 +48,7 @@ ShipCommand = __decorate([
     decorators_1.DeclareCommand("ship", {
         aliases: ["ship"],
         description: {
-            content: "ship two user ❤️",
+            content: (msg) => msg.guild.loc.get("COMMAND_SHIP_DESCRIPTION"),
             usage: "ship <user> [user] [shipname]",
             examples: ["ship @unknown"]
         },
@@ -58,7 +58,7 @@ ShipCommand = __decorate([
                 identifier: "userOne",
                 match: "single",
                 type: "user",
-                prompt: "Which user do you want to ship it?"
+                prompt: (msg) => msg.guild.loc.get("COMMAND_SHIP_PROMPT")
             },
             {
                 identifier: "userTwo",

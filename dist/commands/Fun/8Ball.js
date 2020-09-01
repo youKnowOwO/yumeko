@@ -4,13 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
-const responses = require("../../../assets/json/8ball.json");
+const eightBallResponse = require("../../../assets/json/8ball.json");
 class EightBallCommand extends Command_1.default {
     constructor(client) {
         super(client, "8ball", {
             aliases: ["8ball"],
             description: {
-                content: "Ask to the magic 8ball",
+                content: (msg) => msg.guild.loc.get("COMMAND_8BALL_DESCRIPTION"),
                 usage: "8ball <question>",
                 examples: ["8ball are you right ?"]
             },
@@ -19,13 +19,14 @@ class EightBallCommand extends Command_1.default {
                 {
                     identifier: "text",
                     match: "rest",
-                    prompt: "What question do you want to ask  ?",
+                    prompt: (msg) => msg.guild.loc.get("COMMAND_8BALL_PROMPT"),
                     type: "string"
                 }
             ]
         });
     }
     exec(msg) {
+        const responses = eightBallResponse[msg.guild.loc.lang] || eightBallResponse.en_US;
         const response = responses[Math.round(Math.random() * responses.length)] || responses[0];
         return msg.ctx.send(`🎱 **| ${response}**`);
     }

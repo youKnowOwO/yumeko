@@ -9,10 +9,10 @@ class TypeTimespan {
     constructor() {
         this.name = "timespan";
     }
-    exec(_, content) {
+    exec(msg, content) {
         const parsed = Util_1.parseTime(content);
         if (isNaN(parsed))
-            throw new CustomError_1.default("!PARSING", "**Cannot determine that time position.**");
+            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_TIMESPAN_NOT_FOUND"));
         return parsed;
     }
 }

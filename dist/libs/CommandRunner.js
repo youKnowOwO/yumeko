@@ -21,7 +21,7 @@ class CommandRunner {
         catch (e) {
             if (!["CANCELED", "!UNDERSTAND"].includes(e.name)) {
                 this.client.log.error(e);
-                msg.channel.send(`**🚫 | Sorry my devs really bad.** ${Util_1.codeBlock("js", String(e))}`);
+                msg.channel.send(msg.guild.loc.get("COMMAND_RUNNER_ERROR", Util_1.codeBlock("js", String(e))));
             }
             return false;
         }
@@ -45,7 +45,7 @@ class CommandRunner {
         if (command.option.devOnly && !msg.author.isDev)
             return undefined;
         if (command.option.nsfw && !msg.channel.nsfw)
-            return msg.ctx.send("❌ **| This command only work on nsfw channel**");
+            return msg.ctx.send(msg.guild.loc.get("COMMAND_RUNNER_ONLY_NSFW"));
         if (!await this.allowed(msg, command.option.permissions, command.ignore))
             return undefined;
         msg.prefix = prefix === this.client.user.toString() ? `${this.client.user.tag} ` : prefix;
@@ -70,14 +70,14 @@ class CommandRunner {
         };
         if (used.running) {
             if (warn)
-                msg.ctx.send(`**❌ | ${msg.author}, Only one command per user**`);
+                msg.ctx.send(msg.guild.loc.get("COMMAND_RUNNER_ONLY_ONE", msg.author));
             return true;
         }
         const cooldown = used.since + used.amount;
         if (now < cooldown) {
             const amount = (cooldown - now) / 1000;
             if (warn)
-                msg.ctx.send(`**⏱️ | ${msg.author}, Calm down!.** You can use command again in \`${Math.round(amount)}\` second(s)`);
+                msg.ctx.send(msg.guild.loc.get("COMMAND_RUNNER_IN_COOLDOWN", msg.author, amount));
             return true;
         }
         return false;
@@ -89,7 +89,7 @@ class CommandRunner {
             const permissions = this.checkMissPermission(msg.guild.me, permission.client);
             if (permissions.length) {
                 const mappedPerms = permissions.map(x => `\`${x}\``).join().replace(/\_/g, " ");
-                msg.ctx.send(`**❌ | Im require this permission(s) to run the command. ${mappedPerms}**`);
+                msg.ctx.send(msg.guild.loc.get("COMMAND_RUNNER_MISSPERMS", msg.client.user, mappedPerms, true));
                 return false;
             }
         }
@@ -99,7 +99,7 @@ class CommandRunner {
                 if (await ignore(msg))
                     return true;
                 const mappedPerms = permissions.map(x => `\`${x}\``).join().replace(/\_/g, " ");
-                msg.ctx.send(`**❌ | ${msg.author}, You require this permission(s) to run the command. ${mappedPerms}**`);
+                msg.ctx.send(msg.guild.loc.get("COMMAND_RUNNER_MISSPERMS", msg.author, mappedPerms, false));
                 return false;
             }
         }

@@ -9,6 +9,7 @@ const MessageContext_1 = __importDefault(require("@yumeko/libs/MessageContext"))
 const Logger_1 = __importDefault(require("@yumeko/libs/Logger"));
 const EventLoader_1 = __importDefault(require("@yumeko/libs/EventLoader"));
 const NowplayMoeWS_1 = __importDefault(require("@yumeko/libs/NowplayMoeWS"));
+const Localization_1 = require("@yumeko/libs/Localization");
 const discord_js_1 = require("discord.js");
 const lavalink_1 = require("lavalink");
 require("../extension");
@@ -33,6 +34,7 @@ class YumekoClient extends discord_js_1.Client {
         });
         this.nowplayMoe = NowplayMoeWS_1.default;
         this.config = config;
+        this.langs = Localization_1.langCollector();
         EventLoader_1.default(this);
         this.collector.loadAll();
         this.on("error", this.log.error);

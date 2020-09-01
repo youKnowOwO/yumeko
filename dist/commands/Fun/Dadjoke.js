@@ -10,7 +10,7 @@ class DadjokeCommand extends Command_1.default {
         super(client, "dadjoke", {
             aliases: ["dadjoke"],
             description: {
-                content: "Get random dad joke",
+                content: (msg) => msg.guild.loc.get("COMMAND_DADJOKE_DESCRIPTION"),
                 usage: "dadjoke",
                 examples: ["dadjoke"]
             },

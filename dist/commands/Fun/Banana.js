@@ -19,7 +19,7 @@ let BananaCommand = class BananaCommand extends Command_1.default {
             member = msg.member;
         const length = Math.floor(Math.random() * 15) + 5;
         const attachment = await this.makeImage(length);
-        return msg.ctx.send(`🍌 **| \`${member.displayName}\` banana length is \`${length}cm\`**`, { files: [{ attachment, name: "banana.jpg" }] });
+        return msg.ctx.send(msg.guild.loc.get("COMMAND_BANANA_LENGTH", member, length), { files: [{ attachment, name: "banana.jpg" }] });
     }
     async makeImage(length) {
         const path = path_1.join(__dirname, "../../../assets/images/banana.png");
@@ -38,7 +38,7 @@ BananaCommand = __decorate([
     decorators_1.DeclareCommand("banana", {
         aliases: ["banana", "banana-length"],
         description: {
-            content: "See user banana length",
+            content: (msg) => msg.guild.loc.get("COMMAND_BANANA_DESCRIPTION"),
             usage: "banana [user]",
             examples: ["banana", "banana @unknown"]
         },

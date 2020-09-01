@@ -16,7 +16,7 @@ let ShuffleCommand = class ShuffleCommand extends Command_1.default {
     async exec(msg) {
         const { music } = msg.guild;
         music.queue = Util_1.shuffle(music.queue);
-        return msg.channel.send("🔀 **| Queue shuffled**");
+        return msg.channel.send(msg.guild.loc.get("COMMAND_MUSIC_SHUFFLE_SHUFFLED"));
     }
     ignore(msg) {
         return !!msg.guild.music.song && (msg.guild.music.listeners.length < 2 ||
@@ -33,7 +33,7 @@ ShuffleCommand = __decorate([
     decorators_1.DeclareCommand("shuffle", {
         aliases: ["shuffle"],
         description: {
-            content: "shuffle curent queue",
+            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_SHUFFLE_DESCRIPTION"),
             usage: "shuffle",
             examples: ["shuffle"]
         },

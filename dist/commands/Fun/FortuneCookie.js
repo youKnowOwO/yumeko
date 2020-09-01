@@ -36,7 +36,7 @@ let FortuneCookieCommand = class FortuneCookieCommand extends Command_1.default 
             .toBufferAsync();
     }
     async exec(msg) {
-        const m = await msg.channel.send("🖌️ **| Painting...**");
+        const m = await msg.channel.send(msg.guild.loc.get("COMMAND_FUN_PAINTING"));
         const fortune = await this.getFortune();
         const attachment = await this.createImage(fortune);
         m.delete();
@@ -47,7 +47,7 @@ FortuneCookieCommand = __decorate([
     decorators_1.DeclareCommand("fortune-cookie", {
         aliases: ["fortune-cookie", "fortune"],
         description: {
-            content: "crack your cookie and get the fortune.",
+            content: (msg) => msg.guild.loc.get("COMMAND_FORTUNE_COOKIE_DESCRIPTION"),
             usage: "fortune-cookie",
             examples: ["fortune-cookie"]
         },

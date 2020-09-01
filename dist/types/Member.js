@@ -17,10 +17,11 @@ class TypeMember {
             x.user.username.toLowerCase().includes(content.toLowerCase()) ||
             x.user.tag.toLowerCase().includes(content.toLowerCase()));
         if (!members.size)
-            throw new CustomError_1.default("!PARSING", "Cannot found member. Please insert right type!");
+            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_MEMBER_NOT_FOUND"));
         const selected = members.find(x => x.displayName === content && x.user.username === content);
+        const list = members.map(x => `\`${x.displayName}\``).join(", ");
         if (!selected && members.size > 1)
-            throw new CustomError_1.default("!PARSING", `Please more specify spelling member name. like: ${members.map(x => `\`${x.displayName}\``).join(", ")}`);
+            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_MEMBER_HAS_SIMILIAR", list));
         return selected || members.first();
     }
 }

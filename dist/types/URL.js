@@ -8,12 +8,12 @@ class TypeURL {
     constructor() {
         this.name = "url";
     }
-    exec(_, content) {
+    exec(msg, content) {
         try {
             return new URL(content);
         }
         catch {
-            throw new CustomError_1.default("!PARSING", "Invalid URL");
+            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_URL_NOT_FOUND"));
         }
     }
 }

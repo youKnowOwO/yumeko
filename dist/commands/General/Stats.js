@@ -70,7 +70,7 @@ StatsCommand = __decorate([
     decorators_1.DeclareCommand("stats", {
         aliases: ["stats"],
         description: {
-            content: "Statistic about this bot",
+            content: (msg) => msg.guild.loc.get("COMMAND_STATS_DESCRIPTION"),
             usage: "stats",
             examples: ["stats"]
         },

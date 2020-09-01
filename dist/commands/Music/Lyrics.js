@@ -19,7 +19,7 @@ let LyricsCommand = class LyricsCommand extends Command_1.default {
     async exec(msg, { title }) {
         const result = await this.getLyrics(title);
         if (!result)
-            return msg.ctx.send("🚫 No result found");
+            return msg.ctx.send(msg.guild.loc.get("COMMAND_UTIL_NO_RESULT_FOUND"));
         const pages = Util_1.chunk(result.lyrics, 2048);
         const embed = new discord_js_1.MessageEmbed()
             .setColor(this.client.config.color)
@@ -43,7 +43,7 @@ LyricsCommand = __decorate([
     decorators_1.DeclareCommand("lyrics", {
         aliases: ["lyrics", "lyrics"],
         description: {
-            content: "Get lyrics from query based",
+            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_LYRICS_DESCRIPTION"),
             usage: "lyrics",
             examples: ["lyrics Moo Doja Cat"]
         },

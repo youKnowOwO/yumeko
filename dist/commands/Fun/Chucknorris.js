@@ -10,7 +10,7 @@ class ChucknorrisCommand extends Command_1.default {
         super(client, "chucknorris", {
             aliases: ["chucknorris"],
             description: {
-                content: "Get random Chuck Norris joke",
+                content: (msg) => msg.guild.loc.get("COMMAND_CHUCKNORRIS_DESCRIPTION"),
                 usage: "chucknorris",
                 examples: ["chucknorris"]
             },

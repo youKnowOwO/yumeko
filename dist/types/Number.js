@@ -8,10 +8,10 @@ class TypeNumber {
     constructor() {
         this.name = "number";
     }
-    exec(_, content) {
+    exec(msg, content) {
         const result = Number(content);
         if (isNaN(result))
-            throw new CustomError_1.default("!PARSING", `**\`${content}\` isn't even a number**`);
+            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_NUMBER_NOT_FOUND", content));
         return result;
     }
 }

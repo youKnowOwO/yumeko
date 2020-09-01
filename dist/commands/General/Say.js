@@ -22,7 +22,7 @@ SayCommand = __decorate([
     decorators_1.DeclareCommand("say", {
         aliases: ["say"],
         description: {
-            content: "Let me repeat what you want",
+            content: (msg) => msg.guild.loc.get("COMMAND_SAY_DESCRIPTION"),
             usage: "say <text> [--delete]",
             examples: ["say salam"]
         },
@@ -37,7 +37,7 @@ SayCommand = __decorate([
                 identifier: "text",
                 type: "string",
                 match: "rest",
-                prompt: "What text do you want me to repeaat ?"
+                prompt: (msg) => msg.guild.loc.get("COMMAND_SAY_PROMPT")
             }
         ]
     })

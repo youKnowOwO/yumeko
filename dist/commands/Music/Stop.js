@@ -15,7 +15,7 @@ let StopCommand = class StopCommand extends Command_1.default {
     async exec(msg) {
         const { music } = msg.guild;
         music.stop();
-        return msg.ctx.send("🛑 **| Stopped**");
+        return msg.ctx.send(msg.guild.loc.get("COMMAND_MUSIC_STOP_STOPPED"));
     }
     ignore(msg) {
         return !!msg.guild.music.song && msg.guild.music.listeners.length < 2;
@@ -30,7 +30,7 @@ StopCommand = __decorate([
     decorators_1.DeclareCommand("stop", {
         aliases: ["stop"],
         description: {
-            content: "Clear all song in queue. and stop current song",
+            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_STOP_DESCRIPTION"),
             usage: "stop",
             examples: ["stop"]
         },
