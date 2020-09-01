@@ -3,6 +3,14 @@ import { stripIndents } from "common-tags";
 import { RandomAnimeResponse, DataNowplayMoe } from "@yumeko/interfaces";
 import YumekoClient from "@yumeko/classes/Client";
 
+export enum Animals {
+    birb, bunny, cat,
+    dog, duck, fox,
+    kangaroo, koala, lizard,
+    owl, panda, racoon,
+    shiba
+}
+
 export default {
     // META
     META_NAME: (): string => "English (US)",
@@ -61,6 +69,7 @@ export default {
     `,
 
     // ANIMAL
+    COMMAND_ANIMAL_DESCRIPTION: (id: number): string => `Random ${Animals[id]} image.`,
     COMMAND_ANIMAL_CLICK_HERE: (): string => "Click here if image failed to load",
 
     // FUN

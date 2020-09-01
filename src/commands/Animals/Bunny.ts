@@ -2,14 +2,14 @@ import type YumekoClient from "@yumeko/classes/Client";
 import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import { MessageEmbed, Message } from "discord.js";
-import { firstUpperCase } from "@yumeko/util/Util";
+import { Animals } from "@yumeko/langs/en_US";
 
 export default class BunnyCommand extends Command {
     public constructor (client: YumekoClient, animal = "bunny") {
         super(client, animal, {
             aliases: [animal],
             description: {
-                content: `Random ${firstUpperCase(animal)} image.`,
+                content: (msg): string => msg.guild!.loc.get("COMMAND_ANIMAL_DESCRIPTION", Animals[animal as any] as unknown as number),
                 usage: animal,
                 examples: [animal]
             },

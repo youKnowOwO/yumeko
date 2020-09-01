@@ -1,6 +1,14 @@
 import en_US from "@yumeko/langs/en_US";
 import { stripIndents } from "common-tags";
 
+enum Animals {
+    burung, kelinci, kucing,
+    anjing, bebek, serigala,
+    kangguru, koala, kadal,
+    "burung hantu", panda, rakun,
+    "anjing shiba"
+}
+
 export default {
     // Adding default value
     ...en_US,
@@ -62,6 +70,7 @@ export default {
     `,
 
     // ANIMAL
+    COMMAND_ANIMAL_DESCRIPTION: (id: number): string => `Menampilkan gambar ${Animals[id]} secara acak.`,
     COMMAND_ANIMAL_CLICK_HERE: () => "Klik disini jika gambar tidak muncul",
 
     // FUN

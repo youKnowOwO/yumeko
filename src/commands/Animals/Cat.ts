@@ -5,7 +5,7 @@ import { DeclareCommand } from "@yumeko/decorators";
 @DeclareCommand("cat", {
     aliases: ["cat"],
     description: {
-        content: "Random Cat image.",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_ANIMAL_DESCRIPTION", 2),
         usage: "cat",
         examples: ["cat", "kitty"]
     },
