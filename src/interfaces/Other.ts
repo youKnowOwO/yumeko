@@ -31,7 +31,7 @@ export interface SelectionPagePayload<T> {
 export interface AwaitPlayersPayload {
     includeClientReq: boolean;
     checkDM: boolean | string;
-    message: Message;
+    message?: Message;
     min: number;
     max: number;
 }

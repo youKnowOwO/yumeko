@@ -108,6 +108,13 @@ export default {
     COMMAND_GAME_VERIFY_NOT_ACCEPT: (user, offerWithClient = false) => `🍃 **| Sepertinya ${user} tidak menerima tantangan mu.${offerWithClient ? " Apakah kamu ingin bermain bersama ku ?" : ""}**`,
     COMMAND_GAME_VERIFY_DECLINE_OFFER: () => "✋ **| Ok sampai jumpa kembali**",
 
+    COMMAND_GAME_AWAIT_PLAYER_LIST: () => "👥 Daftar Pemain",
+    COMMAND_GAME_AWAIT_PLAYER_LASTS: () => "ℹ️ Pemilihan pemain berlangsung selama 30 detik",
+    COMMAND_GAME_REACT_THIS_TO_JOIN: () => "react ini untuk bergabung",
+    COMMAND_GAME_REACT_THIS_TO_INCLUDE_ME: () => "react ini untuk membuat diriku bergabung",
+    COMMAND_GAME_REACT_THIS_TO_CANCEL: () => "react ini untuk membatalkan",
+    COMMAND_GAME_REACT_THIS_TO_START: () => "react ini untuk memulai",
+
     COMMAND_GAME_LIST_PREPARING: () => "🖌️ **| Mempersiapkan...**",
     COMMAND_GAME_LIST_TURN: user => `${user}, ini giliran mu!`,
     COMMAND_GAME_LIST_CONGRATS: user => `🎉 **| Selamat ${user} kamu memenangkan pertandingan!**`,

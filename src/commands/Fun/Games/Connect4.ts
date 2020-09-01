@@ -1,9 +1,7 @@
 import Command from "@yumeko/classes/Command";
-import CustomError from "@yumeko/classes/CustomError";
 import Connect4 from "@yumeko/classes/Games/Connect4";
 import { Message, MessageReaction, User, Util } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
-import { verify } from "@yumeko/util/Util";
+import { DeclareCommand, verifyWantChallange } from "@yumeko/decorators";
 import { stripIndents } from "common-tags";
 
 const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣"];
@@ -27,20 +25,8 @@ const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣
     ]
 })
 export default class Connect4Command extends Command {
-    public async exec(msg: Message, { opponent }: { opponent?: User }): Promise<Message> {
-        if (opponent) {
-            const verifyMsg = await msg.channel.send(msg.guild!.loc.get("COMMAND_GAME_VERIFY_WAIT", opponent));
-            const verified = await verify(verifyMsg, opponent);
-            if (!verified) {
-                await verifyMsg.edit(msg.guild!.loc.get("COMMAND_GAME_VERIFY_NOT_ACCEPT", opponent, true));
-                const accept = await verify(verifyMsg, msg.author);
-                if (!accept) {
-                    msg.ctx.send(msg.guild!.loc.get("COMMAND_GAME_VERIFY_DECLINE_OFFER"));
-                    throw new CustomError("CANCELED");
-                }
-                opponent = this.client.user!;
-            }
-        } else opponent = this.client.user!;
+    @verifyWantChallange("opponent", true)
+    public async exec(msg: Message, { opponent }: { opponent: User }): Promise<Message> {
         const message = await msg.channel.send(msg.guild!.loc.get("COMMAND_GAME_LIST_PREPARING"));
         for (const num of numbers) await message.react(num);
         const c4 = new Connect4();

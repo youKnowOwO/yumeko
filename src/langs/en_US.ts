@@ -107,6 +107,13 @@ export default {
     COMMAND_GAME_VERIFY_NOT_ACCEPT: (user: User, offerWithClient = false): string => `🍃 **| Look like ${user} doesn't accept your challenge.${offerWithClient ? " Do you want to play it with me anyway ?" : ""}**`,
     COMMAND_GAME_VERIFY_DECLINE_OFFER: (): string => "✋ **| Ok see you next time**",
 
+    COMMAND_GAME_AWAIT_PLAYER_LIST: (): string => "👥 Player List",
+    COMMAND_GAME_AWAIT_PLAYER_LASTS: (): string => "ℹ️ Players selection lasts 30 seconds",
+    COMMAND_GAME_REACT_THIS_TO_JOIN: (): string => "react this to join",
+    COMMAND_GAME_REACT_THIS_TO_INCLUDE_ME: (): string => "react this to include me",
+    COMMAND_GAME_REACT_THIS_TO_CANCEL: (): string => "react this to cancel",
+    COMMAND_GAME_REACT_THIS_TO_START: (): string => "react this to start",
+
     COMMAND_GAME_LIST_PREPARING: (): string => "🖌️ **| Preparing...**",
     COMMAND_GAME_LIST_TURN: (user: User): string => `${user}, Turn!`,
     COMMAND_GAME_LIST_CONGRATS: (user: User): string => `🎉 **| Congrats ${user} you won the match!**`,

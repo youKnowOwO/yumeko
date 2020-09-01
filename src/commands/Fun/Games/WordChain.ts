@@ -1,8 +1,6 @@
 import Command from "@yumeko/classes/Command";
-import AwaitPlayers from "@yumeko/util/AwaitPlayers";
-import CustomError from "@yumeko/classes/CustomError";
 import { Message, User, MessageEmbed, Util } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, doPlayersSelection } from "@yumeko/decorators";
 import { shuffle } from "@yumeko/util/Util";
 
 const wordList: string[] = require("../../../../assets/json/words.json");
@@ -28,14 +26,12 @@ interface Player {
     category: "game"
 })
 export default class WordChainCommand extends Command {
-    public async exec(msg: Message): Promise<Message> {
-        const users = await new AwaitPlayers({
-            includeClientReq: true,
-            checkDM: false,
-            message: msg,
-            min: 2, max: 20
-        }).start();
-        if (!users.length) throw new CustomError("CANCELED");
+    @doPlayersSelection("users", {
+        includeClientReq: true,
+        checkDM: false,
+        min: 2, max: 20
+    })
+    public async exec(msg: Message, { users }: { users: User[] }): Promise<Message> {
         const words = shuffle(wordList);
         const players = this.createPlayers(users);
         let currentWord = words.shift()!;
