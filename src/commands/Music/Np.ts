@@ -1,12 +1,11 @@
 import Command from "@yumeko/classes/Command";
 import { MessageEmbed, Message } from "discord.js";
 import { DeclareCommand, isMusicPlaying } from "@yumeko/decorators";
-import { stripIndents } from "common-tags";
 
 @DeclareCommand("np", {
     aliases: ["np", "nowplay"],
     description: {
-        content: "np",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_NP_DESCRIPTION"),
         usage: "np",
         examples: ["np"]
     },
@@ -28,13 +27,7 @@ export default class NpCommand extends Command {
                 .setAuthor(data.title, "https://listen.moe/_nuxt/img/logo-square-64.248c1f3.png")
                 .setColor(this.client.config.color)
                 .setImage(data.cover)
-                .setDescription(stripIndents`
-                    Artist(s): **${data.artists}**
-                    Album(s): **${data.albums || "None"}**
-                    Listener(s): **${data.listeners}**
-                    Source: **${data.source || "None"}**
-                    Requester: **${data.requester || "None"}** ${data.event ? `\`${data.event.name}\`` : ""}
-                `);
+                .setDescription(msg.guild!.loc.get("COMMAND_MUSIC_NP_MOE_PARSE", data));
             if (data.event) embed.setThumbnail(data.event.image);
             return msg.ctx.send(embed);
         }

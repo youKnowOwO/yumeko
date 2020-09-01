@@ -5,7 +5,7 @@ import { DeclareCommand } from "@yumeko/decorators";
 @DeclareCommand("say", {
     aliases: ["say"],
     description: {
-        content: "Let me repeat what you want",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_SAY_DESCRIPTION"),
         usage: "say <text> [--delete]",
         examples: ["say salam"]
     },
@@ -20,7 +20,7 @@ import { DeclareCommand } from "@yumeko/decorators";
             identifier: "text",
             type: "string",
             match: "rest",
-            prompt: "What text do you want me to repeaat ?"
+            prompt: (msg): string => msg.guild!.loc.get("COMMAND_SAY_PROMPT")
         }
     ]
 })

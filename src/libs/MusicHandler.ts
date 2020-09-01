@@ -89,7 +89,7 @@ export default class MusicHandler {
                 this.updatePosition(0);
                 this.guild.me!.voice.setSelfDeaf(true);
                 if (this.oldSong && this.oldSong.identifier === this.song!.identifier) break;
-                this.textChannel!.send(`🎶 **Now Playing:** __**${this.song!.title}**__`);
+                this.textChannel!.send(this.guild.loc.get("COMMAND_MUSIC_PLAYING", this.song!.title));
                 break;
             case "TrackEndEvent":
                 if (data.reason === "REPLACED") break;
@@ -100,7 +100,7 @@ export default class MusicHandler {
                 this.player.leave();
                 break;
             case "TrackExceptionEvent":
-                this.textChannel!.send(`❌ **| Please try again.** ${codeBlock("java", data.error)}`);
+                this.textChannel!.send(this.guild.loc.get("COMMAND_MUSIC_GET_EXCEPTION", codeBlock("java", data.error)));
                 break;
         }
     }

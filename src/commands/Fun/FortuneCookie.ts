@@ -8,7 +8,7 @@ import { join } from "path";
 @DeclareCommand("fortune-cookie", {
     aliases: ["fortune-cookie", "fortune"],
     description: {
-        content: "crack your cookie and get the fortune.",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_FORTUNE_COOKIE_DESCRIPTION"),
         usage: "fortune-cookie",
         examples: ["fortune-cookie"]
     },
@@ -38,7 +38,7 @@ export default class FortuneCookieCommand extends Command {
     }
 
     public async exec(msg: Message): Promise<Message> {
-        const m = await msg.channel.send("🖌️ **| Painting...**");
+        const m = await msg.channel.send(msg.guild!.loc.get("COMMAND_FUN_PAINTING"));
         const fortune = await this.getFortune();
         const attachment = await this.createImage(fortune);
         m.delete();

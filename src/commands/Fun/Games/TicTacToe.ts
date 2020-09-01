@@ -16,7 +16,7 @@ interface UpdateBoardReturn {
 @DeclareCommand("game-tictactoe", {
     aliases: [],
     description: {
-        content: "Play Tic Tac Toe game with other user. This is solved game, you must placing 3 marks horizontal vertical or diagonal to win the match.",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_GAME_TICTACTOE_DESCRIPTION"),
         usage: "<user>",
         examples: ["game-tictactoe"],
         adionalInfo: ["<:tictactoe:736370109073063946> Tic Tac Toe", "tictactoe", "ttt"]
@@ -34,25 +34,25 @@ interface UpdateBoardReturn {
 export default class TicTacToeCommand extends Command {
     public async exec(msg: Message, { opponent }: { opponent?: User }): Promise<Message> {
         if (opponent) {
-            const verifyMsg = await msg.channel.send(`❓ **| ${opponent}, Do you want accept this challenge ?**`);
+            const verifyMsg = await msg.channel.send(msg.guild!.loc.get("COMMAND_GAME_VERIFY_WAIT", opponent));
             const verified = await verify(verifyMsg, opponent);
             if (!verified) {
-                await verifyMsg.edit(`🍃 **| Look like ${opponent} doesn't accept your challenge. Do you want to play it with me anyway ?**`);
+                await verifyMsg.edit(msg.guild!.loc.get("COMMAND_GAME_VERIFY_NOT_ACCEPT", opponent, true));
                 const accept = await verify(verifyMsg, msg.author);
                 if (!accept) {
-                    msg.ctx.send("✋ **| Ok see you next time**");
+                    msg.ctx.send(msg.guild!.loc.get("COMMAND_GAME_VERIFY_DECLINE_OFFER"));
                     throw new CustomError("CANCELED");
                 }
                 opponent = this.client.user!;
             }
         } else opponent = this.client.user!;
-        const message = await msg.channel.send("🖌️ **| Preparing**");
+        const message = await msg.channel.send(msg.guild!.loc.get("COMMAND_GAME_LIST_PREPARING"));
         for (const num of numbers) await message.react(num);
         const ttt = new TicTacToe();
         while (!ttt.isEnd()) {
             const user = ttt.turn ? msg.author : opponent;
             await message.edit(stripIndents`
-                <:tictactoe:736370109073063946> **| ${user}, Turn!**
+                <:tictactoe:736370109073063946> **| ${msg.guild!.loc.get("COMMAND_GAME_LIST_TURN", user)}**
                 > ${ttt.toString().replace(/\n/g, "\n> ")}
             `);
             if (user.bot) {
@@ -72,7 +72,7 @@ export default class TicTacToeCommand extends Command {
             ttt.place(...ttt.parsePosition(index + 1));
         }
         return message.edit(stripIndents`
-            ${ttt.winner ? `🎉 **| Congrats ${ttt.turn ? msg.author : opponent}, you win the match!**` : "🇴 **| Draw!**"}
+        ${msg.guild!.loc.get(ttt.winner ? "COMMAND_GAME_LIST_CONGRATS" : "COMMAND_GAME_LIST_DRAW", ttt.turn ? msg.author : opponent)}
             > ${ttt.toString().replace(/\n/g, "\n> ")}
         `);
     }

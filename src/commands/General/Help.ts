@@ -7,7 +7,7 @@ import { DeclareCommand } from "@yumeko/decorators";
 @DeclareCommand("help", {
     aliases: ["help", "h"],
     description: {
-        content: "The first command you'll typing",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_HELP_DESCRIPTION"),
         usage: "help [command]",
         examples: ["help say"]
     },
@@ -29,24 +29,27 @@ export default class HelpCommand extends Command {
         if (command) {
             const { name: category } = this.collector!.categories.find(x => x.type === command.option.category)!;
             const { option } = command;
+            const desc: [string, string[], number] = [
+                `${msg.prefix}${option.description.usage}`,
+                option.aliases.length > 1 ? option.aliases.slice(1) : ["No Aliases"],
+                option.cooldown ? option.cooldown : 5
+            ];
             const embed = new MessageEmbed()
                 .setColor(this.client.config.color)
                 .setThumbnail("https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/twitter/31/black-question-mark-ornament_2753.png")
                 .setDescription(stripIndents`
                     __**${category} -> ${firstUpperCase(command.identifier)}**__ ${option.disable ? "**[DISABLE]**" : ""}
-                    ${codeBlock("", option.description.content)}
-                    **Usage:** \`${msg.prefix}${option.description.usage}\`
-                    **Aliases:** ${option.aliases.length > 1 ? option.aliases.slice(1).map(x => `\`${x}\``).join(", ") : "`No Aliases`"}
-                    **Cooldown:** \`${option.cooldown ? option.cooldown : 5} seconds\`
+                    ${codeBlock("", typeof option.description.content === "string" ? option.description.content : option.description.content(msg))}
+                    ${msg.guild!.loc.get("COMMAND_HELP_PARSE_DESC", ...desc)}
                 `)
-                .setFooter("ℹ️ Don't include <> or []. <> means required, and [] means optional.");
+                .setFooter(msg.guild!.loc.get("COMMAND_HELP_INFO_ARGS"));
             if (option.description.examples.length) embed
-                .addField("Examples", codeBlock("", option.description.examples.map(x => `${msg.prefix}${x}`).join("\n")));
+                .addField(msg.guild!.loc.get("COMMAND_HELP_PARSE_EXAMPLES"), codeBlock("", option.description.examples.map(x => `${msg.prefix}${x}`).join("\n")));
             return msg.ctx.send(embed);
         }
         const embed = new MessageEmbed()
             .setColor(this.client.config.color)
-            .setFooter(`ℹ️ To learn more about a specific command, do ${msg.prefix}help <command name>`);
+            .setFooter(msg.guild!.loc.get("COMMAND_HELP_INFO_EXPLAIN", msg.prefix!));
         for (const category of this.collector!.categories) {
             let commands = msg.author.isDev ? category.commands : category.commands.filter(x => !x.option.devOnly);
             commands = commands.filter(x => x.option.aliases.length);

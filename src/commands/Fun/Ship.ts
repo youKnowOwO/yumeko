@@ -6,7 +6,7 @@ import { Canvas, resolveImage } from "canvas-constructor";
 @DeclareCommand("ship", {
     aliases: ["ship"],
     description: {
-        content: "ship two user ❤️",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_SHIP_DESCRIPTION"),
         usage: "ship <user> [user] [shipname]",
         examples: ["ship @unknown"]
     },
@@ -16,7 +16,7 @@ import { Canvas, resolveImage } from "canvas-constructor";
             identifier: "userOne",
             match: "single",
             type: "user",
-            prompt: "Which user do you want to ship it?"
+            prompt: (msg): string => msg.guild!.loc.get("COMMAND_SHIP_PROMPT")
         },
         {
             identifier: "userTwo",
@@ -38,7 +38,7 @@ export default class ShipCommand extends Command {
             userTwo = userOne;
             userOne = msg.author;
         }
-        const m = await msg.channel.send("🖌️ **| Painting...**");
+        const m = await msg.channel.send(msg.guild!.loc.get("COMMAND_FUN_PAINTING"));
         const userOneAvatar = await resolveImage(userOne.displayAvatarURL({ format: "png", size: 512 }));
         const userTwoAvatar = await resolveImage(userTwo.displayAvatarURL({ format: "png", size: 512 }));
         const attachment = await new Canvas(1024, 524)

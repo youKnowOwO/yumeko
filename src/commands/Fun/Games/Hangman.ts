@@ -12,7 +12,7 @@ export default class HangmanCommand extends Command {
         super(client, "game-hangman", {
             aliases: [],
             description: {
-                content: "Save hanged man by guessing the word!. I'll hang random man and if you to want to safe him, just guess the word",
+                content: (msg): string => msg.guild!.loc.get("COMMAND_GANE_HANGMAN_DESCRIPTION"),
                 usage: "[range]",
                 examples: ["game-hangman"],
                 adionalInfo: ["<:hangman:736148147038060554> Hangman", "hangman", "hm"]
@@ -53,8 +53,8 @@ export default class HangmanCommand extends Command {
                 passes++;
             }
         }
-        if (passes < 7) return msg.ctx.send(`✅ **| You're right! it was \`${word.join("")}\`**`);
-        return msg.ctx.send(`❌ **| Too bad it was \`${word.join("")}\`**`);
+        if (passes < 7) return msg.ctx.send(msg.guild!.loc.get("COMMAND_GAME_LIST_RIGHT", word.join("")));
+        return msg.ctx.send(msg.guild!.loc.get("COMMAND_GAME_LIST_WRONG", words.join("")));
     }
 
     public getHangedMan(passes: number): string {

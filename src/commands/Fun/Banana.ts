@@ -7,7 +7,7 @@ import { join } from "path";
 @DeclareCommand("banana", {
     aliases: ["banana", "banana-length"],
     description: {
-        content: "See user banana length",
+        content:(msg): string => msg.guild!.loc.get("COMMAND_BANANA_DESCRIPTION"),
         usage: "banana [user]",
         examples: ["banana", "banana @unknown"]
     },
@@ -26,7 +26,7 @@ export default class BananaCommand extends Command {
         if (!member) member = msg.member!;
         const length = Math.floor(Math.random() * 15) + 5;
         const attachment = await this.makeImage(length);
-        return msg.ctx.send(`🍌 **| \`${member.displayName}\` banana length is \`${length}cm\`**`, { files: [{ attachment, name: "banana.jpg" }]});
+        return msg.ctx.send(msg.guild!.loc.get("COMMAND_BANANA_LENGTH", member, length), { files: [{ attachment, name: "banana.jpg" }]});
     }
 
     public async makeImage(length: number): Promise<Buffer> {

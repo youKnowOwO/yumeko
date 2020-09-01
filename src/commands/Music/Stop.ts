@@ -5,7 +5,7 @@ import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChan
 @DeclareCommand("stop", {
     aliases: ["stop"],
     description: {
-        content: "Clear all song in queue. and stop current song",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_STOP_DESCRIPTION"),
         usage: "stop",
         examples: ["stop"]
     },
@@ -21,7 +21,7 @@ export default class StopCommand extends Command {
     public async exec(msg: Message): Promise<Message> {
         const { music } = msg.guild!;
         music.stop();
-        return msg.ctx.send("🛑 **| Stopped**");
+        return msg.ctx.send(msg.guild!.loc.get("COMMAND_MUSIC_STOP_STOPPED"));
     }
 
     public ignore(msg: Message): boolean {

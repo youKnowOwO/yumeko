@@ -5,6 +5,7 @@ import Context from "@yumeko/libs/MessageContext";
 import Logger from "@yumeko/libs/Logger";
 import eventLoader from "@yumeko/libs/EventLoader";
 import nowPlayMoe from "@yumeko/libs/NowplayMoeWS";
+import { langCollector } from "@yumeko/libs/Localization";
 import { Client } from "discord.js";
 import { Node as Lavalink } from "lavalink";
 
@@ -28,6 +29,7 @@ export default class YumekoClient extends Client {
     });
     public nowplayMoe = nowPlayMoe;
     public config = config;
+    public langs = langCollector();
     public constructor() {
         super({
             fetchAllMembers: true,

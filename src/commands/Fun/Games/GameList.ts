@@ -4,13 +4,13 @@ import CustomError from "@yumeko/classes/CustomError";
 import { Message, MessageEmbed } from "discord.js";
 import { stripIndents } from "common-tags";
 
-export default class GameListComamnd extends Command {
+export default class GameListCommand extends Command {
     public session: Set<string> = new Set();
     public constructor (client: YumekoClient) {
         super(client, "game", {
             aliases: ["game", "mini-game"],
             description: {
-                content: "See the list of mini game i had",
+                content: (msg): string => msg.guild!.loc.get("COMMAND_GAME_LIST_DESCRIPTION"),
                 usage: "game [game]",
                 examples: ["game gtn"]
             },
@@ -23,10 +23,10 @@ export default class GameListComamnd extends Command {
                     identifier: "game",
                     match: "single",
                     optional: true,
-                    type: (_: Message, content: string): Command => {
+                    type: (msg: Message, content: string): Command => {
                         const list = this.collector!.commands.filter(x => x.identifier.includes("game-"));
                         const command = list.find(x => x.option.description.adionalInfo!.slice(1).includes(content.toLowerCase()));
-                        if (!command) throw new CustomError("!PARSING", "Mini game not found");
+                        if (!command) throw new CustomError("!PARSING", msg.guild!.loc.get("COMMAND_GAME_LIST_NOT_FOUND"));
                         return command;
                     }
                 }
@@ -37,7 +37,7 @@ export default class GameListComamnd extends Command {
     public async exec(msg: Message, { game } : { game: Command }): Promise<Message> {
         if (game) {
             if (this.session.has(`${msg.channel.id}/${game.identifier}`)) {
-                msg.ctx.send("❕ **| Only one game per channel**");
+                msg.ctx.send(msg.guild!.loc.get("COMMAND_GAME_LIST_ONLY_ONE"));
                 throw new CustomError("CANCELED");
             }
             this.session.add(`${msg.channel.id}/${game.identifier}`);
@@ -52,11 +52,11 @@ export default class GameListComamnd extends Command {
                 const [name, ...cmds] = x.option.description.adionalInfo!;
                 return stripIndents`
                     **${name}**
-                    > ${x.option.description.content}
+                    > ${typeof x.option.description.content === "string" ? x.option.description.content : x.option.description.content(msg)}
                     *cmds: ${cmds.map(x => `\`${x}\``).join(", ")}*
                 `;
             }).join("\n\n"))
-            .setFooter(`To play a game type '${msg.prefix}game <game cmd>'`);
+            .setFooter(msg.guild!.loc.get("COMMAND_GAME_LIST_INFO", msg.prefix!));
         return msg.ctx.send(embed);
     }
 }

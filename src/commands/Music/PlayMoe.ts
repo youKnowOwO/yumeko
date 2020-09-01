@@ -7,7 +7,7 @@ import { DeclareCommand, inhibit } from "@yumeko/decorators";
 @DeclareCommand("play-moe", {
     aliases: ["play-moe", "playmoe"],
     description: {
-        content: "Play radio from listen.meo",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_PLAYMOE_DESCRIPTION"),
         usage: "play-moe <jpop | kpop>",
         examples: ["play-moe jpop"]
     },
@@ -16,11 +16,11 @@ import { DeclareCommand, inhibit } from "@yumeko/decorators";
         {
             identifier: "link",
             match: "single",
-            prompt: "Which radio culture do you want to select, `jpop` or `kpop` ?",
-            type: (_, content): string => {
+            prompt: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_PLAYMOE_PROMPT"),
+            type: (msg, content): string => {
                 content = content.toLowerCase();
                 if (!["jpop", "kpop"].includes(content))
-                    throw new CustomError("!PARSING", "**Only `jpop` or `kpop` allowed!**");
+                    throw new CustomError("!PARSING", msg.guild!.loc.get("COMMAND_MUSIC_PLAYMOE_INVALID_TYPE"));
                 return `https://listen.moe/${content === "jpop" ? "stream" : "kpop/stream"}`;
             }
         }
@@ -28,7 +28,7 @@ import { DeclareCommand, inhibit } from "@yumeko/decorators";
 })
 export default class PlayMoe extends Command {
     @inhibit(msg => {
-        if (msg.guild!.music.song) return "❌ **| You can't do this!. Because Music Player is in use**";
+        if (msg.guild!.music.song) return msg.guild!.loc.get("COMMAND_MUSIC_PLAYMOE_INHIBIT");
     })
     public async exec(msg: Message, { link }: { link: string }): Promise<Message | void> {
         const track = await msg.guild!.music.fetch(link);

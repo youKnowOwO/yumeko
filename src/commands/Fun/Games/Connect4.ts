@@ -11,7 +11,7 @@ const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣
 @DeclareCommand("game-connect4", {
     aliases: [],
     description: {
-        content: "Play Connect4 game with other user. This is solved game, you must drop 4 marks horizontal vertical or diagonal to win the match.",
+        content: (msg): string => msg.guild!.loc.get("COMMAND_GAME_CONNECT4_DESCRIPTION"),
         usage: "<user>",
         examples: ["game-conmect4"],
         adionalInfo: ["<:connect4:745791911218118706> Connect4", "connect4", "c4"]
@@ -29,25 +29,25 @@ const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣
 export default class Connect4Command extends Command {
     public async exec(msg: Message, { opponent }: { opponent?: User }): Promise<Message> {
         if (opponent) {
-            const verifyMsg = await msg.channel.send(`❓ **| ${opponent}, Do you want accept this challenge ?**`);
+            const verifyMsg = await msg.channel.send(msg.guild!.loc.get("COMMAND_GAME_VERIFY_WAIT", opponent));
             const verified = await verify(verifyMsg, opponent);
             if (!verified) {
-                await verifyMsg.edit(`🍃 **| Look like ${opponent} doesn't accept your challenge. Do you want to play it with me anyway ?**`);
+                await verifyMsg.edit(msg.guild!.loc.get("COMMAND_GAME_VERIFY_NOT_ACCEPT", opponent, true));
                 const accept = await verify(verifyMsg, msg.author);
                 if (!accept) {
-                    msg.ctx.send("✋ **| Ok see you next time**");
+                    msg.ctx.send(msg.guild!.loc.get("COMMAND_GAME_VERIFY_DECLINE_OFFER"));
                     throw new CustomError("CANCELED");
                 }
                 opponent = this.client.user!;
             }
         } else opponent = this.client.user!;
-        const message = await msg.channel.send("🖌️ **| Preparing**");
+        const message = await msg.channel.send(msg.guild!.loc.get("COMMAND_GAME_LIST_PREPARING"));
         for (const num of numbers) await message.react(num);
         const c4 = new Connect4();
         while(!c4.isEnd()) {
             const user = c4.turn ? msg.author : opponent;
             await message.edit(stripIndents`
-                <:connect4:745791911218118706> **| ${user}, Turn!**
+                <:connect4:745791911218118706> **| ${msg.guild!.loc.get("COMMAND_GAME_LIST_TURN", user)}**
                 > ${c4.toString().replace(/\n/g, "\n> ")}
                 > ${numbers.join("")}
             `);
@@ -68,7 +68,7 @@ export default class Connect4Command extends Command {
             c4.place(index);
         }
         return message.edit(stripIndents`
-            ${c4.winner ? `🎉 **| Congrats ${c4.turn ? msg.author : opponent}, you win the match!**` : "🇴 **| Draw!**"}
+            ${msg.guild!.loc.get(c4.winner ? "COMMAND_GAME_LIST_CONGRATS" : "COMMAND_GAME_LIST_DRAW", c4.turn ? msg.author : opponent)}
             > ${c4.toString().replace(/\n/g, "\n> ")}
             > ${numbers.join("")}
         `);

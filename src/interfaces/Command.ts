@@ -3,7 +3,7 @@ import type Command from "@yumeko/classes/Command";
 
 export interface CommandOption {
     description: {
-        content: string;
+        content: string | ((msg: Message) => string);
         usage: string;
         examples: string[];
         adionalInfo?: string[];
