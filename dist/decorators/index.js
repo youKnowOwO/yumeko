@@ -22,7 +22,7 @@ function inhibit(func) {
             throw new CustomError_1.default("DecoratorError", "Descriptor value isn'5 provided");
         descriptor.value = async function (msg, ...args) {
             const message = await func(msg, ...args);
-            if (message) {
+            if (typeof message === "string") {
                 if (message.length)
                     msg.ctx.send(message);
                 throw new CustomError_1.default("CANCELED");
