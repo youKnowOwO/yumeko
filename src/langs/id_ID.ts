@@ -121,24 +121,24 @@ export default {
     COMMAND_GAME_LIST_ONLY_ONE: () => "❕ **| Setiap channel tidak boleh lebih dari 2 game**",
     COMMAND_GAME_LIST_INFO: prefix => `Untuk memainkan game ketik '${prefix}game <game cmd>'`,
 
-    COMMAND_GAME_CONNECT4_DESCRIPTION: () => "Play Connect4 game with other user. This is solved game, you must drop 4 marks horizontal vertical or diagonal to win the match.",
+    COMMAND_GAME_CONNECT4_DESCRIPTION: () => "Mainkan Connect4 game dengan user lain. Ini adalah permainan yang mengacu pada keakuratan, kamu harus menjatuhkan 4 tanda baik itu horizontal, vertical ataupun diagonal untuk memenangkan pertandingan.",
 
-    COMMAND_GAME_GUESS_THE_NUMBER_DESCRIPTION: () =>  "Play Guess the Number Game!. This game is game of luck, i'll pick random number and you must guess it.",
+    COMMAND_GAME_GUESS_THE_NUMBER_DESCRIPTION: () =>  "Mainkan Guess the Number Game!. Game ini adalah game yang mengacu kepada keberuntungan, aku akan memilih nomor secara acak dan kamu harus menebaknya.",
     COMMAND_GAME_GUESS_THE_NUMBER_START: () => "❓ **| Guess the Number telah diumalai. kamu bisa menebak sekarang!**",
     COMMAND_GAME_GUESS_THE_NUMBER_HIGHER: num => `🔼 **| Nomornya lebih besar dari \`${num}\`**`,
     COMMAND_GAME_GUESS_THE_NUMBER_SHORTER: num => `🔽 **| Nomornya lebih kecil dari \`${num}\`**`,
 
-    COMMAND_GANE_HANGMAN_DESCRIPTION: () => "Save hanged man by guessing the word!. I'll hang random man and if you to want to safe him, just guess the word",
+    COMMAND_GANE_HANGMAN_DESCRIPTION: () => "Selamatkan orang yang digantung dengan menebak kata!. Aku akan menggantung seseorang dan jika kamu ingin menyelamatkannya, maka kamu hanya perlu menebak kata yang ku berikan.",
 
-    COMMAND_GAME_MINESWEEPER_DESCRIPTION: () => "Your luck will be tested here. Its just a simple game, clear the lane without dough a bomb.",
+    COMMAND_GAME_MINESWEEPER_DESCRIPTION: () => "Keberuntungan mu di test disini. Hanya simple game, bersihkan semua tanpa menggali sebuah bomb.",
     COMMAND_GAME_MINESWEEPER_DOUGH_BOMB: () => "❌ **| Kalah, kamu telah menggali sebuah bomb!**",
     COMMAND_GAME_MINESWEEPER_WIN: () => "🎉 **| Selamat, kamu membersihkan semuanya tanpa menggali sebuah bomv!**",
 
-    COMMAND_GAME_TICTACTOE_DESCRIPTION: () => "Play Tic Tac Toe game with other user. This is solved game, you must placing 3 marks horizontal vertical or diagonal to win the match.",
+    COMMAND_GAME_TICTACTOE_DESCRIPTION: () => "Mainkan Tic Tac Toe game dengan user lainnya. Ini adalah game yang membutuhkan keakuratan, kamu mesti menaruh 3 tanda baik itu horizontal, vertical, maupun diagonal untuk memenangkan pertandingan.",
 
-    COMMAND_GAME_TRIVIA_DESCRIPTION: () => "Test your knowledge with random question!. Ill give you some random questions and you must answer it.",
+    COMMAND_GAME_TRIVIA_DESCRIPTION: () => "Mengetes pengetahuan mu dengan soal acak!. Aku akan memberinu soal secara acak dan kamu harus bisa menjawabnya.",
 
-    COMMAND_GAME_WORD_CHAIN_DESCRIPTION: () => "This game is able to train your vocabulary, by making a word from the last letter of the previous word",
+    COMMAND_GAME_WORD_CHAIN_DESCRIPTION: () => "Game ini mampu melatih kosa kata inggris mu, dengan membuat sebuah kata dari huruf terakhir kata sebelumnya.",
 
     // GENERAL
     COMMAND_ABOUT_DESCRIPTION: () => "Tentang aku.",
