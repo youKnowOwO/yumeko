@@ -3,11 +3,11 @@ import type { Message } from "discord.js";
 import { DeclareCommand } from "@yumeko/decorators";
 
 @DeclareCommand("cat", {
-    aliases: ["cat"],
+    aliases: ["cat", "kitty"],
     description: {
         content: (msg): string => msg.guild!.loc.get("COMMAND_ANIMAL_DESCRIPTION", 2),
         usage: "cat",
-        examples: ["cat", "kitty"]
+        examples: ["cat"]
     },
     permissions: {
         client: ["ATTACH_FILES"]
