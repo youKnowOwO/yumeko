@@ -3,8 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isInStream = exports.isMemberVoiceChannelJoinable = exports.isMemberInVoiceChannel = exports.isSameVoiceChannel = exports.isMusicPlaying = exports.inhibit = exports.DeclareCommand = void 0;
+exports.doPlayersSelection = exports.verifyWantChallange = exports.isInStream = exports.isMemberVoiceChannelJoinable = exports.isMemberInVoiceChannel = exports.isSameVoiceChannel = exports.isMusicPlaying = exports.inhibit = exports.DeclareCommand = void 0;
 const CustomError_1 = __importDefault(require("@yumeko/classes/CustomError"));
+const Util_1 = require("@yumeko/util/Util");
+const AwaitPlayers_1 = __importDefault(require("@yumeko/util/AwaitPlayers"));
 function DeclareCommand(identifier, option) {
     return function (target) {
         return new Proxy(target, {
@@ -21,7 +23,8 @@ function inhibit(func) {
         descriptor.value = async function (msg, ...args) {
             const message = await func(msg, ...args);
             if (message) {
-                msg.ctx.send(message);
+                if (message.length)
+                    msg.ctx.send(message);
                 throw new CustomError_1.default("CANCELED");
             }
             await method.call(this, msg, ...args);
@@ -69,3 +72,35 @@ function isInStream() {
     });
 }
 exports.isInStream = isInStream;
+function verifyWantChallange(key, offerWithClient = false) {
+    return inhibit(async (msg, args) => {
+        let opponent = args[key];
+        if (opponent) {
+            const verifyMsg = await msg.channel.send(msg.guild.loc.get("COMMAND_GAME_VERIFY_WAIT", opponent));
+            const verified = await Util_1.verify(verifyMsg, opponent);
+            if (!verified) {
+                const message = msg.guild.loc.get("COMMAND_GAME_VERIFY_NOT_ACCEPT", opponent, offerWithClient);
+                if (!offerWithClient)
+                    return message;
+                await verifyMsg.edit(message);
+                const accept = await Util_1.verify(verifyMsg, msg.author);
+                if (!accept)
+                    return msg.guild.loc.get("COMMAND_GAME_VERIFY_DECLINE_OFFER");
+                opponent = msg.client.user;
+            }
+        }
+        else if (offerWithClient)
+            opponent = msg.client.user;
+        args[key] = opponent;
+    });
+}
+exports.verifyWantChallange = verifyWantChallange;
+function doPlayersSelection(key, payload) {
+    return inhibit(async (msg, args) => {
+        const users = await new AwaitPlayers_1.default({ ...payload, message: msg }).start();
+        if (!users.length)
+            return "";
+        args[key] = users;
+    });
+}
+exports.doPlayersSelection = doPlayersSelection;

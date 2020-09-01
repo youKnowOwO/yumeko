@@ -10,22 +10,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
-const AwaitPlayers_1 = __importDefault(require("@yumeko/util/AwaitPlayers"));
-const CustomError_1 = __importDefault(require("@yumeko/classes/CustomError"));
 const discord_js_1 = require("discord.js");
 const decorators_1 = require("@yumeko/decorators");
 const Util_1 = require("@yumeko/util/Util");
 const wordList = require("../../../../assets/json/words.json");
 let WordChainCommand = class WordChainCommand extends Command_1.default {
-    async exec(msg) {
-        const users = await new AwaitPlayers_1.default({
-            includeClientReq: true,
-            checkDM: false,
-            message: msg,
-            min: 2, max: 20
-        }).start();
-        if (!users.length)
-            throw new CustomError_1.default("CANCELED");
+    async exec(msg, { users }) {
         const words = Util_1.shuffle(wordList);
         const players = this.createPlayers(users);
         let currentWord = words.shift();
@@ -139,6 +129,13 @@ let WordChainCommand = class WordChainCommand extends Command_1.default {
         }));
     }
 };
+__decorate([
+    decorators_1.doPlayersSelection("users", {
+        includeClientReq: true,
+        checkDM: false,
+        min: 2, max: 20
+    })
+], WordChainCommand.prototype, "exec", null);
 WordChainCommand = __decorate([
     decorators_1.DeclareCommand("game-wordchain", {
         aliases: [],

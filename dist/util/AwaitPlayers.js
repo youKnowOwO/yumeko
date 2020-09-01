@@ -20,15 +20,15 @@ class AwaitPlayers {
     async start() {
         return new Promise(async (resolve) => {
             const players = [this.payload.message.author];
-            let reactions = [{ emoji: "👤", mess: "react this to join" }];
+            let reactions = [{ emoji: "👤", mess: this.payload.message.guild.loc.get("COMMAND_GAME_REACT_THIS_TO_JOIN") }];
             if (this.payload.includeClientReq)
-                reactions.push({ emoji: "🤖", mess: "react this to include me" });
-            reactions.push({ emoji: "❌", mess: "react this to cancel" });
+                reactions.push({ emoji: "🤖", mess: this.payload.message.guild.loc.get("COMMAND_GAME_REACT_THIS_TO_INCLUDE_ME") });
+            reactions.push({ emoji: "❌", mess: this.payload.message.guild.loc.get("COMMAND_GAME_REACT_THIS_TO_CANCEL") });
             const embed = new discord_js_1.MessageEmbed()
                 .setColor(this.client.config.color)
-                .setTitle("👥 Player List")
+                .setTitle(this.payload.message.guild.loc.get("COMMAND_GAME_AWAIT_PLAYER_LASTS"))
                 .setDescription(players.map(x => `• ${x}`).join("\n"))
-                .setFooter("ℹ️ Players selection lasts 30 seconds");
+                .setFooter(this.payload.message.guild.loc.get("COMMAND_GAME_AWAIT_PLAYER_LIST"));
             embed.fields = [{ value: reactions.map(x => `${x.emoji}: ${x.mess}`).join("\n"), name: "\u200B", inline: false }];
             const msg = await this.payload.message.channel.send(embed);
             for (const react of reactions)
@@ -64,7 +64,7 @@ class AwaitPlayers {
                         return onEnd(players);
                 }
                 if (players.length >= payload.min) {
-                    reactions.push({ emoji: "✅", mess: "react this to start" });
+                    reactions.push({ emoji: "✅", mess: payload.message.guild.loc.get("COMMAND_GAME_REACT_THIS_TO_JOIN") });
                     msg.react("✅");
                     reactions = [...new Set(reactions)];
                 }

@@ -11,29 +11,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const TicTacToe_1 = __importDefault(require("@yumeko/classes/Games/TicTacToe"));
-const CustomError_1 = __importDefault(require("@yumeko/classes/CustomError"));
 const discord_js_1 = require("discord.js");
 const decorators_1 = require("@yumeko/decorators");
 const common_tags_1 = require("common-tags");
-const Util_1 = require("@yumeko/util/Util");
 const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"];
 let TicTacToeCommand = class TicTacToeCommand extends Command_1.default {
     async exec(msg, { opponent }) {
-        if (opponent) {
-            const verifyMsg = await msg.channel.send(msg.guild.loc.get("COMMAND_GAME_VERIFY_WAIT", opponent));
-            const verified = await Util_1.verify(verifyMsg, opponent);
-            if (!verified) {
-                await verifyMsg.edit(msg.guild.loc.get("COMMAND_GAME_VERIFY_NOT_ACCEPT", opponent, true));
-                const accept = await Util_1.verify(verifyMsg, msg.author);
-                if (!accept) {
-                    msg.ctx.send(msg.guild.loc.get("COMMAND_GAME_VERIFY_DECLINE_OFFER"));
-                    throw new CustomError_1.default("CANCELED");
-                }
-                opponent = this.client.user;
-            }
-        }
-        else
-            opponent = this.client.user;
         const message = await msg.channel.send(msg.guild.loc.get("COMMAND_GAME_LIST_PREPARING"));
         for (const num of numbers)
             await message.react(num);
@@ -66,6 +49,9 @@ let TicTacToeCommand = class TicTacToeCommand extends Command_1.default {
         `);
     }
 };
+__decorate([
+    decorators_1.verifyWantChallange("opponent", true)
+], TicTacToeCommand.prototype, "exec", null);
 TicTacToeCommand = __decorate([
     decorators_1.DeclareCommand("game-tictactoe", {
         aliases: [],
