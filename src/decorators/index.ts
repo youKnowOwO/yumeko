@@ -20,7 +20,7 @@ export function inhibit<T extends (msg: Message, ...args: any[]) => Promise<stri
         if (!method) throw new CustomError("DecoratorError", "Descriptor value isn'5 provided");
         descriptor.value = async function(msg: Message, ...args: any[]): Promise<any> {
             const message = await func(msg, ...args);
-            if (message) {
+            if (typeof message === "string") {
                 if (message.length) msg.ctx.send(message);
                 throw new CustomError("CANCELED");
             }
