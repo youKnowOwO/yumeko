@@ -6,17 +6,6 @@ class AwaitPlayers {
         this.payload = payload;
         this.client = this.payload.message.client;
     }
-    static async isDMEnable(user) {
-        try {
-            if (!user.dmChannel)
-                return false;
-            await user.dmChannel.send("**ℹ️ | Just checking dm channel**");
-            return true;
-        }
-        catch {
-            return false;
-        }
-    }
     async start() {
         return new Promise(async (resolve) => {
             const players = [this.payload.message.author];
@@ -84,6 +73,17 @@ class AwaitPlayers {
                 resolve(result);
             }
         });
+    }
+    static async isDMEnable(user) {
+        try {
+            if (!user.dmChannel)
+                return false;
+            await user.dmChannel.send("**ℹ️ | Just checking dm channel**");
+            return true;
+        }
+        catch {
+            return false;
+        }
     }
 }
 exports.default = AwaitPlayers;

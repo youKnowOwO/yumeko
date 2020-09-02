@@ -18,9 +18,9 @@ class MusicHandler {
         this.skipVotes = [];
         this.paused = false;
         this.loopType = LoopType.NONE;
+        this.volume = 100;
         this.lastUpdate = Date.now();
         this.position = 0;
-        this.volume = 100;
         this.client = guild.client;
         this.player.on("event", this.onEvent.bind(this));
     }

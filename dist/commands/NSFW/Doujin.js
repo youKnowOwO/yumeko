@@ -32,14 +32,6 @@ let DoujinCommand = class DoujinCommand extends Command_1.default {
             this.assignURL(doujin);
         return doujins;
     }
-    assignURL(doujin) {
-        const { pages, thumbnail, cover } = doujin.images;
-        const typeImage = (data) => data.t === "j" ? "jpg" : "png";
-        thumbnail.u = `/galleries/${doujin.media_id}/thumb.${typeImage(thumbnail)}`;
-        cover.u = `/galleries/${doujin.media_id}/cover.${typeImage(cover)}`;
-        for (let i = 0; i < pages.length; i++)
-            pages[i].u = `/galleries/${doujin.media_id}/${i + 1}.${typeImage(pages[i])}`;
-    }
     async handleRead(msg, doujin) {
         let index = 0;
         const embed = new discord_js_1.MessageEmbed()
@@ -157,6 +149,14 @@ let DoujinCommand = class DoujinCommand extends Command_1.default {
                 }
             });
         });
+    }
+    assignURL(doujin) {
+        const { pages, thumbnail, cover } = doujin.images;
+        const typeImage = (data) => data.t === "j" ? "jpg" : "png";
+        thumbnail.u = `/galleries/${doujin.media_id}/thumb.${typeImage(thumbnail)}`;
+        cover.u = `/galleries/${doujin.media_id}/cover.${typeImage(cover)}`;
+        for (let i = 0; i < pages.length; i++)
+            pages[i].u = `/galleries/${doujin.media_id}/${i + 1}.${typeImage(pages[i])}`;
     }
 };
 DoujinCommand = __decorate([
