@@ -19,11 +19,9 @@ export default class MusicHandler {
     public oldSong?: Song;
     public loopType: LoopType = LoopType.NONE;
     public textChannel?: TextChannel;
+    public volume = 100;
     private lastUpdate = Date.now();
     private position = 0;
-
-    // filters
-    public volume = 100;
 
     public constructor(public guild: Guild) {
         this.client = (guild.client as YumekoClient);

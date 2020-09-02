@@ -8,16 +8,6 @@ export default class AwaitPlayers {
     public readonly client = this.payload.message!.client as YumekoClient;
     public constructor(public payload: AwaitPlayersPayload) {}
 
-    public static async isDMEnable(user: User): Promise<boolean> {
-        try {
-            if (!user.dmChannel) return false;
-            await user.dmChannel.send("**ℹ️ | Just checking dm channel**");
-            return true;
-        } catch {
-            return false;
-        }
-    }
-
     public async start(): Promise<User[]> {
         return new Promise(async resolve => {
             const players = [this.payload.message!.author];
@@ -75,5 +65,15 @@ export default class AwaitPlayers {
                 resolve(result);
             }
         });
+    }
+
+    public static async isDMEnable(user: User): Promise<boolean> {
+        try {
+            if (!user.dmChannel) return false;
+            await user.dmChannel.send("**ℹ️ | Just checking dm channel**");
+            return true;
+        } catch {
+            return false;
+        }
     }
 }

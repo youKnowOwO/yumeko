@@ -72,14 +72,6 @@ export default class DoujinCommand extends Command {
         return doujins;
     }
 
-    private assignURL(doujin: DoujinResponse): void {
-        const { pages, thumbnail, cover } = doujin.images;
-        const typeImage = (data: ImageDetail): string => data.t === "j" ? "jpg" : "png";
-        thumbnail.u = `/galleries/${doujin.media_id}/thumb.${typeImage(thumbnail)}`;
-        cover.u = `/galleries/${doujin.media_id}/cover.${typeImage(cover)}`;
-        for (let i = 0; i < pages.length; i++) pages[i].u = `/galleries/${doujin.media_id}/${i + 1}.${typeImage(pages[i])}`;
-    }
-
     public async handleRead(msg: Message, doujin: DoujinResponse): Promise<Message> {
         let index = 0;
         const embed = new MessageEmbed()
@@ -184,5 +176,13 @@ export default class DoujinCommand extends Command {
                     }
                 });
         });
+    }
+
+    private assignURL(doujin: DoujinResponse): void {
+        const { pages, thumbnail, cover } = doujin.images;
+        const typeImage = (data: ImageDetail): string => data.t === "j" ? "jpg" : "png";
+        thumbnail.u = `/galleries/${doujin.media_id}/thumb.${typeImage(thumbnail)}`;
+        cover.u = `/galleries/${doujin.media_id}/cover.${typeImage(cover)}`;
+        for (let i = 0; i < pages.length; i++) pages[i].u = `/galleries/${doujin.media_id}/${i + 1}.${typeImage(pages[i])}`;
     }
 }

@@ -6,11 +6,6 @@ import { stripIndents } from "common-tags";
 
 const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"];
 
-interface UpdateBoardReturn {
-    isWin: boolean;
-    board: string[][];
-}
-
 @DeclareCommand("game-tictactoe", {
     aliases: [],
     description: {

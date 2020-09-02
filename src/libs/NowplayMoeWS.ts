@@ -2,10 +2,10 @@ import WebSocket from "ws";
 import { DataNowplayMoe } from "@yumeko/interfaces";
 
 export class NowplayMoeWS {
-    public constructor(public link: string) {}
     public ws?: WebSocket;
     public heartbeatInterval?: ReturnType<typeof setInterval>;
     public data?: DataNowplayMoe;
+    public constructor(public link: string) {}
 
     public connect(): this {
         if (this.ws) this.ws.removeAllListeners();
