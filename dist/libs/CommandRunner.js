@@ -114,7 +114,7 @@ class CommandRunner {
         return result;
     }
     getPrefix(msg) {
-        const prefixes = [this.client.config.prefix, this.client.user.toString()];
+        const prefixes = [msg.guild.prefix, this.client.user.toString()];
         for (const prefix of prefixes) {
             if (msg.content.startsWith(prefix))
                 return prefix;

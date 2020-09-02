@@ -112,12 +112,12 @@ exports.default = {
     COMMAND_GAME_TRIVIA_DESCRIPTION: () => "Mengetes pengetahuan mu dengan soal acak!. Aku akan memberinu soal secara acak dan kamu harus bisa menjawabnya.",
     COMMAND_GAME_WORD_CHAIN_DESCRIPTION: () => "Game ini mampu melatih kosa kata inggris mu, dengan membuat sebuah kata dari huruf terakhir kata sebelumnya.",
     COMMAND_ABOUT_DESCRIPTION: () => "Tentang aku.",
-    COMMAND_ABOUT_ABOUTME: (user, client, commands) => common_tags_1.stripIndents `
+    COMMAND_ABOUT_ABOUTME: (user, client, commands, prefix) => common_tags_1.stripIndents `
         👋 | Hai, ${user}! Aku **${client.user.tag}** dan aku senang bertemu dengan mu! 
         Aku hanyalah bot biasa yang dapat memberi kecerian dan kesanangan pada server mu.
         Aku dapat melakukan yang bot lain lakukan, misalnya: musik, mengirim gamber, dan lain lain.
         Aku membawa \`${commands.filter(x => user.isDev || !x.option.devOnly).size}\` command untuk kau mainkan.
-        Untuk mengechecknya ayo mulai dengan mengetik **${client.config.prefix}help**.
+        Untuk mengechecknya ayo mulai dengan mengetik **${prefix}help**.
     `,
     COMMAND_HELP_DESCRIPTION: () => "Command pertama yang mungkin kamu ketik",
     COMMAND_HELP_PARSE_DESC: (usage, aliases, cooldown) => common_tags_1.stripIndents `

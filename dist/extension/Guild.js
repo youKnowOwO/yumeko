@@ -11,6 +11,7 @@ class YumekoGuild extends discord_js_1.Structures.get("Guild") {
         super(...arguments);
         this.music = new MusicHandler_1.default(this);
         this.loc = new Localization_1.Localization(this);
+        this.prefix = this.client.config.prefix;
     }
 }
 discord_js_1.Structures.extend("Guild", () => YumekoGuild);

@@ -11,21 +11,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const decorators_1 = require("@yumeko/decorators");
-let AboutCommand = class AboutCommand extends Command_1.default {
-    async exec(msg) {
-        const commands = this.collector.commands.filter(x => !!x.option.aliases.length);
-        return msg.ctx.send(msg.guild.loc.get("COMMAND_ABOUT_ABOUTME", msg.author, this.client, commands, msg.prefix || msg.guild.prefix));
+let default_1 = class extends Command_1.default {
+    async exec(msg, { prefix }) {
+        if (prefix) {
+            msg.guild.prefix = prefix;
+            return msg.ctx.send(msg.guild.loc.get("COMMAND_PREFIX_SET_TO", prefix));
+        }
+        return msg.ctx.send(msg.guild.loc.get("COMMAND_PREFIX_CURRENT", msg.guild.prefix));
     }
 };
-AboutCommand = __decorate([
-    decorators_1.DeclareCommand("about", {
-        aliases: ["about"],
+default_1 = __decorate([
+    decorators_1.DeclareCommand("prefix", {
+        aliases: ["prefix", "setprefix"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_ABOUT_DESCRIPTION"),
-            usage: "about",
-            examples: ["about"]
+            content: (msg) => msg.guild.loc.get("COMMAND_PREFIX_DESCRIPTION"),
+            usage: "prefix [pref]",
+            examples: ["prefix", "prefix !"]
         },
-        category: "general"
+        category: "admin",
+        permissions: {
+            user: ["MANAGE_GUILD"]
+        },
+        args: [
+            {
+                identifier: "prefix",
+                match: "rest",
+                type: "string"
+            }
+        ]
     })
-], AboutCommand);
-exports.default = AboutCommand;
+], default_1);
+exports.default = default_1;

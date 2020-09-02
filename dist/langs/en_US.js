@@ -57,6 +57,9 @@ exports.default = {
 
         *To set the language use \`${prefix}language <id | lang>\`*
     `,
+    COMMAND_PREFIX_DESCRIPTION: () => "Set guild prefix",
+    COMMAND_PREFIX_CURRENT: (prefix) => `❗ **| My current prefix is \`${prefix}\`**`,
+    COMMAND_PREFIX_SET_TO: (prefix) => `❗ **| Prefix set to \`${prefix}\`**`,
     COMMAND_ANIMAL_DESCRIPTION: (id) => `Random ${Animals[id]} image.`,
     COMMAND_ANIMAL_CLICK_HERE: () => "Click here if image failed to load",
     COMMAND_FUN_PAINTING: () => "🖌️ **| Painting...**",
@@ -114,13 +117,13 @@ exports.default = {
     COMMAND_GAME_TRIVIA_DESCRIPTION: () => "Test your knowledge with random question!. Ill give you some random questions and you must answer it.",
     COMMAND_GAME_WORD_CHAIN_DESCRIPTION: () => "This game is able to train your vocabulary, by making a word from the last letter of the previous word",
     COMMAND_ABOUT_DESCRIPTION: () => "About me.",
-    COMMAND_ABOUT_ABOUTME: (user, client, commands) => common_tags_1.stripIndents `
+    COMMAND_ABOUT_ABOUTME: (user, client, commands, prefix) => common_tags_1.stripIndents `
         👋 | Hi there, ${user}! I’m **${client.user.tag}** and I’m beyond happy and  glad to meet you! 
         I’m just an ordinary bot whose job is to make your Discord Server more fun and exciting
         for members to chat on. I do what other bots do as well, like: sending random images of animals, 
         generating games for this server’s members, and most importantly, I play and queue song requests. 
         To conclude, I carry \`${commands.filter(x => user.isDev || !x.option.devOnly).size}\` commands in total. To test me out, 
-        why not start by generating my help panel? **${client.config.prefix}help**.
+        why not start by generating my help panel? **${prefix}help**.
     `,
     COMMAND_HELP_DESCRIPTION: () => "The first command you'll typing",
     COMMAND_HELP_PARSE_DESC: (usage, aliases, cooldown) => common_tags_1.stripIndents `
