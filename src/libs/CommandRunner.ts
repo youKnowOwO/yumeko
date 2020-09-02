@@ -106,7 +106,7 @@ export default class CommandRunner {
     }
 
     public getPrefix(msg: Message): string|void {
-        const prefixes: string[] = [this.client.config.prefix, this.client.user!.toString()];
+        const prefixes: string[] = [msg.guild!.prefix, this.client.user!.toString()];
         for (const prefix of prefixes) {
             if (msg.content.startsWith(prefix)) return prefix;
         }

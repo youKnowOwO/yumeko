@@ -68,6 +68,10 @@ export default {
         *To set the language use \`${prefix}language <id | lang>\`*
     `,
 
+    COMMAND_PREFIX_DESCRIPTION: (): string => "Set guild prefix",
+    COMMAND_PREFIX_CURRENT: (prefix: string): string => `❗ **| My current prefix is \`${prefix}\`**`,
+    COMMAND_PREFIX_SET_TO: (prefix: string): string => `❗ **| Prefix set to \`${prefix}\`**`,
+
     // ANIMAL
     COMMAND_ANIMAL_DESCRIPTION: (id: number): string => `Random ${Animals[id]} image.`,
     COMMAND_ANIMAL_CLICK_HERE: (): string => "Click here if image failed to load",
@@ -148,13 +152,13 @@ export default {
 
     // GENERAL
     COMMAND_ABOUT_DESCRIPTION: (): string => "About me.",
-    COMMAND_ABOUT_ABOUTME: (user: User, client: YumekoClient, commands: YumekoClient["collector"]["commands"]): string => stripIndents`
+    COMMAND_ABOUT_ABOUTME: (user: User, client: YumekoClient, commands: YumekoClient["collector"]["commands"], prefix: string): string => stripIndents`
         👋 | Hi there, ${user}! I’m **${client.user!.tag}** and I’m beyond happy and  glad to meet you! 
         I’m just an ordinary bot whose job is to make your Discord Server more fun and exciting
         for members to chat on. I do what other bots do as well, like: sending random images of animals, 
         generating games for this server’s members, and most importantly, I play and queue song requests. 
         To conclude, I carry \`${commands.filter(x => user.isDev || !x.option.devOnly).size}\` commands in total. To test me out, 
-        why not start by generating my help panel? **${client.config.prefix}help**.
+        why not start by generating my help panel? **${prefix}help**.
     `,
 
     COMMAND_HELP_DESCRIPTION: (): string => "The first command you'll typing",

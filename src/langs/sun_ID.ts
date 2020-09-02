@@ -142,12 +142,12 @@ export default {
 
     // GENERAL
     COMMAND_ABOUT_DESCRIPTION: () => "Tentang aku.",
-    COMMAND_ABOUT_ABOUTME: (user, client, commands) => stripIndents`
+    COMMAND_ABOUT_ABOUTME: (user, client, commands, prefix) => stripIndents`
         👋 | Hai, ${user}! Aku **${client.user!.tag}** dan aku senang bertemu dengan mu! 
         Aku hanyalah bot biasa yang dapat memberi kecerian dan kesanangan pada server mu.
         Aku dapat melakukan yang bot lain lakukan, misalnya: musik, mengirim gamber, dan lain lain.
         Aku membawa \`${commands.filter(x => user.isDev || !x.option.devOnly).size}\` command untuk kau mainkan.
-        Untuk mengechecknya ayo mulai dengan mengetik **${client.config.prefix}help**.
+        Untuk mengechecknya ayo mulai dengan mengetik **${prefix}help**.
     `,
 
     COMMAND_HELP_DESCRIPTION: () => "Command pertama yang mungkin kamu ketik",

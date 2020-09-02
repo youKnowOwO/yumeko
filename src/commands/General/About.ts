@@ -14,6 +14,6 @@ import { DeclareCommand } from "@yumeko/decorators";
 export default class AboutCommand extends Command {
     public async exec(msg: Message): Promise<Message> {
         const commands = this.collector!.commands.filter(x => !!x.option.aliases.length);
-        return msg.ctx.send(msg.guild!.loc.get("COMMAND_ABOUT_ABOUTME", msg.author, this.client, commands));
+        return msg.ctx.send(msg.guild!.loc.get("COMMAND_ABOUT_ABOUTME", msg.author, this.client, commands, msg.prefix || msg.guild!.prefix));
     }
 }
