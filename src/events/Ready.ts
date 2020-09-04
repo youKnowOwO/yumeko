@@ -7,7 +7,8 @@ const presences = require("../../assets/json/presence.json");
 export default class ReadyEvent implements Event {
     public readonly listener = "ready";
     public constructor(public readonly client: YumekoClient) {}
-    public exec (): void {
+    public async exec (): Promise<void> {
+        await assignDB(this.client);
         this.client.log.info(stripIndents`
             ${this.client.log.color(this.client.user!.tag, "FFFFFF")} is Ready to play. ${this.client.shard ? this.client.shard.ids.map(x => this.client.log.color(`#${x + 1}`, "00FFFF")).join(", ") : ""}
         `);
@@ -28,4 +29,14 @@ function presence(client: YumekoClient): void {
             type
         }
     });
+}
+
+async function assignDB(client: YumekoClient): Promise<void> {
+    await client.db.connect();
+    const values = await client.db.guild.all();
+    for (const { key, value } of values) {
+        const guild = client.guilds.cache.get(key);
+        if (!guild) continue;
+        guild.assignDatabase(value);
+    }
 }

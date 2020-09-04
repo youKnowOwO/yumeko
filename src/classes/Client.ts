@@ -1,5 +1,6 @@
 import "module-alias/register";
 
+import YumekoDatabase from "@yumeko/libs/Database";
 import CommandCollector from "@yumeko/libs/CommandCollector";
 import Context from "@yumeko/libs/MessageContext";
 import Logger from "@yumeko/libs/Logger";
@@ -18,6 +19,7 @@ export default class YumekoClient extends Client {
     public collector = new CommandCollector(this);
     public context = new Context();
     public log = new Logger();
+    public db = new YumekoDatabase();
     public lavalink = new Lavalink({
         userID: "",
         // eslint-disable-next-line @typescript-eslint/ban-types

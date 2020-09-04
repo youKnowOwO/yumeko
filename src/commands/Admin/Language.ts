@@ -36,6 +36,7 @@ export default class extends Command {
     public async exec(msg: Message, { language }: { language?: string }): Promise<Message> {
         if (language) {
             msg.guild!.loc.lang = language;
+            if (msg.prefix) await msg.guild!.updateDatabase();
             const currentLang: [string, string] = [
                 msg.guild!.loc.get("META_NAME"),
                 msg.guild!.loc.get("META_EMOJI")
