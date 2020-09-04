@@ -13,5 +13,16 @@ class YumekoGuild extends discord_js_1.Structures.get("Guild") {
         this.loc = new Localization_1.Localization(this);
         this.prefix = this.client.config.prefix;
     }
+    updateDatabase() {
+        const client = this.client;
+        return client.db.guild.set(this.id, {
+            prefix: this.prefix,
+            lang: this.loc.lang
+        });
+    }
+    assignDatabase(value) {
+        this.prefix = value.prefix;
+        this.loc.lang = value.lang;
+    }
 }
 discord_js_1.Structures.extend("Guild", () => YumekoGuild);

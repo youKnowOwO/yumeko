@@ -21,7 +21,8 @@
     "@types/eslint": "^7.2.2",
     "@types/figlet": "^1.2.0",
     "@types/moment-duration-format": "^2.2.2",
-    "@types/node": "^14.6.2",
+    "@types/mongodb": "^3.5.27",
+    "@types/node": "^14.6.3",
     "@types/turndown": "^5.0.0",
     "@types/ws": "^7.2.6",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
@@ -31,6 +32,7 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
+    "@youKnowOwO/mongotrize": "github:youKnowOwO/mongotrize#build",
     "canvas": "^2.6.1",
     "canvas-constructor": "^4.1.0",
     "chalk": "^4.1.0",

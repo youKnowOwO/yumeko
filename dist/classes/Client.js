@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("module-alias/register");
+const Database_1 = __importDefault(require("@yumeko/libs/Database"));
 const CommandCollector_1 = __importDefault(require("@yumeko/libs/CommandCollector"));
 const MessageContext_1 = __importDefault(require("@yumeko/libs/MessageContext"));
 const Logger_1 = __importDefault(require("@yumeko/libs/Logger"));
@@ -23,6 +24,7 @@ class YumekoClient extends discord_js_1.Client {
         this.collector = new CommandCollector_1.default(this);
         this.context = new MessageContext_1.default();
         this.log = new Logger_1.default();
+        this.db = new Database_1.default();
         this.lavalink = new lavalink_1.Node({
             userID: "",
             send: (guildID, packet) => {

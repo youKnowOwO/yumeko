@@ -17,6 +17,8 @@ let default_1 = class extends Command_1.default {
     async exec(msg, { language }) {
         if (language) {
             msg.guild.loc.lang = language;
+            if (msg.prefix)
+                await msg.guild.updateDatabase();
             const currentLang = [
                 msg.guild.loc.get("META_NAME"),
                 msg.guild.loc.get("META_EMOJI")

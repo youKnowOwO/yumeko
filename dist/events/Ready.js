@@ -7,7 +7,8 @@ class ReadyEvent {
         this.client = client;
         this.listener = "ready";
     }
-    exec() {
+    async exec() {
+        await assignDB(this.client);
         this.client.log.info(common_tags_1.stripIndents `
             ${this.client.log.color(this.client.user.tag, "FFFFFF")} is Ready to play. ${this.client.shard ? this.client.shard.ids.map(x => this.client.log.color(`#${x + 1}`, "00FFFF")).join(", ") : ""}
         `);
@@ -29,4 +30,14 @@ function presence(client) {
             type
         }
     });
+}
+async function assignDB(client) {
+    await client.db.connect();
+    const values = await client.db.guild.all();
+    for (const { key, value } of values) {
+        const guild = client.guilds.cache.get(key);
+        if (!guild)
+            continue;
+        guild.assignDatabase(value);
+    }
 }

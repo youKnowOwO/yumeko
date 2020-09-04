@@ -15,6 +15,8 @@ let default_1 = class extends Command_1.default {
     async exec(msg, { prefix }) {
         if (prefix) {
             msg.guild.prefix = prefix;
+            if (msg.prefix)
+                await msg.guild.updateDatabase();
             return msg.ctx.send(msg.guild.loc.get("COMMAND_PREFIX_SET_TO", prefix));
         }
         return msg.ctx.send(msg.guild.loc.get("COMMAND_PREFIX_CURRENT", msg.guild.prefix));
