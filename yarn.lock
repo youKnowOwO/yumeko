@@ -269,8 +269,9 @@
   resolved "https://codeload.github.com/youKnowOwO/eslint-config/tar.gz/93d15962f03fa2ffe515b3aa4dca9c07043302a1"
 
 "@youKnowOwO/mongotrize@github:youKnowOwO/mongotrize#build":
-  version "0.0.0"
-  resolved "https://codeload.github.com/youKnowOwO/mongotrize/tar.gz/0125969a2d0e0ea27a12d0f764a67220234b91b8"
+  version "0.0.1"
+  uid "05adcc768979ac6e8862d34a09e135d157993dbf"
+  resolved "https://codeload.github.com/youKnowOwO/mongotrize/tar.gz/05adcc768979ac6e8862d34a09e135d157993dbf"
   dependencies:
     mongodb "^3.6.1"
 
