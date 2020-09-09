@@ -230,8 +230,8 @@
 
 "@youKnowOwO/eslint-config@github:youKnowOwO/eslint-config#build":
   version "0.0.2"
-  uid "93d15962f03fa2ffe515b3aa4dca9c07043302a1"
-  resolved "https://codeload.github.com/youKnowOwO/eslint-config/tar.gz/93d15962f03fa2ffe515b3aa4dca9c07043302a1"
+  uid "2809087f0a4ada713ed8a838de8b64e828390ea9"
+  resolved "https://codeload.github.com/youKnowOwO/eslint-config/tar.gz/2809087f0a4ada713ed8a838de8b64e828390ea9"
 
 "@youKnowOwO/mongotrize@github:youKnowOwO/mongotrize#build":
   version "0.0.1"
