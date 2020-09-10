@@ -50,6 +50,7 @@ class CommandRunner {
             return undefined;
         msg.prefix = prefix === this.client.user.toString() ? `${this.client.user.tag} ` : prefix;
         msg.args = command.option.splitBy ? args.join(" ").split(command.option.splitBy) : args;
+        msg.cmd = commandID;
         const payload = {
             running: true,
             since: Date.now(),
