@@ -104,12 +104,12 @@ export default class DoujinCommand extends Command {
         let index = 0;
         const embedDoujin = (doujin: DoujinResponse): MessageEmbed => {
             const tags: string[] = [];
-            const desc: {[key: string]: string[]} = {};
+            const desc: {[key: string]: string[] | void} = {};
             for (const tag of doujin.tags) {
                 if (tag.type === "tag") tags.push(`[${tag.name}](https://nhentai.net${tag.url})`);
                 else {
                     if (!desc[tag.type]) desc[tag.type] = [];
-                    desc[tag.type].push(`[${tag.name}](https://nhentai.net${tag.url})`);
+                    (desc[tag.type] as string[]).push(`[${tag.name}](https://nhentai.net${tag.url})`);
                 }
             }
             const embed = new MessageEmbed()
@@ -118,7 +118,7 @@ export default class DoujinCommand extends Command {
                 .setAuthor(doujin.title.english, "https://i.imgur.com/uLAimaY.png")
                 .setTitle(doujin.title.japanese)
                 .setDescription(stripIndents`
-                    ${Object.keys(desc).map(x => `${firstUpperCase(x)}: ${desc[x].join(", ")}`).join("\n")}
+                    ${Object.keys(desc).map(x => `${firstUpperCase(x)}: ${(desc[x] as string[]).join(", ")}`).join("\n")}
                     Pages: \`${doujin.num_pages}\`
                     Favorites: \`${doujin.num_favorites}\`
                     Created: \`${moment(Date.now() - doujin.upload_date).format("MMMM Do YYYY, h:mm:ss a")}\`

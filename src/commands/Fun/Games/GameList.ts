@@ -34,7 +34,7 @@ export default class GameListCommand extends Command {
         });
     }
 
-    public async exec(msg: Message, { game } : { game: Command }): Promise<Message> {
+    public async exec(msg: Message, { game } : { game?: Command }): Promise<Message> {
         if (game) {
             if (this.session.has(`${msg.channel.id}/${game.identifier}`)) {
                 msg.ctx.send(msg.guild!.loc.get("COMMAND_GAME_LIST_ONLY_ONE"));

@@ -1,5 +1,5 @@
 {
-  "extends": "@youKnowOwO/eslint-config/tsconfig",
+  "extends": "@youKnowOwO/eslint-config",
   "compilerOptions": {
       "typeRoots": [
           "node_modules/@types",

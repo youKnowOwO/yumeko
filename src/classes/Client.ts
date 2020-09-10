@@ -29,6 +29,7 @@ export default class YumekoClient extends Client {
         },
         ...config.lavalink
     });
+
     public nowplayMoe = nowPlayMoe;
     public config = config;
     public langs = langCollector();

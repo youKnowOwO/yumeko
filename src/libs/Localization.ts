@@ -14,7 +14,6 @@ export class Localization {
     public get<K extends keyof DefaultLang>(key: K, ...args: Parameters<DefaultLang[K]>): string {
         const result = this.client.langs.get(this.lang);
         if (!result) return `${this.lang}: ${key}`;
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error 2556
         return result[key](...args);
     }

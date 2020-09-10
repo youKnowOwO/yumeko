@@ -234,8 +234,8 @@
     eslint-visitor-keys "^2.0.0"
 
 "@youKnowOwO/eslint-config@github:youKnowOwO/eslint-config#build":
-  version "0.0.2"
-  resolved "https://codeload.github.com/youKnowOwO/eslint-config/tar.gz/f4d22319a83a8e5f59128b8272ddcf7789ace5d2"
+  version "0.0.3"
+  resolved "https://codeload.github.com/youKnowOwO/eslint-config/tar.gz/802fec5fad389422bd440a811ea1680af1c6d3b9"
 
 "@youKnowOwO/mongotrize@github:youKnowOwO/mongotrize#build":
   version "0.0.0"

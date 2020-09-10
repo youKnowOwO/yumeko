@@ -23,7 +23,7 @@ export default class MinesweeperCommand extends Command {
         for (const alphabet of alphabets) await message.react(alphabet);
         for (const num of numbers) await message.react(num);
         const minesweeper = new Minesweeper();
-        let isFlag = false;
+        let isFlag = false as boolean;
         const flagListener = message.createReactionCollector((react: MessageReaction, usr: User): boolean => react.emoji.name === "🚩" && !!minesweeper.board.length && usr.id === msg.author.id)
             .on("collect", () => {
                 isFlag = !isFlag;

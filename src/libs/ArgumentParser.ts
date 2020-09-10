@@ -38,7 +38,7 @@ export default class ArgumentParser {
                     matched = inpt || flag;
                     msg.args.splice(index, 1);
                 } else matched = "";
-            } else if (arg.match === "multiple") {
+            } else {
                 multipleArg = arg.identifier;
                 if (msg.args.length) {
                     matched = msg.args.shift()!;

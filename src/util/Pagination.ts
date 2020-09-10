@@ -14,6 +14,7 @@ export default class Pagination {
         if (pages.length < 2) return undefined;
         for (const emoji of EMOJIS) await msg.react(emoji);
         const filter = (m: MessageReaction, user: User): boolean => EMOJIS.includes(m.emoji.name) && user.id === this.msg.author.id;
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         while (true) {
             const responses = await msg.awaitReactions(filter, { max: 1, time: 30000 });
             if (!responses.size) break;
