@@ -250,4 +250,22 @@ export default {
 
     // UTIL
     COMMAND_UTIL_NO_RESULT_FOUND: (): string => "🚫 **| No result found.**",
+    COMMAND_UTIL_TRIM_ARRAY_PATTERN: (): string => "...$len more.",
+
+    COMMAND_NPM_DESCRIPTION: (): string => "See node package on npmjs.com",
+    COMMAND_NPM_PROMPT: (): string => "What query do you want to search ?",
+    COMMAND_NPM_UNKNOWN: (): string => "Unknown",
+    COMMAND_NPM_NO_DEPENDENCIES: (): string => "**No Dependencies**",
+    COMMAND_NPM_NO_DESC: (): string => "No Description",
+    COMMAND_NPM_PARSE: (desc: string[]): string => stripIndents`
+        > ${desc[0]}
+        Version: **${desc[1]}**
+        License: **${desc[2]}**
+        Author: **${desc[3]}**
+        Modified: **${desc[4]}**
+        Dependencies: ${desc[5]}
+        Maitainers: ${desc[6]}
+
+        [Download](${desc[7]})
+    `
 };

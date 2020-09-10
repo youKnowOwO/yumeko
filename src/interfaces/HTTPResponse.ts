@@ -11,10 +11,41 @@ export interface RandomAnimeResponse {
     season: string;
     rating: string;
     source: string;
-    watch: {[key: string]: PlatformWatch[]};
+    watch: {
+        [key: string]: {
+            platform: string;
+            url: string;
+        }[];
+    };
 }
 
-interface PlatformWatch {
-    platform: string;
-    url: string;
+export interface NPMResponse {
+    name: string;
+    description?: string;
+    license?: string;
+    maintainers: NPMResponse["author"][];
+    "dist-tags": {
+        latest: string;
+        [key: string]: string;
+    };
+    versions: {
+        [key: string]: {
+            dependencies?: {[key: string]: string};
+            dist: {
+                intergrity: string;
+                shashum: string;
+                tarball: string;
+                [key: string]: unknown;
+            };
+        };
+    };
+    author?: {
+        name: string;
+        email?: string;
+        url?: string;
+    };
+    time?: {
+        modified: Date;
+        [key: string]: Date;
+    };
 }

@@ -26,11 +26,11 @@ export function chunk(...args: any[]): any[] {
     return rest;
 }
 
-export function trimArray<T>(array: (T|string)[], length = 10): (T|string)[] {
+export function trimArray<T>(array: (T|string)[], pattern = "...$len more.", length = 10): (T|string)[] {
     if (array.length <= length) return array;
     const len = array.length - length;
     const temp = array.slice(0, length);
-    temp.push(`...${len} more.`);
+    temp.push(pattern.replace("$len", String(len)));
     return temp;
 }
 
