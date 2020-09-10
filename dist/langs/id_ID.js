@@ -197,4 +197,21 @@ exports.default = {
     COMMAND_MUSIC_VOLUME_TOO_LOW: () => "**Volume terlalu rendah. minimal \`0\`**",
     COMMAND_MUSIC_VOLUME_CHANGE: to => `🔉 **| Mengubah Volume ke \`${to}\`**`,
     COMMAND_UTIL_NO_RESULT_FOUND: () => "🚫 **| Hasil tidak ditemukan.**",
+    COMMAND_UTIL_TRIM_ARRAY_PATTERN: () => "...$len lagi.",
+    COMMAND_NPM_DESCRIPTION: () => "Melihat node package dari npmjs.com",
+    COMMAND_NPM_PROMPT: () => "Package apa yang ingin kamu cari ?",
+    COMMAND_NPM_UNKNOWN: () => "Tidak Diketahui",
+    COMMAND_NPM_NO_DEPENDENCIES: () => "**Tidak ada Dependencies**",
+    COMMAND_NPM_NO_DESC: () => "Tidak ada Deskripsi",
+    COMMAND_NPM_PARSE: desc => common_tags_1.stripIndents `
+        > ${desc[0]}
+        Versi: **${desc[1]}**
+        Lisensi: **${desc[2]}**
+        Author: **${desc[3]}**
+        Terakhir Diperbarui: **${desc[4]}**
+        Dependencies: ${desc[5]}
+        Maintainer: ${desc[6]}
+
+        [Unduh](${desc[7]})
+    `
 };

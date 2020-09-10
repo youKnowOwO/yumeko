@@ -194,4 +194,21 @@ exports.default = {
     COMMAND_MUSIC_VOLUME_TOO_LOW: () => "**Volume is too low. min \`0\`**",
     COMMAND_MUSIC_VOLUME_CHANGE: (to) => `🔉 **| Change Volume to \`${to}\`**`,
     COMMAND_UTIL_NO_RESULT_FOUND: () => "🚫 **| No result found.**",
+    COMMAND_UTIL_TRIM_ARRAY_PATTERN: () => "...$len more.",
+    COMMAND_NPM_DESCRIPTION: () => "See node package on npmjs.com",
+    COMMAND_NPM_PROMPT: () => "What query do you want to search ?",
+    COMMAND_NPM_UNKNOWN: () => "Unknown",
+    COMMAND_NPM_NO_DEPENDENCIES: () => "**No Dependencies**",
+    COMMAND_NPM_NO_DESC: () => "No Description",
+    COMMAND_NPM_PARSE: (desc) => common_tags_1.stripIndents `
+        > ${desc[0]}
+        Version: **${desc[1]}**
+        License: **${desc[2]}**
+        Author: **${desc[3]}**
+        Modified: **${desc[4]}**
+        Dependencies: ${desc[5]}
+        Maitainers: ${desc[6]}
+
+        [Download](${desc[7]})
+    `
 };

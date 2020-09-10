@@ -29,12 +29,12 @@ function chunk(...args) {
     return rest;
 }
 exports.chunk = chunk;
-function trimArray(array, length = 10) {
+function trimArray(array, pattern = "...$len more.", length = 10) {
     if (array.length <= length)
         return array;
     const len = array.length - length;
     const temp = array.slice(0, length);
-    temp.push(`...${len} more.`);
+    temp.push(pattern.replace("$len", String(len)));
     return temp;
 }
 exports.trimArray = trimArray;
