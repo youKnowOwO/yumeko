@@ -47,7 +47,7 @@ class ArgumentParser {
                 else
                     matched = "";
             }
-            else if (arg.match === "multiple") {
+            else {
                 multipleArg = arg.identifier;
                 if (msg.args.length) {
                     matched = msg.args.shift();
