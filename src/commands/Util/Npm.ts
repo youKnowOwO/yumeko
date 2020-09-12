@@ -1,9 +1,10 @@
 import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
+import moment from "moment";
 import { DeclareCommand } from "@yumeko/decorators";
 import { Message, MessageEmbed } from "discord.js";
-import { trimArray } from "@yumeko/util/Util";
 import { NPMResponse } from "@yumeko/interfaces";
+import { trimArray } from "@yumeko/util/Util";
 
 @DeclareCommand("npm", {
     aliases: ["npm", "yarn"],
@@ -29,7 +30,7 @@ export default class NpmCommand extends Command {
     public async exec(msg: Message, { query }: { query: string }): Promise<Message|void> {
         const yarn = msg.cmd ? msg.cmd.toLowerCase() === "yarn" : false;
         query = query.replace(/ +/g, "+");
-        const result = await this.getResult(query);
+        const result = await this.getResult(query, yarn);
         if (!result) return msg.ctx.send(msg.guild!.loc.get("COMMAND_UTIL_NO_RESULT_FOUND"));
         const version = result.versions[result["dist-tags"].latest];
         let deps = version.dependencies ? Object.keys(version.dependencies).map(x => `\`${x}\``) : [];
@@ -46,7 +47,7 @@ export default class NpmCommand extends Command {
                 result["dist-tags"].latest,
                 result.license ? result.license : msg.guild!.loc.get("COMMAND_NPM_UNKNOWN"),
                 result.author ? result.author.name : msg.guild!.loc.get("COMMAND_NPM_UNKNOWN"),
-                result.time ? new Date(result.time.modified).toDateString() : msg.guild!.loc.get("COMMAND_NPM_UNKNOWN"),
+                result.time ? moment(result.time.modified).format("DD-MM-YYYY") : msg.guild!.loc.get("COMMAND_NPM_UNKNOWN"),
                 deps.length ? deps.join(", ") : msg.guild!.loc.get("COMMAND_NPM_NO_DEPENDENCIES"),
                 maintainers.join(", "),
                 version.dist.tarball
@@ -54,7 +55,7 @@ export default class NpmCommand extends Command {
         msg.ctx.send(embed);
     }
 
-    public async getResult(query: string, yarn = false): Promise<NPMResponse|void> {
+    public async getResult(query: string, yarn: boolean): Promise<NPMResponse|void> {
         try {
             const { body }: any = await request.get(`https://registry.${yarn ? "yarnpkg" : "npmjs"}.com/${query}`);
             return body;
