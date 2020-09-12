@@ -11,6 +11,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
+const moment_1 = __importDefault(require("moment"));
 const decorators_1 = require("@yumeko/decorators");
 const discord_js_1 = require("discord.js");
 const Util_1 = require("@yumeko/util/Util");
@@ -18,7 +19,7 @@ let NpmCommand = class NpmCommand extends Command_1.default {
     async exec(msg, { query }) {
         const yarn = msg.cmd ? msg.cmd.toLowerCase() === "yarn" : false;
         query = query.replace(/ +/g, "+");
-        const result = await this.getResult(query);
+        const result = await this.getResult(query, yarn);
         if (!result)
             return msg.ctx.send(msg.guild.loc.get("COMMAND_UTIL_NO_RESULT_FOUND"));
         const version = result.versions[result["dist-tags"].latest];
@@ -38,14 +39,14 @@ let NpmCommand = class NpmCommand extends Command_1.default {
             result["dist-tags"].latest,
             result.license ? result.license : msg.guild.loc.get("COMMAND_NPM_UNKNOWN"),
             result.author ? result.author.name : msg.guild.loc.get("COMMAND_NPM_UNKNOWN"),
-            result.time ? new Date(result.time.modified).toDateString() : msg.guild.loc.get("COMMAND_NPM_UNKNOWN"),
+            result.time ? moment_1.default(result.time.modified).format("DD-MM-YYYY") : msg.guild.loc.get("COMMAND_NPM_UNKNOWN"),
             deps.length ? deps.join(", ") : msg.guild.loc.get("COMMAND_NPM_NO_DEPENDENCIES"),
             maintainers.join(", "),
             version.dist.tarball
         ]));
         msg.ctx.send(embed);
     }
-    async getResult(query, yarn = false) {
+    async getResult(query, yarn) {
         try {
             const { body } = await node_superfetch_1.default.get(`https://registry.${yarn ? "yarnpkg" : "npmjs"}.com/${query}`);
             return body;
