@@ -33,9 +33,11 @@ function presence(client: YumekoClient): void {
 
 async function assignDB(client: YumekoClient): Promise<void> {
     await client.db.connect();
+    const allGuild = client.shard ? await client.shard.broadcastEval("this.guilds.cache.keyArray()").then(x => (x as string[][]).flat()) : client.guilds.cache.keyArray();
     const values = await client.db.guild.all();
     for (const { key, value } of values) {
         const guild = client.guilds.cache.get(key);
+        if (!allGuild.includes(key)) await client.db.guild.delete(key);
         if (!guild) continue;
         guild.assignDatabase(value);
     }
