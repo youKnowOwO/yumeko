@@ -229,7 +229,8 @@
 
 "@youKnowOwO/mongotrize@github:youKnowOwO/mongotrize#build":
   version "0.0.1"
-  resolved "https://codeload.github.com/youKnowOwO/mongotrize/tar.gz/df49472edbbc53eb5f6948219a5245756868cf61"
+  uid e12cdc0db2b743d0e0e637c5ce9172ed7b3fd981
+  resolved "https://codeload.github.com/youKnowOwO/mongotrize/tar.gz/e12cdc0db2b743d0e0e637c5ce9172ed7b3fd981"
   dependencies:
     mongodb "^3.6.1"
 
