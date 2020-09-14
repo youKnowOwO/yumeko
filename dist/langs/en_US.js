@@ -210,5 +210,11 @@ exports.default = {
         Maitainers: ${desc[6]}
 
         [Download](${desc[7]})
-    `
+    `,
+    COMMAND_BRAINLY_DESCRIPTION: () => "Search question from brainly.com",
+    COMMAND_BRAINLY_PROMPT: () => "What question dou you want to search ?",
+    COMMAND_BRAINLY_INVALID_REGION: (regions) => `**Unsupported Region!, supported: ${regions.map(x => `\`${x}\``).join(", ")}**`,
+    COMMAND_BRAINLY_ATTACHMENT: () => "Attachments",
+    COMMAND_BRAINLY_QUESTION: () => "QUESTION",
+    COMMAND_BRAINLY_ANSWER: (best) => best ? "BEST ANSWER" : "ANSWER"
 };
