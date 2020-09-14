@@ -49,3 +49,75 @@ export interface NPMResponse {
         [key: string]: Date;
     };
 }
+
+export interface BrainlyEdge {
+    node: {
+        databaseId: number;
+        content: string;
+        points: number;
+        created: string;
+        lastActivity: string;
+        attachments: {
+            url: string;
+        }[];
+        author?: {
+            databaseId: number;
+            nick: string;
+            points: number;
+            gender: string;
+            description: string;
+            isDeleted: boolean;
+            avatar?: {
+                url: string;
+            };
+            category: number;
+            clientType: string;
+            rank: {
+                databaseId: number;
+                name: string;
+            };
+            receivedThanks: number;
+            bestAnswersCount: number;
+            helpedUsersCount: number;
+        };
+        isAuthorsFirstQuestion: boolean;
+        canBeAnswered: boolean;
+        pointsForAnswer: number;
+        pointsForBestAnswer: number;
+        answers: {
+            nodes: {
+                databaseId: number;
+                content: string;
+                points: number;
+                isBest: boolean;
+                created: string;
+                rating: number;
+                ratesCount: number;
+                thanksCount: number;
+                attachments: {
+                    url: string;
+                }[];
+                author?: {
+                    databaseId: number;
+                    nick: string;
+                    points: number;
+                    gender: string;
+                    description: string;
+                    isDeleted: boolean;
+                    avatar?: {
+                        url: string;
+                    };
+                    category: number;
+                    clientType: string;
+                    rank: {
+                        databaseId: number;
+                        name: string;
+                    };
+                    receivedThanks: number;
+                    bestAnswersCount: number;
+                    helpedUsersCount: number;
+                };
+            }[];
+        };
+    };
+}

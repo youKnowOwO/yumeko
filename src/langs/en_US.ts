@@ -267,5 +267,12 @@ export default {
         Maitainers: ${desc[6]}
 
         [Download](${desc[7]})
-    `
+    `,
+
+    COMMAND_BRAINLY_DESCRIPTION: (): string => "Search question from brainly.com",
+    COMMAND_BRAINLY_PROMPT: (): string => "What question dou you want to search ?",
+    COMMAND_BRAINLY_INVALID_REGION: (regions: string[]): string => `**Unsupported Region!, supported: ${regions.map(x => `\`${x}\``).join(", ")}**`,
+    COMMAND_BRAINLY_ATTACHMENT: (): string => "Attachments",
+    COMMAND_BRAINLY_QUESTION: (): string => "QUESTION",
+    COMMAND_BRAINLY_ANSWER: (best: boolean): string => best ? "BEST ANSWER" : "ANSWER"
 };

@@ -267,5 +267,12 @@ export default {
         Maintainer: ${desc[6]}
 
         [Unduh](${desc[7]})
-    `
+    `,
+
+    COMMAND_BRAINLY_DESCRIPTION: () => "Mencari pertanyaan dari brainly.com",
+    COMMAND_BRAINLY_PROMPT: () => "Pertanyaan apa yang ingin kamu carai ?",
+    COMMAND_BRAINLY_INVALID_REGION: regions => `**Kode negara tidak didukung!, hanya mendukung: ${regions.map(x => `\`${x}\``).join(", ")}**`,
+    COMMAND_BRAINLY_ATTACHMENT: () => "Lampiran",
+    COMMAND_BRAINLY_QUESTION: (): string => "PERTANYAAN",
+    COMMAND_BRAINLY_ANSWER: (best: boolean): string => best ? "JAWABAN TERBAIK" : "JAWABAN"
 } as typeof en_US;
