@@ -1,13 +1,13 @@
 import { MongoMap } from "@youKnowOwO/mongotrize";
+import { hide } from "@yumeko/decorators";
 
 const config = require("../../config.json");
 
 export default class YumekoDatabase {
     public readonly name = "yumeko";
 
-    public get uri(): string {
-        return process.env.DATABASE!;
-    }
+    @hide
+    public readonly uri = process.env.DATABASE!;
 
     public readonly guild = this.createDatabase("guild", {
         prefix: config.prefix as string,

@@ -1,7 +1,7 @@
 import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import type { Message } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 import { chunk } from "@yumeko/util/Util";
 import { MessageEmbed } from "discord.js";
 import Pagination from "@yumeko/util/Pagination";
@@ -36,6 +36,7 @@ interface LyricsResponse {
     ]
 })
 export default class LyricsCommand extends Command {
+    @constantly
     public async exec(msg: Message, { title }: { title: string }): Promise<Message> {
         const result = await this.getLyrics(title);
         if (!result) return msg.ctx.send(msg.guild!.loc.get("COMMAND_UTIL_NO_RESULT_FOUND"));

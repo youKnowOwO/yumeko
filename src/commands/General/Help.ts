@@ -2,7 +2,7 @@ import Command from "@yumeko/classes/Command";
 import { Message,MessageEmbed } from "discord.js";
 import { stripIndents } from "common-tags";
 import { codeBlock, firstUpperCase } from "@yumeko/util/Util";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 
 @DeclareCommand("help", {
     aliases: ["help", "h"],
@@ -25,6 +25,7 @@ import { DeclareCommand } from "@yumeko/decorators";
     ]
 })
 export default class HelpCommand extends Command {
+    @constantly
     public exec(msg: Message, { command }: { command?: Command }): Promise<Message> {
         if (command) {
             const { name: category } = this.collector!.categories.find(x => x.type === command.option.category)!;

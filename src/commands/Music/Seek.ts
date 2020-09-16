@@ -1,7 +1,7 @@
 import Command from "@yumeko/classes/Command";
 import type { Message } from "discord.js";
 import { readableTime } from "@yumeko/util/Util";
-import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel, inhibit, isInStream } from "@yumeko/decorators";
+import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel, inhibit, isInStream, constantly } from "@yumeko/decorators";
 
 @DeclareCommand("seek", {
     aliases: ["seek", "jumpto"],
@@ -24,6 +24,7 @@ import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChan
     ]
 })
 export default class SeekCommand extends Command {
+    @constantly
     @isInStream()
     @isMusicPlaying()
     @isMemberInVoiceChannel()

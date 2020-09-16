@@ -6,6 +6,8 @@ import { CommandOption, AwaitPlayersPayload } from "@yumeko/interfaces";
 import { verify } from "@yumeko/util/Util";
 import AwaitPlayers from "@yumeko/util/AwaitPlayers";
 
+export * from "@yumeko/decorators/PropertyDescriptor";
+
 export function DeclareCommand (identifier: string, option: CommandOption) {
     return function<T extends Command>(target: new(...args: any[]) => T): new (client: YumekoClient) => T {
         return new Proxy(target, {

@@ -1,7 +1,7 @@
 import Command from "@yumeko/classes/Command";
 import { MessageEmbed, Message } from "discord.js";
 import { stripIndents } from "common-tags";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 
 @DeclareCommand("ping", {
     aliases: ["ping"],
@@ -16,6 +16,7 @@ import { DeclareCommand } from "@yumeko/decorators";
     category: "general",
 })
 export default class PingCommand extends Command {
+    @constantly
     public async exec(msg: Message): Promise<Message> {
         const now = Date.now();
         const m = await msg.ctx.send("🏓 Ping..");

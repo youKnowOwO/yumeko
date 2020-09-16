@@ -1,6 +1,6 @@
 import Command from "@yumeko/classes/Command";
 import { MessageEmbed, Message } from "discord.js";
-import { DeclareCommand, isMusicPlaying } from "@yumeko/decorators";
+import { DeclareCommand, isMusicPlaying, constantly } from "@yumeko/decorators";
 
 @DeclareCommand("np", {
     aliases: ["np", "nowplay"],
@@ -15,6 +15,7 @@ import { DeclareCommand, isMusicPlaying } from "@yumeko/decorators";
     category: "music",
 })
 export default class NpCommand extends Command {
+    @constantly
     @isMusicPlaying()
     public async exec(msg: Message): Promise<Message> {
         const { music } = msg.guild!;

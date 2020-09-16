@@ -2,7 +2,7 @@ import Command from "@yumeko/classes/Command";
 import Stopwatch from "@yumeko/util/Stopwatch";
 import child_process from "child_process";
 import type { Message } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 import { hastebin, codeBlock } from "@yumeko/util/Util";
 import { promisify } from "util";
 
@@ -27,6 +27,7 @@ const exec = promisify(child_process.exec);
     ]
 })
 export default class ExecCommand extends Command {
+    @constantly
     public async exec(msg: Message, { code }: { code: string }): Promise<Message> {
         const { stdout, stderr, time } = await this.execute(code);
         const canUseExternal = msg.guild!.me!.hasPermission("USE_EXTERNAL_EMOJIS");

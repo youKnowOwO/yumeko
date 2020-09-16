@@ -1,7 +1,8 @@
 import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import type { Message } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import type { Image } from "canvas";
+import { DeclareCommand, hide, constantly } from "@yumeko/decorators";
 import { Canvas, resolveImage } from "canvas-constructor";
 import { join } from "path";
 
@@ -18,16 +19,21 @@ import { join } from "path";
     category: "fun"
 })
 export default class FortuneCookieCommand extends Command {
-    public fortunes: string[] = []; // cache the fortune message
+    @hide
+    private fortunes: string[] = []; // cache the fortune message
 
+    @hide
+    private cookieImage?: Image;
+
+    @constantly
     public async getFortune(): Promise<string> {
         if (!this.fortunes.length) this.fortunes = await request.get("https://raw.githubusercontent.com/dragonfire535/xiao/master/assets/json/fortune.json").then(x => JSON.parse(x.text) as string[]);
         return this.fortunes[Math.floor(Math.random() * this.fortunes.length)];
     }
 
+    @constantly
     public async createImage(fortune: string): Promise<Buffer> {
-        const path = join(__dirname, "../../../assets/images/fortune-cookie.png");
-        const base = await resolveImage(path);
+        const base = await this.getCookieImage();
         return new Canvas(700, 500)
             .printImage(base, 0, 0)
             .translate(380, 335)
@@ -37,11 +43,18 @@ export default class FortuneCookieCommand extends Command {
             .toBufferAsync();
     }
 
+    @constantly
     public async exec(msg: Message): Promise<Message> {
         const m = await msg.channel.send(msg.guild!.loc.get("COMMAND_FUN_PAINTING"));
         const fortune = await this.getFortune();
         const attachment = await this.createImage(fortune);
         m.delete();
         return msg.ctx.send({ files: [{ attachment, name: "fortune-cookie.jpg" }]});
+    }
+
+    private async getCookieImage(): Promise<Image> {
+        if (this.cookieImage) return this.cookieImage;
+        const path = join(__dirname, "../../../assets/images/fortune-cookie.png");
+        return this.cookieImage = await resolveImage(path);
     }
 }

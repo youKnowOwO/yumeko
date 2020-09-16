@@ -11,11 +11,15 @@ import { Client } from "discord.js";
 import { Node as Lavalink } from "lavalink";
 
 import "../extension";
+import { hide } from "@yumeko/decorators";
 
 // i don't want compiler compile these one
 const config = require("../../config.json");
 
 export default class YumekoClient extends Client {
+    @hide
+    public config = config;
+
     public collector = new CommandCollector(this);
     public context = new Context();
     public log = new Logger();
@@ -31,7 +35,6 @@ export default class YumekoClient extends Client {
     });
 
     public nowplayMoe = nowPlayMoe;
-    public config = config;
     public langs = langCollector();
     public constructor() {
         super({

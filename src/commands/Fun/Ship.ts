@@ -1,6 +1,6 @@
 import Command from "@yumeko/classes/Command";
 import type { Message, User } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 import { Canvas, resolveImage } from "canvas-constructor";
 
 @DeclareCommand("ship", {
@@ -33,6 +33,7 @@ import { Canvas, resolveImage } from "canvas-constructor";
     ]
 })
 export default class ShipCommand extends Command {
+    @constantly
     public async exec(msg: Message, { userOne, userTwo }: { userOne: User; userTwo?: User }): Promise<Message> {
         if (!userTwo) {
             userTwo = userOne;
@@ -49,6 +50,7 @@ export default class ShipCommand extends Command {
         return msg.ctx.send(`❤️ **| ${this.getShipName(userOne.username, userTwo.username)} \`${Math.floor(Math.random() * 100)}%\`**`, { files: [{ attachment, name: "ship.png"}]});
     }
 
+    @constantly
     public getShipName(username1: string, username2: string): string {
         return [this.getFirstPron(username1), this.getFirstPron(username2)].join("");
     }

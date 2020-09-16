@@ -3,6 +3,7 @@ import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import { MessageEmbed, Message } from "discord.js";
 import { Animals } from "@yumeko/langs/en_US";
+import { constantly } from "@yumeko/decorators";
 
 export default class BunnyCommand extends Command {
     public constructor (client: YumekoClient, animal = "bunny") {
@@ -20,6 +21,7 @@ export default class BunnyCommand extends Command {
         });
     }
 
+    @constantly
     public async exec(msg: Message): Promise<Message> {
         const image = await this.getImage();
         const embed = new MessageEmbed()
@@ -30,6 +32,7 @@ export default class BunnyCommand extends Command {
         return msg.ctx.send(embed);
     }
 
+    @constantly
     public async getImage(): Promise<string> {
         const { body }: any = await request.get("https://api.bunnies.io/v2/loop/random/?media=gif,png");
         return body.media.gif;

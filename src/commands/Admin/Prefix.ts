@@ -1,6 +1,6 @@
 import Command from "@yumeko/classes/Command";
 import type { Message } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 
 @DeclareCommand("prefix", {
     aliases: ["prefix", "setprefix"],
@@ -22,6 +22,7 @@ import { DeclareCommand } from "@yumeko/decorators";
     ]
 })
 export default class extends Command {
+    @constantly
     public async exec(msg: Message, { prefix }: { prefix?: string }): Promise<Message> {
         if (prefix) {
             msg.guild!.prefix = prefix;

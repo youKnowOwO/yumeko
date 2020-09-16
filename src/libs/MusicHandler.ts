@@ -3,6 +3,7 @@ import Song from "@yumeko/classes/Song";
 import type { Guild, TextChannel, VoiceChannel, User } from "discord.js";
 import type { Player, Track, TrackResponse } from "lavalink";
 import { readableTime, codeBlock } from "@yumeko/util/Util";
+import { hide } from "@yumeko/decorators";
 
 enum LoopType {
     NONE,
@@ -11,7 +12,9 @@ enum LoopType {
 }
 
 export default class MusicHandler {
+    @hide
     public client: YumekoClient;
+
     public queue: Song[] = [];
     public skipVotes: User[] = [];
     public paused = false;
@@ -20,7 +23,11 @@ export default class MusicHandler {
     public loopType: LoopType = LoopType.NONE;
     public textChannel?: TextChannel;
     public volume = 100;
+
+    @hide
     private lastUpdate = Date.now();
+
+    @hide
     private position = 0;
 
     public constructor(public guild: Guild) {

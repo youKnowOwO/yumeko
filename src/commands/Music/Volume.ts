@@ -2,7 +2,7 @@ import type YumekoClient from "@yumeko/classes/Client";
 import Command from "@yumeko/classes/Command";
 import CustomError from "@yumeko/classes/CustomError";
 import { Message } from "discord.js";
-import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel } from "@yumeko/decorators";
+import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChannel, constantly } from "@yumeko/decorators";
 
 @DeclareCommand("volume", {
     aliases: ["volume"],
@@ -30,6 +30,7 @@ import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChan
     ]
 })
 export default class VolumeCommand extends Command {
+    @constantly
     @isMusicPlaying()
     @isMemberInVoiceChannel()
     @isSameVoiceChannel()

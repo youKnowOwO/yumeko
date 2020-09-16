@@ -1,6 +1,6 @@
 import Command from "@yumeko/classes/Command";
 import type { Message } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 
 @DeclareCommand("cat", {
     aliases: ["cat", "kitty"],
@@ -15,6 +15,7 @@ import { DeclareCommand } from "@yumeko/decorators";
     category: "animals",
 })
 export default class CatCommand extends Command {
+    @constantly
     public exec(msg: Message): Promise<Message> {
         return msg.ctx.send({ files: [{ attachment: "https://cataas.com/cat", name: "cat.jpg"}] });
     }

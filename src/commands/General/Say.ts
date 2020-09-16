@@ -1,6 +1,6 @@
 import Command from "@yumeko/classes/Command";
 import type { Message } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 
 @DeclareCommand("say", {
     aliases: ["say"],
@@ -25,6 +25,7 @@ import { DeclareCommand } from "@yumeko/decorators";
     ]
 })
 export default class SayCommand extends Command {
+    @constantly
     public exec(msg: Message, { text, isDelete }: { text: string; isDelete: boolean }): Promise<Message> {
         if (isDelete) msg.delete().catch();
         return msg.ctx.send(text);

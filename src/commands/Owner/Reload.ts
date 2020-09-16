@@ -1,7 +1,7 @@
 import type ExecCommand from "@yumeko/commands/Owner/Exec";
 import Command from "@yumeko/classes/Command";
 import type { Message } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 import { parse } from "path";
 
 @DeclareCommand("reload", {
@@ -28,6 +28,7 @@ import { parse } from "path";
     ]
 })
 export default class ReloadCommand extends Command {
+    @constantly
     public async exec(msg: Message, { command, dontBuild }: { command?: Command; dontBuild: boolean }): Promise<Message> {
         const { execute } = this.collector!.commands.get("exec") as ExecCommand;
         const { ext, dir } = parse(this.dir);
@@ -41,6 +42,7 @@ export default class ReloadCommand extends Command {
         return msg.ctx.send("✅ **| Succes reloading all commands**");
     }
 
+    @constantly
     public reload(commands: Command[]): void {
         for (const command of commands) {
             delete require.cache[require.resolve(command.dir)];

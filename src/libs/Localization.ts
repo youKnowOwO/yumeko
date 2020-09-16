@@ -3,14 +3,18 @@ import en_US from "@yumeko/langs/en_US";
 import readdirRecursive from "@yumeko/util/ReaddirRecursive";
 import { Collection, Guild } from "discord.js";
 import { join } from "path";
+import { hide, constantly } from "@yumeko/decorators";
 
 type DefaultLang = typeof en_US;
 
 export class Localization {
+    @hide
     public client = this.guild.client as YumekoClient;
+
     public lang = "en_US";
     public constructor(public guild: Guild) {}
 
+    @constantly
     public get<K extends keyof DefaultLang>(key: K, ...args: Parameters<DefaultLang[K]>): string {
         const result = this.client.langs.get(this.lang);
         if (!result) return `${this.lang}: ${key}`;

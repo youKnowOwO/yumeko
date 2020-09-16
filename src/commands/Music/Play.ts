@@ -3,7 +3,7 @@ import CustomError from "@yumeko/classes/CustomError";
 import SelectionPage from "@yumeko/util/SelectionPage";
 import { Message, MessageEmbed, TextChannel } from "discord.js";
 import type { Track } from "lavalink";
-import { DeclareCommand, isMemberInVoiceChannel, isSameVoiceChannel, isMemberVoiceChannelJoinable, isInStream } from "@yumeko/decorators";
+import { DeclareCommand, isMemberInVoiceChannel, isSameVoiceChannel, isMemberVoiceChannelJoinable, isInStream, constantly } from "@yumeko/decorators";
 
 const emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
 
@@ -48,6 +48,7 @@ const emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
     ]
 })
 export default class PlayCommand extends Command {
+    @constantly
     @isInStream()
     @isMemberInVoiceChannel()
     @isMemberVoiceChannelJoinable()

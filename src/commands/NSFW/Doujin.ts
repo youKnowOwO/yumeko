@@ -2,7 +2,7 @@ import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import moment from "moment";
 import { Message, MessageEmbed, MessageReaction, User, Collector } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 import { stripIndents } from "common-tags";
 import { firstUpperCase, chunk } from "@yumeko/util/Util";
 
@@ -57,6 +57,7 @@ interface DoujinResponse {
     ]
 })
 export default class DoujinCommand extends Command {
+    @constantly
     public async exec(msg: Message, { query }: { query: string }): Promise<Message> {
         const doujins = await this.getDoujin(query);
         if (!doujins.length) return msg.ctx.send("🚫 No result found");

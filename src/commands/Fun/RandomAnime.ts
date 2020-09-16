@@ -1,7 +1,7 @@
 import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import { Message, MessageEmbed } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 import { RandomAnimeResponse } from "@yumeko/interfaces";
 
 @DeclareCommand("random-anime", {
@@ -14,6 +14,7 @@ import { RandomAnimeResponse } from "@yumeko/interfaces";
     category: "fun"
 })
 export default class extends Command {
+    @constantly
     public async exec(msg: Message): Promise<Message> {
         const response = await request.get("https://emilia-api.xyz/api/random-anime")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`);

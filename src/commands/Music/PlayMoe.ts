@@ -2,7 +2,7 @@ import type PlayCommand from "@yumeko/commands/Music/Play";
 import Command from "@yumeko/classes/Command";
 import CustomError from "@yumeko/classes/CustomError";
 import type { Message } from "discord.js";
-import { DeclareCommand, inhibit } from "@yumeko/decorators";
+import { DeclareCommand, inhibit, constantly } from "@yumeko/decorators";
 
 @DeclareCommand("play-moe", {
     aliases: ["play-moe", "playmoe"],
@@ -27,6 +27,7 @@ import { DeclareCommand, inhibit } from "@yumeko/decorators";
     ]
 })
 export default class PlayMoe extends Command {
+    @constantly
     @inhibit(msg => {
         if (msg.guild!.music.song) return msg.guild!.loc.get("COMMAND_MUSIC_PLAYMOE_INHIBIT");
     })

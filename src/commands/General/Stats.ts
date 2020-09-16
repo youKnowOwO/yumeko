@@ -1,6 +1,6 @@
 import Command from "@yumeko/classes/Command";
 import moment from "moment";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 import { MessageEmbed, Message } from "discord.js";
 import { stripIndents } from "common-tags";
 import { codeBlock } from "@yumeko/util/Util";
@@ -19,6 +19,7 @@ import { loadavg } from "os";
     category: "general",
 })
 export default class StatsCommand extends Command {
+    @constantly
     public async exec(msg: Message): Promise<Message> {
         const [usersSize, channelsSize, serversSize] = this.client.shard ?
             this.parseSizeEvaluate(await this.client.shard.broadcastEval(`[

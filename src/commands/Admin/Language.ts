@@ -1,7 +1,7 @@
 import YumekoClient from "@yumeko/classes/Client";
 import Command from "@yumeko/classes/Command";
 import type { Message } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 import CustomError from "@yumeko/classes/CustomError";
 import { oneLineTrim } from "common-tags";
 
@@ -33,6 +33,7 @@ import { oneLineTrim } from "common-tags";
     ]
 })
 export default class extends Command {
+    @constantly
     public async exec(msg: Message, { language }: { language?: string }): Promise<Message> {
         if (language) {
             msg.guild!.loc.lang = language;

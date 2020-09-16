@@ -1,7 +1,7 @@
 import Command from "@yumeko/classes/Command";
 import Stopwatch from "@yumeko/util/Stopwatch";
 import type { Message } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 import { inspect } from "util";
 import { hastebin, codeBlock, escapeRegex } from "@yumeko/util/Util";
 
@@ -60,6 +60,7 @@ interface ReturnEval {
     ]
 })
 export default class EvalCommand extends Command {
+    @constantly
     public async exec(msg: Message, { isAsync, isHide, showStack, isCanvas, depth, code }: { isAsync: boolean; isHide: boolean; showStack: boolean; isCanvas: boolean; depth: number; code: string }): Promise<Message> {
         const { succes, result, time } = await this.eval(msg, code, depth, isAsync, isCanvas, showStack);
         if (isHide) return msg;

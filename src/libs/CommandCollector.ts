@@ -5,13 +5,17 @@ import readdirRecursive from "@yumeko/util/ReaddirRecursive";
 import { CommandCollectorCategories } from "@yumeko/interfaces";
 import { Collection } from "discord.js";
 import { join } from "path";
+import { hide } from "@yumeko/decorators";
 
 const categoryNames = require("../../assets/json/help.json");
 
 export default class CommandCollector {
     public commands: Collection<string, Command> = new Collection();
     public categories: CommandCollectorCategories[] = [];
+
+    @hide
     public runner: CommandRunner = new CommandRunner(this.client);
+
     public constructor(public client: YumekoClient) {}
 
     public loadAll(log = true): void {
