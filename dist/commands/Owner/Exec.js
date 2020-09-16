@@ -44,6 +44,9 @@ let ExecCommand = class ExecCommand extends Command_1.default {
         return { ...result, time: stopwatch.toString() };
     }
 };
+__decorate([
+    decorators_1.constantly
+], ExecCommand.prototype, "exec", null);
 ExecCommand = __decorate([
     decorators_1.DeclareCommand("exec", {
         aliases: ["exec"],

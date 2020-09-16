@@ -66,6 +66,9 @@ let StatsCommand = class StatsCommand extends Command_1.default {
         return result;
     }
 };
+__decorate([
+    decorators_1.constantly
+], StatsCommand.prototype, "exec", null);
 StatsCommand = __decorate([
     decorators_1.DeclareCommand("stats", {
         aliases: ["stats"],

@@ -13,7 +13,7 @@ const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const decorators_1 = require("@yumeko/decorators");
 const CustomError_1 = __importDefault(require("@yumeko/classes/CustomError"));
 const common_tags_1 = require("common-tags");
-let default_1 = class extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { language }) {
         if (language) {
             msg.guild.loc.lang = language;
@@ -39,6 +39,9 @@ let default_1 = class extends Command_1.default {
         return msg.ctx.send(msg.guild.loc.get("COMMAND_LANGUAGE_LIST", msg.prefix, list, ...currentLang));
     }
 };
+__decorate([
+    decorators_1.constantly
+], default_1.prototype, "exec", null);
 default_1 = __decorate([
     decorators_1.DeclareCommand("language", {
         aliases: ["language", "lang", "setlang", "locale"],

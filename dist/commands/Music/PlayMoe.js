@@ -20,6 +20,7 @@ let PlayMoe = class PlayMoe extends Command_1.default {
     }
 };
 __decorate([
+    decorators_1.constantly,
     decorators_1.inhibit(msg => {
         if (msg.guild.music.song)
             return msg.guild.loc.get("COMMAND_MUSIC_PLAYMOE_INHIBIT");

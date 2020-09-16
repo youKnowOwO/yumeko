@@ -44,6 +44,12 @@ let ShipCommand = class ShipCommand extends Command_1.default {
         return letter.substr(0, letter.length / 2);
     }
 };
+__decorate([
+    decorators_1.constantly
+], ShipCommand.prototype, "exec", null);
+__decorate([
+    decorators_1.constantly
+], ShipCommand.prototype, "getShipName", null);
 ShipCommand = __decorate([
     decorators_1.DeclareCommand("ship", {
         aliases: ["ship"],

@@ -17,6 +17,9 @@ let AboutCommand = class AboutCommand extends Command_1.default {
         return msg.ctx.send(msg.guild.loc.get("COMMAND_ABOUT_ABOUTME", msg.author, this.client, commands, msg.prefix || msg.guild.prefix));
     }
 };
+__decorate([
+    decorators_1.constantly
+], AboutCommand.prototype, "exec", null);
 AboutCommand = __decorate([
     decorators_1.DeclareCommand("about", {
         aliases: ["about"],

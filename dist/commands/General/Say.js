@@ -18,6 +18,9 @@ let SayCommand = class SayCommand extends Command_1.default {
         return msg.ctx.send(text);
     }
 };
+__decorate([
+    decorators_1.constantly
+], SayCommand.prototype, "exec", null);
 SayCommand = __decorate([
     decorators_1.DeclareCommand("say", {
         aliases: ["say"],

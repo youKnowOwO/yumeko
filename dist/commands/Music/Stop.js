@@ -22,6 +22,7 @@ let StopCommand = class StopCommand extends Command_1.default {
     }
 };
 __decorate([
+    decorators_1.constantly,
     decorators_1.isMusicPlaying(),
     decorators_1.isMemberInVoiceChannel(),
     decorators_1.isSameVoiceChannel()

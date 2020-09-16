@@ -27,6 +27,9 @@ let PingCommand = class PingCommand extends Command_1.default {
         return m.edit("🏓 Pong", embed);
     }
 };
+__decorate([
+    decorators_1.constantly
+], PingCommand.prototype, "exec", null);
 PingCommand = __decorate([
     decorators_1.DeclareCommand("ping", {
         aliases: ["ping"],

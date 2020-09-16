@@ -25,8 +25,7 @@ let FortuneCookieCommand = class FortuneCookieCommand extends Command_1.default 
         return this.fortunes[Math.floor(Math.random() * this.fortunes.length)];
     }
     async createImage(fortune) {
-        const path = path_1.join(__dirname, "../../../assets/images/fortune-cookie.png");
-        const base = await canvas_constructor_1.resolveImage(path);
+        const base = await this.getCookieImage();
         return new canvas_constructor_1.Canvas(700, 500)
             .printImage(base, 0, 0)
             .translate(380, 335)
@@ -42,7 +41,28 @@ let FortuneCookieCommand = class FortuneCookieCommand extends Command_1.default 
         m.delete();
         return msg.ctx.send({ files: [{ attachment, name: "fortune-cookie.jpg" }] });
     }
+    async getCookieImage() {
+        if (this.cookieImage)
+            return this.cookieImage;
+        const path = path_1.join(__dirname, "../../../assets/images/fortune-cookie.png");
+        return this.cookieImage = await canvas_constructor_1.resolveImage(path);
+    }
 };
+__decorate([
+    decorators_1.hide
+], FortuneCookieCommand.prototype, "fortunes", void 0);
+__decorate([
+    decorators_1.hide
+], FortuneCookieCommand.prototype, "cookieImage", void 0);
+__decorate([
+    decorators_1.constantly
+], FortuneCookieCommand.prototype, "getFortune", null);
+__decorate([
+    decorators_1.constantly
+], FortuneCookieCommand.prototype, "createImage", null);
+__decorate([
+    decorators_1.constantly
+], FortuneCookieCommand.prototype, "exec", null);
 FortuneCookieCommand = __decorate([
     decorators_1.DeclareCommand("fortune-cookie", {
         aliases: ["fortune-cookie", "fortune"],

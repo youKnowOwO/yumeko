@@ -1,4 +1,10 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -14,6 +20,7 @@ const Localization_1 = require("@yumeko/libs/Localization");
 const discord_js_1 = require("discord.js");
 const lavalink_1 = require("lavalink");
 require("../extension");
+const decorators_1 = require("@yumeko/decorators");
 const config = require("../../config.json");
 class YumekoClient extends discord_js_1.Client {
     constructor() {
@@ -21,6 +28,7 @@ class YumekoClient extends discord_js_1.Client {
             fetchAllMembers: true,
             disableMentions: "everyone"
         });
+        this.config = config;
         this.collector = new CommandCollector_1.default(this);
         this.context = new MessageContext_1.default();
         this.log = new Logger_1.default();
@@ -35,7 +43,6 @@ class YumekoClient extends discord_js_1.Client {
             ...config.lavalink
         });
         this.nowplayMoe = NowplayMoeWS_1.default;
-        this.config = config;
         this.langs = Localization_1.langCollector();
         EventLoader_1.default(this);
         this.collector.loadAll();
@@ -44,4 +51,7 @@ class YumekoClient extends discord_js_1.Client {
         this.lavalink.once("ready", () => this.log.info("Lavalink is ready to use"));
     }
 }
+__decorate([
+    decorators_1.hide
+], YumekoClient.prototype, "config", void 0);
 exports.default = YumekoClient;

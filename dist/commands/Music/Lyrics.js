@@ -39,6 +39,9 @@ let LyricsCommand = class LyricsCommand extends Command_1.default {
         return body;
     }
 };
+__decorate([
+    decorators_1.constantly
+], LyricsCommand.prototype, "exec", null);
 LyricsCommand = __decorate([
     decorators_1.DeclareCommand("lyrics", {
         aliases: ["lyrics", "lyrics"],

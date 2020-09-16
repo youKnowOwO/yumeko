@@ -13,7 +13,7 @@ const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const discord_js_1 = require("discord.js");
 const decorators_1 = require("@yumeko/decorators");
-let default_1 = class extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg) {
         const response = await node_superfetch_1.default.get("https://emilia-api.xyz/api/random-anime")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`);
@@ -35,6 +35,9 @@ let default_1 = class extends Command_1.default {
         return msg.ctx.send(embed);
     }
 };
+__decorate([
+    decorators_1.constantly
+], default_1.prototype, "exec", null);
 default_1 = __decorate([
     decorators_1.DeclareCommand("random-anime", {
         aliases: ["random-anime"],

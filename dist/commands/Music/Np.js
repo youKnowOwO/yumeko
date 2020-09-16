@@ -44,6 +44,7 @@ let NpCommand = class NpCommand extends Command_1.default {
     }
 };
 __decorate([
+    decorators_1.constantly,
     decorators_1.isMusicPlaying()
 ], NpCommand.prototype, "exec", null);
 NpCommand = __decorate([

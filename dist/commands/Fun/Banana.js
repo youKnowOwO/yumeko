@@ -22,10 +22,8 @@ let BananaCommand = class BananaCommand extends Command_1.default {
         return msg.ctx.send(msg.guild.loc.get("COMMAND_BANANA_LENGTH", member, length), { files: [{ attachment, name: "banana.jpg" }] });
     }
     async makeImage(length) {
-        const path = path_1.join(__dirname, "../../../assets/images/banana.png");
-        const base = await canvas_constructor_1.resolveImage(path);
+        const [bananaImage, base] = await Promise.all([this.getBananaImage(), this.getBase()]);
         const diff = length / 20;
-        const bananaImage = await canvas_constructor_1.resolveImage(await new canvas_constructor_1.Canvas(500, 333).printImage(base, 0, 0).toBufferAsync());
         return new canvas_constructor_1.Canvas(500, 353)
             .printImage(base, 0, 0)
             .setColor("white")
@@ -33,7 +31,32 @@ let BananaCommand = class BananaCommand extends Command_1.default {
             .printImage(bananaImage, 500 - (500 * diff), 333 - (333 * diff), 500 * diff, 333 * diff)
             .toBufferAsync();
     }
+    async getBase() {
+        if (this.base)
+            return this.base;
+        const path = path_1.join(__dirname, "../../../assets/images/banana.png");
+        return this.base = await canvas_constructor_1.resolveImage(path);
+    }
+    async getBananaImage() {
+        if (this.bananaImage)
+            return this.bananaImage;
+        const base = await this.getBase();
+        const { canvas } = new canvas_constructor_1.Canvas(500, 333).printImage(base, 0, 0);
+        return this.bananaImage = canvas;
+    }
 };
+__decorate([
+    decorators_1.hide
+], BananaCommand.prototype, "base", void 0);
+__decorate([
+    decorators_1.hide
+], BananaCommand.prototype, "bananaImage", void 0);
+__decorate([
+    decorators_1.constantly
+], BananaCommand.prototype, "exec", null);
+__decorate([
+    decorators_1.constantly
+], BananaCommand.prototype, "makeImage", null);
 BananaCommand = __decorate([
     decorators_1.DeclareCommand("banana", {
         aliases: ["banana", "banana-length"],

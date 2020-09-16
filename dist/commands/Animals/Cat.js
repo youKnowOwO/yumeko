@@ -16,6 +16,9 @@ let CatCommand = class CatCommand extends Command_1.default {
         return msg.ctx.send({ files: [{ attachment: "https://cataas.com/cat", name: "cat.jpg" }] });
     }
 };
+__decorate([
+    decorators_1.constantly
+], CatCommand.prototype, "exec", null);
 CatCommand = __decorate([
     decorators_1.DeclareCommand("cat", {
         aliases: ["cat", "kitty"],

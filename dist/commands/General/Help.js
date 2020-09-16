@@ -52,6 +52,9 @@ let HelpCommand = class HelpCommand extends Command_1.default {
         return msg.ctx.send(embed);
     }
 };
+__decorate([
+    decorators_1.constantly
+], HelpCommand.prototype, "exec", null);
 HelpCommand = __decorate([
     decorators_1.DeclareCommand("help", {
         aliases: ["help", "h"],

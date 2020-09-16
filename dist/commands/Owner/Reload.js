@@ -33,6 +33,12 @@ let ReloadCommand = class ReloadCommand extends Command_1.default {
         }
     }
 };
+__decorate([
+    decorators_1.constantly
+], ReloadCommand.prototype, "exec", null);
+__decorate([
+    decorators_1.constantly
+], ReloadCommand.prototype, "reload", null);
 ReloadCommand = __decorate([
     decorators_1.DeclareCommand("reload", {
         aliases: ["reload"],

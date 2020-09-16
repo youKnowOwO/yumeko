@@ -159,6 +159,9 @@ let DoujinCommand = class DoujinCommand extends Command_1.default {
             pages[i].u = `/galleries/${doujin.media_id}/${i + 1}.${typeImage(pages[i])}`;
     }
 };
+__decorate([
+    decorators_1.constantly
+], DoujinCommand.prototype, "exec", null);
 DoujinCommand = __decorate([
     decorators_1.DeclareCommand("doujin", {
         aliases: ["doujin", "nhentai", "nh"],

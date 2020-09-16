@@ -74,6 +74,9 @@ let EvalCommand = class EvalCommand extends Command_1.default {
         return str.replace(regex, "[TOKEN :)]");
     }
 };
+__decorate([
+    decorators_1.constantly
+], EvalCommand.prototype, "exec", null);
 EvalCommand = __decorate([
     decorators_1.DeclareCommand("eval", {
         aliases: ["eval"],

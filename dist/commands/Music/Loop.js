@@ -23,6 +23,7 @@ let LoopCommand = class LoopCommand extends Command_1.default {
     }
 };
 __decorate([
+    decorators_1.constantly,
     decorators_1.isInStream(),
     decorators_1.isMusicPlaying(),
     decorators_1.isMemberInVoiceChannel(),
