@@ -225,14 +225,13 @@
 
 "@youKnowOwO/eslint-config@github:youKnowOwO/eslint-config#build":
   version "0.0.3"
-  resolved "https://codeload.github.com/youKnowOwO/eslint-config/tar.gz/802fec5fad389422bd440a811ea1680af1c6d3b9"
+  resolved "https://codeload.github.com/youKnowOwO/eslint-config/tar.gz/cea5fbaa17186570d5d7231f183a92d82e11603f"
 
 "@youKnowOwO/mongotrize@github:youKnowOwO/mongotrize#build":
   version "0.0.1"
-  uid e12cdc0db2b743d0e0e637c5ce9172ed7b3fd981
-  resolved "https://codeload.github.com/youKnowOwO/mongotrize/tar.gz/e12cdc0db2b743d0e0e637c5ce9172ed7b3fd981"
+  resolved "https://codeload.github.com/youKnowOwO/mongotrize/tar.gz/c5b8a846408aa06b77e1f217ece23cf35b9b700c"
   dependencies:
-    mongodb "^3.6.1"
+    mongodb "^3.6.2"
 
 abab@^2.0.3:
   version "2.0.4"
@@ -405,7 +404,7 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-bl@^2.2.0:
+bl@^2.2.0, bl@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/bl/-/bl-2.2.1.tgz#8c11a7b730655c5d56898cdc871224f40fd901d5"
   integrity sha512-6Pesp1w0DEX1N550i/uGV/TqucVL4AM/pgThFSN/Qq9si1/DF9aIHs1BxD8V/QU0HoeHO6cQRTAuYnLPKq1e4g==
@@ -679,7 +678,6 @@ dir-glob@^3.0.1:
 
 "discord.js@github:discordjs/discord.js":
   version "12.3.1"
-  uid "01ceda5b0cd6a14a49862a91b14c714bca4898a9"
   resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/01ceda5b0cd6a14a49862a91b14c714bca4898a9"
   dependencies:
     "@discordjs/collection" "^0.1.6"
@@ -1472,6 +1470,19 @@ mongodb@^3.6.1:
   integrity sha512-uH76Zzr5wPptnjEKJRQnwTsomtFOU/kQEU8a9hKHr2M7y9qVk7Q4Pkv0EQVp88742z9+RwvsdTw6dRjDZCNu1g==
   dependencies:
     bl "^2.2.0"
+    bson "^1.1.4"
+    denque "^1.4.1"
+    require_optional "^1.0.1"
+    safe-buffer "^5.1.2"
+  optionalDependencies:
+    saslprep "^1.0.0"
+
+mongodb@^3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.6.2.tgz#1154a4ac107bf1375112d83a29c5cf97704e96b6"
+  integrity sha512-sSZOb04w3HcnrrXC82NEh/YGCmBuRgR+C1hZgmmv4L6dBz4BkRse6Y8/q/neXer9i95fKUBbFi4KgeceXmbsOA==
+  dependencies:
+    bl "^2.2.1"
     bson "^1.1.4"
     denque "^1.4.1"
     require_optional "^1.0.1"
