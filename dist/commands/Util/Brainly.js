@@ -11,10 +11,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const CustomError_1 = __importDefault(require("@yumeko/classes/CustomError"));
-const node_superfetch_1 = __importDefault(require("node-superfetch"));
-const decorators_1 = require("@yumeko/decorators");
-const discord_js_1 = require("discord.js");
 const turndown_1 = __importDefault(require("turndown"));
+const node_superfetch_1 = __importDefault(require("node-superfetch"));
+const discord_js_1 = require("discord.js");
+const decorators_1 = require("@yumeko/decorators");
 const regions = {
     pl: {
         uri: "https://brainly.pl",
@@ -200,6 +200,9 @@ BrainlyCommand = __decorate([
             examples: ["brainly flowchart", "brainly flowchart --id"]
         },
         category: "utility",
+        permissions: {
+            client: ["EMBED_LINKS"]
+        },
         args: [
             {
                 identifier: "region",

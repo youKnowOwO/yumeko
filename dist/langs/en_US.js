@@ -216,5 +216,7 @@ exports.default = {
     COMMAND_BRAINLY_INVALID_REGION: (regions) => `**Unsupported Region!, supported: ${regions.map(x => `\`${x}\``).join(", ")}**`,
     COMMAND_BRAINLY_ATTACHMENT: () => "Attachments",
     COMMAND_BRAINLY_QUESTION: () => "QUESTION",
-    COMMAND_BRAINLY_ANSWER: (best) => best ? "BEST ANSWER" : "ANSWER"
+    COMMAND_BRAINLY_ANSWER: (best) => best ? "BEST ANSWER" : "ANSWER",
+    COMMAND_MDN_DESCRIPTION: () => "Lookup JavaScript reference from developer.mozilla.org",
+    COMMAND_MDN_PROMPT: () => "Which Javascript reference do you want to see ?"
 };
