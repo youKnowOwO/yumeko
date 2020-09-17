@@ -121,3 +121,36 @@ export interface BrainlyEdge {
         };
     };
 }
+
+export interface MDNChildrenExpand {
+    title?: string;
+    label: string;
+    url?: string;
+    id: number;
+    uuid: string;
+    slug: string;
+    tags: string[];
+    review_tags: string[];
+    localization_tags: string[];
+    sections: {
+        title?: string;
+        id: string;
+    }[];
+    locale: string;
+    summary?: string;
+    translations: {
+        last_edit: string;
+        locale: string;
+        localization_tags: string[];
+        review_tags: string[];
+        summary: string;
+        tags: string[];
+        title: string;
+        url: string;
+        uuid: string;
+    }[];
+    modified: string;
+    json_modified: string;
+    last_edit: string;
+    subpages: MDNChildrenExpand[];
+}

@@ -1,10 +1,9 @@
 import Command from "@yumeko/classes/Command";
 import CustomError from "@yumeko/classes/CustomError";
-import request from "node-superfetch";
-import type { Message } from "discord.js";
-import { DeclareCommand } from "@yumeko/decorators";
-import { MessageEmbed } from "discord.js";
 import TurndownService from "turndown";
+import request from "node-superfetch";
+import { Message, MessageEmbed } from "discord.js";
+import { DeclareCommand } from "@yumeko/decorators";
 import { BrainlyEdge } from "@yumeko/interfaces";
 
 const regions = {
@@ -119,6 +118,9 @@ const graphql = `
         examples: ["brainly flowchart", "brainly flowchart --id"]
     },
     category: "utility",
+    permissions: {
+        client: ["EMBED_LINKS"]
+    },
     args: [
         {
             identifier: "region",

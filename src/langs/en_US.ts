@@ -274,5 +274,8 @@ export default {
     COMMAND_BRAINLY_INVALID_REGION: (regions: string[]): string => `**Unsupported Region!, supported: ${regions.map(x => `\`${x}\``).join(", ")}**`,
     COMMAND_BRAINLY_ATTACHMENT: (): string => "Attachments",
     COMMAND_BRAINLY_QUESTION: (): string => "QUESTION",
-    COMMAND_BRAINLY_ANSWER: (best: boolean): string => best ? "BEST ANSWER" : "ANSWER"
+    COMMAND_BRAINLY_ANSWER: (best: boolean): string => best ? "BEST ANSWER" : "ANSWER",
+
+    COMMAND_MDN_DESCRIPTION: (): string => "Lookup JavaScript reference from developer.mozilla.org",
+    COMMAND_MDN_PROMPT: (): string => "Which Javascript reference do you want to see ?"
 };

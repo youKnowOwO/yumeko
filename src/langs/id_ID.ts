@@ -273,6 +273,9 @@ export default {
     COMMAND_BRAINLY_PROMPT: () => "Pertanyaan apa yang ingin kamu carai ?",
     COMMAND_BRAINLY_INVALID_REGION: regions => `**Kode negara tidak didukung!, hanya mendukung: ${regions.map(x => `\`${x}\``).join(", ")}**`,
     COMMAND_BRAINLY_ATTACHMENT: () => "Lampiran",
-    COMMAND_BRAINLY_QUESTION: (): string => "PERTANYAAN",
-    COMMAND_BRAINLY_ANSWER: (best: boolean): string => best ? "JAWABAN TERBAIK" : "JAWABAN"
+    COMMAND_BRAINLY_QUESTION: () => "PERTANYAAN",
+    COMMAND_BRAINLY_ANSWER: best => best ? "JAWABAN TERBAIK" : "JAWABAN",
+
+    COMMAND_MDN_DESCRIPTION: () => "Melihat referensi Javascript dari developer.mozilla.org",
+    COMMAND_MDN_PROMPT: () => "Referensi Javascript mana yang ingin kamu lihat ?"
 } as typeof en_US;
