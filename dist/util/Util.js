@@ -3,8 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.escapeRegex = exports.verify = exports.shuffle = exports.parseTime = exports.readableTime = exports.decodeHTMLEntities = exports.trimArray = exports.chunk = exports.firstUpperCase = exports.codeBlock = exports.hastebin = void 0;
+exports.formatBytes = exports.escapeRegex = exports.verify = exports.shuffle = exports.parseTime = exports.readableTime = exports.decodeHTMLEntities = exports.trimArray = exports.chunk = exports.firstUpperCase = exports.codeBlock = exports.hastebin = void 0;
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
+const bufferSizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
 async function hastebin(text, lang = "js") {
     const { body } = await node_superfetch_1.default.post("https://hasteb.in/documents")
         .send(text);
@@ -96,3 +97,11 @@ function escapeRegex(str) {
     return str.replace(/[|\\{}()[\]^$+*?.]/g, "\\$&");
 }
 exports.escapeRegex = escapeRegex;
+function formatBytes(bytes, digits = 2) {
+    if (!bytes)
+        return "0 Bytes";
+    const diff = 1024;
+    const index = Math.floor(Math.log(bytes) / Math.log(diff));
+    return `${parseFloat((bytes / Math.pow(diff, index)).toFixed(digits))} ${bufferSizes[index]}`;
+}
+exports.formatBytes = formatBytes;
