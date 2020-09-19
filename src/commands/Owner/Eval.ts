@@ -124,10 +124,12 @@ export default class extends Command {
         if (value instanceof Array || value instanceof Set) {
             const types = new Set<string>();
             for (const val of value) types.add(this.parseType(val));
+            if (!types.size) return `${value.constructor.name}`;
             return `${value.constructor.name}<${[...types].join(" | ")}>`;
         } else if (value instanceof Buffer) {
             return `${value.constructor.name} (${formatBytes(value.length)})`;
         } else if (value instanceof Map) {
+            if (!value.size) return `${value.constructor.name}`;
             const keys = new Set<string>();
             const values = new Set<string>();
             for (const k of value.keys()) keys.add(this.parseType(k));
@@ -135,16 +137,15 @@ export default class extends Command {
             return `${value.constructor.name}<${[...keys].join(" | ")}, ${[...values].join(" | ")}>`;
         } else if (value instanceof Promise) {
             const [status, val]: [number, unknown] = getPromiseDetails(value);
-            return `${value.constructor.name} <${status ? this.parseType(val) : "unknown"}>`;
+            return `${value.constructor.name}<${status ? this.parseType(val) : "unknown"}>`;
         } else if (type === "function") {
             return `${value.constructor.name} (${value.length}-arity)`;
         } else if (value === null) {
             return "null";
-        } else if (value.constructor) {
-            return value.constructor.name;
         } else if (type === "undefined") {
             return "void";
         } else if (type === "object") {
+            if (value.constructor) return value.constructor.name;
             return "any";
         }
         return type;
