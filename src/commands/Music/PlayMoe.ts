@@ -33,7 +33,7 @@ export default class PlayMoe extends Command {
     })
     public async exec(msg: Message, { link }: { link: string }): Promise<Message | void> {
         const track = await msg.guild!.music.fetch(link);
-        const command = this.collector!.commands.get("play") as PlayCommand;
+        const command = this.collector.commands.get("play") as PlayCommand;
         return command.exec(msg, { track: track.tracks[0], isSearch: false, dontBind: false });
     }
 }

@@ -28,7 +28,7 @@ export default class HelpCommand extends Command {
     @constantly
     public exec(msg: Message, { command }: { command?: Command }): Promise<Message> {
         if (command) {
-            const { name: category } = this.collector!.categories.find(x => x.type === command.option.category)!;
+            const { name: category } = this.collector.categories.find(x => x.type === command.option.category)!;
             const { option } = command;
             const desc: [string, string[], number] = [
                 `${msg.prefix}${option.description.usage}`,
@@ -51,7 +51,7 @@ export default class HelpCommand extends Command {
         const embed = new MessageEmbed()
             .setColor(this.client.config.color)
             .setFooter(msg.guild!.loc.get("COMMAND_HELP_INFO_EXPLAIN", msg.prefix!));
-        for (const category of this.collector!.categories) {
+        for (const category of this.collector.categories) {
             let commands = msg.author.isDev ? category.commands : category.commands.filter(x => !x.option.devOnly);
             commands = commands.filter(x => x.option.aliases.length);
             if (!commands.length) continue;

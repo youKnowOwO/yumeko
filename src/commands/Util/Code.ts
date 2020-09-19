@@ -56,7 +56,7 @@ export default class CodeCommand extends Command {
                     identifier: "script",
                     match: "rest",
                     type: (_: Message, content: string): TypeCodeReturn => {
-                        const typeCode = this.collector!.runner.argsParser.getType("code");
+                        const typeCode = this.collector.runner.argsParser.getType("code");
                         const result: TypeCodeReturn = typeCode(_, content) as any;
                         if (!result.lang || !languages.some(x => x[1].includes(result.lang!.toLowerCase()))) throw new CustomError("!PARSING", `**Unsupported language. only supported: ${languages.map(x => `\`${x[0]}\``).join(", ")}**`);
                         return result;

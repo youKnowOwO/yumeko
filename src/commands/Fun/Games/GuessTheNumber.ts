@@ -21,7 +21,7 @@ export default class GuessTheNumberCommand extends Command {
                     default: "1-100",
                     type: (_: Message, content: string): number => {
                         if (!content.includes("-")) throw new CustomError("!PARSING", "**Invalid input, right input `min-max`**");
-                        const typeNumber = this.collector!.runner.argsParser.getType("number")!;
+                        const typeNumber = this.collector.runner.argsParser.getType("number")!;
                         const numbers: number[] = [];
                         for (const num of content.split("-")) {
                             numbers.push(typeNumber(_, num) as any);

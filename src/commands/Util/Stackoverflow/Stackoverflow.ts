@@ -36,9 +36,9 @@ export default class StackoverflowCommand extends Command {
 
     public async exec(msg: Message, { query, isShow }: { query: string; isShow: boolean }): Promise<Message|void> {
         if (isShow) {
-            const command = this.collector!.commands.get("stackoverflow-show")!;
+            const command = this.collector.commands.get("stackoverflow-show")!;
             msg.args = [...msg.args, ...query.split(/ +/g)];
-            this.collector!.runner.runCommand(msg, command);
+            this.collector.runner.runCommand(msg, command);
             return undefined;
         }
         const { body }: any = await request.get("http://api.stackexchange.com/2.2/search/advanced")

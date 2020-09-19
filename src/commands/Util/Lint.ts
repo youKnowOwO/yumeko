@@ -30,7 +30,7 @@ export default class LintCommand extends Command {
                     flag: "ecma",
                     default: 2018,
                     type: (_: Message, content: string): Linter.ParserOptions["ecmaVersion"] => {
-                        const typeNumber = this.collector!.runner.argsParser.getType("number");
+                        const typeNumber = this.collector.runner.argsParser.getType("number");
                         const result: number = typeNumber(_, content) as any;
                         if (!ecmaVersions.includes(result)) throw new CustomError("!PARSING", `**Unsupported ECMA version. only supported: ${ecmaVersions.map(x => `\`${x}\``).join(", ")}**`);
                         return result as Linter.ParserOptions["ecmaVersion"];
@@ -41,7 +41,7 @@ export default class LintCommand extends Command {
                     match: "rest",
                     prompt: "What code do you want to lint ?",
                     type: (_: Message, content: string): TypeCodeReturn => {
-                        const typeCode = this.collector!.runner.argsParser.getType("code");
+                        const typeCode = this.collector.runner.argsParser.getType("code");
                         const result: TypeCodeReturn = typeCode(_, content) as any;
                         if (!result.lang || !["js", "javascript", "json"].includes(result.lang)) throw new CustomError("!PARSING", "Unsupported language. only supported `Javascript` and `JSON`**");
                         return result;

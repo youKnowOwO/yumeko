@@ -24,7 +24,7 @@ export default class QueueCommand extends Command {
     public async exec(msg: Message): Promise<Message|void> {
         const { music } = msg.guild!;
         // eslint-disable-next-line @typescript-eslint/await-thenable
-        await this.collector!.commands.get("np")!.exec(msg);
+        await this.collector.commands.get("np")!.exec(msg);
         if (!music.queue.length) return msg;
         const pages = chunk(music.queue.map((x, i) => `\`${i + 1}\`. __**[${x.title}](${x.uri})**__ **by** ${x.requester.toString()}`), 10)
             .map(x => x.join("\n"));

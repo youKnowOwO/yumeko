@@ -3,11 +3,13 @@ import type CommandCollector from "@yumeko/libs/CommandCollector";
 import CustomError from "@yumeko/classes/CustomError";
 import { CommandOption } from "@yumeko/interfaces";
 import { Message } from "discord.js";
-import { constantly } from "@yumeko/decorators";
+import { constantly, hide } from "@yumeko/decorators";
 
 export default class Command {
+    @hide
+    public collector!: CommandCollector;
+
     public dir = __dirname;
-    public collector?: CommandCollector;
     public constructor(public client: YumekoClient, public identifier: string, public option: CommandOption) {}
 
     @constantly

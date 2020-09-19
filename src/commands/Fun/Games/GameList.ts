@@ -24,7 +24,7 @@ export default class GameListCommand extends Command {
                     match: "single",
                     optional: true,
                     type: (msg: Message, content: string): Command => {
-                        const list = this.collector!.commands.filter(x => x.identifier.includes("game-"));
+                        const list = this.collector.commands.filter(x => x.identifier.includes("game-"));
                         const command = list.find(x => x.option.description.adionalInfo!.slice(1).includes(content.toLowerCase()));
                         if (!command) throw new CustomError("!PARSING", msg.guild!.loc.get("COMMAND_GAME_LIST_NOT_FOUND"));
                         return command;
@@ -41,11 +41,11 @@ export default class GameListCommand extends Command {
                 throw new CustomError("CANCELED");
             }
             this.session.add(`${msg.channel.id}/${game.identifier}`);
-            await this.collector!.runner.runCommand(msg, game);
+            await this.collector.runner.runCommand(msg, game);
             this.session.delete(`${msg.channel.id}/${game.identifier}`);
             return msg;
         }
-        const list = this.collector!.commands.filter(x => x.identifier.includes("game-"));
+        const list = this.collector.commands.filter(x => x.identifier.includes("game-"));
         const embed = new MessageEmbed()
             .setColor(this.client.config.color)
             .setDescription(list.map(x => {
