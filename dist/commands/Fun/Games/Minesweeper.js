@@ -15,7 +15,7 @@ const decorators_1 = require("@yumeko/decorators");
 const common_tags_1 = require("common-tags");
 const alphabets = ["🇦", "🇧", "🇨", "🇩", "🇪", "🇫"];
 const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣"];
-let MinesweeperCommand = class MinesweeperCommand extends Command_1.default {
+let default_1 = class extends Command_1.default {
     async exec(msg) {
         const message = await msg.channel.send("🖌️ Preparing...");
         for (const alphabet of alphabets)
@@ -64,7 +64,7 @@ let MinesweeperCommand = class MinesweeperCommand extends Command_1.default {
         `);
     }
 };
-MinesweeperCommand = __decorate([
+default_1 = __decorate([
     decorators_1.DeclareCommand("game-minesweeper", {
         aliases: [],
         description: {
@@ -75,5 +75,5 @@ MinesweeperCommand = __decorate([
         },
         category: "fun"
     })
-], MinesweeperCommand);
-exports.default = MinesweeperCommand;
+], default_1);
+exports.default = default_1;

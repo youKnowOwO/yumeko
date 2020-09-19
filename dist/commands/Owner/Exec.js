@@ -16,7 +16,7 @@ const decorators_1 = require("@yumeko/decorators");
 const Util_1 = require("@yumeko/util/Util");
 const util_1 = require("util");
 const exec = util_1.promisify(child_process_1.default.exec);
-let ExecCommand = class ExecCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { code }) {
         const { stdout, stderr, time } = await this.execute(code);
         const canUseExternal = msg.guild.me.hasPermission("USE_EXTERNAL_EMOJIS");
@@ -46,8 +46,8 @@ let ExecCommand = class ExecCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], ExecCommand.prototype, "exec", null);
-ExecCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("exec", {
         aliases: ["exec"],
         description: {
@@ -66,5 +66,5 @@ ExecCommand = __decorate([
             }
         ]
     })
-], ExecCommand);
-exports.default = ExecCommand;
+], default_1);
+exports.default = default_1;

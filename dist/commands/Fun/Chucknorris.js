@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const decorators_1 = require("@yumeko/decorators");
-let ChucknorrisCommand = class ChucknorrisCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg) {
         const { body } = await node_superfetch_1.default.get("https://api.icndb.com/jokes/random");
         return msg.ctx.send(`📢 **| ${body.value.joke}**`);
@@ -20,8 +20,8 @@ let ChucknorrisCommand = class ChucknorrisCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], ChucknorrisCommand.prototype, "exec", null);
-ChucknorrisCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("chucknorris", {
         aliases: ["chucknorris"],
         description: {
@@ -31,5 +31,5 @@ ChucknorrisCommand = __decorate([
         },
         category: "fun"
     })
-], ChucknorrisCommand);
-exports.default = ChucknorrisCommand;
+], default_1);
+exports.default = default_1;

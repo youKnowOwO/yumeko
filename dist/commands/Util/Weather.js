@@ -15,7 +15,7 @@ const discord_js_1 = require("discord.js");
 const decorators_1 = require("@yumeko/decorators");
 const cheerio_1 = require("cheerio");
 const common_tags_1 = require("common-tags");
-let WeatherCommand = class WeatherCommand extends Command_1.default {
+let default_1 = class extends Command_1.default {
     async exec(msg, { location }) {
         const weather = await this.getWeather(location);
         if (!weather)
@@ -66,7 +66,7 @@ let WeatherCommand = class WeatherCommand extends Command_1.default {
         }
     }
 };
-WeatherCommand = __decorate([
+default_1 = __decorate([
     decorators_1.DeclareCommand("weather", {
         aliases: ["weather"],
         description: {
@@ -84,5 +84,5 @@ WeatherCommand = __decorate([
             }
         ]
     })
-], WeatherCommand);
-exports.default = WeatherCommand;
+], default_1);
+exports.default = default_1;

@@ -14,7 +14,7 @@ const Pagination_1 = __importDefault(require("@yumeko/util/Pagination"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const discord_js_1 = require("discord.js");
 const decorators_1 = require("@yumeko/decorators");
-let InstagramCommand = class InstagramCommand extends Command_1.default {
+let default_1 = class extends Command_1.default {
     async exec(msg, { username }) {
         const { body } = await node_superfetch_1.default.get("https://instagram.hanifdwyputra.xyz/")
             .query({ username });
@@ -50,7 +50,7 @@ let InstagramCommand = class InstagramCommand extends Command_1.default {
         return msg;
     }
 };
-InstagramCommand = __decorate([
+default_1 = __decorate([
     decorators_1.DeclareCommand("instagram", {
         aliases: ["instagram", "ig"],
         description: {
@@ -72,5 +72,5 @@ InstagramCommand = __decorate([
             }
         ]
     })
-], InstagramCommand);
-exports.default = InstagramCommand;
+], default_1);
+exports.default = default_1;

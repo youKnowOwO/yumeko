@@ -7,7 +7,7 @@ const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const CustomError_1 = __importDefault(require("@yumeko/classes/CustomError"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const SOURCES = ["stable", "master", "rpc", "commando", "akairo", "akairo-master", "v11"];
-class DocsCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "docs", {
             aliases: ["docs", "discord-js-docs", "djs"],
@@ -65,4 +65,4 @@ class DocsCommand extends Command_1.default {
         return msg.ctx.send((embed && embed.description) ? { embed } : "🚫 No result found");
     }
 }
-exports.default = DocsCommand;
+exports.default = default_1;

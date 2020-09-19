@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
-class WantedCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "wanted", {
             aliases: ["wanted"],
@@ -37,4 +37,4 @@ class WantedCommand extends Command_1.default {
         return msg.ctx.send({ files: [{ attachment, name: "wanted.png" }] });
     }
 }
-exports.default = WantedCommand;
+exports.default = default_1;

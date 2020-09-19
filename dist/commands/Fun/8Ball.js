@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const decorators_1 = require("@yumeko/decorators");
 const eightBallResponse = require("../../../assets/json/8ball.json");
-let EightBallCommand = class EightBallCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     exec(msg) {
         const responses = eightBallResponse[msg.guild.loc.lang] || eightBallResponse.en_US;
         const response = responses[Math.round(Math.random() * responses.length)] || responses[0];
@@ -21,8 +21,8 @@ let EightBallCommand = class EightBallCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], EightBallCommand.prototype, "exec", null);
-EightBallCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("8ball", {
         aliases: ["8ball"],
         description: {
@@ -40,5 +40,5 @@ EightBallCommand = __decorate([
             }
         ]
     })
-], EightBallCommand);
-exports.default = EightBallCommand;
+], default_1);
+exports.default = default_1;

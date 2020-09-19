@@ -11,7 +11,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const decorators_1 = require("@yumeko/decorators");
-let SayCommand = class SayCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     exec(msg, { text, isDelete }) {
         if (isDelete)
             msg.delete().catch();
@@ -20,8 +20,8 @@ let SayCommand = class SayCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], SayCommand.prototype, "exec", null);
-SayCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("say", {
         aliases: ["say"],
         description: {
@@ -44,5 +44,5 @@ SayCommand = __decorate([
             }
         ]
     })
-], SayCommand);
-exports.default = SayCommand;
+], default_1);
+exports.default = default_1;

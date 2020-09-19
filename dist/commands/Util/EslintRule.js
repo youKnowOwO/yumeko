@@ -13,7 +13,7 @@ const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const discord_js_1 = require("discord.js");
 const decorators_1 = require("@yumeko/decorators");
 const CodeLinter_1 = require("@yumeko/util/CodeLinter");
-let EslintRule = class EslintRule extends Command_1.default {
+let default_1 = class extends Command_1.default {
     exec(msg, { query }) {
         query = query.toLowerCase();
         const rule = CodeLinter_1.getRule(query);
@@ -34,7 +34,7 @@ let EslintRule = class EslintRule extends Command_1.default {
         return msg.ctx.send(embed);
     }
 };
-EslintRule = __decorate([
+default_1 = __decorate([
     decorators_1.DeclareCommand("eslint-rule", {
         aliases: ["eslint-rule", "lint-rule"],
         description: {
@@ -55,5 +55,5 @@ EslintRule = __decorate([
             }
         ]
     })
-], EslintRule);
-exports.default = EslintRule;
+], default_1);
+exports.default = default_1;

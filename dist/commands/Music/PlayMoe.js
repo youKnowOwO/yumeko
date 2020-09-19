@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const CustomError_1 = __importDefault(require("@yumeko/classes/CustomError"));
 const decorators_1 = require("@yumeko/decorators");
-let PlayMoe = class PlayMoe extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { link }) {
         const track = await msg.guild.music.fetch(link);
         const command = this.collector.commands.get("play");
@@ -25,8 +25,8 @@ __decorate([
         if (msg.guild.music.song)
             return msg.guild.loc.get("COMMAND_MUSIC_PLAYMOE_INHIBIT");
     })
-], PlayMoe.prototype, "exec", null);
-PlayMoe = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("play-moe", {
         aliases: ["play-moe", "playmoe"],
         description: {
@@ -49,5 +49,5 @@ PlayMoe = __decorate([
             }
         ]
     })
-], PlayMoe);
-exports.default = PlayMoe;
+], default_1);
+exports.default = default_1;

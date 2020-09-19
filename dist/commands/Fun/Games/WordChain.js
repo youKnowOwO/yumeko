@@ -14,7 +14,7 @@ const discord_js_1 = require("discord.js");
 const decorators_1 = require("@yumeko/decorators");
 const Util_1 = require("@yumeko/util/Util");
 const wordList = require("../../../../assets/json/words.json");
-let WordChainCommand = class WordChainCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { users }) {
         const words = Util_1.shuffle(wordList);
         const players = this.createPlayers(users);
@@ -135,8 +135,8 @@ __decorate([
         checkDM: false,
         min: 2, max: 20
     })
-], WordChainCommand.prototype, "exec", null);
-WordChainCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("game-wordchain", {
         aliases: [],
         description: {
@@ -150,5 +150,5 @@ WordChainCommand = __decorate([
         },
         category: "game"
     })
-], WordChainCommand);
-exports.default = WordChainCommand;
+], default_1);
+exports.default = default_1;

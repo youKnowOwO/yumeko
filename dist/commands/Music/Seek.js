@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const Util_1 = require("@yumeko/util/Util");
 const decorators_1 = require("@yumeko/decorators");
-let SeekCommand = class SeekCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { time }) {
         const { music } = msg.guild;
         music.seek(time);
@@ -35,8 +35,8 @@ __decorate([
         if (msg.guild.music.song.length < time || time < 0)
             return msg.guild.loc.get("COMMAND_MUSIC_SEEK_TOO_LONG_OR_SHORT");
     })
-], SeekCommand.prototype, "exec", null);
-SeekCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("seek", {
         aliases: ["seek", "jumpto"],
         description: {
@@ -57,5 +57,5 @@ SeekCommand = __decorate([
             }
         ]
     })
-], SeekCommand);
-exports.default = SeekCommand;
+], default_1);
+exports.default = default_1;

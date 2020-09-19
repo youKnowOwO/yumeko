@@ -8,7 +8,7 @@ const Pagination_1 = __importDefault(require("@yumeko/util/Pagination"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const discord_js_1 = require("discord.js");
 const Util_1 = require("@yumeko/util/Util");
-class StackoverflowCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "stackoverflow", {
             aliases: ["stackoverflow", "stckflow"],
@@ -63,4 +63,4 @@ class StackoverflowCommand extends Command_1.default {
         }).start();
     }
 }
-exports.default = StackoverflowCommand;
+exports.default = default_1;

@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const CustomError_1 = __importDefault(require("@yumeko/classes/CustomError"));
-class GuessTheNumberCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "game-guessthenumber", {
             aliases: [],
@@ -70,4 +70,4 @@ class GuessTheNumberCommand extends Command_1.default {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
-exports.default = GuessTheNumberCommand;
+exports.default = default_1;

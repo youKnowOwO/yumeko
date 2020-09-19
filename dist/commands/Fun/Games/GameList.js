@@ -7,7 +7,7 @@ const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const CustomError_1 = __importDefault(require("@yumeko/classes/CustomError"));
 const discord_js_1 = require("discord.js");
 const common_tags_1 = require("common-tags");
-class GameListCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "game", {
             aliases: ["game", "mini-game"],
@@ -63,4 +63,4 @@ class GameListCommand extends Command_1.default {
         return msg.ctx.send(embed);
     }
 }
-exports.default = GameListCommand;
+exports.default = default_1;

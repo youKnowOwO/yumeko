@@ -16,7 +16,7 @@ const util_1 = require("util");
 const Util_1 = require("@yumeko/util/Util");
 const { getPromiseDetails } = process.binding("util");
 const { Canvas, resolveImage } = require("canvas-constructor");
-let EvalCommand = class EvalCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { isAsync, isHide, showStack, isCanvas, depth, code }) {
         const { succes, result, time, type } = await this.eval(msg, code, depth, isAsync, isCanvas, showStack);
         if (isHide)
@@ -124,17 +124,17 @@ let EvalCommand = class EvalCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], EvalCommand.prototype, "exec", null);
+], default_1.prototype, "exec", null);
 __decorate([
     decorators_1.constantly
-], EvalCommand.prototype, "eval", null);
+], default_1.prototype, "eval", null);
 __decorate([
     decorators_1.hide
-], EvalCommand.prototype, "parseType", null);
+], default_1.prototype, "parseType", null);
 __decorate([
     decorators_1.hide
-], EvalCommand.prototype, "replaceSensitive", null);
-EvalCommand = __decorate([
+], default_1.prototype, "replaceSensitive", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("eval", {
         aliases: ["eval"],
         description: {
@@ -180,5 +180,5 @@ EvalCommand = __decorate([
             }
         ]
     })
-], EvalCommand);
-exports.default = EvalCommand;
+], default_1);
+exports.default = default_1;

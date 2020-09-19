@@ -11,7 +11,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const decorators_1 = require("@yumeko/decorators");
-let AboutCommand = class AboutCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg) {
         const commands = this.collector.commands.filter(x => !!x.option.aliases.length);
         return msg.ctx.send(msg.guild.loc.get("COMMAND_ABOUT_ABOUTME", msg.author, this.client, commands, msg.prefix || msg.guild.prefix));
@@ -19,8 +19,8 @@ let AboutCommand = class AboutCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], AboutCommand.prototype, "exec", null);
-AboutCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("about", {
         aliases: ["about"],
         description: {
@@ -30,5 +30,5 @@ AboutCommand = __decorate([
         },
         category: "general"
     })
-], AboutCommand);
-exports.default = AboutCommand;
+], default_1);
+exports.default = default_1;

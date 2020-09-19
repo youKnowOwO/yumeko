@@ -13,7 +13,7 @@ const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const decorators_1 = require("@yumeko/decorators");
 const canvas_constructor_1 = require("canvas-constructor");
 const path_1 = require("path");
-let BananaCommand = class BananaCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { member }) {
         if (!member)
             member = msg.member;
@@ -47,17 +47,17 @@ let BananaCommand = class BananaCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.hide
-], BananaCommand.prototype, "base", void 0);
+], default_1.prototype, "base", void 0);
 __decorate([
     decorators_1.hide
-], BananaCommand.prototype, "bananaImage", void 0);
+], default_1.prototype, "bananaImage", void 0);
 __decorate([
     decorators_1.constantly
-], BananaCommand.prototype, "exec", null);
+], default_1.prototype, "exec", null);
 __decorate([
     decorators_1.constantly
-], BananaCommand.prototype, "makeImage", null);
-BananaCommand = __decorate([
+], default_1.prototype, "makeImage", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("banana", {
         aliases: ["banana", "banana-length"],
         description: {
@@ -75,5 +75,5 @@ BananaCommand = __decorate([
             }
         ]
     })
-], BananaCommand);
-exports.default = BananaCommand;
+], default_1);
+exports.default = default_1;

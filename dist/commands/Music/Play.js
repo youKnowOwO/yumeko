@@ -15,7 +15,7 @@ const SelectionPage_1 = __importDefault(require("@yumeko/util/SelectionPage"));
 const discord_js_1 = require("discord.js");
 const decorators_1 = require("@yumeko/decorators");
 const emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
-let PlayCommand = class PlayCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { track, isSearch, dontBind }) {
         const vc = msg.member.voice.channel;
         const { music } = msg.guild;
@@ -66,8 +66,8 @@ __decorate([
     decorators_1.isMemberInVoiceChannel(),
     decorators_1.isMemberVoiceChannelJoinable(),
     decorators_1.isSameVoiceChannel()
-], PlayCommand.prototype, "exec", null);
-PlayCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("play", {
         aliases: ["play", "p"],
         description: {
@@ -110,5 +110,5 @@ PlayCommand = __decorate([
             }
         ]
     })
-], PlayCommand);
-exports.default = PlayCommand;
+], default_1);
+exports.default = default_1;

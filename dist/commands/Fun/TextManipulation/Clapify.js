@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
-class ClapifyCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "clapify", {
             aliases: ["clapify"],
@@ -28,4 +28,4 @@ class ClapifyCommand extends Command_1.default {
         return msg.ctx.send(`👏${text.replace(/ +/g, "👏")}👏`);
     }
 }
-exports.default = ClapifyCommand;
+exports.default = default_1;

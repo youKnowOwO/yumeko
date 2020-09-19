@@ -10,7 +10,7 @@ const cheerio_1 = require("cheerio");
 const common_tags_1 = require("common-tags");
 const Util_1 = require("@yumeko/util/Util");
 const Pagination_1 = __importDefault(require("@yumeko/util/Pagination"));
-class GoogleCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "google", {
             aliases: ["google", "g"],
@@ -61,4 +61,4 @@ class GoogleCommand extends Command_1.default {
         })).get();
     }
 }
-exports.default = GoogleCommand;
+exports.default = default_1;

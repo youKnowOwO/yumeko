@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const decorators_1 = require("@yumeko/decorators");
 const canvas_constructor_1 = require("canvas-constructor");
-let ShipCommand = class ShipCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { userOne, userTwo }) {
         if (!userTwo) {
             userTwo = userOne;
@@ -46,11 +46,11 @@ let ShipCommand = class ShipCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], ShipCommand.prototype, "exec", null);
+], default_1.prototype, "exec", null);
 __decorate([
     decorators_1.constantly
-], ShipCommand.prototype, "getShipName", null);
-ShipCommand = __decorate([
+], default_1.prototype, "getShipName", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("ship", {
         aliases: ["ship"],
         description: {
@@ -80,5 +80,5 @@ ShipCommand = __decorate([
             }
         ]
     })
-], ShipCommand);
-exports.default = ShipCommand;
+], default_1);
+exports.default = default_1;

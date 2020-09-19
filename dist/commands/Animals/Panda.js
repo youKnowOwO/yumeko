@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Bunny_1 = __importDefault(require("@yumeko/commands/Animals/Bunny"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const decorators_1 = require("@yumeko/decorators");
-class PandaCommand extends Bunny_1.default {
+class default_1 extends Bunny_1.default {
     constructor(client) {
         super(client, "panda");
     }
@@ -23,5 +23,5 @@ class PandaCommand extends Bunny_1.default {
 }
 __decorate([
     decorators_1.constantly
-], PandaCommand.prototype, "getImage", null);
-exports.default = PandaCommand;
+], default_1.prototype, "getImage", null);
+exports.default = default_1;

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const Util_1 = require("@yumeko/util/Util");
-class AmazedCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client, react = "amazed") {
         super(client, react, {
             aliases: [react],
@@ -28,4 +28,4 @@ class AmazedCommand extends Command_1.default {
         return msg.ctx.send({ files: [{ attachment, name: `${this.identifier}.gif` }] });
     }
 }
-exports.default = AmazedCommand;
+exports.default = default_1;

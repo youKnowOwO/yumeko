@@ -11,7 +11,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const decorators_1 = require("@yumeko/decorators");
-let PauseCommand = class PauseCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg) {
         const { music } = msg.guild;
         music.pause();
@@ -28,8 +28,8 @@ __decorate([
     decorators_1.isMusicPlaying(),
     decorators_1.isMemberInVoiceChannel(),
     decorators_1.isSameVoiceChannel()
-], PauseCommand.prototype, "exec", null);
-PauseCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("pause", {
         aliases: ["pause"],
         description: {
@@ -42,5 +42,5 @@ PauseCommand = __decorate([
             user: ["MANAGE_GUILD"]
         }
     })
-], PauseCommand);
-exports.default = PauseCommand;
+], default_1);
+exports.default = default_1;

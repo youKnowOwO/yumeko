@@ -15,7 +15,7 @@ const decorators_1 = require("@yumeko/decorators");
 const Util_1 = require("@yumeko/util/Util");
 const discord_js_1 = require("discord.js");
 const Pagination_1 = __importDefault(require("@yumeko/util/Pagination"));
-let LyricsCommand = class LyricsCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { title }) {
         const result = await this.getLyrics(title);
         if (!result)
@@ -41,8 +41,8 @@ let LyricsCommand = class LyricsCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], LyricsCommand.prototype, "exec", null);
-LyricsCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("lyrics", {
         aliases: ["lyrics", "lyrics"],
         description: {
@@ -60,5 +60,5 @@ LyricsCommand = __decorate([
             }
         ]
     })
-], LyricsCommand);
-exports.default = LyricsCommand;
+], default_1);
+exports.default = default_1;

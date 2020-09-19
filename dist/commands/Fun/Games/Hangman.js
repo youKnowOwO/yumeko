@@ -8,7 +8,7 @@ const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const common_tags_1 = require("common-tags");
 const Util_1 = require("@yumeko/util/Util");
 const words = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-class HangmanCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "game-hangman", {
             aliases: [],
@@ -70,4 +70,4 @@ class HangmanCommand extends Command_1.default {
         `;
     }
 }
-exports.default = HangmanCommand;
+exports.default = default_1;

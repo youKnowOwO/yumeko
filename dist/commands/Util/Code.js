@@ -37,7 +37,7 @@ const languages = [
     ["rust", ["rust", "rs"]],
     ["typescript", ["typescript", "ts"]]
 ];
-class CodeCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "code", {
             aliases: ["code", "$"],
@@ -86,4 +86,4 @@ class CodeCommand extends Command_1.default {
         return msg.ctx.send(toSend);
     }
 }
-exports.default = CodeCommand;
+exports.default = default_1;

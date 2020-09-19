@@ -8,7 +8,7 @@ const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const discord_js_1 = require("discord.js");
 const cheerio_1 = require("cheerio");
 const common_tags_1 = require("common-tags");
-class JishoCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "jisho", {
             aliases: ["jisho"],
@@ -84,4 +84,4 @@ class JishoCommand extends Command_1.default {
         return { tags, form, otherforms, senses, audio, kanjis };
     }
 }
-exports.default = JishoCommand;
+exports.default = default_1;

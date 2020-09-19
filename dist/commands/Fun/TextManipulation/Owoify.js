@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const faces = ["(・`ω´・)", ";;w;;", "owo", "UwU", ">w<", "^w^"];
-class OwoifyCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "owoify", {
             aliases: ["owoify"],
@@ -37,4 +37,4 @@ class OwoifyCommand extends Command_1.default {
         return msg.ctx.send(text);
     }
 }
-exports.default = OwoifyCommand;
+exports.default = default_1;

@@ -10,7 +10,7 @@ const discord_js_1 = require("discord.js");
 const common_tags_1 = require("common-tags");
 const Util_1 = require("@yumeko/util/Util");
 const emojis = ["🇦", "🇧", "🇨", "🇩", "🇪"];
-class TriviaCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "game-trivia", {
             aliases: [],
@@ -48,4 +48,4 @@ class TriviaCommand extends Command_1.default {
         return msg.ctx.send(msg.guild.loc.get("COMMAND_GAME_LIST_WRONG", rightAnswer));
     }
 }
-exports.default = TriviaCommand;
+exports.default = default_1;

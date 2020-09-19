@@ -11,7 +11,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const decorators_1 = require("@yumeko/decorators");
-let SkipCommand = class SkipCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { forced }) {
         const { music } = msg.guild;
         if (!forced) {
@@ -39,8 +39,8 @@ __decorate([
         if (forced && !msg.member.permissions.has("MANAGE_GUILD"))
             return msg.guild.loc.get("COMMAND_RUNNER_MISSPERMS", msg.author, "`MANAGE_GUILD`");
     })
-], SkipCommand.prototype, "exec", null);
-SkipCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("skip", {
         aliases: ["skip"],
         description: {
@@ -57,5 +57,5 @@ SkipCommand = __decorate([
             }
         ]
     })
-], SkipCommand);
-exports.default = SkipCommand;
+], default_1);
+exports.default = default_1;

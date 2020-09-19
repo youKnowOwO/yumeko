@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const decorators_1 = require("@yumeko/decorators");
-let DadjokeCommand = class DadjokeCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg) {
         const { body } = await node_superfetch_1.default.get("https://icanhazdadjoke.com/")
             .set("Accept", "application/json");
@@ -21,8 +21,8 @@ let DadjokeCommand = class DadjokeCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], DadjokeCommand.prototype, "exec", null);
-DadjokeCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("dadjoke", {
         aliases: ["dadjoke"],
         description: {
@@ -32,5 +32,5 @@ DadjokeCommand = __decorate([
         },
         category: "fun"
     })
-], DadjokeCommand);
-exports.default = DadjokeCommand;
+], default_1);
+exports.default = default_1;

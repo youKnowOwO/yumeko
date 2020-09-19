@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
-class AestheticCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "aesthetic", {
             aliases: ["aesthetic"],
@@ -28,4 +28,4 @@ class AestheticCommand extends Command_1.default {
         return msg.ctx.send(text.split("").join(" ").toUpperCase());
     }
 }
-exports.default = AestheticCommand;
+exports.default = default_1;

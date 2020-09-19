@@ -16,7 +16,7 @@ const discord_js_1 = require("discord.js");
 const decorators_1 = require("@yumeko/decorators");
 const common_tags_1 = require("common-tags");
 const Util_1 = require("@yumeko/util/Util");
-let DoujinCommand = class DoujinCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { query }) {
         const doujins = await this.getDoujin(query);
         if (!doujins.length)
@@ -161,8 +161,8 @@ let DoujinCommand = class DoujinCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], DoujinCommand.prototype, "exec", null);
-DoujinCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("doujin", {
         aliases: ["doujin", "nhentai", "nh"],
         description: {
@@ -181,5 +181,5 @@ DoujinCommand = __decorate([
             }
         ]
     })
-], DoujinCommand);
-exports.default = DoujinCommand;
+], default_1);
+exports.default = default_1;

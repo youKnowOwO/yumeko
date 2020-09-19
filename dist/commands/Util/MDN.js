@@ -14,7 +14,7 @@ const turndown_1 = __importDefault(require("turndown"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const discord_js_1 = require("discord.js");
 const decorators_1 = require("@yumeko/decorators");
-let MDNCommand = class MDNCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { query }) {
         const result = await this.getResult(query);
         if (!result || !result.url || !result.title || !result.summary)
@@ -51,14 +51,14 @@ let MDNCommand = class MDNCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], MDNCommand.prototype, "exec", null);
+], default_1.prototype, "exec", null);
 __decorate([
     decorators_1.constantly
-], MDNCommand.prototype, "getResult", null);
+], default_1.prototype, "getResult", null);
 __decorate([
     decorators_1.hide
-], MDNCommand.prototype, "search", null);
-MDNCommand = __decorate([
+], default_1.prototype, "search", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("mdn", {
         aliases: ["mdn", "mozilla-developer-network"],
         description: {
@@ -79,5 +79,5 @@ MDNCommand = __decorate([
             }
         ]
     })
-], MDNCommand);
-exports.default = MDNCommand;
+], default_1);
+exports.default = default_1;

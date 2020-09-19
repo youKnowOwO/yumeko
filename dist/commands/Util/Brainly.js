@@ -116,7 +116,7 @@ const graphql = `
         }
     }
 `;
-let BrainlyCommand = class BrainlyCommand extends Command_1.default {
+let default_1 = class extends Command_1.default {
     async exec(msg, { question, region }) {
         region = region.toLowerCase();
         region = region in regions ? region : "us";
@@ -191,7 +191,7 @@ let BrainlyCommand = class BrainlyCommand extends Command_1.default {
         }
     }
 };
-BrainlyCommand = __decorate([
+default_1 = __decorate([
     decorators_1.DeclareCommand("brainly", {
         aliases: ["brainly", "brainless"],
         description: {
@@ -224,5 +224,5 @@ BrainlyCommand = __decorate([
             }
         ]
     })
-], BrainlyCommand);
-exports.default = BrainlyCommand;
+], default_1);
+exports.default = default_1;

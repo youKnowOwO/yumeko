@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const CustomError_1 = __importDefault(require("@yumeko/classes/CustomError"));
 const decorators_1 = require("@yumeko/decorators");
-let VolumeCommand = class VolumeCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { amount }) {
         const { music } = msg.guild;
         music.setVolume(amount);
@@ -28,8 +28,8 @@ __decorate([
     decorators_1.isMusicPlaying(),
     decorators_1.isMemberInVoiceChannel(),
     decorators_1.isSameVoiceChannel()
-], VolumeCommand.prototype, "exec", null);
-VolumeCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("volume", {
         aliases: ["volume"],
         description: {
@@ -57,5 +57,5 @@ VolumeCommand = __decorate([
             }
         ]
     })
-], VolumeCommand);
-exports.default = VolumeCommand;
+], default_1);
+exports.default = default_1;

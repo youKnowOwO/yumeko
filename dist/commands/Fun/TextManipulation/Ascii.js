@@ -8,7 +8,7 @@ const CustomError_1 = __importDefault(require("@yumeko/classes/CustomError"));
 const figlet_1 = __importDefault(require("figlet"));
 const util_1 = require("util");
 const Util_1 = require("@yumeko/util/Util");
-class AsciiCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "asciify", {
             aliases: ["asciify", "ascii"],
@@ -37,4 +37,4 @@ class AsciiCommand extends Command_1.default {
         return msg.ctx.send(Util_1.codeBlock("ascci", ascii));
     }
 }
-exports.default = AsciiCommand;
+exports.default = default_1;

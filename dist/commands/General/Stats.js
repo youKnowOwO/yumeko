@@ -16,7 +16,7 @@ const discord_js_1 = require("discord.js");
 const common_tags_1 = require("common-tags");
 const Util_1 = require("@yumeko/util/Util");
 const os_1 = require("os");
-let StatsCommand = class StatsCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg) {
         const [usersSize, channelsSize, serversSize] = this.client.shard ?
             this.parseSizeEvaluate(await this.client.shard.broadcastEval(`[
@@ -68,8 +68,8 @@ let StatsCommand = class StatsCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], StatsCommand.prototype, "exec", null);
-StatsCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("stats", {
         aliases: ["stats"],
         description: {
@@ -82,5 +82,5 @@ StatsCommand = __decorate([
         },
         category: "general",
     })
-], StatsCommand);
-exports.default = StatsCommand;
+], default_1);
+exports.default = default_1;

@@ -15,7 +15,7 @@ const discord_js_1 = require("discord.js");
 const decorators_1 = require("@yumeko/decorators");
 const common_tags_1 = require("common-tags");
 const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣"];
-let Connect4Command = class Connect4Command extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { opponent }) {
         const message = await msg.channel.send(msg.guild.loc.get("COMMAND_GAME_LIST_PREPARING"));
         for (const num of numbers)
@@ -53,8 +53,8 @@ let Connect4Command = class Connect4Command extends Command_1.default {
 };
 __decorate([
     decorators_1.verifyWantChallange("opponent", true)
-], Connect4Command.prototype, "exec", null);
-Connect4Command = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("game-connect4", {
         aliases: [],
         description: {
@@ -73,5 +73,5 @@ Connect4Command = __decorate([
             }
         ]
     })
-], Connect4Command);
-exports.default = Connect4Command;
+], default_1);
+exports.default = default_1;

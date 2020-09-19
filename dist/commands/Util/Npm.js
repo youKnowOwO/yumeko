@@ -15,7 +15,7 @@ const moment_1 = __importDefault(require("moment"));
 const decorators_1 = require("@yumeko/decorators");
 const discord_js_1 = require("discord.js");
 const Util_1 = require("@yumeko/util/Util");
-let NpmCommand = class NpmCommand extends Command_1.default {
+let default_1 = class extends Command_1.default {
     async exec(msg, { query }) {
         const yarn = msg.cmd ? msg.cmd.toLowerCase() === "yarn" : false;
         query = query.replace(/ +/g, "+");
@@ -56,7 +56,7 @@ let NpmCommand = class NpmCommand extends Command_1.default {
         }
     }
 };
-NpmCommand = __decorate([
+default_1 = __decorate([
     decorators_1.DeclareCommand("npm", {
         aliases: ["npm", "yarn"],
         description: {
@@ -77,5 +77,5 @@ NpmCommand = __decorate([
             }
         ]
     })
-], NpmCommand);
-exports.default = NpmCommand;
+], default_1);
+exports.default = default_1;

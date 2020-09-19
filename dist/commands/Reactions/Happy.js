@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Amazed_1 = __importDefault(require("@yumeko/commands/Reactions/Amazed"));
-class Happy extends Amazed_1.default {
+class default_1 extends Amazed_1.default {
     constructor(client) {
         super(client, "happy");
     }
 }
-exports.default = Happy;
+exports.default = default_1;

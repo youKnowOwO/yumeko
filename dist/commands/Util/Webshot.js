@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const decorators_1 = require("@yumeko/decorators");
-let WebshotCommand = class WebshotCommand extends Command_1.default {
+let default_1 = class extends Command_1.default {
     async exec(msg, { url }) {
         const m = await msg.channel.send("📸 **| Capturing**");
         const { raw } = await node_superfetch_1.default.get(`https://image.thum.io/get/width/1920/crop/675/noanimate/${url}`);
@@ -20,7 +20,7 @@ let WebshotCommand = class WebshotCommand extends Command_1.default {
         return msg.ctx.send({ files: [{ attachment: raw, name: "webshot.jpg" }] });
     }
 };
-WebshotCommand = __decorate([
+default_1 = __decorate([
     decorators_1.DeclareCommand("webshot", {
         aliases: ["webshot", "web-screenshot", "web-capture"],
         description: {
@@ -42,5 +42,5 @@ WebshotCommand = __decorate([
             }
         ]
     })
-], WebshotCommand);
-exports.default = WebshotCommand;
+], default_1);
+exports.default = default_1;

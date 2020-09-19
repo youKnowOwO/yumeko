@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const decorators_1 = require("@yumeko/decorators");
 const path_1 = require("path");
-let ReloadCommand = class ReloadCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { command, dontBuild }) {
         const { execute } = this.collector.commands.get("exec");
         const { ext, dir } = path_1.parse(this.dir);
@@ -35,11 +35,11 @@ let ReloadCommand = class ReloadCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], ReloadCommand.prototype, "exec", null);
+], default_1.prototype, "exec", null);
 __decorate([
     decorators_1.constantly
-], ReloadCommand.prototype, "reload", null);
-ReloadCommand = __decorate([
+], default_1.prototype, "reload", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("reload", {
         aliases: ["reload"],
         description: {
@@ -63,5 +63,5 @@ ReloadCommand = __decorate([
             }
         ]
     })
-], ReloadCommand);
-exports.default = ReloadCommand;
+], default_1);
+exports.default = default_1;

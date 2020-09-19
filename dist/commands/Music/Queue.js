@@ -14,7 +14,7 @@ const discord_js_1 = require("discord.js");
 const Util_1 = require("@yumeko/util/Util");
 const Pagination_1 = __importDefault(require("@yumeko/util/Pagination"));
 const decorators_1 = require("@yumeko/decorators");
-let QueueCommand = class QueueCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg) {
         const { music } = msg.guild;
         await this.collector.commands.get("np").exec(msg);
@@ -34,8 +34,8 @@ __decorate([
     decorators_1.constantly,
     decorators_1.isInStream(),
     decorators_1.isMusicPlaying()
-], QueueCommand.prototype, "exec", null);
-QueueCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("queue", {
         aliases: ["queue", "nowplay"],
         description: {
@@ -49,5 +49,5 @@ QueueCommand = __decorate([
         },
         category: "music",
     })
-], QueueCommand);
-exports.default = QueueCommand;
+], default_1);
+exports.default = default_1;

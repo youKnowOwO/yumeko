@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const decorators_1 = require("@yumeko/decorators");
 const Util_1 = require("@yumeko/util/Util");
-let ShuffleCommand = class ShuffleCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg) {
         const { music } = msg.guild;
         music.queue = Util_1.shuffle(music.queue);
@@ -29,8 +29,8 @@ __decorate([
     decorators_1.isMusicPlaying(),
     decorators_1.isMemberInVoiceChannel(),
     decorators_1.isSameVoiceChannel()
-], ShuffleCommand.prototype, "exec", null);
-ShuffleCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("shuffle", {
         aliases: ["shuffle"],
         description: {
@@ -43,5 +43,5 @@ ShuffleCommand = __decorate([
             user: ["MANAGE_GUILD"]
         }
     })
-], ShuffleCommand);
-exports.default = ShuffleCommand;
+], default_1);
+exports.default = default_1;

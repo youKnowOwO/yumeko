@@ -14,7 +14,7 @@ const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const discord_js_1 = require("discord.js");
 const en_US_1 = require("@yumeko/langs/en_US");
 const decorators_1 = require("@yumeko/decorators");
-class BunnyCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client, animal = "bunny") {
         super(client, animal, {
             aliases: [animal],
@@ -45,8 +45,8 @@ class BunnyCommand extends Command_1.default {
 }
 __decorate([
     decorators_1.constantly
-], BunnyCommand.prototype, "exec", null);
+], default_1.prototype, "exec", null);
 __decorate([
     decorators_1.constantly
-], BunnyCommand.prototype, "getImage", null);
-exports.default = BunnyCommand;
+], default_1.prototype, "getImage", null);
+exports.default = default_1;

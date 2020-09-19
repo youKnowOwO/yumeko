@@ -14,7 +14,7 @@ const discord_js_1 = require("discord.js");
 const common_tags_1 = require("common-tags");
 const Util_1 = require("@yumeko/util/Util");
 const decorators_1 = require("@yumeko/decorators");
-let HelpCommand = class HelpCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     exec(msg, { command }) {
         if (command) {
             const { name: category } = this.collector.categories.find(x => x.type === command.option.category);
@@ -54,8 +54,8 @@ let HelpCommand = class HelpCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], HelpCommand.prototype, "exec", null);
-HelpCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("help", {
         aliases: ["help", "h"],
         description: {
@@ -76,5 +76,5 @@ HelpCommand = __decorate([
             }
         ]
     })
-], HelpCommand);
-exports.default = HelpCommand;
+], default_1);
+exports.default = default_1;

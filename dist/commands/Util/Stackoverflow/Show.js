@@ -10,7 +10,7 @@ const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const discord_js_1 = require("discord.js");
 const Util_1 = require("@yumeko/util/Util");
 const cheerio_1 = require("cheerio");
-class StackoverflowShowCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "stackoverflow-show", {
             aliases: [],
@@ -72,4 +72,4 @@ class StackoverflowShowCommand extends Command_1.default {
         }
     }
 }
-exports.default = StackoverflowShowCommand;
+exports.default = default_1;

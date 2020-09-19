@@ -13,7 +13,7 @@ const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const discord_js_1 = require("discord.js");
 const common_tags_1 = require("common-tags");
 const decorators_1 = require("@yumeko/decorators");
-let PingCommand = class PingCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg) {
         const now = Date.now();
         const m = await msg.ctx.send("🏓 Ping..");
@@ -29,8 +29,8 @@ let PingCommand = class PingCommand extends Command_1.default {
 };
 __decorate([
     decorators_1.constantly
-], PingCommand.prototype, "exec", null);
-PingCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("ping", {
         aliases: ["ping"],
         description: {
@@ -43,5 +43,5 @@ PingCommand = __decorate([
         },
         category: "general",
     })
-], PingCommand);
-exports.default = PingCommand;
+], default_1);
+exports.default = default_1;

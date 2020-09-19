@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
-class RiotCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "riot", {
             aliases: ["riot"],
@@ -28,4 +28,4 @@ class RiotCommand extends Command_1.default {
         return msg.ctx.send(`ヽ༼ຈل͜ຈ༽ﾉ ${text.toUpperCase()} ヽ༼ຈل͜ຈ༽ﾉ`);
     }
 }
-exports.default = RiotCommand;
+exports.default = default_1;

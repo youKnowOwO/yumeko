@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const discord_js_1 = require("discord.js");
 const decorators_1 = require("@yumeko/decorators");
-let NpCommand = class NpCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg) {
         const { music } = msg.guild;
         const song = music.song;
@@ -46,8 +46,8 @@ let NpCommand = class NpCommand extends Command_1.default {
 __decorate([
     decorators_1.constantly,
     decorators_1.isMusicPlaying()
-], NpCommand.prototype, "exec", null);
-NpCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("np", {
         aliases: ["np", "nowplay"],
         description: {
@@ -60,5 +60,5 @@ NpCommand = __decorate([
         },
         category: "music",
     })
-], NpCommand);
-exports.default = NpCommand;
+], default_1);
+exports.default = default_1;

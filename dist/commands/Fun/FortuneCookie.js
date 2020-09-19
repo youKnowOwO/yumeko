@@ -14,7 +14,7 @@ const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const decorators_1 = require("@yumeko/decorators");
 const canvas_constructor_1 = require("canvas-constructor");
 const path_1 = require("path");
-let FortuneCookieCommand = class FortuneCookieCommand extends Command_1.default {
+let default_1 = class default_1 extends Command_1.default {
     constructor() {
         super(...arguments);
         this.fortunes = [];
@@ -50,20 +50,20 @@ let FortuneCookieCommand = class FortuneCookieCommand extends Command_1.default 
 };
 __decorate([
     decorators_1.hide
-], FortuneCookieCommand.prototype, "fortunes", void 0);
+], default_1.prototype, "fortunes", void 0);
 __decorate([
     decorators_1.hide
-], FortuneCookieCommand.prototype, "cookieImage", void 0);
+], default_1.prototype, "cookieImage", void 0);
 __decorate([
     decorators_1.constantly
-], FortuneCookieCommand.prototype, "getFortune", null);
+], default_1.prototype, "getFortune", null);
 __decorate([
     decorators_1.constantly
-], FortuneCookieCommand.prototype, "createImage", null);
+], default_1.prototype, "createImage", null);
 __decorate([
     decorators_1.constantly
-], FortuneCookieCommand.prototype, "exec", null);
-FortuneCookieCommand = __decorate([
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
     decorators_1.DeclareCommand("fortune-cookie", {
         aliases: ["fortune-cookie", "fortune"],
         description: {
@@ -76,5 +76,5 @@ FortuneCookieCommand = __decorate([
         },
         category: "fun"
     })
-], FortuneCookieCommand);
-exports.default = FortuneCookieCommand;
+], default_1);
+exports.default = default_1;

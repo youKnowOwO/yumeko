@@ -10,7 +10,7 @@ const Util_1 = require("@yumeko/util/Util");
 const CodeLinter_1 = require("@yumeko/util/CodeLinter");
 const common_tags_1 = require("common-tags");
 const ecmaVersions = [3, 5, 6, 7, 8, 9, 10, 11, 2015, 2016, 2017, 2018, 2019, 2020];
-class LintCommand extends Command_1.default {
+class default_1 extends Command_1.default {
     constructor(client) {
         super(client, "lint", {
             aliases: ["lint"],
@@ -110,4 +110,4 @@ class LintCommand extends Command_1.default {
         return Util_1.trimArray(results).join("\n");
     }
 }
-exports.default = LintCommand;
+exports.default = default_1;
