@@ -33,6 +33,9 @@ class Command {
     }
 }
 __decorate([
+    decorators_1.hide
+], Command.prototype, "collector", void 0);
+__decorate([
     decorators_1.constantly
 ], Command.prototype, "exec", null);
 __decorate([
