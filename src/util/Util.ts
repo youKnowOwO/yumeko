@@ -1,6 +1,8 @@
 import request from "node-superfetch";
 import type { MessageReaction, Message, User } from "discord.js";
 
+const bufferSizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
 export async function hastebin(text: string, lang = "js"): Promise<string> {
     const { body } = await request.post("https://hasteb.in/documents")
         .send(text);
@@ -89,4 +91,11 @@ export async function verify (msg: Message, to: User): Promise<boolean> {
 
 export function escapeRegex(str: string): string {
     return str.replace(/[|\\{}()[\]^$+*?.]/g, "\\$&");
+}
+
+export function formatBytes(bytes: number, digits = 2): string {
+    if (!bytes) return "0 Bytes";
+    const diff = 1024;
+    const index = Math.floor(Math.log(bytes) / Math.log(diff));
+    return `${parseFloat((bytes / Math.pow(diff, index)).toFixed(digits))} ${bufferSizes[index]}`;
 }
