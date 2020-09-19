@@ -18,7 +18,7 @@ import { loadavg } from "os";
     },
     category: "general",
 })
-export default class StatsCommand extends Command {
+export default class extends Command {
     @constantly
     public async exec(msg: Message): Promise<Message> {
         const [usersSize, channelsSize, serversSize] = this.client.shard ?

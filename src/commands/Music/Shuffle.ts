@@ -15,7 +15,7 @@ import { shuffle } from "@yumeko/util/Util";
         user: ["MANAGE_GUILD"]
     }
 })
-export default class ShuffleCommand extends Command {
+export default class extends Command {
     @constantly
     @isInStream()
     @isMusicPlaying()

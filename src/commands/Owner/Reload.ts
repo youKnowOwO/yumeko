@@ -27,7 +27,7 @@ import { parse } from "path";
         }
     ]
 })
-export default class ReloadCommand extends Command {
+export default class extends Command {
     @constantly
     public async exec(msg: Message, { command, dontBuild }: { command?: Command; dontBuild: boolean }): Promise<Message> {
         const { execute } = this.collector.commands.get("exec") as ExecCommand;

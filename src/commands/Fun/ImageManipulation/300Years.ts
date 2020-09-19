@@ -3,7 +3,7 @@ import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import type { Message } from "discord.js";
 
-export default class ThreeThousandYearsCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "3000years", {
             aliases: ["3000years", "3ty", "threethousandyears"],

@@ -18,7 +18,7 @@ import { join } from "path";
     },
     category: "fun"
 })
-export default class FortuneCookieCommand extends Command {
+export default class extends Command {
     @hide
     private fortunes: string[] = []; // cache the fortune message
 

@@ -14,7 +14,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
     },
     category: "animals",
 })
-export default class CatCommand extends Command {
+export default class extends Command {
     @constantly
     public exec(msg: Message): Promise<Message> {
         return msg.ctx.send({ files: [{ attachment: "https://cataas.com/cat", name: "cat.jpg"}] });

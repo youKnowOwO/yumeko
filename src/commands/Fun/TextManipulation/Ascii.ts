@@ -6,7 +6,7 @@ import type { Message } from "discord.js";
 import { promisify } from "util";
 import { codeBlock } from "@yumeko/util/Util";
 
-export default class AsciiCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "asciify", {
             aliases: ["asciify", "ascii"],

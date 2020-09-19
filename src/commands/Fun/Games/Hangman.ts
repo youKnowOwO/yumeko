@@ -7,7 +7,7 @@ import { codeBlock } from "@yumeko/util/Util";
 
 const words = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-export default class HangmanCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "game-hangman", {
             aliases: [],

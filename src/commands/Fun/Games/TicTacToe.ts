@@ -24,7 +24,7 @@ const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣
         }
     ]
 })
-export default class TicTacToeCommand extends Command {
+export default class extends Command {
     @verifyWantChallange("opponent", true)
     public async exec(msg: Message, { opponent }: { opponent: User }): Promise<Message> {
         const message = await msg.channel.send(msg.guild!.loc.get("COMMAND_GAME_LIST_PREPARING"));

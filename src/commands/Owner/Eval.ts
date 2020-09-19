@@ -63,7 +63,7 @@ interface ReturnEval {
         }
     ]
 })
-export default class EvalCommand extends Command {
+export default class extends Command {
     @constantly
     public async exec(msg: Message, { isAsync, isHide, showStack, isCanvas, depth, code }: { isAsync: boolean; isHide: boolean; showStack: boolean; isCanvas: boolean; depth: number; code: string }): Promise<Message> {
         const { succes, result, time, type } = await this.eval(msg, code, depth, isAsync, isCanvas, showStack);

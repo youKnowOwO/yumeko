@@ -14,7 +14,7 @@ import { DeclareCommand, isMusicPlaying, constantly } from "@yumeko/decorators";
     },
     category: "music",
 })
-export default class NpCommand extends Command {
+export default class extends Command {
     @constantly
     @isMusicPlaying()
     public async exec(msg: Message): Promise<Message> {

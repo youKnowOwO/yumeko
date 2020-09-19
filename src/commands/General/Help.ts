@@ -24,7 +24,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
         }
     ]
 })
-export default class HelpCommand extends Command {
+export default class extends Command {
     @constantly
     public exec(msg: Message, { command }: { command?: Command }): Promise<Message> {
         if (command) {

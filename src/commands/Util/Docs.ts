@@ -6,7 +6,7 @@ import type { Message } from "discord.js";
 
 const SOURCES = ["stable", "master", "rpc", "commando", "akairo", "akairo-master", "v11"];
 
-export default class DocsCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "docs", {
             aliases: ["docs", "discord-js-docs", "djs"],

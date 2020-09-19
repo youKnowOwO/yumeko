@@ -25,7 +25,7 @@ import { DeclareCommand } from "@yumeko/decorators";
         }
     ]
 })
-export default class InstagramCommand extends Command {
+export default class extends Command {
     public async exec(msg: Message, { username }: { username: string }): Promise<Message> {
         const { body }: any = await request.get("https://instagram.hanifdwyputra.xyz/")
             .query({ username });

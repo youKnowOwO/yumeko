@@ -3,7 +3,7 @@ import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import type { Message, User } from "discord.js";
 
-export default class FusionCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "fusion", {
             aliases: ["fusion"],

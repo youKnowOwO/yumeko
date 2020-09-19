@@ -3,7 +3,7 @@ import Command from "@yumeko/classes/Command";
 import CustomError from "@yumeko/classes/CustomError";
 import type { Message } from "discord.js";
 
-export default class GuessTheNumberCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "game-guessthenumber", {
             aliases: [],

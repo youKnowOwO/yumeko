@@ -25,7 +25,7 @@ import { MDNChildrenExpand } from "@yumeko/interfaces";
         }
     ]
 })
-export default class MDNCommand extends Command {
+export default class extends Command {
     @constantly
     public async exec(msg: Message, { query }: { query: string }): Promise<Message> {
         const result = await this.getResult(query);

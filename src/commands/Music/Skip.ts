@@ -18,7 +18,7 @@ import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChan
         }
     ]
 })
-export default class SkipCommand extends Command {
+export default class extends Command {
     @constantly
     @isInStream()
     @isMusicPlaying()

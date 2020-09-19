@@ -5,7 +5,7 @@ import request from "node-superfetch";
 import { Message, MessageEmbed } from "discord.js";
 import { chunk } from "@yumeko/util/Util";
 
-export default class StackoverflowCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "stackoverflow", {
             aliases: ["stackoverflow", "stckflow"],

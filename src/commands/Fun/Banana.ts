@@ -22,7 +22,7 @@ import { join } from "path";
         }
     ]
 })
-export default class BananaCommand extends Command {
+export default class extends Command {
     @hide
     private base?: Image;
 

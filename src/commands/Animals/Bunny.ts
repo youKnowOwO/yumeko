@@ -5,7 +5,7 @@ import { MessageEmbed, Message } from "discord.js";
 import { Animals } from "@yumeko/langs/en_US";
 import { constantly } from "@yumeko/decorators";
 
-export default class BunnyCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient, animal = "bunny") {
         super(client, animal, {
             aliases: [animal],

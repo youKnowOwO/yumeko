@@ -40,7 +40,7 @@ interface WeatherResponseCurrent {
         }
     ]
 })
-export default class WeatherCommand extends Command {
+export default class extends Command {
     public async exec(msg: Message, { location }: { location: string }): Promise<Message> {
         const weather = await this.getWeather(location);
         if (!weather) return msg.ctx.send("🚫 No result found");

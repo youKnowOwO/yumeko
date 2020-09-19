@@ -12,7 +12,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
     },
     category: "fun"
 })
-export default class ChucknorrisCommand extends Command {
+export default class extends Command {
     @constantly
     public async exec(msg: Message): Promise<Message> {
         const { body }: any = await request.get("https://api.icndb.com/jokes/random");

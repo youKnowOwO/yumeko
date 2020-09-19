@@ -26,7 +26,7 @@ import { trimArray } from "@yumeko/util/Util";
         }
     ]
 })
-export default class NpmCommand extends Command {
+export default class extends Command {
     public async exec(msg: Message, { query }: { query: string }): Promise<Message|void> {
         const yarn = msg.cmd ? msg.cmd.toLowerCase() === "yarn" : false;
         query = query.replace(/ +/g, "+");

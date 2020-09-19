@@ -17,7 +17,7 @@ import { DeclareCommand, isMusicPlaying, isInStream, constantly } from "@yumeko/
     },
     category: "music",
 })
-export default class QueueCommand extends Command {
+export default class extends Command {
     @constantly
     @isInStream()
     @isMusicPlaying()

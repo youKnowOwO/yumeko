@@ -47,7 +47,7 @@ const emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
         }
     ]
 })
-export default class PlayCommand extends Command {
+export default class extends Command {
     @constantly
     @isInStream()
     @isMemberInVoiceChannel()

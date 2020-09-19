@@ -29,7 +29,7 @@ import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChan
         }
     ]
 })
-export default class VolumeCommand extends Command {
+export default class extends Command {
     @constantly
     @isMusicPlaying()
     @isMemberInVoiceChannel()

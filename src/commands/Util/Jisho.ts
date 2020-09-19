@@ -5,7 +5,7 @@ import { Message, MessageEmbed } from "discord.js";
 import { load } from "cheerio";
 import { stripIndents } from "common-tags";
 
-export default class JishoCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "jisho", {
             aliases: ["jisho"],

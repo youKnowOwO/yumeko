@@ -14,7 +14,7 @@ import { DeclareCommand, isMusicPlaying, isSameVoiceChannel, isMemberInVoiceChan
         user: ["MANAGE_GUILD"]
     }
 })
-export default class LoopCommand extends Command {
+export default class extends Command {
     @constantly
     @isInStream()
     @isMusicPlaying()

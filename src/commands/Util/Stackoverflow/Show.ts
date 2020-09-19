@@ -7,7 +7,7 @@ import { Message, MessageEmbed } from "discord.js";
 import { decodeHTMLEntities, codeBlock } from "@yumeko/util/Util";
 import { load } from "cheerio";
 
-export default class StackoverflowShowCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "stackoverflow-show", {
             aliases: [],

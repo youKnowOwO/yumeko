@@ -35,7 +35,7 @@ interface LyricsResponse {
         }
     ]
 })
-export default class LyricsCommand extends Command {
+export default class extends Command {
     @constantly
     public async exec(msg: Message, { title }: { title: string }): Promise<Message> {
         const result = await this.getLyrics(title);

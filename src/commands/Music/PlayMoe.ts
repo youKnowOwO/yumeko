@@ -26,7 +26,7 @@ import { DeclareCommand, inhibit, constantly } from "@yumeko/decorators";
         }
     ]
 })
-export default class PlayMoe extends Command {
+export default class extends Command {
     @constantly
     @inhibit(msg => {
         if (msg.guild!.music.song) return msg.guild!.loc.get("COMMAND_MUSIC_PLAYMOE_INHIBIT");

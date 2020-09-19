@@ -4,7 +4,7 @@ import type { Message } from "discord.js";
 
 const faces = ["(・`ω´・)", ";;w;;", "owo", "UwU", ">w<", "^w^"];
 
-export default class OwoifyCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "owoify", {
             aliases: ["owoify"],

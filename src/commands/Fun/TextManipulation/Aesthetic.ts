@@ -2,7 +2,7 @@ import type YumekoClient from "@yumeko/classes/Client";
 import Command from "@yumeko/classes/Command";
 import type { Message } from "discord.js";
 
-export default class AestheticCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "aesthetic", {
             aliases: ["aesthetic"],

@@ -56,7 +56,7 @@ interface DoujinResponse {
         }
     ]
 })
-export default class DoujinCommand extends Command {
+export default class extends Command {
     @constantly
     public async exec(msg: Message, { query }: { query: string }): Promise<Message> {
         const doujins = await this.getDoujin(query);

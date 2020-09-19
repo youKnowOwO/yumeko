@@ -141,7 +141,7 @@ const graphql = `
         }
     ]
 })
-export default class BrainlyCommand extends Command {
+export default class extends Command {
     public async exec(msg: Message, { question, region }: { question: string; region: string }): Promise<Message> {
         region = region.toLowerCase();
         region = region in regions ? region : "us";

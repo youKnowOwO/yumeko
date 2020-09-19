@@ -14,7 +14,7 @@ import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChan
         user: ["MANAGE_GUILD"]
     }
 })
-export default class StopCommand extends Command {
+export default class extends Command {
     @constantly
     @isMusicPlaying()
     @isMemberInVoiceChannel()

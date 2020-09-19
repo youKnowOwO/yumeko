@@ -17,7 +17,7 @@ const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣
     },
     category: "fun"
 })
-export default class MinesweeperCommand extends Command {
+export default class extends Command {
     public async exec(msg: Message): Promise<Message> {
         const message = await msg.channel.send("🖌️ Preparing...");
         for (const alphabet of alphabets) await message.react(alphabet);

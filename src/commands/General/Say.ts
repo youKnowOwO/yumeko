@@ -24,7 +24,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
         }
     ]
 })
-export default class SayCommand extends Command {
+export default class extends Command {
     @constantly
     public exec(msg: Message, { text, isDelete }: { text: string; isDelete: boolean }): Promise<Message> {
         if (isDelete) msg.delete().catch();

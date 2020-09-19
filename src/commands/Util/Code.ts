@@ -37,7 +37,7 @@ const languages: [string, string[]][]= [
     ["typescript", ["typescript", "ts"]]
 ];
 
-export default class CodeCommand extends Command {
+export default class extends Command {
     public session: Map<Snowflake, string> = new Map();
     public constructor (client: YumekoClient) {
         super(client, "code", {

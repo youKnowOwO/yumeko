@@ -14,7 +14,7 @@ import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChan
         user: ["MANAGE_GUILD"]
     }
 })
-export default class RepeatCommand extends Command {
+export default class extends Command {
     @constantly
     @isInStream()
     @isMusicPlaying()

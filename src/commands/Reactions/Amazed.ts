@@ -4,7 +4,7 @@ import request from "node-superfetch";
 import { Message } from "discord.js";
 import { firstUpperCase } from "@yumeko/util/Util";
 
-export default class AmazedCommand extends Command {
+export default class extends Command {
     private api = "https://emilia-api.xyz/api/";
     public constructor (client: YumekoClient, react = "amazed") {
         super(client, react, {

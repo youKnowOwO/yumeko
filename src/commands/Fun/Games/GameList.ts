@@ -4,7 +4,7 @@ import CustomError from "@yumeko/classes/CustomError";
 import { Message, MessageEmbed } from "discord.js";
 import { stripIndents } from "common-tags";
 
-export default class GameListCommand extends Command {
+export default class extends Command {
     public session: Set<string> = new Set();
     public constructor (client: YumekoClient) {
         super(client, "game", {

@@ -11,7 +11,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
     },
     category: "general"
 })
-export default class AboutCommand extends Command {
+export default class extends Command {
     @constantly
     public async exec(msg: Message): Promise<Message> {
         const commands = this.collector.commands.filter(x => !!x.option.aliases.length);

@@ -8,7 +8,7 @@ import { shuffle } from "@yumeko/util/Util";
 
 const emojis = ["🇦", "🇧", "🇨", "🇩", "🇪"];
 
-export default class TriviaCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "game-trivia", {
             aliases: [],

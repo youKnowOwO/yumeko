@@ -13,7 +13,7 @@ interface Result {
     snippet: string;
 }
 
-export default class GoogleCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "google", {
             aliases: ["google", "g"],

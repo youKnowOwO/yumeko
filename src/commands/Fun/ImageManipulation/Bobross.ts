@@ -3,7 +3,7 @@ import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import type { Message } from "discord.js";
 
-export default class BobrossCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "bob-ross", {
             aliases: ["bob-ross", "bobross"],

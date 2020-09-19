@@ -14,7 +14,7 @@ import { constantly, DeclareCommand } from "@yumeko/decorators";
     },
     category: "general",
 })
-export default class InviteCommand extends Command {
+export default class extends Command {
     @constantly
     public async exec(msg: Message): Promise<Message> {
         const inviteUrl = await this.client.generateInvite(["ATTACH_FILES", "EMBED_LINKS", "CONNECT", "SPEAK", "ADD_REACTIONS", "SEND_MESSAGES", "MANAGE_MESSAGES"]);

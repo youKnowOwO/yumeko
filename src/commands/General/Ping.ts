@@ -15,7 +15,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
     },
     category: "general",
 })
-export default class PingCommand extends Command {
+export default class extends Command {
     @constantly
     public async exec(msg: Message): Promise<Message> {
         const now = Date.now();

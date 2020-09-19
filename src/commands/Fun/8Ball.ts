@@ -21,7 +21,7 @@ const eightBallResponse: {[key: string]: string[] | void} = require("../../../as
         }
     ]
 })
-export default class EightBallCommand extends Command {
+export default class extends Command {
     @constantly
     public exec(msg: Message): Promise<Message> {
         const responses = eightBallResponse[msg.guild!.loc.lang] || eightBallResponse.en_US as string[];

@@ -10,7 +10,7 @@ import { stripIndents } from "common-tags";
 
 const ecmaVersions = [3, 5, 6, 7, 8, 9, 10, 11, 2015, 2016, 2017, 2018, 2019, 2020];
 
-export default class LintCommand extends Command {
+export default class extends Command {
     public constructor (client: YumekoClient) {
         super(client, "lint", {
             aliases: ["lint"],

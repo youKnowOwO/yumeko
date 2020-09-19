@@ -26,7 +26,7 @@ const exec = promisify(child_process.exec);
         }
     ]
 })
-export default class ExecCommand extends Command {
+export default class extends Command {
     @constantly
     public async exec(msg: Message, { code }: { code: string }): Promise<Message> {
         const { stdout, stderr, time } = await this.execute(code);

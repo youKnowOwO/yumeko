@@ -23,7 +23,7 @@ import { getRule } from "@yumeko/util/CodeLinter";
         }
     ]
 })
-export default class EslintRule extends Command {
+export default class extends Command {
     public exec(msg: Message, { query }: { query: string }): Promise<Message> {
         query = query.toLowerCase();
         const rule = getRule(query);

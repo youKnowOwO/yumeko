@@ -25,7 +25,7 @@ interface Player {
     },
     category: "game"
 })
-export default class WordChainCommand extends Command {
+export default class extends Command {
     @doPlayersSelection("users", {
         includeClientReq: true,
         checkDM: false,
