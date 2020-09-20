@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Animals = void 0;
+exports.Reactions = exports.Animals = void 0;
 const common_tags_1 = require("common-tags");
 var Animals;
 (function (Animals) {
@@ -18,6 +18,44 @@ var Animals;
     Animals[Animals["racoon"] = 11] = "racoon";
     Animals[Animals["shiba"] = 12] = "shiba";
 })(Animals = exports.Animals || (exports.Animals = {}));
+var Reactions;
+(function (Reactions) {
+    Reactions[Reactions["amazed"] = 0] = "amazed";
+    Reactions[Reactions["bite"] = 1] = "bite";
+    Reactions[Reactions["blush"] = 2] = "blush";
+    Reactions[Reactions["boop"] = 3] = "boop";
+    Reactions[Reactions["cheer"] = 4] = "cheer";
+    Reactions[Reactions["clap"] = 5] = "clap";
+    Reactions[Reactions["confused"] = 6] = "confused";
+    Reactions[Reactions["cry"] = 7] = "cry";
+    Reactions[Reactions["cuddle"] = 8] = "cuddle";
+    Reactions[Reactions["dance"] = 9] = "dance";
+    Reactions[Reactions["feed"] = 10] = "feed";
+    Reactions[Reactions["happy"] = 11] = "happy";
+    Reactions[Reactions["hold"] = 12] = "hold";
+    Reactions[Reactions["hug"] = 13] = "hug";
+    Reactions[Reactions["kiss"] = 14] = "kiss";
+    Reactions[Reactions["laugh"] = 15] = "laugh";
+    Reactions[Reactions["lewd"] = 16] = "lewd";
+    Reactions[Reactions["lick"] = 17] = "lick";
+    Reactions[Reactions["nom"] = 18] = "nom";
+    Reactions[Reactions["pat"] = 19] = "pat";
+    Reactions[Reactions["poke"] = 20] = "poke";
+    Reactions[Reactions["pout"] = 21] = "pout";
+    Reactions[Reactions["punch"] = 22] = "punch";
+    Reactions[Reactions["run"] = 23] = "run";
+    Reactions[Reactions["scared"] = 24] = "scared";
+    Reactions[Reactions["schocked"] = 25] = "schocked";
+    Reactions[Reactions["shout"] = 26] = "shout";
+    Reactions[Reactions["slap"] = 27] = "slap";
+    Reactions[Reactions["smile"] = 28] = "smile";
+    Reactions[Reactions["smug"] = 29] = "smug";
+    Reactions[Reactions["stare"] = 30] = "stare";
+    Reactions[Reactions["surprised"] = 31] = "surprised";
+    Reactions[Reactions["thumbsup"] = 32] = "thumbsup";
+    Reactions[Reactions["tickle"] = 33] = "tickle";
+    Reactions[Reactions["wave"] = 34] = "wave";
+})(Reactions = exports.Reactions || (exports.Reactions = {}));
 exports.default = {
     META_NAME: () => "English (US)",
     META_ID: () => "en_US",
@@ -116,6 +154,45 @@ exports.default = {
     COMMAND_GAME_TICTACTOE_DESCRIPTION: () => "Play Tic Tac Toe game with other user. This is solved game, you must placing 3 marks horizontal vertical or diagonal to win the match.",
     COMMAND_GAME_TRIVIA_DESCRIPTION: () => "Test your knowledge with random question!. Ill give you some random questions and you must answer it.",
     COMMAND_GAME_WORD_CHAIN_DESCRIPTION: () => "This game is able to train your vocabulary, by making a word from the last letter of the previous word",
+    COMMAND_IMAGE_MANIPULATION_3000YEARS_DESCRIPTION: () => "Draws an image over Pokémon's \"It's been 3000 years\" meme",
+    COMMAND_IMAGE_MANIPULATION_ACHIEVEMENT_DESCRIPTION: () => "Sends a achievement with the text of your choice",
+    COMMAND_IMAGE_MANIPULATION_ACHIEVEMENT_PROMPT: () => "What text do you want to achieve",
+    COMMAND_IMAGE_MANIPULATION_APPROVED_DESCRIPTION: () => "Draws an image with approved effect",
+    COMMAND_IMAGE_MANIPULATION_BATSLAP_DESCRIPTION: () => "A batman slapping meme",
+    COMMAND_IMAGE_MANIPULATION_BATSLAP_PROMPT: () => "Which user do you want to slap ?",
+    COMMAND_IMAGE_MANIPULATION_BEAUTIFUL_DESCRIPTION: () => "Draws a user's avatar over Gravity Falls \"Oh, this? This is beautiful.\" meme",
+    COMMAND_IMAGE_MANIPULATION_BOBROSS_DESCRIPTION: () => "Draws an image over Bob Ross canvas",
+    COMMAND_IMAGE_MANIPULATION_BRAZZERS_DESCRIPTION: () => "Draws an image with the Brazzers logo in the corner",
+    COMMAND_IMAGE_MANIPULATION_CHALLENGER_DESCRIPTION: () => "Draws an image over Super Smash Bros \"Challenger Approaching\" screen",
+    COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_DESCRIPTION: () => "Draws an image and the text you specify as a demotivational poster",
+    COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_PROMPT_1: () => "How the title about this ?",
+    COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_PROMPT_2: () => "What text do you want to write ?",
+    COMMAND_IMAGE_MANIPULATION_DEXTER_DESCRIPTION: () => "Draws an image avatar over the screen of Dexter from Pokémon",
+    COMMAND_IMAGE_MANIPULATION_DISTORT_DESCRIPTION: () => "Draws an image but distorted",
+    COMMAND_IMAGE_MANIPULATION_FIRE_DESCRIPTION: () => "Draws a fiery border over an image",
+    COMMAND_IMAGE_MANIPULATION_FUSSION_DESCRIPTION: () => "Fusion 2 user",
+    COMMAND_IMAGE_MANIPULATION_FUSSION_PROMPT: () => "Which user do you want to fusion ?",
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_DESCRIPTION: () => "Sends a Gru's Plan meme with steps of your choice",
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_1: () => "What the first step of your plan ?",
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_2: () => "What the second step of your plan ?",
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_3: () => "What the third step of your plan ?",
+    COMMAND_IMAGE_MANIPULATION_HALLOWEEN_DESCRIPTION: () => "Draws an image over a halloween border",
+    COMMAND_IMAGE_MANIPULATION_KYONGUN_DESCRIPTION: () => "Draws an image behind Kyon shooting a gun.",
+    COMMAND_IMAGE_MANIPULATION_LISA_PRESENTATION_DESCRIPTION: () => "Sends a \"Lisa Presentation\" meme with the presentation of your choice",
+    COMMAND_IMAGE_MANIPULATION_LISA_PRESENTATION_PROMPT: () => "What the text to be presented ?",
+    COMMAND_IMAGE_MANIPULATION_REJECTED_DESCRIPTION: () => "Draws a \"rejected\" stamp over an image",
+    COMMAND_IMAGE_MANIPULATION_SEPIA_DESCRIPTION: () => "Draws an image with sepia effect",
+    COMMAND_IMAGE_MANIPULATION_THUGLIFE_DESCRIPTION: () => "Draws \"Thug Life\" over an image",
+    COMMAND_IMAGE_MANIPULATION_TOBE_CONTINUED_DESCRIPTION: () => "Draws an image with the \"To Be Continued...\" arrow",
+    COMMAND_IMAGE_MANIPULATION_TRIGGERED_DESCRIPTION: () => "Draws an image with the \"TRIGGERED\" gif",
+    COMMAND_IMAGE_MANIPULATION_WANTED_DESCRIPTION: () => "Draws an image over a wanted",
+    COMMAND_IMAGE_MANIPULATION_WORTHLESS_DESCRIPTION: () => "Draws an image over Gravity Falls \"Oh, this? This is worthless.\" meme",
+    COMMAND_TEXT_MANIPULATION_PROMPT: () => "What text do you want me to convert ?",
+    COMMAND_TEXT_MANIPULATION_AESTHETIC_DESCRIPTION: () => "Convert text to aesthetic way",
+    COMMAND_TEXT_MANIPULATION_ASCII_DESCRIPTION: () => "Concert text to ASCII",
+    COMMAND_TEXT_MANIPULATION_CLAPIFY_DESCRIPTION: () => "Convert text to clapify way",
+    COMMAND_TEXT_MANIPULATION_OWOIFY_DESCRIPTION: () => "Convert text to owoify way",
+    COMMAND_TEXT_MANIPULATION_RIOT_DESCRIPTION: () => "Convert text to riot way",
     COMMAND_ABOUT_DESCRIPTION: () => "About me.",
     COMMAND_ABOUT_ABOUTME: (user, client, commands, prefix) => common_tags_1.stripIndents `
         👋 | Hi there, ${user}! I’m **${client.user.tag}** and I’m beyond happy and  glad to meet you! 
@@ -218,5 +295,6 @@ exports.default = {
     COMMAND_BRAINLY_QUESTION: () => "QUESTION",
     COMMAND_BRAINLY_ANSWER: (best) => best ? "BEST ANSWER" : "ANSWER",
     COMMAND_MDN_DESCRIPTION: () => "Lookup JavaScript reference from developer.mozilla.org",
-    COMMAND_MDN_PROMPT: () => "Which Javascript reference do you want to see ?"
+    COMMAND_MDN_PROMPT: () => "Which Javascript reference do you want to see ?",
+    COMMAND_REACTIONS_DESCRIPTION: (id) => `Random ${Reactions[id]} image.`,
 };

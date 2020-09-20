@@ -21,6 +21,44 @@ var Animals;
     Animals[Animals["rakun"] = 11] = "rakun";
     Animals[Animals["anjing shiba"] = 12] = "anjing shiba";
 })(Animals || (Animals = {}));
+var Reactions;
+(function (Reactions) {
+    Reactions[Reactions["takjub"] = 0] = "takjub";
+    Reactions[Reactions["gigit"] = 1] = "gigit";
+    Reactions[Reactions["muka memerah"] = 2] = "muka memerah";
+    Reactions[Reactions["boop"] = 3] = "boop";
+    Reactions[Reactions["bersorak"] = 4] = "bersorak";
+    Reactions[Reactions["tepuk tangan"] = 5] = "tepuk tangan";
+    Reactions[Reactions["bingung"] = 6] = "bingung";
+    Reactions[Reactions["menangis"] = 7] = "menangis";
+    Reactions[Reactions["pelukan"] = 8] = "pelukan";
+    Reactions[Reactions["menari"] = 9] = "menari";
+    Reactions[Reactions["memberi makan"] = 10] = "memberi makan";
+    Reactions[Reactions["senang"] = 11] = "senang";
+    Reactions[Reactions["hold"] = 12] = "hold";
+    Reactions[Reactions["hug"] = 13] = "hug";
+    Reactions[Reactions["cium"] = 14] = "cium";
+    Reactions[Reactions["tertawa"] = 15] = "tertawa";
+    Reactions[Reactions["genit"] = 16] = "genit";
+    Reactions[Reactions["jilat"] = 17] = "jilat";
+    Reactions[Reactions["nom"] = 18] = "nom";
+    Reactions[Reactions["pat"] = 19] = "pat";
+    Reactions[Reactions["poke"] = 20] = "poke";
+    Reactions[Reactions["pout"] = 21] = "pout";
+    Reactions[Reactions["pukul"] = 22] = "pukul";
+    Reactions[Reactions["lari"] = 23] = "lari";
+    Reactions[Reactions["takut"] = 24] = "takut";
+    Reactions[Reactions["syok"] = 25] = "syok";
+    Reactions[Reactions["shout"] = 26] = "shout";
+    Reactions[Reactions["tampar"] = 27] = "tampar";
+    Reactions[Reactions["senyum"] = 28] = "senyum";
+    Reactions[Reactions["smug"] = 29] = "smug";
+    Reactions[Reactions["tatap"] = 30] = "tatap";
+    Reactions[Reactions["terkejut"] = 31] = "terkejut";
+    Reactions[Reactions["jempol"] = 32] = "jempol";
+    Reactions[Reactions["kelitik"] = 33] = "kelitik";
+    Reactions[Reactions["melambai"] = 34] = "melambai";
+})(Reactions || (Reactions = {}));
 exports.default = {
     ...en_US_1.default,
     META_NAME: () => "Indonesia (ID)",
@@ -120,6 +158,45 @@ exports.default = {
     COMMAND_GAME_TICTACTOE_DESCRIPTION: () => "Mainkan Tic Tac Toe game dengan user lainnya. Ini adalah game yang membutuhkan keakuratan, kamu mesti menaruh 3 tanda baik itu horizontal, vertical, maupun diagonal untuk memenangkan pertandingan.",
     COMMAND_GAME_TRIVIA_DESCRIPTION: () => "Mengetes pengetahuan mu dengan soal acak!. Aku akan memberinu soal secara acak dan kamu harus bisa menjawabnya.",
     COMMAND_GAME_WORD_CHAIN_DESCRIPTION: () => "Game ini mampu melatih kosa kata inggris mu, dengan membuat sebuah kata dari huruf terakhir kata sebelumnya.",
+    COMMAND_IMAGE_MANIPULATION_3000YEARS_DESCRIPTION: () => "Membuat gambar berdasarkan meme Pokémon's \"It's been 3000 years\"",
+    COMMAND_IMAGE_MANIPULATION_ACHIEVEMENT_DESCRIPTION: () => "Membuat gambar achievement berdasarkan text",
+    COMMAND_IMAGE_MANIPULATION_ACHIEVEMENT_PROMPT: () => "Text apa yang pas untuk pencapaian mu ?",
+    COMMAND_IMAGE_MANIPULATION_APPROVED_DESCRIPTION: () => "Membuat gambar dengan logo approved",
+    COMMAND_IMAGE_MANIPULATION_BATSLAP_DESCRIPTION: () => "Tampar salah satu user berdasarkan meme Batman Slapping",
+    COMMAND_IMAGE_MANIPULATION_BATSLAP_PROMPT: () => "User mana yang ingin kamu tampar ?",
+    COMMAND_IMAGE_MANIPULATION_BEAUTIFUL_DESCRIPTION: () => "Membuat gambar berdasarkan meme Gravity Falls \"Oh, this? This is beautiful.\"",
+    COMMAND_IMAGE_MANIPULATION_BOBROSS_DESCRIPTION: () => "Membuat gambar di Bob Ross canvas",
+    COMMAND_IMAGE_MANIPULATION_BRAZZERS_DESCRIPTION: () => "Membuat gambar dengan logo brazzers di pojok bawah",
+    COMMAND_IMAGE_MANIPULATION_CHALLENGER_DESCRIPTION: () => "Membuat gambar berdasarkan screen Super Smash Bros \"Challenger Approaching\"",
+    COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_DESCRIPTION: () => "Membuat gambar atau text yang dijadikan Demotivational Poster",
+    COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_PROMPT_1: () => "Bagaimana judul untuk poster ini ?",
+    COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_PROMPT_2: () => "Text apa yang ingin kamu sampaikan ?",
+    COMMAND_IMAGE_MANIPULATION_DEXTER_DESCRIPTION: () => "Membuat gambar berdasarkan screen Dexter dari Pokémon",
+    COMMAND_IMAGE_MANIPULATION_DISTORT_DESCRIPTION: () => "Membuat efek distort pada gambar",
+    COMMAND_IMAGE_MANIPULATION_FIRE_DESCRIPTION: () => "Membuat border api disekitar gambar",
+    COMMAND_IMAGE_MANIPULATION_FUSSION_DESCRIPTION: () => "Campurkan 2 user",
+    COMMAND_IMAGE_MANIPULATION_FUSSION_PROMPT: () => "User mana yang ingin kamu campurkan ?",
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_DESCRIPTION: () => "Membuat gambar berdasakan meme Gru'S Plan",
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_1: () => "Apa rencana pertama mu ?",
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_2: () => "Apa rencana kedua mu ?",
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_3: () => "Apa rencana ketiga mu ?",
+    COMMAND_IMAGE_MANIPULATION_HALLOWEEN_DESCRIPTION: () => "Membuat border Halloween disekitar gambar",
+    COMMAND_IMAGE_MANIPULATION_KYONGUN_DESCRIPTION: () => "Membuat gambar dibelakang Kyon Gun.",
+    COMMAND_IMAGE_MANIPULATION_LISA_PRESENTATION_DESCRIPTION: () => "Membuat gambar berdasarkan meme \"Lisa Presentation\"",
+    COMMAND_IMAGE_MANIPULATION_LISA_PRESENTATION_PROMPT: () => "Text apa yang ingin kamu presentasikan ?",
+    COMMAND_IMAGE_MANIPULATION_REJECTED_DESCRIPTION: () => "Membuat logo \"rejected\" dalam gambar",
+    COMMAND_IMAGE_MANIPULATION_SEPIA_DESCRIPTION: () => "Membuat efek sepia pada gambar",
+    COMMAND_IMAGE_MANIPULATION_THUGLIFE_DESCRIPTION: () => "Membuat gambar berdasarkan meme \"Thug Life\"",
+    COMMAND_IMAGE_MANIPULATION_TOBE_CONTINUED_DESCRIPTION: () => "Membuat gambar berdasarkan meme \"To Be Continued...\"",
+    COMMAND_IMAGE_MANIPULATION_TRIGGERED_DESCRIPTION: () => "Membuat efek \"TRIGGERED\" pada gambar",
+    COMMAND_IMAGE_MANIPULATION_WANTED_DESCRIPTION: () => "Membuat poster \"WANTED\"",
+    COMMAND_IMAGE_MANIPULATION_WORTHLESS_DESCRIPTION: () => "Membuat gambar berdasarkan meme Gravity Falls \"Oh, this? This is worthless.\"",
+    COMMAND_TEXT_MANIPULATION_PROMPT: () => "Text apa yang ingin ku ubah ?",
+    COMMAND_TEXT_MANIPULATION_AESTHETIC_DESCRIPTION: () => "Ubah text menjadi Aestetik",
+    COMMAND_TEXT_MANIPULATION_ASCII_DESCRIPTION: () => "Ubah text menjadi ASCII",
+    COMMAND_TEXT_MANIPULATION_CLAPIFY_DESCRIPTION: () => "Ubah text menjadi clapify",
+    COMMAND_TEXT_MANIPULATION_OWOIFY_DESCRIPTION: () => "Ubah text menjadi owoify",
+    COMMAND_TEXT_MANIPULATION_RIOT_DESCRIPTION: () => "Ubah text menjadi riot",
     COMMAND_ABOUT_DESCRIPTION: () => "Tentang aku.",
     COMMAND_ABOUT_ABOUTME: (user, client, commands, prefix) => common_tags_1.stripIndents `
         👋 | Hai, ${user}! Aku **${client.user.tag}** dan aku senang bertemu dengan mu! 
@@ -221,5 +298,6 @@ exports.default = {
     COMMAND_BRAINLY_QUESTION: () => "PERTANYAAN",
     COMMAND_BRAINLY_ANSWER: best => best ? "JAWABAN TERBAIK" : "JAWABAN",
     COMMAND_MDN_DESCRIPTION: () => "Melihat referensi Javascript dari developer.mozilla.org",
-    COMMAND_MDN_PROMPT: () => "Referensi Javascript mana yang ingin kamu lihat ?"
+    COMMAND_MDN_PROMPT: () => "Referensi Javascript mana yang ingin kamu lihat ?",
+    COMMAND_REACTIONS_DESCRIPTION: id => `Menampilkan gambar ${Reactions[id]} secara acak.`,
 };

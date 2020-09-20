@@ -1,41 +1,20 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = __importDefault(require("@yumeko/classes/Command"));
 const node_superfetch_1 = __importDefault(require("node-superfetch"));
-class default_1 extends Command_1.default {
-    constructor(client) {
-        super(client, "fusion", {
-            aliases: ["fusion"],
-            description: {
-                content: "Fusion 2 user",
-                usage: "fusion <user> [user]",
-                examples: ["fusion @unknown"]
-            },
-            category: "fun",
-            permissions: {
-                client: ["ATTACH_FILES"]
-            },
-            args: [
-                {
-                    identifier: "user",
-                    match: "single",
-                    type: "user",
-                    prompt: "Which user do you want to fusion ?"
-                },
-                {
-                    identifier: "user2",
-                    match: "single",
-                    type: "user",
-                    default: (msg) => msg.author.id
-                }
-            ]
-        });
-    }
+const decorators_1 = require("@yumeko/decorators");
+let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { user, user2 }) {
-        const m = await msg.channel.send("🖌️ **| Painting...**");
+        const m = await msg.channel.send(msg.guild.loc.get("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await node_superfetch_1.default.get("https://emilia-api.xyz/api/fusion")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({
@@ -45,5 +24,36 @@ class default_1 extends Command_1.default {
         m.delete();
         return msg.ctx.send({ files: [{ attachment, name: "fusion.png" }] });
     }
-}
+};
+__decorate([
+    decorators_1.constantly
+], default_1.prototype, "exec", null);
+default_1 = __decorate([
+    decorators_1.DeclareCommand("fusion", {
+        aliases: ["fusion"],
+        description: {
+            content: (msg) => msg.guild.loc.get("COMMAND_IMAGE_MANIPULATION_FUSSION_DESCRIPTION"),
+            usage: "fusion <user> [user]",
+            examples: ["fusion @unknown"]
+        },
+        category: "fun",
+        permissions: {
+            client: ["ATTACH_FILES"]
+        },
+        args: [
+            {
+                identifier: "user",
+                match: "single",
+                type: "user",
+                prompt: (msg) => msg.guild.loc.get("COMMAND_IMAGE_MANIPULATION_FUSSION_PROMPT")
+            },
+            {
+                identifier: "user2",
+                match: "single",
+                type: "user",
+                default: (msg) => msg.author.id
+            }
+        ]
+    })
+], default_1);
 exports.default = default_1;
