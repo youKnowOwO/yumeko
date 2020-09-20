@@ -2,7 +2,7 @@ import type YumekoClient from "@yumeko/classes/Client";
 import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import { Message } from "discord.js";
-import { firstUpperCase } from "@yumeko/util/Util";
+import { Reactions } from "@yumeko/langs/en_US";
 
 export default class extends Command {
     private api = "https://emilia-api.xyz/api/";
@@ -10,7 +10,7 @@ export default class extends Command {
         super(client, react, {
             aliases: [react],
             description: {
-                content: `Random ${firstUpperCase(react)} image.`,
+                content: (msg): string => msg.guild!.loc.get("COMMAND_REACTIONS_DESCRIPTION", Reactions[react as any] as any),
                 usage: react,
                 examples: [react]
             },

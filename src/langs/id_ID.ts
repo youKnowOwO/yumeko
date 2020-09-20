@@ -9,6 +9,16 @@ enum Animals {
     "anjing shiba"
 }
 
+enum Reactions {
+    takjub, gigit, "muka memerah", boop, bersorak,
+    "tepuk tangan", bingung, menangis, pelukan, menari,
+    "memberi makan", senang, hold, hug, cium,
+    tertawa, genit, jilat, nom, pat,
+    poke, pout, pukul, lari, takut,
+    syok, shout, tampar, senyum, smug,
+    tatap, terkejut, jempol, kelitik, melambai
+}
+
 export default {
     // Adding default value
     ...en_US,
@@ -151,6 +161,75 @@ export default {
 
     COMMAND_GAME_WORD_CHAIN_DESCRIPTION: () => "Game ini mampu melatih kosa kata inggris mu, dengan membuat sebuah kata dari huruf terakhir kata sebelumnya.",
 
+    COMMAND_IMAGE_MANIPULATION_3000YEARS_DESCRIPTION: () => "Membuat gambar berdasarkan meme Pokémon's \"It's been 3000 years\"",
+
+    COMMAND_IMAGE_MANIPULATION_ACHIEVEMENT_DESCRIPTION: () => "Membuat gambar achievement berdasarkan text",
+    COMMAND_IMAGE_MANIPULATION_ACHIEVEMENT_PROMPT: () => "Text apa yang pas untuk pencapaian mu ?",
+
+    COMMAND_IMAGE_MANIPULATION_APPROVED_DESCRIPTION: () => "Membuat gambar dengan logo approved",
+
+    COMMAND_IMAGE_MANIPULATION_BATSLAP_DESCRIPTION: () => "Tampar salah satu user berdasarkan meme Batman Slapping",
+    COMMAND_IMAGE_MANIPULATION_BATSLAP_PROMPT: () => "User mana yang ingin kamu tampar ?",
+
+    COMMAND_IMAGE_MANIPULATION_BEAUTIFUL_DESCRIPTION: () => "Membuat gambar berdasarkan meme Gravity Falls \"Oh, this? This is beautiful.\"",
+
+    COMMAND_IMAGE_MANIPULATION_BOBROSS_DESCRIPTION: () => "Membuat gambar di Bob Ross canvas",
+
+    COMMAND_IMAGE_MANIPULATION_BRAZZERS_DESCRIPTION: () => "Membuat gambar dengan logo brazzers di pojok bawah",
+
+    COMMAND_IMAGE_MANIPULATION_CHALLENGER_DESCRIPTION: () => "Membuat gambar berdasarkan screen Super Smash Bros \"Challenger Approaching\"",
+
+    COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_DESCRIPTION: () => "Membuat gambar atau text yang dijadikan Demotivational Poster",
+    COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_PROMPT_1: () => "Bagaimana judul untuk poster ini ?",
+    COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_PROMPT_2: () => "Text apa yang ingin kamu sampaikan ?",
+
+    COMMAND_IMAGE_MANIPULATION_DEXTER_DESCRIPTION: () => "Membuat gambar berdasarkan screen Dexter dari Pokémon",
+
+    COMMAND_IMAGE_MANIPULATION_DISTORT_DESCRIPTION: () => "Membuat efek distort pada gambar",
+
+    COMMAND_IMAGE_MANIPULATION_FIRE_DESCRIPTION: () => "Membuat border api disekitar gambar",
+
+    COMMAND_IMAGE_MANIPULATION_FUSSION_DESCRIPTION: () => "Campurkan 2 user",
+    COMMAND_IMAGE_MANIPULATION_FUSSION_PROMPT: () => "User mana yang ingin kamu campurkan ?",
+
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_DESCRIPTION: () => "Membuat gambar berdasakan meme Gru'S Plan",
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_1: () => "Apa rencana pertama mu ?",
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_2: () => "Apa rencana kedua mu ?",
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_3: () => "Apa rencana ketiga mu ?",
+
+    COMMAND_IMAGE_MANIPULATION_HALLOWEEN_DESCRIPTION: () => "Membuat border Halloween disekitar gambar",
+
+    COMMAND_IMAGE_MANIPULATION_KYONGUN_DESCRIPTION: () => "Membuat gambar dibelakang Kyon Gun.",
+
+    COMMAND_IMAGE_MANIPULATION_LISA_PRESENTATION_DESCRIPTION: () => "Membuat gambar berdasarkan meme \"Lisa Presentation\"",
+    COMMAND_IMAGE_MANIPULATION_LISA_PRESENTATION_PROMPT: () => "Text apa yang ingin kamu presentasikan ?",
+
+    COMMAND_IMAGE_MANIPULATION_REJECTED_DESCRIPTION: () => "Membuat logo \"rejected\" dalam gambar",
+
+    COMMAND_IMAGE_MANIPULATION_SEPIA_DESCRIPTION: () => "Membuat efek sepia pada gambar",
+
+    COMMAND_IMAGE_MANIPULATION_THUGLIFE_DESCRIPTION: () => "Membuat gambar berdasarkan meme \"Thug Life\"",
+
+    COMMAND_IMAGE_MANIPULATION_TOBE_CONTINUED_DESCRIPTION: () => "Membuat gambar berdasarkan meme \"To Be Continued...\"",
+
+    COMMAND_IMAGE_MANIPULATION_TRIGGERED_DESCRIPTION: () => "Membuat efek \"TRIGGERED\" pada gambar",
+
+    COMMAND_IMAGE_MANIPULATION_WANTED_DESCRIPTION: () => "Membuat poster \"WANTED\"",
+
+    COMMAND_IMAGE_MANIPULATION_WORTHLESS_DESCRIPTION: () => "Membuat gambar berdasarkan meme Gravity Falls \"Oh, this? This is worthless.\"",
+
+    COMMAND_TEXT_MANIPULATION_PROMPT: () => "Text apa yang ingin ku ubah ?",
+
+    COMMAND_TEXT_MANIPULATION_AESTHETIC_DESCRIPTION: () => "Ubah text menjadi Aestetik",
+
+    COMMAND_TEXT_MANIPULATION_ASCII_DESCRIPTION: () => "Ubah text menjadi ASCII",
+
+    COMMAND_TEXT_MANIPULATION_CLAPIFY_DESCRIPTION: () => "Ubah text menjadi clapify",
+
+    COMMAND_TEXT_MANIPULATION_OWOIFY_DESCRIPTION: () => "Ubah text menjadi owoify",
+
+    COMMAND_TEXT_MANIPULATION_RIOT_DESCRIPTION: () => "Ubah text menjadi riot",
+
     // GENERAL
     COMMAND_ABOUT_DESCRIPTION: () => "Tentang aku.",
     COMMAND_ABOUT_ABOUTME: (user, client, commands, prefix) => stripIndents`
@@ -277,5 +356,8 @@ export default {
     COMMAND_BRAINLY_ANSWER: best => best ? "JAWABAN TERBAIK" : "JAWABAN",
 
     COMMAND_MDN_DESCRIPTION: () => "Melihat referensi Javascript dari developer.mozilla.org",
-    COMMAND_MDN_PROMPT: () => "Referensi Javascript mana yang ingin kamu lihat ?"
+    COMMAND_MDN_PROMPT: () => "Referensi Javascript mana yang ingin kamu lihat ?",
+
+    // REACTIONS
+    COMMAND_REACTIONS_DESCRIPTION: id => `Menampilkan gambar ${Reactions[id]} secara acak.`,
 } as typeof en_US;

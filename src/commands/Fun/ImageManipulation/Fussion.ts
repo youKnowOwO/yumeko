@@ -1,40 +1,38 @@
-import type YumekoClient from "@yumeko/classes/Client";
 import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import type { Message, User } from "discord.js";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 
+@DeclareCommand("fusion", {
+    aliases: ["fusion"],
+    description: {
+        content: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_FUSSION_DESCRIPTION"),
+        usage: "fusion <user> [user]",
+        examples: ["fusion @unknown"]
+    },
+    category: "fun",
+    permissions: {
+        client: ["ATTACH_FILES"]
+    },
+    args: [
+        {
+            identifier: "user",
+            match: "single",
+            type: "user",
+            prompt: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_FUSSION_PROMPT")
+        },
+        {
+            identifier: "user2",
+            match: "single",
+            type: "user",
+            default: (msg: Message): string => msg.author.id
+        }
+    ]
+})
 export default class extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "fusion", {
-            aliases: ["fusion"],
-            description: {
-                content: "Fusion 2 user",
-                usage: "fusion <user> [user]",
-                examples: ["fusion @unknown"]
-            },
-            category: "fun",
-            permissions: {
-                client: ["ATTACH_FILES"]
-            },
-            args: [
-                {
-                    identifier: "user",
-                    match: "single",
-                    type: "user",
-                    prompt: "Which user do you want to fusion ?"
-                },
-                {
-                    identifier: "user2",
-                    match: "single",
-                    type: "user",
-                    default: (msg: Message): string => msg.author.id
-                }
-            ]
-        });
-    }
-
+    @constantly
     public async exec(msg: Message, { user, user2 } : { user: User; user2: User }): Promise<Message> {
-        const m = await msg.channel.send("🖌️ **| Painting...**");
+        const m = await msg.channel.send(msg.guild!.loc.get("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/fusion")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({

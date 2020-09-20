@@ -1,34 +1,32 @@
-import type YumekoClient from "@yumeko/classes/Client";
 import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import type { Message } from "discord.js";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 
+@DeclareCommand("lisa-presentation", {
+    aliases: ["lisa-presentation", "lisapresentation", "lisap"],
+    description: {
+        content: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_LISA_PRESENTATION_DESCRIPTION"),
+        usage: "lisa-presentation <text>",
+        examples: ["lisa-presentation idk"]
+    },
+    category: "fun",
+    permissions: {
+        client: ["ATTACH_FILES"]
+    },
+    args: [
+        {
+            identifier: "text",
+            match: "rest",
+            type: "string",
+            prompt: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_LISA_PRESENTATION_PROMPT")
+        }
+    ]
+})
 export default class extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "lisa-presentation", {
-            aliases: ["lisa-presentation", "lisapresentation", "lisap"],
-            description: {
-                content: "Sends a \"Lisa Presentation\" meme with the presentation of your choice",
-                usage: "lisa-presentation <text>",
-                examples: ["lisa-presentation idk"]
-            },
-            category: "fun",
-            permissions: {
-                client: ["ATTACH_FILES"]
-            },
-            args: [
-                {
-                    identifier: "text",
-                    match: "rest",
-                    type: "string",
-                    prompt: "What the text to be presented ?"
-                }
-            ]
-        });
-    }
-
+    @constantly
     public async exec(msg: Message, { text } : { text: string }): Promise<Message> {
-        const m = await msg.channel.send("🖌️ **| Painting...**");
+        const m = await msg.channel.send(msg.guild!.loc.get("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/lisa-presentation")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({ text });

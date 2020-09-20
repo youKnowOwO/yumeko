@@ -11,6 +11,16 @@ export enum Animals {
     shiba
 }
 
+export enum Reactions {
+    amazed, bite, blush, boop, cheer,
+    clap, confused, cry, cuddle, dance,
+    feed, happy, hold, hug, kiss,
+    laugh, lewd, lick, nom, pat,
+    poke, pout, punch, run, scared,
+    schocked, shout, slap, smile, smug,
+    stare, surprised, thumbsup, tickle, wave
+}
+
 export default {
     // META
     META_NAME: (): string => "English (US)",
@@ -150,6 +160,75 @@ export default {
 
     COMMAND_GAME_WORD_CHAIN_DESCRIPTION: (): string => "This game is able to train your vocabulary, by making a word from the last letter of the previous word",
 
+    COMMAND_IMAGE_MANIPULATION_3000YEARS_DESCRIPTION: (): string => "Draws an image over Pokémon's \"It's been 3000 years\" meme",
+
+    COMMAND_IMAGE_MANIPULATION_ACHIEVEMENT_DESCRIPTION: (): string => "Sends a achievement with the text of your choice",
+    COMMAND_IMAGE_MANIPULATION_ACHIEVEMENT_PROMPT: (): string => "What text do you want to achieve",
+
+    COMMAND_IMAGE_MANIPULATION_APPROVED_DESCRIPTION: (): string => "Draws an image with approved effect",
+
+    COMMAND_IMAGE_MANIPULATION_BATSLAP_DESCRIPTION: (): string => "A batman slapping meme",
+    COMMAND_IMAGE_MANIPULATION_BATSLAP_PROMPT: (): string => "Which user do you want to slap ?",
+
+    COMMAND_IMAGE_MANIPULATION_BEAUTIFUL_DESCRIPTION: (): string => "Draws a user's avatar over Gravity Falls \"Oh, this? This is beautiful.\" meme",
+
+    COMMAND_IMAGE_MANIPULATION_BOBROSS_DESCRIPTION: (): string => "Draws an image over Bob Ross canvas",
+
+    COMMAND_IMAGE_MANIPULATION_BRAZZERS_DESCRIPTION: (): string => "Draws an image with the Brazzers logo in the corner",
+
+    COMMAND_IMAGE_MANIPULATION_CHALLENGER_DESCRIPTION: (): string => "Draws an image over Super Smash Bros \"Challenger Approaching\" screen",
+
+    COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_DESCRIPTION: (): string => "Draws an image and the text you specify as a demotivational poster",
+    COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_PROMPT_1: (): string => "How the title about this ?",
+    COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_PROMPT_2: (): string => "What text do you want to write ?",
+
+    COMMAND_IMAGE_MANIPULATION_DEXTER_DESCRIPTION: (): string => "Draws an image avatar over the screen of Dexter from Pokémon",
+
+    COMMAND_IMAGE_MANIPULATION_DISTORT_DESCRIPTION: (): string => "Draws an image but distorted",
+
+    COMMAND_IMAGE_MANIPULATION_FIRE_DESCRIPTION: (): string => "Draws a fiery border over an image",
+
+    COMMAND_IMAGE_MANIPULATION_FUSSION_DESCRIPTION: (): string => "Fusion 2 user",
+    COMMAND_IMAGE_MANIPULATION_FUSSION_PROMPT: (): string => "Which user do you want to fusion ?",
+
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_DESCRIPTION: (): string => "Sends a Gru's Plan meme with steps of your choice",
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_1: (): string => "What the first step of your plan ?",
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_2: (): string => "What the second step of your plan ?",
+    COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_3: (): string => "What the third step of your plan ?",
+
+    COMMAND_IMAGE_MANIPULATION_HALLOWEEN_DESCRIPTION: (): string => "Draws an image over a halloween border",
+
+    COMMAND_IMAGE_MANIPULATION_KYONGUN_DESCRIPTION: (): string => "Draws an image behind Kyon shooting a gun.",
+
+    COMMAND_IMAGE_MANIPULATION_LISA_PRESENTATION_DESCRIPTION: (): string => "Sends a \"Lisa Presentation\" meme with the presentation of your choice",
+    COMMAND_IMAGE_MANIPULATION_LISA_PRESENTATION_PROMPT: (): string => "What the text to be presented ?",
+
+    COMMAND_IMAGE_MANIPULATION_REJECTED_DESCRIPTION: (): string => "Draws a \"rejected\" stamp over an image",
+
+    COMMAND_IMAGE_MANIPULATION_SEPIA_DESCRIPTION: (): string => "Draws an image with sepia effect",
+
+    COMMAND_IMAGE_MANIPULATION_THUGLIFE_DESCRIPTION: (): string => "Draws \"Thug Life\" over an image",
+
+    COMMAND_IMAGE_MANIPULATION_TOBE_CONTINUED_DESCRIPTION: (): string => "Draws an image with the \"To Be Continued...\" arrow",
+
+    COMMAND_IMAGE_MANIPULATION_TRIGGERED_DESCRIPTION: (): string => "Draws an image with the \"TRIGGERED\" gif",
+
+    COMMAND_IMAGE_MANIPULATION_WANTED_DESCRIPTION: (): string => "Draws an image over a wanted",
+
+    COMMAND_IMAGE_MANIPULATION_WORTHLESS_DESCRIPTION: (): string => "Draws an image over Gravity Falls \"Oh, this? This is worthless.\" meme",
+
+    COMMAND_TEXT_MANIPULATION_PROMPT: (): string => "What text do you want me to convert ?",
+
+    COMMAND_TEXT_MANIPULATION_AESTHETIC_DESCRIPTION: (): string => "Convert text to aesthetic way",
+
+    COMMAND_TEXT_MANIPULATION_ASCII_DESCRIPTION: (): string => "Concert text to ASCII",
+
+    COMMAND_TEXT_MANIPULATION_CLAPIFY_DESCRIPTION: (): string => "Convert text to clapify way",
+
+    COMMAND_TEXT_MANIPULATION_OWOIFY_DESCRIPTION: (): string => "Convert text to owoify way",
+
+    COMMAND_TEXT_MANIPULATION_RIOT_DESCRIPTION: (): string => "Convert text to riot way",
+
     // GENERAL
     COMMAND_ABOUT_DESCRIPTION: (): string => "About me.",
     COMMAND_ABOUT_ABOUTME: (user: User, client: YumekoClient, commands: YumekoClient["collector"]["commands"], prefix: string): string => stripIndents`
@@ -277,5 +356,8 @@ export default {
     COMMAND_BRAINLY_ANSWER: (best: boolean): string => best ? "BEST ANSWER" : "ANSWER",
 
     COMMAND_MDN_DESCRIPTION: (): string => "Lookup JavaScript reference from developer.mozilla.org",
-    COMMAND_MDN_PROMPT: (): string => "Which Javascript reference do you want to see ?"
+    COMMAND_MDN_PROMPT: (): string => "Which Javascript reference do you want to see ?",
+
+    // REACTIONS
+    COMMAND_REACTIONS_DESCRIPTION: (id: number): string => `Random ${Reactions[id]} image.`,
 };

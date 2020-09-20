@@ -1,30 +1,28 @@
-import type YumekoClient from "@yumeko/classes/Client";
 import Command from "@yumeko/classes/Command";
 import type { Message } from "discord.js";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 
 const faces = ["(・`ω´・)", ";;w;;", "owo", "UwU", ">w<", "^w^"];
 
+@DeclareCommand("owoify", {
+    aliases: ["owoify"],
+    description: {
+        content: (msg): string => msg.guild!.loc.get("COMMAND_TEXT_MANIPULATION_OWOIFY_DESCRIPTION"),
+        usage: "owoify <text>",
+        examples: ["owoify good boy"]
+    },
+    category: "fun",
+    args: [
+        {
+            identifier: "text",
+            match: "rest",
+            prompt: (msg): string => msg.guild!.loc.get("COMMAND_TEXT_MANIPULATION_PROMPT"),
+            type: "string"
+        }
+    ]
+})
 export default class extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "owoify", {
-            aliases: ["owoify"],
-            description: {
-                content: "Convert text to owoify way",
-                usage: "owoify <text>",
-                examples: ["owoify good boy"]
-            },
-            category: "fun",
-            args: [
-                {
-                    identifier: "text",
-                    match: "rest",
-                    prompt: "What text do you want to convert ?",
-                    type: "string"
-                }
-            ]
-        });
-    }
-
+    @constantly
     public exec(msg: Message, { text } : { text: string }): Promise<Message> {
         text = text.replace(/(?:r|l)/g, "w")
             .replace(/(?:R|L)/g, "W")

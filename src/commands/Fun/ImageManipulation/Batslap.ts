@@ -1,34 +1,32 @@
-import type YumekoClient from "@yumeko/classes/Client";
 import Command from "@yumeko/classes/Command";
 import request from "node-superfetch";
 import type { Message, User } from "discord.js";
+import { DeclareCommand, constantly } from "@yumeko/decorators";
 
+@DeclareCommand("batslap", {
+    aliases: ["batslap"],
+    description: {
+        content: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_BATSLAP_DESCRIPTION"),
+        usage: "batslap <user>",
+        examples: ["batslap @unknown"]
+    },
+    category: "fun",
+    permissions: {
+        client: ["ATTACH_FILES"]
+    },
+    args: [
+        {
+            identifier: "user",
+            match: "rest",
+            type: "user",
+            prompt: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_BATSLAP_PROMPT")
+        }
+    ]
+})
 export default class extends Command {
-    public constructor (client: YumekoClient) {
-        super(client, "batslap", {
-            aliases: ["batslap"],
-            description: {
-                content: "A batman slapping meme",
-                usage: "batslap <user>",
-                examples: ["batslap @unknown"]
-            },
-            category: "fun",
-            permissions: {
-                client: ["ATTACH_FILES"]
-            },
-            args: [
-                {
-                    identifier: "user",
-                    match: "rest",
-                    type: "user",
-                    prompt: "Which user do you want to slap ?"
-                }
-            ]
-        });
-    }
-
+    @constantly
     public async exec(msg: Message, { user } : { user: User }): Promise<Message> {
-        const m = await msg.channel.send("🖌️ **| Painting...**");
+        const m = await msg.channel.send(msg.guild!.loc.get("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/batslap")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({
