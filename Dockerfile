@@ -23,6 +23,7 @@ RUN yarn run build
 # Prune dev dependencies
 RUN yarn install --production
 
+# Get ready for production
 FROM node:12-alpine
 
 LABEL name "Yumeko"
