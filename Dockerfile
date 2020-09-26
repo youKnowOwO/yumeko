@@ -39,7 +39,7 @@ RUN apk add --no-cache pixman cairo pango giflib libjpeg-turbo freetype \
 COPY --from=build-stage /tmp/build/package.json .
 COPY --from=build-stage /tmp/build/yarn.lock .
 COPY --from=build-stage /tmp/build/node_modules ./node_modules
-COPY --from=build-stage /tmp/build/dist .
 COPY --from=build-stage /tmp/build/assets ./assets
+COPY --from=build-stage /tmp/build/dist .
 
 CMD ["node", "dist"]
