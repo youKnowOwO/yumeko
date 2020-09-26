@@ -16,7 +16,7 @@
   "license": "AGPL-3.0",
   "private": false,
   "devDependencies": {
-    "@types/cheerio": "^0.22.21",
+    "@types/cheerio": "^0.22.22",
     "@types/common-tags": "^1.8.0",
     "@types/eslint": "^7.2.2",
     "@types/figlet": "^1.2.0",
