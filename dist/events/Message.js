@@ -7,7 +7,7 @@ class MessageEvent {
     }
     exec(msg) {
         this.client.collector.runner.handle(msg);
-        if (msg.guild && !this.client.collector.runner.isCooldown(msg, false) && [`<@${this.client.user.id}>`, `<@!${this.client.user.id}>`].includes(msg.content))
+        if (msg.guild && !msg.author.bot && !this.client.collector.runner.isCooldown(msg, false) && [`<@${this.client.user.id}>`, `<@!${this.client.user.id}>`].includes(msg.content))
             return this.client.collector.commands.get("about").exec(msg);
     }
 }

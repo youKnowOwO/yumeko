@@ -26,7 +26,9 @@ class YumekoClient extends discord_js_1.Client {
     constructor() {
         super({
             fetchAllMembers: true,
-            disableMentions: "everyone"
+            allowedMentions: {
+                parse: ["roles", "users"]
+            }
         });
         this.config = config;
         this.collector = new CommandCollector_1.default(this);
