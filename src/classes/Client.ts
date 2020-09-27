@@ -39,7 +39,9 @@ export default class YumekoClient extends Client {
     public constructor() {
         super({
             fetchAllMembers: true,
-            disableMentions: "everyone"
+            allowedMentions: {
+                parse: ["roles", "users"]
+            }
         });
         eventLoader(this);
         this.collector.loadAll();
