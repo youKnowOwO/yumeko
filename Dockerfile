@@ -11,9 +11,6 @@ RUN apk add --no-cache build-base curl git python3 \
     # And some required shared libraries for node-canvas
     cairo-dev jpeg-dev pango-dev giflib-dev pixman-dev pangomm-dev libjpeg-turbo-dev freetype-dev
 
-# Install node dependencies
-RUN yarn install
-
 # Now copy project files
 COPY . .
 
