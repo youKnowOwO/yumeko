@@ -55,9 +55,9 @@ class default_1 extends Command_1.default {
             .set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:34.0) Gecko/20100101 Firefox/34.0");
         const $ = cheerio_1.load(text);
         return $("div.rc").map((i, x) => ({
-            title: $(x).find("div.r > a > h3").text(),
-            link: $(x).find("div.rc > div.r > a").attr("href"),
-            snippet: $(x).find("div.rc > div.s > div > span").text()
+            title: $(x).find("a > h3").text(),
+            link: $(x).find("a").attr("href"),
+            snippet: $(x).find("div > span").text()
         })).get();
     }
 }
