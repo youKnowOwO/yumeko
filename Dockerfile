@@ -40,6 +40,6 @@ COPY --from=build-stage /tmp/build/package.json .
 COPY --from=build-stage /tmp/build/yarn.lock .
 COPY --from=build-stage /tmp/build/node_modules ./node_modules
 COPY --from=build-stage /tmp/build/assets ./assets
-COPY --from=build-stage /tmp/build/dist .
+COPY --from=build-stage /tmp/build/dist ./dist
 
 CMD ["node", "dist"]
