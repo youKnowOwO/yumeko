@@ -7,7 +7,7 @@ export default class TypeTimespan implements Type {
     readonly name = "timespan";
     public exec(msg: Message, content: string): number {
         const parsed = parseTime(content);
-        if (isNaN(parsed)) throw new CustomError("!PARSING", msg.guild!.loc.get("TYPE_TIMESPAN_NOT_FOUND"));
+        if (isNaN(parsed)) throw new CustomError("!PARSING", msg.ctx.lang("TYPE_TIMESPAN_NOT_FOUND"));
         return parsed;
     }
 }

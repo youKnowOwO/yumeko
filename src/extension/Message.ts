@@ -7,7 +7,8 @@ class YumekoMessage extends Structures.get("Message") {
     public prefix?: string;
     public cmd?: string;
     public ctx: MessageContext = {
-        send: (content: unknown, options?: any) => (this.client as YumekoClient).context.send(this, content, options)
+        send: (content, options) => (this.client as YumekoClient).context.send(this, content, options),
+        lang: (key, ...args) => (this.client as YumekoClient).context.lang(this, key, ...args)
     };
 }
 

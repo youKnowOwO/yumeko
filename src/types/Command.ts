@@ -16,7 +16,7 @@ export default class TypeCommand implements Type {
                 .splice(0, 10)
                 .map(x => x.replace(content.toLowerCase(), `**${content.toLowerCase()}**`))
                 .join(", ");
-            throw new CustomError("!PARSING", msg.guild!.loc.get("TYPE_COMMAND_HAS_SIMILIAR", content, similiar));
+            throw new CustomError("!PARSING", msg.ctx.lang("TYPE_COMMAND_HAS_SIMILIAR", content, similiar));
         }
         return command;
     }

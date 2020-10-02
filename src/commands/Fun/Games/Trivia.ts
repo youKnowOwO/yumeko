@@ -13,7 +13,7 @@ export default class extends Command {
         super(client, "game-trivia", {
             aliases: [],
             description: {
-                content: (msg): string => msg.guild!.loc.get("COMMAND_GAME_TRIVIA_DESCRIPTION"),
+                content: (msg): string => msg.ctx.lang("COMMAND_GAME_TRIVIA_DESCRIPTION"),
                 usage: "[range]",
                 examples: ["game-trivia"],
                 adionalInfo: ["<:trivia:449753526592208907> Trivia", "trivia", "quest"]
@@ -40,8 +40,8 @@ export default class extends Command {
             selections, emojis, embed,
             cancelEmo: "❌"
         }).start();
-        if (!result) msg.channel.send(msg.guild!.loc.get("COMMAND_GAME_LIST_TIMEOUT"));
-        if (result === rightAnswer) return msg.ctx.send(msg.guild!.loc.get("COMMAND_GAME_LIST_RIGHT", rightAnswer));
-        return msg.ctx.send(msg.guild!.loc.get("COMMAND_GAME_LIST_WRONG", rightAnswer));
+        if (!result) msg.channel.send(msg.ctx.lang("COMMAND_GAME_LIST_TIMEOUT"));
+        if (result === rightAnswer) return msg.ctx.send(msg.ctx.lang("COMMAND_GAME_LIST_RIGHT", rightAnswer));
+        return msg.ctx.send(msg.ctx.lang("COMMAND_GAME_LIST_WRONG", rightAnswer));
     }
 }

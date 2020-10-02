@@ -5,7 +5,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("aesthetic", {
     aliases: ["aesthetic"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_TEXT_MANIPULATION_AESTHETIC_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_AESTHETIC_DESCRIPTION"),
         usage: "aesthetic <text>",
         examples: ["aesthetic hahaha"]
     },
@@ -14,7 +14,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
         {
             identifier: "text",
             match: "rest",
-            prompt: (msg): string => msg.guild!.loc.get("COMMAND_TEXT_MANIPULATION_PROMPT"),
+            prompt: (msg): string => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_PROMPT"),
             type: "string"
         }
     ]

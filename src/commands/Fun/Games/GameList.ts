@@ -10,7 +10,7 @@ export default class extends Command {
         super(client, "game", {
             aliases: ["game", "mini-game"],
             description: {
-                content: (msg): string => msg.guild!.loc.get("COMMAND_GAME_LIST_DESCRIPTION"),
+                content: (msg): string => msg.ctx.lang("COMMAND_GAME_LIST_DESCRIPTION"),
                 usage: "game [game]",
                 examples: ["game gtn"]
             },
@@ -26,7 +26,7 @@ export default class extends Command {
                     type: (msg: Message, content: string): Command => {
                         const list = this.collector.commands.filter(x => x.identifier.includes("game-"));
                         const command = list.find(x => x.option.description.adionalInfo!.slice(1).includes(content.toLowerCase()));
-                        if (!command) throw new CustomError("!PARSING", msg.guild!.loc.get("COMMAND_GAME_LIST_NOT_FOUND"));
+                        if (!command) throw new CustomError("!PARSING", msg.ctx.lang("COMMAND_GAME_LIST_NOT_FOUND"));
                         return command;
                     }
                 }
@@ -37,7 +37,7 @@ export default class extends Command {
     public async exec(msg: Message, { game } : { game?: Command }): Promise<Message> {
         if (game) {
             if (this.session.has(`${msg.channel.id}/${game.identifier}`)) {
-                msg.ctx.send(msg.guild!.loc.get("COMMAND_GAME_LIST_ONLY_ONE"));
+                msg.ctx.send(msg.ctx.lang("COMMAND_GAME_LIST_ONLY_ONE"));
                 throw new CustomError("CANCELED");
             }
             this.session.add(`${msg.channel.id}/${game.identifier}`);
@@ -56,7 +56,7 @@ export default class extends Command {
                     *cmds: ${cmds.map(x => `\`${x}\``).join(", ")}*
                 `;
             }).join("\n\n"))
-            .setFooter(msg.guild!.loc.get("COMMAND_GAME_LIST_INFO", msg.prefix!));
+            .setFooter(msg.ctx.lang("COMMAND_GAME_LIST_INFO", msg.prefix!));
         return msg.ctx.send(embed);
     }
 }

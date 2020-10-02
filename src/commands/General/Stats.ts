@@ -9,7 +9,7 @@ import { loadavg } from "os";
 @DeclareCommand("stats", {
     aliases: ["stats"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_STATS_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_STATS_DESCRIPTION"),
         usage: "stats",
         examples: ["stats"]
     },

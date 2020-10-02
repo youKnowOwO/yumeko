@@ -20,7 +20,7 @@ export default class CommandRunner {
         } catch(e) {
             if (!["CANCELED", "!UNDERSTAND"].includes(e.name)) {
                 this.client.log.error(e);
-                msg.channel.send(msg.guild!.loc.get("COMMAND_RUNNER_ERROR", codeBlock("js", String(e))));
+                msg.channel.send(msg.ctx.lang("COMMAND_RUNNER_ERROR", codeBlock("js", String(e))));
             }
             return false;
         }
@@ -39,7 +39,7 @@ export default class CommandRunner {
         if (!command) return undefined;
         if (this.isCooldown(msg)) return undefined;
         if (command.option.devOnly && !msg.author.isDev) return undefined;
-        if (command.option.nsfw && !(msg.channel as TextChannel).nsfw) return msg.ctx.send(msg.guild.loc.get("COMMAND_RUNNER_ONLY_NSFW"));
+        if (command.option.nsfw && !(msg.channel as TextChannel).nsfw) return msg.ctx.send(msg.ctx.lang("COMMAND_RUNNER_ONLY_NSFW"));
         if (!await this.allowed(msg, command.option.permissions, command.ignore)) return undefined;
         msg.prefix = prefix === this.client.user!.toString() ? `${this.client.user!.tag} ` : prefix;
         msg.args = command.option.splitBy ? args.join(" ").split(command.option.splitBy) : args;
@@ -64,13 +64,13 @@ export default class CommandRunner {
             amount: 0
         };
         if (used.running) {
-            if (warn) msg.ctx.send(msg.guild!.loc.get("COMMAND_RUNNER_ONLY_ONE", msg.author));
+            if (warn) msg.ctx.send(msg.ctx.lang("COMMAND_RUNNER_ONLY_ONE", msg.author));
             return true;
         }
         const cooldown = used.since + used.amount;
         if (now < cooldown) {
             const amount = (cooldown - now) / 1000;
-            if (warn) msg.ctx.send(msg.guild!.loc.get("COMMAND_RUNNER_IN_COOLDOWN", msg.author, amount));
+            if (warn) msg.ctx.send(msg.ctx.lang("COMMAND_RUNNER_IN_COOLDOWN", msg.author, amount));
             return true;
         }
         return false;
@@ -82,7 +82,7 @@ export default class CommandRunner {
             const permissions = this.checkMissPermission(msg.guild!.me!, permission.client);
             if (permissions.length) {
                 const mappedPerms = permissions.map(x => `\`${x}\``).join().replace(/\_/g, " ");
-                msg.ctx.send(msg.guild!.loc.get("COMMAND_RUNNER_MISSPERMS", msg.client.user!, mappedPerms, true));
+                msg.ctx.send(msg.ctx.lang("COMMAND_RUNNER_MISSPERMS", msg.client.user!, mappedPerms, true));
                 return false;
             }
         }
@@ -91,7 +91,7 @@ export default class CommandRunner {
             if (permissions.length) {
                 if (await ignore(msg)) return true;
                 const mappedPerms = permissions.map(x => `\`${x}\``).join().replace(/\_/g, " ");
-                msg.ctx.send(msg.guild!.loc.get("COMMAND_RUNNER_MISSPERMS", msg.author, mappedPerms, false));
+                msg.ctx.send(msg.ctx.lang("COMMAND_RUNNER_MISSPERMS", msg.author, mappedPerms, false));
                 return false;
             }
         }

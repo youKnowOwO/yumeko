@@ -6,7 +6,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("worthless", {
     aliases: ["worthless"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_WORTHLESS_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_WORTHLESS_DESCRIPTION"),
         usage: "worthless [user|image]",
         examples: ["worthless"]
     },
@@ -26,7 +26,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 export default class extends Command {
     @constantly
     public async exec(msg: Message, { image } : { image: string }): Promise<Message> {
-        const m = await msg.channel.send(msg.guild!.loc.get("COMMAND_FUN_PAINTING"));
+        const m = await msg.channel.send(msg.ctx.lang("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/worthless")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({ image });

@@ -6,7 +6,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("chucknorris", {
     aliases: ["chucknorris"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_CHUCKNORRIS_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_CHUCKNORRIS_DESCRIPTION"),
         usage: "chucknorris",
         examples: ["chucknorris"]
     },

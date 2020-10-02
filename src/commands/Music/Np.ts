@@ -5,7 +5,7 @@ import { DeclareCommand, isMusicPlaying, constantly } from "@yumeko/decorators";
 @DeclareCommand("np", {
     aliases: ["np", "nowplay"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_NP_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_MUSIC_NP_DESCRIPTION"),
         usage: "np",
         examples: ["np"]
     },
@@ -28,7 +28,7 @@ export default class extends Command {
                 .setAuthor(data.title, "https://listen.moe/_nuxt/img/logo-square-64.248c1f3.png")
                 .setColor(this.client.config.color)
                 .setImage(data.cover)
-                .setDescription(msg.guild!.loc.get("COMMAND_MUSIC_NP_MOE_PARSE", data));
+                .setDescription(msg.ctx.lang("COMMAND_MUSIC_NP_MOE_PARSE", data));
             if (data.event) embed.setThumbnail(data.event.image);
             return msg.ctx.send(embed);
         }

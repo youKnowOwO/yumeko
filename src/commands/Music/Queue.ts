@@ -7,7 +7,7 @@ import { DeclareCommand, isMusicPlaying, isInStream, constantly } from "@yumeko/
 @DeclareCommand("queue", {
     aliases: ["queue", "nowplay"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_QUEUE_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_MUSIC_QUEUE_DESCRIPTION"),
         usage: "queue",
         examples: ["queue"]
     },

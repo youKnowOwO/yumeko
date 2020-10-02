@@ -11,7 +11,7 @@ export default class TypeImage implements Type {
     public exec(msg: Message, content: string): string {
         const attachment = msg.attachments.first();
         if (attachment) {
-            if (attachment.size > 0x7A1200) throw new CustomError("!PARSING", msg.guild!.loc.get("TYPE_IMAGE_SIZE_EXCEDED"));
+            if (attachment.size > 0x7A1200) throw new CustomError("!PARSING", msg.ctx.lang("TYPE_IMAGE_SIZE_EXCEDED"));
             content = attachment.url;
         }
         let url: URL;
@@ -24,7 +24,7 @@ export default class TypeImage implements Type {
             url = new URL(content);
         }
         const ext = extname(url.pathname);
-        if (!IMAGE_PATTERN.test(ext)) throw new CustomError("!PARSING",msg.guild!.loc.get("TYPE_IMAGE_UNSUPPORTED_EXT"));
+        if (!IMAGE_PATTERN.test(ext)) throw new CustomError("!PARSING",msg.ctx.lang("TYPE_IMAGE_UNSUPPORTED_EXT"));
         return content;
     }
 }

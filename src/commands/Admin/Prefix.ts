@@ -5,7 +5,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("prefix", {
     aliases: ["prefix", "setprefix"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_PREFIX_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_PREFIX_DESCRIPTION"),
         usage: "prefix [pref]",
         examples: ["prefix", "prefix !"]
     },
@@ -27,8 +27,8 @@ export default class extends Command {
         if (prefix) {
             msg.guild!.prefix = prefix;
             if (msg.prefix) await msg.guild!.updateDatabase();
-            return msg.ctx.send(msg.guild!.loc.get("COMMAND_PREFIX_SET_TO", prefix));
+            return msg.ctx.send(msg.ctx.lang("COMMAND_PREFIX_SET_TO", prefix));
         }
-        return msg.ctx.send(msg.guild!.loc.get("COMMAND_PREFIX_CURRENT", msg.guild!.prefix));
+        return msg.ctx.send(msg.ctx.lang("COMMAND_PREFIX_CURRENT", msg.guild!.prefix));
     }
 }

@@ -9,7 +9,7 @@ const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣
 @DeclareCommand("game-connect4", {
     aliases: [],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_GAME_CONNECT4_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_GAME_CONNECT4_DESCRIPTION"),
         usage: "<user>",
         examples: ["game-conmect4"],
         adionalInfo: ["<:connect4:745791911218118706> Connect4", "connect4", "c4"]
@@ -27,13 +27,13 @@ const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣
 export default class extends Command {
     @verifyWantChallange("opponent", true)
     public async exec(msg: Message, { opponent }: { opponent: User }): Promise<Message> {
-        const message = await msg.channel.send(msg.guild!.loc.get("COMMAND_GAME_LIST_PREPARING"));
+        const message = await msg.channel.send(msg.ctx.lang("COMMAND_GAME_LIST_PREPARING"));
         for (const num of numbers) await message.react(num);
         const c4 = new Connect4();
         while(!c4.isEnd()) {
             const user = c4.turn ? msg.author : opponent;
             await message.edit(stripIndents`
-                <:connect4:745791911218118706> **| ${msg.guild!.loc.get("COMMAND_GAME_LIST_TURN", user)}**
+                <:connect4:745791911218118706> **| ${msg.ctx.lang("COMMAND_GAME_LIST_TURN", user)}**
                 > ${c4.toString().replace(/\n/g, "\n> ")}
                 > ${numbers.join("")}
             `);
@@ -54,7 +54,7 @@ export default class extends Command {
             c4.place(index);
         }
         return message.edit(stripIndents`
-            ${msg.guild!.loc.get(c4.winner ? "COMMAND_GAME_LIST_CONGRATS" : "COMMAND_GAME_LIST_DRAW", c4.turn ? msg.author : opponent)}
+            ${msg.ctx.lang(c4.winner ? "COMMAND_GAME_LIST_CONGRATS" : "COMMAND_GAME_LIST_DRAW", c4.turn ? msg.author : opponent)}
             > ${c4.toString().replace(/\n/g, "\n> ")}
             > ${numbers.join("")}
         `);

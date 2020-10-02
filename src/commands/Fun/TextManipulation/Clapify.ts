@@ -5,7 +5,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("clapify", {
     aliases: ["clapify"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_TEXT_MANIPULATION_CLAPIFY_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_CLAPIFY_DESCRIPTION"),
         usage: "clapify <text>",
         examples: ["clapify good boy"]
     },
@@ -14,7 +14,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
         {
             identifier: "text",
             match: "rest",
-            prompt: (msg): string => msg.guild!.loc.get("COMMAND_TEXT_MANIPULATION_PROMPT"),
+            prompt: (msg): string => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_PROMPT"),
             type: "string"
         }
     ]

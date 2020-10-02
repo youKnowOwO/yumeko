@@ -9,7 +9,7 @@ import { join } from "path";
 @DeclareCommand("fortune-cookie", {
     aliases: ["fortune-cookie", "fortune"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_FORTUNE_COOKIE_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_FORTUNE_COOKIE_DESCRIPTION"),
         usage: "fortune-cookie",
         examples: ["fortune-cookie"]
     },
@@ -45,7 +45,7 @@ export default class extends Command {
 
     @constantly
     public async exec(msg: Message): Promise<Message> {
-        const m = await msg.channel.send(msg.guild!.loc.get("COMMAND_FUN_PAINTING"));
+        const m = await msg.channel.send(msg.ctx.lang("COMMAND_FUN_PAINTING"));
         const fortune = await this.getFortune();
         const attachment = await this.createImage(fortune);
         m.delete();

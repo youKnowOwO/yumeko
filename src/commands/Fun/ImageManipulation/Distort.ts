@@ -6,7 +6,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("distort", {
     aliases: ["distort"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_DISTORT_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_DISTORT_DESCRIPTION"),
         usage: "distort [user|image] [--level=<number>]",
         examples: ["distort"]
     },
@@ -33,7 +33,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 export default class extends Command {
     @constantly
     public async exec(msg: Message, { image, level } : { image: string; level: number }): Promise<Message> {
-        const m = await msg.channel.send(msg.guild!.loc.get("COMMAND_FUN_PAINTING"));
+        const m = await msg.channel.send(msg.ctx.lang("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/distort")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({ image, level } as any);

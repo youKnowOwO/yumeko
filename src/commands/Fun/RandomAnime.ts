@@ -7,7 +7,7 @@ import { RandomAnimeResponse } from "@yumeko/interfaces";
 @DeclareCommand("random-anime", {
     aliases: ["random-anime"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_RANDOM_ANIME_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_RANDOM_ANIME_DESCRIPTION"),
         usage: "random-anime",
         examples: ["rabdom-anime"]
     },
@@ -24,14 +24,14 @@ export default class extends Command {
             .setColor(this.client.config.color)
             .setDescription(`> ${body.description}`)
             .setImage(body.image)
-            .addField("\u200B", msg.guild!.loc.get("COMMAND_RANDOM_ANIME_PARSE_RESPONSE", body));
+            .addField("\u200B", msg.ctx.lang("COMMAND_RANDOM_ANIME_PARSE_RESPONSE", body));
         if (body.alternate_name.length) embed.setTitle(body.alternate_name).setAuthor(body.name);
         const watchs: string[] = [];
         for (const key of Object.keys(body.watch)) {
             const platforms = body.watch[key].map(x => `[${x.platform}](${x.url})`).join(", ");
             watchs.push(`${key.toUpperCase()}: ${platforms}`);
         }
-        embed.addField(msg.guild!.loc.get("COMMAND_RANDOM_ANIME_PARSE_WATCH"), watchs.join("\n"));
+        embed.addField(msg.ctx.lang("COMMAND_RANDOM_ANIME_PARSE_WATCH"), watchs.join("\n"));
         return msg.ctx.send(embed);
     }
 }

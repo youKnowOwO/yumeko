@@ -6,7 +6,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("to-be-continued", {
     aliases: ["to-be-continued", "tobecontinued", "tobec"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_TOBE_CONTINUED_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_TOBE_CONTINUED_DESCRIPTION"),
         usage: "to-be-continued [user|image]",
         examples: ["to-be-continued"]
     },
@@ -26,7 +26,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 export default class extends Command {
     @constantly
     public async exec(msg: Message, { image } : { image: string }): Promise<Message> {
-        const m = await msg.channel.send(msg.guild!.loc.get("COMMAND_FUN_PAINTING"));
+        const m = await msg.channel.send(msg.ctx.lang("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/to-be-continued")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({ image });

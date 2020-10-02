@@ -8,7 +8,7 @@ export default class extends Command {
         super(client, "game-guessthenumber", {
             aliases: [],
             description: {
-                content: (msg): string => msg.guild!.loc.get("COMMAND_GAME_GUESS_THE_NUMBER_DESCRIPTION"),
+                content: (msg): string => msg.ctx.lang("COMMAND_GAME_GUESS_THE_NUMBER_DESCRIPTION"),
                 usage: "[range]",
                 examples: ["game-guessthenumber"],
                 adionalInfo: ["❓ Guess The Number", "gtn", "hilo"]
@@ -37,7 +37,7 @@ export default class extends Command {
     }
 
     public async exec(msg: Message, { thatNumber }: { thatNumber: number }): Promise<Message> {
-        let toSend = msg.guild!.loc.get("COMMAND_GAME_GUESS_THE_NUMBER_START");
+        let toSend = msg.ctx.lang("COMMAND_GAME_GUESS_THE_NUMBER_START");
         let guessed = false;
         let chance = 10;
         while (!guessed && chance > 0) {
@@ -45,17 +45,17 @@ export default class extends Command {
             const filter = (m: Message): boolean => !isNaN(Number(m.content)) && msg.author.id === m.author.id;
             const responses = await msg.channel.awaitMessages(filter, { max: 1, time: 30000 });
             if (!responses.size) {
-                await msg.channel.send(msg.guild!.loc.get("COMMAND_GAME_LIST_TIMEOUT"));
+                await msg.channel.send(msg.ctx.lang("COMMAND_GAME_LIST_TIMEOUT"));
                 break;
             }
             const num = parseInt(responses.first()!.content, 10);
-            if (num < thatNumber) toSend = msg.guild!.loc.get("COMMAND_GAME_GUESS_THE_NUMBER_HIGHER", num);
-            else if (num > thatNumber) toSend = msg.guild!.loc.get("COMMAND_GAME_GUESS_THE_NUMBER_SHORTER", num);
+            if (num < thatNumber) toSend = msg.ctx.lang("COMMAND_GAME_GUESS_THE_NUMBER_HIGHER", num);
+            else if (num > thatNumber) toSend = msg.ctx.lang("COMMAND_GAME_GUESS_THE_NUMBER_SHORTER", num);
             else guessed = true;
             chance--;
         }
-        if (!guessed) return msg.ctx.send(msg.guild!.loc.get("COMMAND_GAME_LIST_WRONG", thatNumber));
-        return msg.ctx.send(msg.guild!.loc.get("COMMAND_GAME_LIST_RIGHT", thatNumber));
+        if (!guessed) return msg.ctx.send(msg.ctx.lang("COMMAND_GAME_LIST_WRONG", thatNumber));
+        return msg.ctx.send(msg.ctx.lang("COMMAND_GAME_LIST_RIGHT", thatNumber));
     }
 
     public randomNumber(min: number, max: number): number {

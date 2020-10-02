@@ -6,7 +6,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("3000years", {
     aliases: ["3000years", "3ty", "threethousandyears"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_3000YEARS_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_3000YEARS_DESCRIPTION"),
         usage: "3000years [image|user]",
         examples: ["3000years"]
     },
@@ -26,7 +26,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 export default class extends Command {
     @constantly
     public async exec(msg: Message, { image } : { image: string }): Promise<Message> {
-        const m = await msg.channel.send(msg.guild!.loc.get("COMMAND_FUN_PAINTING"));
+        const m = await msg.channel.send(msg.ctx.lang("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/3000-years")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({ image });

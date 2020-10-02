@@ -10,7 +10,7 @@ export default class extends Command {
         super(client, react, {
             aliases: [react],
             description: {
-                content: (msg): string => msg.guild!.loc.get("COMMAND_REACTIONS_DESCRIPTION", Reactions[react as any] as any),
+                content: (msg): string => msg.ctx.lang("COMMAND_REACTIONS_DESCRIPTION", Reactions[react as any] as any),
                 usage: react,
                 examples: [react]
             },

@@ -10,7 +10,7 @@ export default class extends Command {
         super(client, animal, {
             aliases: [animal],
             description: {
-                content: (msg): string => msg.guild!.loc.get("COMMAND_ANIMAL_DESCRIPTION", Animals[animal as any] as unknown as number),
+                content: (msg): string => msg.ctx.lang("COMMAND_ANIMAL_DESCRIPTION", Animals[animal as any] as unknown as number),
                 usage: animal,
                 examples: [animal]
             },
@@ -27,7 +27,7 @@ export default class extends Command {
         const embed = new MessageEmbed()
             .setColor(this.client.config.color)
             .setURL(image)
-            .setTitle(msg.guild!.loc.get("COMMAND_ANIMAL_CLICK_HERE"))
+            .setTitle(msg.ctx.lang("COMMAND_ANIMAL_CLICK_HERE"))
             .setImage(image);
         return msg.ctx.send(embed);
     }

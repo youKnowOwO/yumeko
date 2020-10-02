@@ -35,20 +35,20 @@ export function inhibit<T extends (msg: Message, ...args: any[]) => Promise<stri
 
 export function isMusicPlaying(): any {
     return inhibit(msg => {
-        if (!msg.guild!.music.song) return msg.guild!.loc.get("COMMAND_MUSIC_NOT_PLAY");
+        if (!msg.guild!.music.song) return msg.ctx.lang("COMMAND_MUSIC_NOT_PLAY");
     });
 }
 
 export function isSameVoiceChannel(): any {
     return inhibit(msg => {
         if (msg.guild!.me!.voice.channelID && msg.guild!.me!.voice.channelID !== msg.member!.voice.channelID)
-            return msg.guild!.loc.get("COMMAND_MUSIC_NOT_SAME_VC", msg.guild!.me!.voice.channel!);
+            return msg.ctx.lang("COMMAND_MUSIC_NOT_SAME_VC", msg.guild!.me!.voice.channel!);
     });
 }
 
 export function isMemberInVoiceChannel(): any {
     return inhibit(msg => {
-        if (!msg.member!.voice.channelID) return msg.guild!.loc.get("COMMAND_MUISC_MEMBER_NOT_VC");
+        if (!msg.member!.voice.channelID) return msg.ctx.lang("COMMAND_MUISC_MEMBER_NOT_VC");
     });
 }
 
@@ -57,15 +57,15 @@ export function isMemberVoiceChannelJoinable(ignoreWhenSame = true): any {
         const vc = msg.member!.voice.channel!;
         if (ignoreWhenSame && msg.guild!.me!.voice.channelID && msg.guild!.me!.voice.channelID === msg.member!.voice.channelID) return undefined;
         if (!vc.permissionsFor(msg.guild!.me!)!.has(["CONNECT", "SPEAK"]))
-            return msg.guild!.loc.get("COMMAND_MUSIC_LACK_PERM_CONNECT_OR_SPEAK");
-        else if (!vc.joinable) return msg.guild!.loc.get("COMMAND_MUSIC_VC_NOT_JOINABLE");
+            return msg.ctx.lang("COMMAND_MUSIC_LACK_PERM_CONNECT_OR_SPEAK");
+        else if (!vc.joinable) return msg.ctx.lang("COMMAND_MUSIC_VC_NOT_JOINABLE");
     });
 }
 
 export function isInStream(): any {
     return inhibit(msg => {
         if (msg.guild!.music.song && msg.guild!.music.song.isStream)
-            return msg.guild!.loc.get("COMMAND_MUSIC_CANT_PLAY_CAUSE_STREAM");
+            return msg.ctx.lang("COMMAND_MUSIC_CANT_PLAY_CAUSE_STREAM");
     });
 }
 
@@ -74,14 +74,14 @@ export function verifyWantChallange(key: string, offerWithClient = false): any {
     return inhibit(async (msg, args) => {
         let opponent: User | void = args[key];
         if (opponent) {
-            const verifyMsg = await msg.channel.send(msg.guild!.loc.get("COMMAND_GAME_VERIFY_WAIT", opponent));
+            const verifyMsg = await msg.channel.send(msg.ctx.lang("COMMAND_GAME_VERIFY_WAIT", opponent));
             const verified = await verify(verifyMsg, opponent);
             if (!verified) {
-                const message = msg.guild!.loc.get("COMMAND_GAME_VERIFY_NOT_ACCEPT", opponent, offerWithClient);
+                const message = msg.ctx.lang("COMMAND_GAME_VERIFY_NOT_ACCEPT", opponent, offerWithClient);
                 if (!offerWithClient) return message;
                 await verifyMsg.edit(message);
                 const accept = await verify(verifyMsg, msg.author);
-                if (!accept) return msg.guild!.loc.get("COMMAND_GAME_VERIFY_DECLINE_OFFER");
+                if (!accept) return msg.ctx.lang("COMMAND_GAME_VERIFY_DECLINE_OFFER");
                 opponent = msg.client.user!;
             }
         } else if (offerWithClient) opponent = msg.client.user!;

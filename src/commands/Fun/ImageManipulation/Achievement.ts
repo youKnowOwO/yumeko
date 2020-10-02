@@ -6,7 +6,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("achievement", {
     aliases: ["achievement", "acvmnt"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_ACHIEVEMENT_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_ACHIEVEMENT_DESCRIPTION"),
         usage: "achievement <text> [--image=<image|user>]",
         examples: ["achievement"]
     },
@@ -26,14 +26,14 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
             identifier: "text",
             match: "rest",
             type: "string",
-            prompt: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_ACHIEVEMENT_PROMPT")
+            prompt: (msg): string => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_ACHIEVEMENT_PROMPT")
         }
     ]
 })
 export default class extends Command {
     @constantly
     public async exec(msg: Message, { text, image } : { text: string; image: string }): Promise<Message> {
-        const m = await msg.channel.send(msg.guild!.loc.get("COMMAND_FUN_PAINTING"));
+        const m = await msg.channel.send(msg.ctx.lang("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/achievement")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({ text, image });

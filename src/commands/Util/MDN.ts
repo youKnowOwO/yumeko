@@ -8,7 +8,7 @@ import { MDNChildrenExpand } from "@yumeko/interfaces";
 @DeclareCommand("mdn", {
     aliases: ["mdn", "mozilla-developer-network"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_MDN_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_MDN_DESCRIPTION"),
         usage: "mdn <query>",
         examples: ["mdn String"]
     },
@@ -21,7 +21,7 @@ import { MDNChildrenExpand } from "@yumeko/interfaces";
             identifier: "query",
             match: "rest",
             type: "string",
-            prompt: (msg): string => msg.guild!.loc.get("COMMAND_MDN_PROMPT")
+            prompt: (msg): string => msg.ctx.lang("COMMAND_MDN_PROMPT")
         }
     ]
 })
@@ -29,7 +29,7 @@ export default class extends Command {
     @constantly
     public async exec(msg: Message, { query }: { query: string }): Promise<Message> {
         const result = await this.getResult(query);
-        if (!result || !result.url || !result.title || !result.summary) return msg.ctx.send(msg.guild!.loc.get("COMMAND_UTIL_NO_RESULT_FOUND"));
+        if (!result || !result.url || !result.title || !result.summary) return msg.ctx.send(msg.ctx.lang("COMMAND_UTIL_NO_RESULT_FOUND"));
         const summary = new TurndownService()
             .addRule("hyperlink", {
                 filter: "a",

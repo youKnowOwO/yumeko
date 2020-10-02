@@ -9,7 +9,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("asciify", {
     aliases: ["asciify", "ascii"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_TEXT_MANIPULATION_ASCII_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_ASCII_DESCRIPTION"),
         usage: "asciify <text>",
         examples: ["ascii yo"]
     },
@@ -18,7 +18,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
         {
             identifier: "text",
             match: "rest",
-            prompt: (msg): string => msg.guild!.loc.get("COMMAND_TEXT_MANIPULATION_PROMPT"),
+            prompt: (msg): string => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_PROMPT"),
             type: (_, content: string): string => {
                 if (content.length > 14) throw new CustomError("!PARSING", "**Only \`14\` characters are allowed**");
                 return content;

@@ -7,7 +7,7 @@ import { DeclareCommand, inhibit, constantly } from "@yumeko/decorators";
 @DeclareCommand("play-moe", {
     aliases: ["play-moe", "playmoe"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_PLAYMOE_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_MUSIC_PLAYMOE_DESCRIPTION"),
         usage: "play-moe <jpop | kpop>",
         examples: ["play-moe jpop"]
     },
@@ -16,11 +16,11 @@ import { DeclareCommand, inhibit, constantly } from "@yumeko/decorators";
         {
             identifier: "link",
             match: "single",
-            prompt: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_PLAYMOE_PROMPT"),
+            prompt: (msg): string => msg.ctx.lang("COMMAND_MUSIC_PLAYMOE_PROMPT"),
             type: (msg, content): string => {
                 content = content.toLowerCase();
                 if (!["jpop", "kpop"].includes(content))
-                    throw new CustomError("!PARSING", msg.guild!.loc.get("COMMAND_MUSIC_PLAYMOE_INVALID_TYPE"));
+                    throw new CustomError("!PARSING", msg.ctx.lang("COMMAND_MUSIC_PLAYMOE_INVALID_TYPE"));
                 return `https://listen.moe/${content === "jpop" ? "stream" : "kpop/stream"}`;
             }
         }
@@ -29,7 +29,7 @@ import { DeclareCommand, inhibit, constantly } from "@yumeko/decorators";
 export default class extends Command {
     @constantly
     @inhibit(msg => {
-        if (msg.guild!.music.song) return msg.guild!.loc.get("COMMAND_MUSIC_PLAYMOE_INHIBIT");
+        if (msg.guild!.music.song) return msg.ctx.lang("COMMAND_MUSIC_PLAYMOE_INHIBIT");
     })
     public async exec(msg: Message, { link }: { link: string }): Promise<Message | void> {
         const track = await msg.guild!.music.fetch(link);

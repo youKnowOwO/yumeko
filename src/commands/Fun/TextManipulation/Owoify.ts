@@ -7,7 +7,7 @@ const faces = ["(・`ω´・)", ";;w;;", "owo", "UwU", ">w<", "^w^"];
 @DeclareCommand("owoify", {
     aliases: ["owoify"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_TEXT_MANIPULATION_OWOIFY_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_OWOIFY_DESCRIPTION"),
         usage: "owoify <text>",
         examples: ["owoify good boy"]
     },
@@ -16,7 +16,7 @@ const faces = ["(・`ω´・)", ";;w;;", "owo", "UwU", ">w<", "^w^"];
         {
             identifier: "text",
             match: "rest",
-            prompt: (msg): string => msg.guild!.loc.get("COMMAND_TEXT_MANIPULATION_PROMPT"),
+            prompt: (msg): string => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_PROMPT"),
             type: "string"
         }
     ]

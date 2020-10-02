@@ -9,7 +9,7 @@ const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣
 @DeclareCommand("game-tictactoe", {
     aliases: [],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_GAME_TICTACTOE_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_GAME_TICTACTOE_DESCRIPTION"),
         usage: "<user>",
         examples: ["game-tictactoe"],
         adionalInfo: ["<:tictactoe:736370109073063946> Tic Tac Toe", "tictactoe", "ttt"]
@@ -27,13 +27,13 @@ const numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣
 export default class extends Command {
     @verifyWantChallange("opponent", true)
     public async exec(msg: Message, { opponent }: { opponent: User }): Promise<Message> {
-        const message = await msg.channel.send(msg.guild!.loc.get("COMMAND_GAME_LIST_PREPARING"));
+        const message = await msg.channel.send(msg.ctx.lang("COMMAND_GAME_LIST_PREPARING"));
         for (const num of numbers) await message.react(num);
         const ttt = new TicTacToe();
         while (!ttt.isEnd()) {
             const user = ttt.turn ? msg.author : opponent;
             await message.edit(stripIndents`
-                <:tictactoe:736370109073063946> **| ${msg.guild!.loc.get("COMMAND_GAME_LIST_TURN", user)}**
+                <:tictactoe:736370109073063946> **| ${msg.ctx.lang("COMMAND_GAME_LIST_TURN", user)}**
                 > ${ttt.toString().replace(/\n/g, "\n> ")}
             `);
             if (user.bot) {
@@ -53,7 +53,7 @@ export default class extends Command {
             ttt.place(...ttt.parsePosition(index + 1));
         }
         return message.edit(stripIndents`
-        ${msg.guild!.loc.get(ttt.winner ? "COMMAND_GAME_LIST_CONGRATS" : "COMMAND_GAME_LIST_DRAW", ttt.turn ? msg.author : opponent)}
+        ${msg.ctx.lang(ttt.winner ? "COMMAND_GAME_LIST_CONGRATS" : "COMMAND_GAME_LIST_DRAW", ttt.turn ? msg.author : opponent)}
             > ${ttt.toString().replace(/\n/g, "\n> ")}
         `);
     }

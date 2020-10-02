@@ -15,7 +15,7 @@ interface Player {
 @DeclareCommand("game-wordchain", {
     aliases: [],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_GAME_WORD_CHAIN_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_GAME_WORD_CHAIN_DESCRIPTION"),
         usage: "",
         examples: ["game-wordchain"],
         adionalInfo: ["🔗 Word Chain", "wordchain", "shiritori"]

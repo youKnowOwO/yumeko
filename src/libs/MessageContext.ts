@@ -1,4 +1,5 @@
 import { Collection, Snowflake, Message } from "discord.js";
+import type { DefaultLang } from "@yumeko/libs/Localization";
 
 export default class MessageContext {
     public cache: Collection<Snowflake, Message> = new Collection();
@@ -21,5 +22,9 @@ export default class MessageContext {
             } else message.edit(content, options);
         }
         return message;
+    }
+
+    public lang<K extends keyof DefaultLang>(msg: Message, key: K, ...args: Parameters<DefaultLang[K]>): string {
+        return msg.guild!.loc.get(key, ...args);
     }
 }

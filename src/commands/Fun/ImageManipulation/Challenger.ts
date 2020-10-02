@@ -6,7 +6,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("challenger", {
     aliases: ["challenger"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_CHALLENGER_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_CHALLENGER_DESCRIPTION"),
         usage: "challenger [user|image] [--silhoute]",
         examples: ["challenger"]
     },
@@ -31,7 +31,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 export default class extends Command {
     @constantly
     public async exec(msg: Message, { image, silhouted } : { image: string; silhouted: boolean }): Promise<Message> {
-        const m = await msg.channel.send(msg.guild!.loc.get("COMMAND_FUN_PAINTING"));
+        const m = await msg.channel.send(msg.ctx.lang("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/challenger")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({ image, silhouted } as any);

@@ -7,7 +7,7 @@ import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChan
 @DeclareCommand("volume", {
     aliases: ["volume"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_VOLUME_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_MUSIC_VOLUME_DESCRIPTION"),
         usage: "volume <amount>",
         examples: ["volume 100"]
     },
@@ -19,7 +19,7 @@ import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChan
         {
             identifier: "amount",
             match: "single",
-            prompt: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_VOLUME_PROMPT"),
+            prompt: (msg): string => msg.ctx.lang("COMMAND_MUSIC_VOLUME_PROMPT"),
             type: (_: Message, content: string): number => {
                 const volume = (_.client as YumekoClient).collector.runner.argsParser.getType("number")(_, content) as any;
                 if (volume > 120) throw new CustomError("!PARSING", "**Volume is too high. max \`120\`**");
@@ -37,7 +37,7 @@ export default class extends Command {
     public async exec(msg: Message, { amount }: { amount: number }): Promise<Message> {
         const { music } = msg.guild!;
         music.setVolume(amount);
-        return msg.ctx.send(msg.guild!.loc.get("COMMAND_MUSIC_VOLUME_CHANGE", amount));
+        return msg.ctx.send(msg.ctx.lang("COMMAND_MUSIC_VOLUME_CHANGE", amount));
     }
 
     public ignore(msg: Message): boolean {

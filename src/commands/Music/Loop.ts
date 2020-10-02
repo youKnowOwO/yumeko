@@ -5,7 +5,7 @@ import { DeclareCommand, isMusicPlaying, isSameVoiceChannel, isMemberInVoiceChan
 @DeclareCommand("loop", {
     aliases: ["loop"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_MUISC_LOOP_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_MUISC_LOOP_DESCRIPTION"),
         usage: "loop",
         examples: ["loop"]
     },
@@ -23,7 +23,7 @@ export default class extends Command {
     public async exec(msg: Message): Promise<Message> {
         const { music } = msg.guild!;
         music.setLoop(music.loopType === 1 ? 0 : 1);
-        return msg.ctx.send(msg.guild!.loc.get(music.loopType === 1 ? "COMMAND_MUISC_LOOP_OFF" : "COMMAND_MUSIC_LOOP_ON"));
+        return msg.ctx.send(msg.ctx.lang(music.loopType === 1 ? "COMMAND_MUISC_LOOP_OFF" : "COMMAND_MUSIC_LOOP_ON"));
     }
 
     public ignore(msg: Message): boolean {

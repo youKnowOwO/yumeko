@@ -8,7 +8,7 @@ import { oneLineTrim } from "common-tags";
 @DeclareCommand("language", {
     aliases: ["language", "lang", "setlang", "locale"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_LANGUAGE_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_LANGUAGE_DESCRIPTION"),
         usage: "language [lang]",
         examples: ["language", "language id_ID", "language 1"]
     },
@@ -25,7 +25,7 @@ import { oneLineTrim } from "common-tags";
                 let lang: string | void;
                 if (!isNaN(Number(content))) lang = langs.keyArray()[Number(content) - 1];
                 else if (langs.has(content)) lang = content;
-                if (!lang) throw new CustomError("!PARSING", msg.guild!.loc.get("COMMAND_LANGUAGE_NOT_FOUND", content));
+                if (!lang) throw new CustomError("!PARSING", msg.ctx.lang("COMMAND_LANGUAGE_NOT_FOUND", content));
                 return lang;
             },
             optional: true
@@ -39,14 +39,14 @@ export default class extends Command {
             msg.guild!.loc.lang = language;
             if (msg.prefix) await msg.guild!.updateDatabase();
             const currentLang: [string, string] = [
-                msg.guild!.loc.get("META_NAME"),
-                msg.guild!.loc.get("META_EMOJI")
+                msg.ctx.lang("META_NAME"),
+                msg.ctx.lang("META_EMOJI")
             ];
-            return msg.ctx.send(msg.guild!.loc.get("COMMAND_LANGUAGE_SET", ...currentLang));
+            return msg.ctx.send(msg.ctx.lang("COMMAND_LANGUAGE_SET", ...currentLang));
         }
         const currentLang: [string, string] = [
-            msg.guild!.loc.get("META_NAME"),
-            msg.guild!.loc.get("META_EMOJI")
+            msg.ctx.lang("META_NAME"),
+            msg.ctx.lang("META_EMOJI")
         ];
         let index = 0;
         const list = this.client.langs.map((x, i) => oneLineTrim`
@@ -55,6 +55,6 @@ export default class extends Command {
             \`${i}\` 
             ${x.META_EMOJI()}
         `).join("\n");
-        return msg.ctx.send(msg.guild!.loc.get("COMMAND_LANGUAGE_LIST", msg.prefix!, list, ...currentLang));
+        return msg.ctx.send(msg.ctx.lang("COMMAND_LANGUAGE_LIST", msg.prefix!, list, ...currentLang));
     }
 }

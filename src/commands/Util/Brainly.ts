@@ -113,7 +113,7 @@ const graphql = `
 @DeclareCommand("brainly", {
     aliases: ["brainly", "brainless"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_BRAINLY_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_BRAINLY_DESCRIPTION"),
         usage: "brainly <question> [--region]",
         examples: ["brainly flowchart", "brainly flowchart --id"]
     },
@@ -128,16 +128,16 @@ const graphql = `
             flag: "region",
             type: (msg: Message, content: string): string => {
                 const keys = Object.keys(regions);
-                if (!keys.includes(content.toLowerCase())) throw new CustomError("!PARSING", msg.guild!.loc.get("COMMAND_BRAINLY_INVALID_REGION", keys));
+                if (!keys.includes(content.toLowerCase())) throw new CustomError("!PARSING", msg.ctx.lang("COMMAND_BRAINLY_INVALID_REGION", keys));
                 return content;
             },
-            default: (msg: Message): string => msg.guild!.loc.get("META_ID").split("_")[1].toLowerCase()
+            default: (msg: Message): string => msg.ctx.lang("META_ID").split("_")[1].toLowerCase()
         },
         {
             identifier: "question",
             match: "rest",
             type: "string",
-            prompt: (msg): string => msg.guild!.loc.get("COMMAND_BRAINLY_PROMPT")
+            prompt: (msg): string => msg.ctx.lang("COMMAND_BRAINLY_PROMPT")
         }
     ]
 })
@@ -148,11 +148,11 @@ export default class extends Command {
         const td = new TurndownService();
         const baselink = regions[region as keyof typeof regions];
         const data = await this.getData(question, region);
-        if (!data) return msg.ctx.send(msg.guild!.loc.get("COMMAND_UTIL_NO_RESULT_FOUND"));
+        if (!data) return msg.ctx.send(msg.ctx.lang("COMMAND_UTIL_NO_RESULT_FOUND"));
         const { node } = data[0];
         const embed = new MessageEmbed()
             .setColor(0x5BB8FF)
-            .setTitle(msg.guild!.loc.get("COMMAND_BRAINLY_QUESTION"))
+            .setTitle(msg.ctx.lang("COMMAND_BRAINLY_QUESTION"))
             .setAuthor("Brainly User", defaultAvatar)
             .setURL(`${baselink.uri}/${baselink.question}/${node.databaseId}`)
             .setDescription(td.turndown(node.content));
@@ -174,7 +174,7 @@ export default class extends Command {
             await msg.channel.send(embed);
             embed.setColor("GREEN").setImage("").spliceFields(0, 1)
                 .setAuthor("Brainly User", defaultAvatar)
-                .setTitle(msg.guild!.loc.get("COMMAND_BRAINLY_ANSWER", answer.isBest))
+                .setTitle(msg.ctx.lang("COMMAND_BRAINLY_ANSWER", answer.isBest))
                 .setDescription(td.turndown(answer.content))
                 .setFooter(`⭐ ${answer.rating} ♥️ ${answer.thanksCount}`);
             if (answer.author) embed.setAuthor(answer.author.nick, answer.author.avatar ? answer.author.avatar.url : defaultAvatar, `${baselink.uri}/app/profile/${answer.author.databaseId}`);

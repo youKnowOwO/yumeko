@@ -6,7 +6,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("fusion", {
     aliases: ["fusion"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_FUSSION_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_FUSSION_DESCRIPTION"),
         usage: "fusion <user> [user]",
         examples: ["fusion @unknown"]
     },
@@ -19,7 +19,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
             identifier: "user",
             match: "single",
             type: "user",
-            prompt: (msg): string => msg.guild!.loc.get("COMMAND_IMAGE_MANIPULATION_FUSSION_PROMPT")
+            prompt: (msg): string => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_FUSSION_PROMPT")
         },
         {
             identifier: "user2",
@@ -32,7 +32,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 export default class extends Command {
     @constantly
     public async exec(msg: Message, { user, user2 } : { user: User; user2: User }): Promise<Message> {
-        const m = await msg.channel.send(msg.guild!.loc.get("COMMAND_FUN_PAINTING"));
+        const m = await msg.channel.send(msg.ctx.lang("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await request.get("https://emilia-api.xyz/api/fusion")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({

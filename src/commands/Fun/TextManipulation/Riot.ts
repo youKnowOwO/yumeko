@@ -5,7 +5,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("riot", {
     aliases: ["riot"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_TEXT_MANIPULATION_RIOT_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_RIOT_DESCRIPTION"),
         usage: "riot <text>",
         examples: ["riot hahaha"]
     },
@@ -14,7 +14,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
         {
             identifier: "text",
             match: "rest",
-            prompt: (msg): string => msg.guild!.loc.get("COMMAND_TEXT_MANIPULATION_PROMPT"),
+            prompt: (msg): string => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_PROMPT"),
             type: "string"
         }
     ]

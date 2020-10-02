@@ -7,7 +7,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("help", {
     aliases: ["help", "h"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_HELP_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_HELP_DESCRIPTION"),
         usage: "help [command]",
         examples: ["help say"]
     },
@@ -41,16 +41,16 @@ export default class extends Command {
                 .setDescription(stripIndents`
                     __**${category} -> ${firstUpperCase(command.identifier)}**__ ${option.disable ? "**[DISABLE]**" : ""}
                     ${codeBlock("", typeof option.description.content === "string" ? option.description.content : option.description.content(msg))}
-                    ${msg.guild!.loc.get("COMMAND_HELP_PARSE_DESC", ...desc)}
+                    ${msg.ctx.lang("COMMAND_HELP_PARSE_DESC", ...desc)}
                 `)
-                .setFooter(msg.guild!.loc.get("COMMAND_HELP_INFO_ARGS"));
+                .setFooter(msg.ctx.lang("COMMAND_HELP_INFO_ARGS"));
             if (option.description.examples.length) embed
-                .addField(msg.guild!.loc.get("COMMAND_HELP_PARSE_EXAMPLES"), codeBlock("", option.description.examples.map(x => `${msg.prefix}${x}`).join("\n")));
+                .addField(msg.ctx.lang("COMMAND_HELP_PARSE_EXAMPLES"), codeBlock("", option.description.examples.map(x => `${msg.prefix}${x}`).join("\n")));
             return msg.ctx.send(embed);
         }
         const embed = new MessageEmbed()
             .setColor(this.client.config.color)
-            .setFooter(msg.guild!.loc.get("COMMAND_HELP_INFO_EXPLAIN", msg.prefix!));
+            .setFooter(msg.ctx.lang("COMMAND_HELP_INFO_EXPLAIN", msg.prefix!));
         for (const category of this.collector.categories) {
             let commands = msg.author.isDev ? category.commands : category.commands.filter(x => !x.option.devOnly);
             commands = commands.filter(x => x.option.aliases.length);

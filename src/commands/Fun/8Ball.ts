@@ -7,7 +7,7 @@ const eightBallResponse: {[key: string]: string[] | void} = require("../../../as
 @DeclareCommand("8ball", {
     aliases: ["8ball"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_8BALL_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_8BALL_DESCRIPTION"),
         usage: "8ball <question>",
         examples: ["8ball are you right ?"]
     },
@@ -16,7 +16,7 @@ const eightBallResponse: {[key: string]: string[] | void} = require("../../../as
         {
             identifier: "text",
             match: "rest",
-            prompt: (msg): string => msg.guild!.loc.get("COMMAND_8BALL_PROMPT"),
+            prompt: (msg): string => msg.ctx.lang("COMMAND_8BALL_PROMPT"),
             type: "string"
         }
     ]

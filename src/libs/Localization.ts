@@ -5,7 +5,7 @@ import { Collection, Guild } from "discord.js";
 import { join } from "path";
 import { hide, constantly } from "@yumeko/decorators";
 
-type DefaultLang = typeof en_US;
+export type DefaultLang = typeof en_US;
 
 export class Localization {
     @hide

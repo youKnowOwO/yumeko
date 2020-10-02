@@ -5,7 +5,7 @@ import { DeclareCommand, isMusicPlaying, isMemberInVoiceChannel, isSameVoiceChan
 @DeclareCommand("stop", {
     aliases: ["stop"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_STOP_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_MUSIC_STOP_DESCRIPTION"),
         usage: "stop",
         examples: ["stop"]
     },
@@ -22,7 +22,7 @@ export default class extends Command {
     public async exec(msg: Message): Promise<Message> {
         const { music } = msg.guild!;
         music.stop();
-        return msg.ctx.send(msg.guild!.loc.get("COMMAND_MUSIC_STOP_STOPPED"));
+        return msg.ctx.send(msg.ctx.lang("COMMAND_MUSIC_STOP_STOPPED"));
     }
 
     public ignore(msg: Message): boolean {

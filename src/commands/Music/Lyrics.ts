@@ -21,7 +21,7 @@ interface LyricsResponse {
 @DeclareCommand("lyrics", {
     aliases: ["lyrics", "lyrics"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_MUSIC_LYRICS_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_MUSIC_LYRICS_DESCRIPTION"),
         usage: "lyrics",
         examples: ["lyrics Moo Doja Cat"]
     },
@@ -39,7 +39,7 @@ export default class extends Command {
     @constantly
     public async exec(msg: Message, { title }: { title: string }): Promise<Message> {
         const result = await this.getLyrics(title);
-        if (!result) return msg.ctx.send(msg.guild!.loc.get("COMMAND_UTIL_NO_RESULT_FOUND"));
+        if (!result) return msg.ctx.send(msg.ctx.lang("COMMAND_UTIL_NO_RESULT_FOUND"));
         const pages = chunk(result.lyrics, 2048);
         const embed = new MessageEmbed()
             .setColor(this.client.config.color)

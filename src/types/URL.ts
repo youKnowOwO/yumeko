@@ -11,7 +11,7 @@ export default class TypeURL implements Type {
         try {
             return new URL(content);
         } catch {
-            throw new CustomError("!PARSING", msg.guild!.loc.get("TYPE_URL_NOT_FOUND"));
+            throw new CustomError("!PARSING", msg.ctx.lang("TYPE_URL_NOT_FOUND"));
         }
     }
 }

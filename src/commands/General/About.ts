@@ -5,7 +5,7 @@ import { DeclareCommand, constantly } from "@yumeko/decorators";
 @DeclareCommand("about", {
     aliases: ["about"],
     description: {
-        content: (msg): string => msg.guild!.loc.get("COMMAND_ABOUT_DESCRIPTION"),
+        content: (msg): string => msg.ctx.lang("COMMAND_ABOUT_DESCRIPTION"),
         usage: "about",
         examples: ["about"]
     },
@@ -15,6 +15,6 @@ export default class extends Command {
     @constantly
     public async exec(msg: Message): Promise<Message> {
         const commands = this.collector.commands.filter(x => !!x.option.aliases.length);
-        return msg.ctx.send(msg.guild!.loc.get("COMMAND_ABOUT_ABOUTME", msg.author, this.client, commands, msg.prefix || msg.guild!.prefix));
+        return msg.ctx.send(msg.ctx.lang("COMMAND_ABOUT_ABOUTME", msg.author, this.client, commands, msg.prefix || msg.guild!.prefix));
     }
 }

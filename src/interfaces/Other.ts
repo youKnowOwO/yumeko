@@ -1,5 +1,6 @@
 import type { Message, MessageEmbed } from "discord.js";
-import { ArgumentTypeFunction } from "@yumeko/interfaces/Command";
+import type { ArgumentTypeFunction } from "@yumeko/interfaces/Command";
+import type { DefaultLang } from "@yumeko/libs/Localization";
 
 export interface Type {
     readonly name: string;
@@ -13,6 +14,7 @@ export interface TypeCodeReturn {
 
 export interface MessageContext {
     send(content: unknown, options?: any): Promise<Message>;
+    lang<K extends keyof DefaultLang>(key: K, ...args: Parameters<DefaultLang[K]>): string;
 }
 
 export interface PaginationPayload {

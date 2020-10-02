@@ -9,7 +9,7 @@ export default class TypeNumber implements Type {
     @constantly
     public exec(msg: Message, content: string): number {
         const result = Number(content);
-        if (isNaN(result)) throw new CustomError("!PARSING", msg.guild!.loc.get("TYPE_NUMBER_NOT_FOUND", content));
+        if (isNaN(result)) throw new CustomError("!PARSING", msg.ctx.lang("TYPE_NUMBER_NOT_FOUND", content));
         return result;
     }
 }
