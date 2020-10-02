@@ -28,7 +28,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("asciify", {
         aliases: ["asciify", "ascii"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_TEXT_MANIPULATION_ASCII_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_ASCII_DESCRIPTION"),
             usage: "asciify <text>",
             examples: ["ascii yo"]
         },
@@ -37,7 +37,7 @@ default_1 = __decorate([
             {
                 identifier: "text",
                 match: "rest",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_TEXT_MANIPULATION_PROMPT"),
+                prompt: (msg) => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_PROMPT"),
                 type: (_, content) => {
                     if (content.length > 14)
                         throw new CustomError_1.default("!PARSING", "**Only \`14\` characters are allowed**");

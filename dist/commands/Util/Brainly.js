@@ -124,11 +124,11 @@ let default_1 = class extends Command_1.default {
         const baselink = regions[region];
         const data = await this.getData(question, region);
         if (!data)
-            return msg.ctx.send(msg.guild.loc.get("COMMAND_UTIL_NO_RESULT_FOUND"));
+            return msg.ctx.send(msg.ctx.lang("COMMAND_UTIL_NO_RESULT_FOUND"));
         const { node } = data[0];
         const embed = new discord_js_1.MessageEmbed()
             .setColor(0x5BB8FF)
-            .setTitle(msg.guild.loc.get("COMMAND_BRAINLY_QUESTION"))
+            .setTitle(msg.ctx.lang("COMMAND_BRAINLY_QUESTION"))
             .setAuthor("Brainly User", defaultAvatar)
             .setURL(`${baselink.uri}/${baselink.question}/${node.databaseId}`)
             .setDescription(td.turndown(node.content));
@@ -152,7 +152,7 @@ let default_1 = class extends Command_1.default {
             await msg.channel.send(embed);
             embed.setColor("GREEN").setImage("").spliceFields(0, 1)
                 .setAuthor("Brainly User", defaultAvatar)
-                .setTitle(msg.guild.loc.get("COMMAND_BRAINLY_ANSWER", answer.isBest))
+                .setTitle(msg.ctx.lang("COMMAND_BRAINLY_ANSWER", answer.isBest))
                 .setDescription(td.turndown(answer.content))
                 .setFooter(`⭐ ${answer.rating} ♥️ ${answer.thanksCount}`);
             if (answer.author)
@@ -195,7 +195,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("brainly", {
         aliases: ["brainly", "brainless"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_BRAINLY_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_BRAINLY_DESCRIPTION"),
             usage: "brainly <question> [--region]",
             examples: ["brainly flowchart", "brainly flowchart --id"]
         },
@@ -211,16 +211,16 @@ default_1 = __decorate([
                 type: (msg, content) => {
                     const keys = Object.keys(regions);
                     if (!keys.includes(content.toLowerCase()))
-                        throw new CustomError_1.default("!PARSING", msg.guild.loc.get("COMMAND_BRAINLY_INVALID_REGION", keys));
+                        throw new CustomError_1.default("!PARSING", msg.ctx.lang("COMMAND_BRAINLY_INVALID_REGION", keys));
                     return content;
                 },
-                default: (msg) => msg.guild.loc.get("META_ID").split("_")[1].toLowerCase()
+                default: (msg) => msg.ctx.lang("META_ID").split("_")[1].toLowerCase()
             },
             {
                 identifier: "question",
                 match: "rest",
                 type: "string",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_BRAINLY_PROMPT")
+                prompt: (msg) => msg.ctx.lang("COMMAND_BRAINLY_PROMPT")
             }
         ]
     })

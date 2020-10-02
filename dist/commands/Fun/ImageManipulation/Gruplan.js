@@ -14,7 +14,7 @@ const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const decorators_1 = require("@yumeko/decorators");
 let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { firstStep, secondStep, thirdStep }) {
-        const m = await msg.channel.send(msg.guild.loc.get("COMMAND_FUN_PAINTING"));
+        const m = await msg.channel.send(msg.ctx.lang("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await node_superfetch_1.default.get("https://emilia-api.xyz/api/gru-plan")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({ firstStep, secondStep, thirdStep });
@@ -29,7 +29,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("gru-plan", {
         aliases: ["gru-plan"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_IMAGE_MANIPULATION_GRUPLAN_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_GRUPLAN_DESCRIPTION"),
             usage: "gru-plan <firstStep> || <secondStep> || <thirdStep>",
             examples: ["gru-plan I don't know || about || this meme"]
         },
@@ -43,19 +43,19 @@ default_1 = __decorate([
                 identifier: "firstStep",
                 match: "single",
                 type: "string",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_1")
+                prompt: (msg) => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_1")
             },
             {
                 identifier: "secondStep",
                 match: "single",
                 type: "string",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_2")
+                prompt: (msg) => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_2")
             },
             {
                 identifier: "thirdStep",
                 match: "single",
                 type: "string",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_3")
+                prompt: (msg) => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_GRUPLAN_PROMPT_3")
             }
         ]
     })

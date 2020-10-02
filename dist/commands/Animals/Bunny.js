@@ -19,7 +19,7 @@ class default_1 extends Command_1.default {
         super(client, animal, {
             aliases: [animal],
             description: {
-                content: (msg) => msg.guild.loc.get("COMMAND_ANIMAL_DESCRIPTION", en_US_1.Animals[animal]),
+                content: (msg) => msg.ctx.lang("COMMAND_ANIMAL_DESCRIPTION", en_US_1.Animals[animal]),
                 usage: animal,
                 examples: [animal]
             },
@@ -34,7 +34,7 @@ class default_1 extends Command_1.default {
         const embed = new discord_js_1.MessageEmbed()
             .setColor(this.client.config.color)
             .setURL(image)
-            .setTitle(msg.guild.loc.get("COMMAND_ANIMAL_CLICK_HERE"))
+            .setTitle(msg.ctx.lang("COMMAND_ANIMAL_CLICK_HERE"))
             .setImage(image);
         return msg.ctx.send(embed);
     }

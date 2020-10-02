@@ -26,5 +26,8 @@ class MessageContext {
         }
         return message;
     }
+    lang(msg, key, ...args) {
+        return msg.guild.loc.get(key, ...args);
+    }
 }
 exports.default = MessageContext;

@@ -25,7 +25,7 @@ let default_1 = class default_1 extends Command_1.default {
                 .setAuthor(data.title, "https://listen.moe/_nuxt/img/logo-square-64.248c1f3.png")
                 .setColor(this.client.config.color)
                 .setImage(data.cover)
-                .setDescription(msg.guild.loc.get("COMMAND_MUSIC_NP_MOE_PARSE", data));
+                .setDescription(msg.ctx.lang("COMMAND_MUSIC_NP_MOE_PARSE", data));
             if (data.event)
                 embed.setThumbnail(data.event.image);
             return msg.ctx.send(embed);
@@ -51,7 +51,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("np", {
         aliases: ["np", "nowplay"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_NP_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_MUSIC_NP_DESCRIPTION"),
             usage: "np",
             examples: ["np"]
         },

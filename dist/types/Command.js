@@ -19,7 +19,7 @@ class TypeCommand {
                 .splice(0, 10)
                 .map(x => x.replace(content.toLowerCase(), `**${content.toLowerCase()}**`))
                 .join(", ");
-            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_COMMAND_HAS_SIMILIAR", content, similiar));
+            throw new CustomError_1.default("!PARSING", msg.ctx.lang("TYPE_COMMAND_HAS_SIMILIAR", content, similiar));
         }
         return command;
     }

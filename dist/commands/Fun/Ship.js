@@ -18,7 +18,7 @@ let default_1 = class default_1 extends Command_1.default {
             userTwo = userOne;
             userOne = msg.author;
         }
-        const m = await msg.channel.send(msg.guild.loc.get("COMMAND_FUN_PAINTING"));
+        const m = await msg.channel.send(msg.ctx.lang("COMMAND_FUN_PAINTING"));
         const userOneAvatar = await canvas_constructor_1.resolveImage(userOne.displayAvatarURL({ format: "png", size: 512 }));
         const userTwoAvatar = await canvas_constructor_1.resolveImage(userTwo.displayAvatarURL({ format: "png", size: 512 }));
         const attachment = await new canvas_constructor_1.Canvas(1024, 524)
@@ -54,7 +54,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("ship", {
         aliases: ["ship"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_SHIP_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_SHIP_DESCRIPTION"),
             usage: "ship <user> [user] [shipname]",
             examples: ["ship @unknown"]
         },
@@ -64,7 +64,7 @@ default_1 = __decorate([
                 identifier: "userOne",
                 match: "single",
                 type: "user",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_SHIP_PROMPT")
+                prompt: (msg) => msg.ctx.lang("COMMAND_SHIP_PROMPT")
             },
             {
                 identifier: "userTwo",

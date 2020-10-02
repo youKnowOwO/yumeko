@@ -6,7 +6,8 @@ class YumekoMessage extends discord_js_1.Structures.get("Message") {
         super(...arguments);
         this.args = [];
         this.ctx = {
-            send: (content, options) => this.client.context.send(this, content, options)
+            send: (content, options) => this.client.context.send(this, content, options),
+            lang: (key, ...args) => this.client.context.lang(this, key, ...args)
         };
     }
 }

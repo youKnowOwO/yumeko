@@ -23,7 +23,7 @@ let default_1 = class default_1 extends Command_1.default {
             .setColor(this.client.config.color)
             .setDescription(`> ${body.description}`)
             .setImage(body.image)
-            .addField("\u200B", msg.guild.loc.get("COMMAND_RANDOM_ANIME_PARSE_RESPONSE", body));
+            .addField("\u200B", msg.ctx.lang("COMMAND_RANDOM_ANIME_PARSE_RESPONSE", body));
         if (body.alternate_name.length)
             embed.setTitle(body.alternate_name).setAuthor(body.name);
         const watchs = [];
@@ -31,7 +31,7 @@ let default_1 = class default_1 extends Command_1.default {
             const platforms = body.watch[key].map(x => `[${x.platform}](${x.url})`).join(", ");
             watchs.push(`${key.toUpperCase()}: ${platforms}`);
         }
-        embed.addField(msg.guild.loc.get("COMMAND_RANDOM_ANIME_PARSE_WATCH"), watchs.join("\n"));
+        embed.addField(msg.ctx.lang("COMMAND_RANDOM_ANIME_PARSE_WATCH"), watchs.join("\n"));
         return msg.ctx.send(embed);
     }
 };
@@ -42,7 +42,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("random-anime", {
         aliases: ["random-anime"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_RANDOM_ANIME_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_RANDOM_ANIME_DESCRIPTION"),
             usage: "random-anime",
             examples: ["rabdom-anime"]
         },

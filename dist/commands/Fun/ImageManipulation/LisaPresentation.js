@@ -14,7 +14,7 @@ const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const decorators_1 = require("@yumeko/decorators");
 let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { text }) {
-        const m = await msg.channel.send(msg.guild.loc.get("COMMAND_FUN_PAINTING"));
+        const m = await msg.channel.send(msg.ctx.lang("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await node_superfetch_1.default.get("https://emilia-api.xyz/api/lisa-presentation")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({ text });
@@ -29,7 +29,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("lisa-presentation", {
         aliases: ["lisa-presentation", "lisapresentation", "lisap"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_IMAGE_MANIPULATION_LISA_PRESENTATION_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_LISA_PRESENTATION_DESCRIPTION"),
             usage: "lisa-presentation <text>",
             examples: ["lisa-presentation idk"]
         },
@@ -42,7 +42,7 @@ default_1 = __decorate([
                 identifier: "text",
                 match: "rest",
                 type: "string",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_IMAGE_MANIPULATION_LISA_PRESENTATION_PROMPT")
+                prompt: (msg) => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_LISA_PRESENTATION_PROMPT")
             }
         ]
     })

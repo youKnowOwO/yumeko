@@ -12,7 +12,7 @@ class default_1 extends Command_1.default {
         super(client, "game", {
             aliases: ["game", "mini-game"],
             description: {
-                content: (msg) => msg.guild.loc.get("COMMAND_GAME_LIST_DESCRIPTION"),
+                content: (msg) => msg.ctx.lang("COMMAND_GAME_LIST_DESCRIPTION"),
                 usage: "game [game]",
                 examples: ["game gtn"]
             },
@@ -29,7 +29,7 @@ class default_1 extends Command_1.default {
                         const list = this.collector.commands.filter(x => x.identifier.includes("game-"));
                         const command = list.find(x => x.option.description.adionalInfo.slice(1).includes(content.toLowerCase()));
                         if (!command)
-                            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("COMMAND_GAME_LIST_NOT_FOUND"));
+                            throw new CustomError_1.default("!PARSING", msg.ctx.lang("COMMAND_GAME_LIST_NOT_FOUND"));
                         return command;
                     }
                 }
@@ -40,7 +40,7 @@ class default_1 extends Command_1.default {
     async exec(msg, { game }) {
         if (game) {
             if (this.session.has(`${msg.channel.id}/${game.identifier}`)) {
-                msg.ctx.send(msg.guild.loc.get("COMMAND_GAME_LIST_ONLY_ONE"));
+                msg.ctx.send(msg.ctx.lang("COMMAND_GAME_LIST_ONLY_ONE"));
                 throw new CustomError_1.default("CANCELED");
             }
             this.session.add(`${msg.channel.id}/${game.identifier}`);
@@ -59,7 +59,7 @@ class default_1 extends Command_1.default {
                     *cmds: ${cmds.map(x => `\`${x}\``).join(", ")}*
                 `;
         }).join("\n\n"))
-            .setFooter(msg.guild.loc.get("COMMAND_GAME_LIST_INFO", msg.prefix));
+            .setFooter(msg.ctx.lang("COMMAND_GAME_LIST_INFO", msg.prefix));
         return msg.ctx.send(embed);
     }
 }

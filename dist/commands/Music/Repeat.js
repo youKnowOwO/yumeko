@@ -15,7 +15,7 @@ let default_1 = class default_1 extends Command_1.default {
     async exec(msg) {
         const { music } = msg.guild;
         music.setLoop(music.loopType === 2 ? 0 : 2);
-        return msg.ctx.send(msg.guild.loc.get(music.loopType === 2 ? "COMMAND_MUSIC_REPEAT_ON" : "COMMAND_MUSIC_REPEAT_OFF"));
+        return msg.ctx.send(msg.ctx.lang(music.loopType === 2 ? "COMMAND_MUSIC_REPEAT_ON" : "COMMAND_MUSIC_REPEAT_OFF"));
     }
     ignore(msg) {
         return !!msg.guild.music.song && (msg.guild.music.listeners.length < 2 ||
@@ -33,7 +33,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("repeat", {
         aliases: ["repeat"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_REPEAT_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_MUSIC_REPEAT_DESCRIPTION"),
             usage: "repeat",
             examples: ["repeat"]
         },

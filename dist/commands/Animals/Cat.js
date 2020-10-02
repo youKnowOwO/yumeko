@@ -23,7 +23,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("cat", {
         aliases: ["cat", "kitty"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_ANIMAL_DESCRIPTION", 2),
+            content: (msg) => msg.ctx.lang("COMMAND_ANIMAL_DESCRIPTION", 2),
             usage: "cat",
             examples: ["cat"]
         },

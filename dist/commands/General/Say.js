@@ -25,7 +25,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("say", {
         aliases: ["say"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_SAY_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_SAY_DESCRIPTION"),
             usage: "say <text> [--delete]",
             examples: ["say salam"]
         },
@@ -40,7 +40,7 @@ default_1 = __decorate([
                 identifier: "text",
                 type: "string",
                 match: "rest",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_SAY_PROMPT")
+                prompt: (msg) => msg.ctx.lang("COMMAND_SAY_PROMPT")
             }
         ]
     })

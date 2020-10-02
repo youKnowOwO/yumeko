@@ -82,14 +82,14 @@ class ArgumentParser {
         while (!result && tries < 3) {
             const sign = !tries ? "❓" : "❌";
             const prompt = !tries ? (typeof arg.prompt === "function" ? arg.prompt(msg) : arg.prompt) : toSend;
-            await msg.channel.send(msg.guild.loc.get("ARGUMENT_PARSER_PROMPT", sign, prompt));
+            await msg.channel.send(msg.ctx.lang("ARGUMENT_PARSER_PROMPT", sign, prompt));
             const filter = (m) => m.author.id === msg.author.id;
             const responses = await msg.channel.awaitMessages(filter, { max: 1, time: 30000 });
             if (!responses.size)
                 throw new CustomError_1.default("CANCELED");
             let m = responses.first().content;
             if (m.toLowerCase() === "cancel") {
-                msg.channel.send(msg.guild.loc.get("ARGUMENT_PARSER_CANCELED"));
+                msg.channel.send(msg.ctx.lang("ARGUMENT_PARSER_CANCELED"));
                 throw new CustomError_1.default("CANCELED");
             }
             if (m.toLowerCase() === "|cancel|")
@@ -107,7 +107,7 @@ class ArgumentParser {
             tries++;
         }
         if (!result) {
-            msg.channel.send(msg.guild.loc.get("ARGUMENT_PARSER_NOT_UNDERSTAND", msg.author));
+            msg.channel.send(msg.ctx.lang("ARGUMENT_PARSER_NOT_UNDERSTAND", msg.author));
             throw new CustomError_1.default("!UNDERSTAND");
         }
         return result;

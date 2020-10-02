@@ -18,7 +18,7 @@ class TypeNumber {
     exec(msg, content) {
         const result = Number(content);
         if (isNaN(result))
-            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_NUMBER_NOT_FOUND", content));
+            throw new CustomError_1.default("!PARSING", msg.ctx.lang("TYPE_NUMBER_NOT_FOUND", content));
         return result;
     }
 }

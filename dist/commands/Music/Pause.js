@@ -15,7 +15,7 @@ let default_1 = class default_1 extends Command_1.default {
     async exec(msg) {
         const { music } = msg.guild;
         music.pause();
-        return msg.ctx.send(msg.guild.loc.get(music.paused ? "COMMAND_MUSIC_PAUSE_ON" : "COMMAND_MUSIC_PAUSE_OFF"));
+        return msg.ctx.send(msg.ctx.lang(music.paused ? "COMMAND_MUSIC_PAUSE_ON" : "COMMAND_MUSIC_PAUSE_OFF"));
     }
     ignore(msg) {
         return !!msg.guild.music.song && (msg.guild.music.listeners.length < 2 ||
@@ -33,7 +33,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("pause", {
         aliases: ["pause"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_PAUSE_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_MUSIC_PAUSE_DESCRIPTION"),
             usage: "pause",
             examples: ["pause"]
         },

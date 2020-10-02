@@ -26,7 +26,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("dadjoke", {
         aliases: ["dadjoke"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_DADJOKE_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_DADJOKE_DESCRIPTION"),
             usage: "dadjoke",
             examples: ["dadjoke"]
         },

@@ -18,15 +18,15 @@ let default_1 = class default_1 extends Command_1.default {
             const listeners = music.listeners.length;
             if (listeners > 3 && music.song.requester.id !== msg.author.id) {
                 if (music.skipVotes.includes(msg.author))
-                    return msg.ctx.send(msg.guild.loc.get("COMMAND_MUSIC_SKIP_ALREADY_VOTE"));
+                    return msg.ctx.send(msg.ctx.lang("COMMAND_MUSIC_SKIP_ALREADY_VOTE"));
                 music.skipVotes.push(msg.author);
                 const needed = Math.round(listeners * 0.4);
                 if (music.skipVotes.length < needed)
-                    return msg.ctx.send(msg.guild.loc.get("COMMAND_MUSIC_SKIP_NEED_MORE_VOTE", music.skipVotes.length, needed));
+                    return msg.ctx.send(msg.ctx.lang("COMMAND_MUSIC_SKIP_NEED_MORE_VOTE", music.skipVotes.length, needed));
             }
         }
         music.skip();
-        return msg.ctx.send(msg.guild.loc.get("COMMAND_MUSIC_SKIP_SKIPPED"));
+        return msg.ctx.send(msg.ctx.lang("COMMAND_MUSIC_SKIP_SKIPPED"));
     }
 };
 __decorate([
@@ -37,14 +37,14 @@ __decorate([
     decorators_1.isSameVoiceChannel(),
     decorators_1.inhibit((msg, { forced }) => {
         if (forced && !msg.member.permissions.has("MANAGE_GUILD"))
-            return msg.guild.loc.get("COMMAND_RUNNER_MISSPERMS", msg.author, "`MANAGE_GUILD`");
+            return msg.ctx.lang("COMMAND_RUNNER_MISSPERMS", msg.author, "`MANAGE_GUILD`");
     })
 ], default_1.prototype, "exec", null);
 default_1 = __decorate([
     decorators_1.DeclareCommand("skip", {
         aliases: ["skip"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_SKIP_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_MUSIC_SKIP_DESCRIPTION"),
             usage: "skip",
             examples: ["skip", "--force"]
         },

@@ -26,7 +26,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("8ball", {
         aliases: ["8ball"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_8BALL_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_8BALL_DESCRIPTION"),
             usage: "8ball <question>",
             examples: ["8ball are you right ?"]
         },
@@ -35,7 +35,7 @@ default_1 = __decorate([
             {
                 identifier: "text",
                 match: "rest",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_8BALL_PROMPT"),
+                prompt: (msg) => msg.ctx.lang("COMMAND_8BALL_PROMPT"),
                 type: "string"
             }
         ]

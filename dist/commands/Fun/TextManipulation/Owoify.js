@@ -32,7 +32,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("owoify", {
         aliases: ["owoify"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_TEXT_MANIPULATION_OWOIFY_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_OWOIFY_DESCRIPTION"),
             usage: "owoify <text>",
             examples: ["owoify good boy"]
         },
@@ -41,7 +41,7 @@ default_1 = __decorate([
             {
                 identifier: "text",
                 match: "rest",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_TEXT_MANIPULATION_PROMPT"),
+                prompt: (msg) => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_PROMPT"),
                 type: "string"
             }
         ]

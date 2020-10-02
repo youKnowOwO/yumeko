@@ -20,7 +20,7 @@ class TypeURL {
             return new URL(content);
         }
         catch {
-            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_URL_NOT_FOUND"));
+            throw new CustomError_1.default("!PARSING", msg.ctx.lang("TYPE_URL_NOT_FOUND"));
         }
     }
 }

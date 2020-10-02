@@ -14,7 +14,7 @@ const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const decorators_1 = require("@yumeko/decorators");
 let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { title, text, image }) {
-        const m = await msg.channel.send(msg.guild.loc.get("COMMAND_FUN_PAINTING"));
+        const m = await msg.channel.send(msg.ctx.lang("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await node_superfetch_1.default.get("https://emilia-api.xyz/api/demotivational")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({ title, text, image });
@@ -29,7 +29,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("demotivational", {
         aliases: ["demotivational", "dmotivation", "dmtvtnl"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_DESCRIPTION"),
             usage: "demotivational <title> || <text> || [user|image]",
             examples: ["demotivational YOU CAN'T DO IT || BECAUSE YOU'RE SO USELESS"]
         },
@@ -43,13 +43,13 @@ default_1 = __decorate([
                 identifier: "title",
                 match: "single",
                 type: "string",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_PROMPT_1")
+                prompt: (msg) => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_PROMPT_1")
             },
             {
                 identifier: "text",
                 match: "single",
                 type: "string",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_PROMPT_2")
+                prompt: (msg) => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_DEMOTIVATIONAL_PROMPT_2")
             },
             {
                 identifier: "image",

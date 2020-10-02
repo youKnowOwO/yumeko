@@ -17,7 +17,7 @@ let default_1 = class default_1 extends Command_1.default {
         const inviteUrl = await this.client.generateInvite(["ATTACH_FILES", "EMBED_LINKS", "CONNECT", "SPEAK", "ADD_REACTIONS", "SEND_MESSAGES", "MANAGE_MESSAGES"]);
         const embed = new discord_js_1.MessageEmbed()
             .setColor("RANDOM")
-            .setDescription(msg.guild.loc.get("COMMAND_INVITE_CLICK_HRER", inviteUrl));
+            .setDescription(msg.ctx.lang("COMMAND_INVITE_CLICK_HRER", inviteUrl));
         return msg.ctx.send(embed);
     }
 };
@@ -28,7 +28,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("invite", {
         aliases: ["invite"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_INVITE_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_INVITE_DESCRIPTION"),
             usage: "invite",
             examples: ["invite"]
         },

@@ -23,7 +23,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("aesthetic", {
         aliases: ["aesthetic"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_TEXT_MANIPULATION_AESTHETIC_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_AESTHETIC_DESCRIPTION"),
             usage: "aesthetic <text>",
             examples: ["aesthetic hahaha"]
         },
@@ -32,7 +32,7 @@ default_1 = __decorate([
             {
                 identifier: "text",
                 match: "rest",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_TEXT_MANIPULATION_PROMPT"),
+                prompt: (msg) => msg.ctx.lang("COMMAND_TEXT_MANIPULATION_PROMPT"),
                 type: "string"
             }
         ]

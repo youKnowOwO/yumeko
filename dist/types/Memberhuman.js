@@ -12,9 +12,9 @@ class TypeMemberhuman {
         const memberType = msg.client.collector.runner.argsParser.getType("member");
         const member = memberType(msg, content);
         if (member.user.bot)
-            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_HUMAN_BOT"));
+            throw new CustomError_1.default("!PARSING", msg.ctx.lang("TYPE_HUMAN_BOT"));
         if (member.user.id === msg.author.id)
-            throw new CustomError_1.default("!PARSING", msg.guild.loc.get("TYPE_HUMAN_SELF"));
+            throw new CustomError_1.default("!PARSING", msg.ctx.lang("TYPE_HUMAN_SELF"));
         return member;
     }
 }

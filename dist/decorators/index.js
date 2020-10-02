@@ -46,21 +46,21 @@ exports.inhibit = inhibit;
 function isMusicPlaying() {
     return inhibit(msg => {
         if (!msg.guild.music.song)
-            return msg.guild.loc.get("COMMAND_MUSIC_NOT_PLAY");
+            return msg.ctx.lang("COMMAND_MUSIC_NOT_PLAY");
     });
 }
 exports.isMusicPlaying = isMusicPlaying;
 function isSameVoiceChannel() {
     return inhibit(msg => {
         if (msg.guild.me.voice.channelID && msg.guild.me.voice.channelID !== msg.member.voice.channelID)
-            return msg.guild.loc.get("COMMAND_MUSIC_NOT_SAME_VC", msg.guild.me.voice.channel);
+            return msg.ctx.lang("COMMAND_MUSIC_NOT_SAME_VC", msg.guild.me.voice.channel);
     });
 }
 exports.isSameVoiceChannel = isSameVoiceChannel;
 function isMemberInVoiceChannel() {
     return inhibit(msg => {
         if (!msg.member.voice.channelID)
-            return msg.guild.loc.get("COMMAND_MUISC_MEMBER_NOT_VC");
+            return msg.ctx.lang("COMMAND_MUISC_MEMBER_NOT_VC");
     });
 }
 exports.isMemberInVoiceChannel = isMemberInVoiceChannel;
@@ -70,16 +70,16 @@ function isMemberVoiceChannelJoinable(ignoreWhenSame = true) {
         if (ignoreWhenSame && msg.guild.me.voice.channelID && msg.guild.me.voice.channelID === msg.member.voice.channelID)
             return undefined;
         if (!vc.permissionsFor(msg.guild.me).has(["CONNECT", "SPEAK"]))
-            return msg.guild.loc.get("COMMAND_MUSIC_LACK_PERM_CONNECT_OR_SPEAK");
+            return msg.ctx.lang("COMMAND_MUSIC_LACK_PERM_CONNECT_OR_SPEAK");
         else if (!vc.joinable)
-            return msg.guild.loc.get("COMMAND_MUSIC_VC_NOT_JOINABLE");
+            return msg.ctx.lang("COMMAND_MUSIC_VC_NOT_JOINABLE");
     });
 }
 exports.isMemberVoiceChannelJoinable = isMemberVoiceChannelJoinable;
 function isInStream() {
     return inhibit(msg => {
         if (msg.guild.music.song && msg.guild.music.song.isStream)
-            return msg.guild.loc.get("COMMAND_MUSIC_CANT_PLAY_CAUSE_STREAM");
+            return msg.ctx.lang("COMMAND_MUSIC_CANT_PLAY_CAUSE_STREAM");
     });
 }
 exports.isInStream = isInStream;
@@ -87,16 +87,16 @@ function verifyWantChallange(key, offerWithClient = false) {
     return inhibit(async (msg, args) => {
         let opponent = args[key];
         if (opponent) {
-            const verifyMsg = await msg.channel.send(msg.guild.loc.get("COMMAND_GAME_VERIFY_WAIT", opponent));
+            const verifyMsg = await msg.channel.send(msg.ctx.lang("COMMAND_GAME_VERIFY_WAIT", opponent));
             const verified = await Util_1.verify(verifyMsg, opponent);
             if (!verified) {
-                const message = msg.guild.loc.get("COMMAND_GAME_VERIFY_NOT_ACCEPT", opponent, offerWithClient);
+                const message = msg.ctx.lang("COMMAND_GAME_VERIFY_NOT_ACCEPT", opponent, offerWithClient);
                 if (!offerWithClient)
                     return message;
                 await verifyMsg.edit(message);
                 const accept = await Util_1.verify(verifyMsg, msg.author);
                 if (!accept)
-                    return msg.guild.loc.get("COMMAND_GAME_VERIFY_DECLINE_OFFER");
+                    return msg.ctx.lang("COMMAND_GAME_VERIFY_DECLINE_OFFER");
                 opponent = msg.client.user;
             }
         }

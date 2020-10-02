@@ -23,14 +23,14 @@ __decorate([
     decorators_1.constantly,
     decorators_1.inhibit(msg => {
         if (msg.guild.music.song)
-            return msg.guild.loc.get("COMMAND_MUSIC_PLAYMOE_INHIBIT");
+            return msg.ctx.lang("COMMAND_MUSIC_PLAYMOE_INHIBIT");
     })
 ], default_1.prototype, "exec", null);
 default_1 = __decorate([
     decorators_1.DeclareCommand("play-moe", {
         aliases: ["play-moe", "playmoe"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_PLAYMOE_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_MUSIC_PLAYMOE_DESCRIPTION"),
             usage: "play-moe <jpop | kpop>",
             examples: ["play-moe jpop"]
         },
@@ -39,11 +39,11 @@ default_1 = __decorate([
             {
                 identifier: "link",
                 match: "single",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_MUSIC_PLAYMOE_PROMPT"),
+                prompt: (msg) => msg.ctx.lang("COMMAND_MUSIC_PLAYMOE_PROMPT"),
                 type: (msg, content) => {
                     content = content.toLowerCase();
                     if (!["jpop", "kpop"].includes(content))
-                        throw new CustomError_1.default("!PARSING", msg.guild.loc.get("COMMAND_MUSIC_PLAYMOE_INVALID_TYPE"));
+                        throw new CustomError_1.default("!PARSING", msg.ctx.lang("COMMAND_MUSIC_PLAYMOE_INVALID_TYPE"));
                     return `https://listen.moe/${content === "jpop" ? "stream" : "kpop/stream"}`;
                 }
             }

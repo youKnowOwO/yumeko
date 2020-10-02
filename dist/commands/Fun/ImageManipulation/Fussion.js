@@ -14,7 +14,7 @@ const node_superfetch_1 = __importDefault(require("node-superfetch"));
 const decorators_1 = require("@yumeko/decorators");
 let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { user, user2 }) {
-        const m = await msg.channel.send(msg.guild.loc.get("COMMAND_FUN_PAINTING"));
+        const m = await msg.channel.send(msg.ctx.lang("COMMAND_FUN_PAINTING"));
         const { raw: attachment } = await node_superfetch_1.default.get("https://emilia-api.xyz/api/fusion")
             .set("Authorization", `Bearer ${process.env.EMIAPI}`)
             .query({
@@ -32,7 +32,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("fusion", {
         aliases: ["fusion"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_IMAGE_MANIPULATION_FUSSION_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_FUSSION_DESCRIPTION"),
             usage: "fusion <user> [user]",
             examples: ["fusion @unknown"]
         },
@@ -45,7 +45,7 @@ default_1 = __decorate([
                 identifier: "user",
                 match: "single",
                 type: "user",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_IMAGE_MANIPULATION_FUSSION_PROMPT")
+                prompt: (msg) => msg.ctx.lang("COMMAND_IMAGE_MANIPULATION_FUSSION_PROMPT")
             },
             {
                 identifier: "user2",

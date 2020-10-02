@@ -14,7 +14,7 @@ const decorators_1 = require("@yumeko/decorators");
 let default_1 = class default_1 extends Command_1.default {
     async exec(msg) {
         const commands = this.collector.commands.filter(x => !!x.option.aliases.length);
-        return msg.ctx.send(msg.guild.loc.get("COMMAND_ABOUT_ABOUTME", msg.author, this.client, commands, msg.prefix || msg.guild.prefix));
+        return msg.ctx.send(msg.ctx.lang("COMMAND_ABOUT_ABOUTME", msg.author, this.client, commands, msg.prefix || msg.guild.prefix));
     }
 };
 __decorate([
@@ -24,7 +24,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("about", {
         aliases: ["about"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_ABOUT_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_ABOUT_DESCRIPTION"),
             usage: "about",
             examples: ["about"]
         },

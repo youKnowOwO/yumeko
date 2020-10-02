@@ -18,7 +18,7 @@ let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { query }) {
         const result = await this.getResult(query);
         if (!result || !result.url || !result.title || !result.summary)
-            return msg.ctx.send(msg.guild.loc.get("COMMAND_UTIL_NO_RESULT_FOUND"));
+            return msg.ctx.send(msg.ctx.lang("COMMAND_UTIL_NO_RESULT_FOUND"));
         const summary = new turndown_1.default()
             .addRule("hyperlink", {
             filter: "a",
@@ -62,7 +62,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("mdn", {
         aliases: ["mdn", "mozilla-developer-network"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_MDN_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_MDN_DESCRIPTION"),
             usage: "mdn <query>",
             examples: ["mdn String"]
         },
@@ -75,7 +75,7 @@ default_1 = __decorate([
                 identifier: "query",
                 match: "rest",
                 type: "string",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_MDN_PROMPT")
+                prompt: (msg) => msg.ctx.lang("COMMAND_MDN_PROMPT")
             }
         ]
     })

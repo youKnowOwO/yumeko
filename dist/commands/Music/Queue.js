@@ -39,7 +39,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("queue", {
         aliases: ["queue", "nowplay"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_QUEUE_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_MUSIC_QUEUE_DESCRIPTION"),
             usage: "queue",
             examples: ["queue"]
         },

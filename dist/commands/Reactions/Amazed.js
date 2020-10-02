@@ -11,7 +11,7 @@ class default_1 extends Command_1.default {
         super(client, react, {
             aliases: [react],
             description: {
-                content: (msg) => msg.guild.loc.get("COMMAND_REACTIONS_DESCRIPTION", en_US_1.Reactions[react]),
+                content: (msg) => msg.ctx.lang("COMMAND_REACTIONS_DESCRIPTION", en_US_1.Reactions[react]),
                 usage: react,
                 examples: [react]
             },

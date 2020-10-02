@@ -58,7 +58,7 @@ let default_1 = class extends Command_1.default {
         }
         flagListener.stop();
         return message.edit(common_tags_1.stripIndents `
-            ${msg.guild.loc.get(minesweeper.isEnd() ? (minesweeper.isDoughBomb ? "COMMAND_GAME_MINESWEEPER_DOUGH_BOMB" : "COMMAND_GAME_MINESWEEPER_WIN") : "COMMAND_GAME_LIST_TIMEOUT")}
+            ${msg.ctx.lang(minesweeper.isEnd() ? (minesweeper.isDoughBomb ? "COMMAND_GAME_MINESWEEPER_DOUGH_BOMB" : "COMMAND_GAME_MINESWEEPER_WIN") : "COMMAND_GAME_LIST_TIMEOUT")}
             > ⬛${alphabets.map((_, i) => `:regional_indicator_${String.fromCharCode(97 + i)}:`).join("")}
             ${minesweeper.toString().split("\n").map((x, i) => `> ${numbers[i]}${x}`).join("\n")}
         `);
@@ -68,7 +68,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("game-minesweeper", {
         aliases: [],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_GAME_MINESWEEPER_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_GAME_MINESWEEPER_DESCRIPTION"),
             usage: "",
             examples: ["game-minesweeper"],
             adionalInfo: ["💣 Minesweeper", "minesweeper", "mnswpr"]

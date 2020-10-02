@@ -16,7 +16,7 @@ let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { amount }) {
         const { music } = msg.guild;
         music.setVolume(amount);
-        return msg.ctx.send(msg.guild.loc.get("COMMAND_MUSIC_VOLUME_CHANGE", amount));
+        return msg.ctx.send(msg.ctx.lang("COMMAND_MUSIC_VOLUME_CHANGE", amount));
     }
     ignore(msg) {
         return !!msg.guild.music.song && (msg.guild.music.listeners.length < 2 ||
@@ -33,7 +33,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("volume", {
         aliases: ["volume"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_VOLUME_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_MUSIC_VOLUME_DESCRIPTION"),
             usage: "volume <amount>",
             examples: ["volume 100"]
         },
@@ -45,7 +45,7 @@ default_1 = __decorate([
             {
                 identifier: "amount",
                 match: "single",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_MUSIC_VOLUME_PROMPT"),
+                prompt: (msg) => msg.ctx.lang("COMMAND_MUSIC_VOLUME_PROMPT"),
                 type: (_, content) => {
                     const volume = _.client.collector.runner.argsParser.getType("number")(_, content);
                     if (volume > 120)

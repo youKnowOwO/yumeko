@@ -17,9 +17,9 @@ let default_1 = class default_1 extends Command_1.default {
             msg.guild.prefix = prefix;
             if (msg.prefix)
                 await msg.guild.updateDatabase();
-            return msg.ctx.send(msg.guild.loc.get("COMMAND_PREFIX_SET_TO", prefix));
+            return msg.ctx.send(msg.ctx.lang("COMMAND_PREFIX_SET_TO", prefix));
         }
-        return msg.ctx.send(msg.guild.loc.get("COMMAND_PREFIX_CURRENT", msg.guild.prefix));
+        return msg.ctx.send(msg.ctx.lang("COMMAND_PREFIX_CURRENT", msg.guild.prefix));
     }
 };
 __decorate([
@@ -29,7 +29,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("prefix", {
         aliases: ["prefix", "setprefix"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_PREFIX_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_PREFIX_DESCRIPTION"),
             usage: "prefix [pref]",
             examples: ["prefix", "prefix !"]
         },

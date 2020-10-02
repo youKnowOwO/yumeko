@@ -19,7 +19,7 @@ let default_1 = class default_1 extends Command_1.default {
             member = msg.member;
         const length = Math.floor(Math.random() * 15) + 5;
         const attachment = await this.makeImage(length);
-        return msg.ctx.send(msg.guild.loc.get("COMMAND_BANANA_LENGTH", member, length), { files: [{ attachment, name: "banana.jpg" }] });
+        return msg.ctx.send(msg.ctx.lang("COMMAND_BANANA_LENGTH", member, length), { files: [{ attachment, name: "banana.jpg" }] });
     }
     async makeImage(length) {
         const [bananaImage, base] = await Promise.all([this.getBananaImage(), this.getBase()]);
@@ -61,7 +61,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("banana", {
         aliases: ["banana", "banana-length"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_BANANA_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_BANANA_DESCRIPTION"),
             usage: "banana [user]",
             examples: ["banana", "banana @unknown"]
         },

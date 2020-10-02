@@ -19,7 +19,7 @@ let default_1 = class default_1 extends Command_1.default {
     async exec(msg, { title }) {
         const result = await this.getLyrics(title);
         if (!result)
-            return msg.ctx.send(msg.guild.loc.get("COMMAND_UTIL_NO_RESULT_FOUND"));
+            return msg.ctx.send(msg.ctx.lang("COMMAND_UTIL_NO_RESULT_FOUND"));
         const pages = Util_1.chunk(result.lyrics, 2048);
         const embed = new discord_js_1.MessageEmbed()
             .setColor(this.client.config.color)
@@ -46,7 +46,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("lyrics", {
         aliases: ["lyrics", "lyrics"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_MUSIC_LYRICS_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_MUSIC_LYRICS_DESCRIPTION"),
             usage: "lyrics",
             examples: ["lyrics Moo Doja Cat"]
         },

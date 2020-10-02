@@ -35,7 +35,7 @@ let default_1 = class default_1 extends Command_1.default {
             .toBufferAsync();
     }
     async exec(msg) {
-        const m = await msg.channel.send(msg.guild.loc.get("COMMAND_FUN_PAINTING"));
+        const m = await msg.channel.send(msg.ctx.lang("COMMAND_FUN_PAINTING"));
         const fortune = await this.getFortune();
         const attachment = await this.createImage(fortune);
         m.delete();
@@ -67,7 +67,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("fortune-cookie", {
         aliases: ["fortune-cookie", "fortune"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_FORTUNE_COOKIE_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_FORTUNE_COOKIE_DESCRIPTION"),
             usage: "fortune-cookie",
             examples: ["fortune-cookie"]
         },

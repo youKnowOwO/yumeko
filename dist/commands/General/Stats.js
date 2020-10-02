@@ -73,7 +73,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("stats", {
         aliases: ["stats"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_STATS_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_STATS_DESCRIPTION"),
             usage: "stats",
             examples: ["stats"]
         },

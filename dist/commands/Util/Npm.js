@@ -21,26 +21,26 @@ let default_1 = class extends Command_1.default {
         query = query.replace(/ +/g, "+");
         const result = await this.getResult(query, yarn);
         if (!result)
-            return msg.ctx.send(msg.guild.loc.get("COMMAND_UTIL_NO_RESULT_FOUND"));
+            return msg.ctx.send(msg.ctx.lang("COMMAND_UTIL_NO_RESULT_FOUND"));
         const version = result.versions[result["dist-tags"].latest];
         let deps = version.dependencies ? Object.keys(version.dependencies).map(x => `\`${x}\``) : [];
         let maintainers = result.maintainers.map((x) => `\`${x.name}\``);
         if (deps.length > 10)
-            deps = Util_1.trimArray(deps, msg.guild.loc.get("COMMAND_UTIL_TRIM_ARRAY_PATTERN"));
+            deps = Util_1.trimArray(deps, msg.ctx.lang("COMMAND_UTIL_TRIM_ARRAY_PATTERN"));
         if (maintainers.length > 10)
-            maintainers = Util_1.trimArray(maintainers, msg.guild.loc.get("COMMAND_UTIL_TRIM_ARRAY_PATTERN"));
+            maintainers = Util_1.trimArray(maintainers, msg.ctx.lang("COMMAND_UTIL_TRIM_ARRAY_PATTERN"));
         const embed = new discord_js_1.MessageEmbed()
             .setURL(`https://${yarn ? "yarnpkg.com/en/package" : "www.npmjs.com"}/${result.name}`)
             .setTitle(result.name)
             .setColor(yarn ? 0x2188B6 : 0xCB0000)
             .setAuthor(yarn ? "YARN" : "NPM", yarn ? "https://yarnpkg.com/icons/icon-512x512.png" : "https://i.imgur.com/ErKf5Y0.png")
-            .setDescription(msg.guild.loc.get("COMMAND_NPM_PARSE", [
-            result.description || msg.guild.loc.get("COMMAND_NPM_NO_DESC"),
+            .setDescription(msg.ctx.lang("COMMAND_NPM_PARSE", [
+            result.description || msg.ctx.lang("COMMAND_NPM_NO_DESC"),
             result["dist-tags"].latest,
-            result.license ? result.license : msg.guild.loc.get("COMMAND_NPM_UNKNOWN"),
-            result.author ? result.author.name : msg.guild.loc.get("COMMAND_NPM_UNKNOWN"),
-            result.time ? moment_1.default(result.time.modified).format("DD-MM-YYYY") : msg.guild.loc.get("COMMAND_NPM_UNKNOWN"),
-            deps.length ? deps.join(", ") : msg.guild.loc.get("COMMAND_NPM_NO_DEPENDENCIES"),
+            result.license ? result.license : msg.ctx.lang("COMMAND_NPM_UNKNOWN"),
+            result.author ? result.author.name : msg.ctx.lang("COMMAND_NPM_UNKNOWN"),
+            result.time ? moment_1.default(result.time.modified).format("DD-MM-YYYY") : msg.ctx.lang("COMMAND_NPM_UNKNOWN"),
+            deps.length ? deps.join(", ") : msg.ctx.lang("COMMAND_NPM_NO_DEPENDENCIES"),
             maintainers.join(", "),
             version.dist.tarball
         ]));
@@ -60,7 +60,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("npm", {
         aliases: ["npm", "yarn"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_NPM_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_NPM_DESCRIPTION"),
             usage: "npm <query>",
             examples: ["npm discord.js"]
         },
@@ -72,7 +72,7 @@ default_1 = __decorate([
             {
                 identifier: "query",
                 match: "rest",
-                prompt: (msg) => msg.guild.loc.get("COMMAND_NPM_PROMPT"),
+                prompt: (msg) => msg.ctx.lang("COMMAND_NPM_PROMPT"),
                 type: "string"
             }
         ]

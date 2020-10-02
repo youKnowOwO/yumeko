@@ -20,14 +20,14 @@ let default_1 = class default_1 extends Command_1.default {
             if (msg.prefix)
                 await msg.guild.updateDatabase();
             const currentLang = [
-                msg.guild.loc.get("META_NAME"),
-                msg.guild.loc.get("META_EMOJI")
+                msg.ctx.lang("META_NAME"),
+                msg.ctx.lang("META_EMOJI")
             ];
-            return msg.ctx.send(msg.guild.loc.get("COMMAND_LANGUAGE_SET", ...currentLang));
+            return msg.ctx.send(msg.ctx.lang("COMMAND_LANGUAGE_SET", ...currentLang));
         }
         const currentLang = [
-            msg.guild.loc.get("META_NAME"),
-            msg.guild.loc.get("META_EMOJI")
+            msg.ctx.lang("META_NAME"),
+            msg.ctx.lang("META_EMOJI")
         ];
         let index = 0;
         const list = this.client.langs.map((x, i) => common_tags_1.oneLineTrim `
@@ -36,7 +36,7 @@ let default_1 = class default_1 extends Command_1.default {
             \`${i}\` 
             ${x.META_EMOJI()}
         `).join("\n");
-        return msg.ctx.send(msg.guild.loc.get("COMMAND_LANGUAGE_LIST", msg.prefix, list, ...currentLang));
+        return msg.ctx.send(msg.ctx.lang("COMMAND_LANGUAGE_LIST", msg.prefix, list, ...currentLang));
     }
 };
 __decorate([
@@ -46,7 +46,7 @@ default_1 = __decorate([
     decorators_1.DeclareCommand("language", {
         aliases: ["language", "lang", "setlang", "locale"],
         description: {
-            content: (msg) => msg.guild.loc.get("COMMAND_LANGUAGE_DESCRIPTION"),
+            content: (msg) => msg.ctx.lang("COMMAND_LANGUAGE_DESCRIPTION"),
             usage: "language [lang]",
             examples: ["language", "language id_ID", "language 1"]
         },
@@ -66,7 +66,7 @@ default_1 = __decorate([
                     else if (langs.has(content))
                         lang = content;
                     if (!lang)
-                        throw new CustomError_1.default("!PARSING", msg.guild.loc.get("COMMAND_LANGUAGE_NOT_FOUND", content));
+                        throw new CustomError_1.default("!PARSING", msg.ctx.lang("COMMAND_LANGUAGE_NOT_FOUND", content));
                     return lang;
                 },
                 optional: true

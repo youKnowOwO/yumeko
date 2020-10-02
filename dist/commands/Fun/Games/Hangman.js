@@ -13,7 +13,7 @@ class default_1 extends Command_1.default {
         super(client, "game-hangman", {
             aliases: [],
             description: {
-                content: (msg) => msg.guild.loc.get("COMMAND_GANE_HANGMAN_DESCRIPTION"),
+                content: (msg) => msg.ctx.lang("COMMAND_GANE_HANGMAN_DESCRIPTION"),
                 usage: "[range]",
                 examples: ["game-hangman"],
                 adionalInfo: ["<:hangman:736148147038060554> Hangman", "hangman", "hm"]
@@ -55,8 +55,8 @@ class default_1 extends Command_1.default {
             }
         }
         if (passes < 7)
-            return msg.ctx.send(msg.guild.loc.get("COMMAND_GAME_LIST_RIGHT", word.join("")));
-        return msg.ctx.send(msg.guild.loc.get("COMMAND_GAME_LIST_WRONG", words.join("")));
+            return msg.ctx.send(msg.ctx.lang("COMMAND_GAME_LIST_RIGHT", word.join("")));
+        return msg.ctx.send(msg.ctx.lang("COMMAND_GAME_LIST_WRONG", words.join("")));
     }
     getHangedMan(passes) {
         return common_tags_1.stripIndents `
