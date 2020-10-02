@@ -37,6 +37,7 @@ RUN apk add --no-cache pixman cairo pango giflib libjpeg-turbo freetype \
 
 # Copy needed project files
 COPY --from=build-stage /tmp/build/package.json .
+COPY --from=build-stage /tmp/build/config.json .
 COPY --from=build-stage /tmp/build/yarn.lock .
 COPY --from=build-stage /tmp/build/node_modules ./node_modules
 COPY --from=build-stage /tmp/build/assets ./assets
