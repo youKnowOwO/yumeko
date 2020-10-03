@@ -16,7 +16,6 @@ function awaitQuestion(query: string): Promise<string> {
 }
 
 function end(reason?: string): void {
-    rl.write("\n");
     if (reason) rl.write(chalk`{bgRed {black \ CANCELED }} ${reason}`);
     else rl.write(chalk`{bgGreen {black \ SUCCES }} Command created ✓`);
     rl.write("\n");
@@ -34,6 +33,7 @@ export async function exec(): Promise<void> {
     aliases = aliases.filter(x => x.length);
     const descriptionContent = await awaitQuestion(chalk`  {blue •} What description of the command ? (if came from localization please insert the id between <>) `)
         .then(x => {
+            if (!x.length) return "";
             if (x.startsWith("<") && x.endsWith(">"))
                 return `(msg): string => msg.ctx.lang("${x.replace(/<|>/g, "")}")`;
             return `"${x}"`;
