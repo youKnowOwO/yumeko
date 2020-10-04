@@ -15,8 +15,9 @@ function awaitQuestion(query: string): Promise<string> {
     return new Promise(resolve => rl.question(query, resolve));
 }
 
-function end(prop?: string): void {
-    if (prop) rl.write(chalk`{bgRed {black \ ERROR }} Command {blue ${prop}} is required`);
+function end(prop?: string, error = false): void {
+    if (error) rl.write(chalk`{bgRed {black \ ERROR }} {red ${prop}}`);
+    else if (prop) rl.write(chalk`{bgRed {black \ ERROR }} Command {blue ${prop}} is required`);
     rl.write("\n");
     process.exit(0);
 }
@@ -78,4 +79,4 @@ export default class extends Command {
     return end();
 }
 
-exec();
+exec().catch((e: Error) => end(String(e), true));
