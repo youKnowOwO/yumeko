@@ -1346,10 +1346,10 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-lavalink@^2.10.0:
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/lavalink/-/lavalink-2.10.0.tgz#c2ce02926fc5e957252b407eb4f87dd67dd32378"
-  integrity sha512-3fgyzeHm98rL+S8lMsJKL3pIOkYNVGWLBdkm6U5Sk2KWHGKgKZnmLXWIyvVD3Yqrz4PzER0MWtEk3LknQ4VjCw==
+lavalink@^2.10.2:
+  version "2.10.2"
+  resolved "https://registry.yarnpkg.com/lavalink/-/lavalink-2.10.2.tgz#d189dee89a9a25b872dc8725c026da58b1a3c2ab"
+  integrity sha512-BtZOKsgiFGQ9BMNs96kR/M2cF/z0ZjZsf8zBy3y+89eJlaha66lzw+DV4ACOAk3SkSq99otuLZDSzbmOe4Di3w==
   dependencies:
     backoff "^2.5.0"
     ws "^6.0.0"
@@ -1501,7 +1501,7 @@ needle@^2.2.1:
     iconv-lite "^0.4.4"
     sax "^1.2.4"
 
-node-fetch@^2.6.0, node-fetch@^2.6.1:
+node-fetch@^2.6.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
