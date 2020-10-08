@@ -1,10 +1,17 @@
+import type Command from "@yumeko/classes/Command";
 import type { ClientEvents } from "discord.js";
 
-export interface YumekoClientEvents extends ClientEvents {
-    raw: [any];
-}
+type EventKeys = keyof ClientEvents;
 
 export interface Event {
-    readonly listener: keyof YumekoClientEvents;
-    exec(...args: YumekoClientEvents[Event["listener"]]): any;
+    readonly listener: EventKeys;
+    readonly devOnly?: boolean;
+    exec(...args: ClientEvents[EventKeys]): any;
+}
+
+declare module "discord.js" {
+    interface ClientEvents {
+        raw: [any];
+        commandStored: [Command?];
+    }
 }

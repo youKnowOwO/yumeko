@@ -1,6 +1,5 @@
 import type YumekoClient from "@yumeko/classes/Client";
 import { Event } from "@yumeko/interfaces";
-import { stripIndents } from "common-tags";
 import { constantly } from "@yumeko/decorators";
 
 const presences = require("../../assets/json/presence.json");
@@ -12,9 +11,6 @@ export default class ReadyEvent implements Event {
     @constantly
     public exec (): void {
         assignDB(this.client);
-        this.client.log.info(stripIndents`
-            ${this.client.log.color(this.client.user!.tag, "FFFFFF")} is Ready to play. ${this.client.shard ? this.client.shard.ids.map(x => this.client.log.color(`#${x + 1}`, "00FFFF")).join(", ") : ""}
-        `);
         this.client.lavalink.userID = this.client.user!.id;
         presence.call(null, this.client);
         setInterval(presence.bind(null, this.client), 60000);
