@@ -128,10 +128,10 @@
   dependencies:
     moment ">=2.14.0"
 
-"@types/mongodb@^3.5.27":
-  version "3.5.27"
-  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.5.27.tgz#158a7a43ce25ef3592ac8a62e62ab38bebf661f2"
-  integrity sha512-1jxKDgdfJEOO9zp+lv43p8jOqRs02xPrdUTzAZIVK9tVEySfCEmktL2jEu9A3wOBEOs18yKzpVIKUh8b8ALk3w==
+"@types/mongodb@^3.5.31":
+  version "3.5.31"
+  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.5.31.tgz#3678fa5d96a90b565fe6a86974a492fc32eb967a"
+  integrity sha512-Yu4F73rJaSuHb7mi35xoRdrzKr74kC8l5cR/yW6vI7L7Ag4OiBIdgh8estsVi0VAjlRAzHV8N3us2YIzKHDTzw==
   dependencies:
     "@types/bson" "*"
     "@types/node" "*"
