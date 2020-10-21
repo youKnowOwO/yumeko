@@ -677,8 +677,9 @@ dir-glob@^3.0.1:
     path-type "^4.0.0"
 
 "discord.js@github:discordjs/discord.js":
-  version "12.3.1"
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/d2341654fe6ef87c6048bb5bf74c394062f3f618"
+  version "12.4.0"
+  uid "250c3ae3c1f025c092383e4661bbb386e89a3c23"
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/250c3ae3c1f025c092383e4661bbb386e89a3c23"
   dependencies:
     "@discordjs/collection" "^0.1.6"
     "@discordjs/form-data" "^3.0.1"
