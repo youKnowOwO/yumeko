@@ -18,7 +18,7 @@
   "devDependencies": {
     "@types/cheerio": "^0.22.22",
     "@types/common-tags": "^1.8.0",
-    "@types/eslint": "^7.2.3",
+    "@types/eslint": "^7.2.6",
     "@types/figlet": "^1.2.0",
     "@types/moment-duration-format": "^2.2.2",
     "@types/mongodb": "^3.5.27",
