@@ -21,7 +21,7 @@
     "@types/eslint": "^7.2.3",
     "@types/figlet": "^1.2.0",
     "@types/moment-duration-format": "^2.2.2",
-    "@types/mongodb": "^3.5.27",
+    "@types/mongodb": "^3.6.6",
     "@types/node": "^14.11.2",
     "@types/turndown": "^5.0.0",
     "@types/ws": "^7.2.7",
