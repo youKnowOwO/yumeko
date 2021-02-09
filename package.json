@@ -25,7 +25,7 @@
     "@types/node": "^14.11.2",
     "@types/turndown": "^5.0.0",
     "@types/ws": "^7.2.7",
-    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.4.0",
     "@youKnowOwO/eslint-config": "github:youKnowOwO/eslint-config#build",
     "rimraf": "^3.0.2",
