@@ -677,15 +677,15 @@ dir-glob@^3.0.1:
     path-type "^4.0.0"
 
 "discord.js@github:discordjs/discord.js":
-  version "12.3.1"
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/d2341654fe6ef87c6048bb5bf74c394062f3f618"
+  version "12.5.0"
+  uid "599f0f5cef3fc3038db4de654f8035976df3c991"
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/599f0f5cef3fc3038db4de654f8035976df3c991"
   dependencies:
     "@discordjs/collection" "^0.1.6"
     "@discordjs/form-data" "^3.0.1"
     abort-controller "^3.0.0"
     node-fetch "^2.6.1"
     prism-media "^1.2.2"
-    setimmediate "^1.0.5"
     tweetnacl "^1.0.3"
     ws "^7.3.1"
 
@@ -1910,11 +1910,6 @@ set-blocking@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/set-blocking/-/set-blocking-2.0.0.tgz#045f9782d011ae9a6803ddd382b24392b3d890f7"
   integrity sha1-BF+XgtARrppoA93TgrJDkrPYkPc=
-
-setimmediate@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/setimmediate/-/setimmediate-1.0.5.tgz#290cbb232e306942d7d7ea9b83732ab7856f8285"
-  integrity sha1-KQy7Iy4waULX1+qbg3Mqt4VvgoU=
 
 shebang-command@^2.0.0:
   version "2.0.0"
