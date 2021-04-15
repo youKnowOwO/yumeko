@@ -98,10 +98,10 @@
   resolved "https://registry.yarnpkg.com/@types/common-tags/-/common-tags-1.8.0.tgz#79d55e748d730b997be5b7fce4b74488d8b26a6b"
   integrity sha512-htRqZr5qn8EzMelhX/Xmx142z218lLyGaeZ3YR8jlze4TATRU9huKKvuBmAJEW4LCC4pnY1N6JAm6p85fMHjhg==
 
-"@types/eslint@^7.2.3":
-  version "7.2.3"
-  resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.2.3.tgz#a3731b7584fe1a847a34e67ac57a556afd9b0c0e"
-  integrity sha512-SPBkpC+awgFfyAn4sjt0JBZ3vzACoSp2zhGBJkkrs09EzPqLbxkzaE8kJs3EsRRgkZwWk9zyXT/swvhnJYX8pQ==
+"@types/eslint@^7.2.10":
+  version "7.2.10"
+  resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.2.10.tgz#4b7a9368d46c0f8cd5408c23288a59aa2394d917"
+  integrity sha512-kUEPnMKrqbtpCq/KTaGFFKAcz6Ethm2EjCoKIDaCmfRBWLbFuTcOJfTlorwbnboXBzahqWLgUp1BQeKHiJzPUQ==
   dependencies:
     "@types/estree" "*"
     "@types/json-schema" "*"
