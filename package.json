@@ -46,7 +46,7 @@
     "moment": "^2.29.0",
     "moment-duration-format": "^2.3.2",
     "node-superfetch": "^0.1.10",
-    "turndown": "^6.0.0"
+    "turndown": "^7.1.1"
   },
   "_moduleAliases": {
     "@yumeko": "dist"
