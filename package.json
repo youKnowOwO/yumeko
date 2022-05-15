@@ -41,7 +41,7 @@
     "discord.js": "github:discordjs/discord.js",
     "eslint": "^7.10.0",
     "figlet": "^1.5.0",
-    "lavalink": "^2.10.2",
+    "lavalink": "^2.13.0",
     "module-alias": "^2.2.2",
     "moment": "^2.29.3",
     "moment-duration-format": "^2.3.2",
