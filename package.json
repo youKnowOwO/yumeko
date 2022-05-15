@@ -34,7 +34,7 @@
   "dependencies": {
     "@youKnowOwO/mongotrize": "github:youKnowOwO/mongotrize#build",
     "canvas": "^2.6.1",
-    "canvas-constructor": "^4.1.0",
+    "canvas-constructor": "^5.0.2",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.3",
     "common-tags": "^1.8.2",
