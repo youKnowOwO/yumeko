@@ -476,10 +476,12 @@ callsites@^3.0.0:
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
-canvas-constructor@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/canvas-constructor/-/canvas-constructor-4.1.0.tgz#450d06956fad557daede3ca36c5f42dc93916082"
-  integrity sha512-IWZ80DeKIODMnZS1ygaalM7AYaa02KeTnMzMmLhuUK/K1p+pmetMPu6ab9DAT7HsmC9H/xHMn/oSH0K/EnEbYQ==
+canvas-constructor@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/canvas-constructor/-/canvas-constructor-6.0.1.tgz#9baac998f0511544fdb2938e456afee9c05c7f25"
+  integrity sha512-wQ31XpPARgyOcNoKkz2J8tZnAewJEitgt5OzVhkciBhOc1q7IhchwMghM4sw1xY28O3NkBzqILeLZ1wN7nxd5Q==
+  dependencies:
+    tslib "^2.4.0"
 
 canvas@^2.6.1:
   version "2.6.1"
@@ -2249,6 +2251,11 @@ tslib@^1.8.1:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
+
+tslib@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
+  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
 tsutils@^3.17.1:
   version "3.17.1"
