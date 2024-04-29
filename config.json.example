@@ -11,5 +11,5 @@
         "password": ""
     },
     "myriad": "",
-    "debug": false
+    "dev": false
 }

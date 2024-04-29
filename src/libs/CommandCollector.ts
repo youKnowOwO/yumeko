@@ -18,25 +18,23 @@ export default class CommandCollector {
 
     public constructor(public client: YumekoClient) {}
 
-    public loadAll(log = true): void {
+    public loadAll(): void {
         const path = join(__dirname, "../commands");
         const files = readdirRecursive(path);
-        const { print, color, equal, date } = this.client.log;
-        if (log) print(equal(color("▶️ Collecting Command", "00C2FF")));
         for (const file of files) {
             const load = require(file).default;
             if (!load || !(load.prototype instanceof Command)) continue;
             const command = this.getCommand(file);
             this.registry(command);
-            if (log) print(`+ ${color(command.identifier, "FE9DFF")} (${color(file, "A20092")})`);
         }
-        if (log) print(equal(color(date(), "505050")));
+        this.client.emit("commandStored");
     }
 
     public registry(command: string | Command): void {
         if (typeof command === "string") command = this.getCommand(command);
         this.addToCategory(command);
         this.commands.set(command.identifier, command);
+        this.client.emit("commandStored", command);
     }
 
     public getCommand(path: string): Command {

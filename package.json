@@ -9,6 +9,8 @@
     "lint:fix": "eslint --ignore-path .gitignore \"**/*.+(ts|js)\" --fix",
     "start": "node dist",
     "start:dev": "node dist/yumeko.js dev",
+    "create:cmd": "node dist/util/CreateCommand.js",
+    "config:sync": "node dist/util/ConfigTypeSync.js",
     "test": "yarn lint && yarn build"
   },
   "repository": "https://github.com/youKnowOwO/yumeko-ts.git",

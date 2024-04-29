@@ -7,6 +7,7 @@ import Logger from "@yumeko/libs/Logger";
 import eventLoader from "@yumeko/libs/EventLoader";
 import nowPlayMoe from "@yumeko/libs/NowplayMoeWS";
 import { langCollector } from "@yumeko/libs/Localization";
+import { Config } from "@yumeko/interfaces";
 import { Client } from "discord.js";
 import { Node as Lavalink } from "lavalink";
 
@@ -14,7 +15,7 @@ import "../extension";
 import { hide } from "@yumeko/decorators";
 
 // i don't want compiler compile these one
-const config = require("../../config.json");
+const config: Config = require("../../config.json");
 
 export default class YumekoClient extends Client {
     @hide
